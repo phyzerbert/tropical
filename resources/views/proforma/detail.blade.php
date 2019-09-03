@@ -22,20 +22,19 @@
     <div class="content content-boxed">
         <div class="block block-fx-shadow">
             <div class="block-header block-header-default">
-                <h3 class="block-title py-3" style="font-size:35px">INVOICE : {{$invoice->reference_no}}</h3>
+                <h3 class="block-title py-3" style="font-size:35px">PRO-FORMA INVOICE NR : {{$invoice->reference_no}}</h3>
             </div>
             <div class="block-content">
                 <div class="p-sm-4 p-xl-6">
                     <div class="row mb-5">
                         <div class="col-md-6">
-                            <h4>{{__('page.issue_date')}} : {{$invoice->issue_date}}</h4>
+                            <h4>{{__('page.date')}} : {{$invoice->date}}</h4>
                             <h4>{{__('page.due_date')}} : {{$invoice->due_date}}</h4>
                             <h4>{{__('page.customers_vat')}} : {{$invoice->customers_vat}}</h4>
-                            <h4>{{__('page.delivery_date')}} : {{$invoice->delivery_date}}</h4>
+                            <h4>{{__('page.concerning_week')}} : {{$invoice->concerning_week}}</h4>
                         </div>
                         <div class="col-md-6">
-                            <h4>{{__('page.concerning_week')}} : {{$invoice->concerning_week}}</h4>
-                            <h4>{{__('page.shipment')}} : {{$invoice->shipment}}</h4>
+                            <h4>{{__('page.brand')}} : {{$invoice->brand}}</h4>
                             <h4>{{__('page.vessel')}} : {{$invoice->vessel}}</h4>
                             <h4>{{__('page.port_of_discharge')}} : {{$invoice->port_of_discharge}}</h4>
                             <h4>{{__('page.origin')}} : {{$invoice->origin}}</h4>
@@ -49,8 +48,6 @@
                                     <th>{{__('page.product')}}</th>
                                     <th class="text-right" style="width: 90px;">{{__('page.quantity')}}</th>
                                     <th class="text-right" style="width: 120px;">{{__('page.price')}}</th>
-                                    <th class="text-right">{{__('page.amount')}}</th>
-                                    <th class="text-right">{{__('page.surcharge_reduction')}}</th>
                                     <th class="text-right" style="width: 120px;">{{__('page.total_amount')}}</th>
                                 </tr>
                             </thead>
@@ -70,12 +67,10 @@
                                             <div class="text-muted">{{$item->product->description}}</div>
                                         </td>
                                         <td class="text-center">
-                                            <span class="badge badge-pill badge-primary">{{$item->quantity}}</span>
+                                            <span class="badge badge-pill badge-primary">{{number_format($item->quantity)}}</span>
                                         </td>
                                         <td class="text-right">{{$item->price}}</td>
-                                        <td class="text-right">{{$item->amount}}</td>
-                                        <td class="text-right">{{$item->surcharge_reduction}}</td>
-                                        <td class="text-right">{{$item->total_amount}}</td>
+                                        <td class="text-right">{{number_format($item->total_amount)}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -83,28 +78,20 @@
                                 <tr>
                                     <td colspan="2" class="text-right">{{__('page.total')}} : </td>
                                     <td class="total_quantity">{{ $footer_quantity }}</td>
-                                    <td colspan="3" align="right">Total Excluding VAT</td>
-                                    <td colspan="2" class="total_excluding_vat">{{ $footer_amount }}</td>
+                                    <td></td>
+                                    <td colspan="2" class="total">{{ number_format($footer_amount) }}</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="6" align="right">V.A.T</td>
-                                    <td colspan="2">{{ $invoice->vat_amount }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" align="right">Total Including VAT</td>
-                                    <td colspan="2">{{ $invoice->total_to_pay }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="6" align="right">Total To Pay</td>
+                                    <td colspan="4" align="right">Total To Pay</td>
                                     <td colspan="2">
-                                        {{ $invoice->total_to_pay }}
+                                        {{ number_format($invoice->total_to_pay) }}
                                     </td>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
                     <div class="clearfix">
-                        <a href="{{route('invoice.index')}}" class="btn btn-primary float-right"><i class="far fa-file-alt"></i> {{__('page.invoices')}}</a>
+                        <a href="{{route('proforma.index')}}" class="btn btn-primary float-right"><i class="far fa-file-alt"></i> {{__('page.invoices')}}</a>
                     </div>
                 </div>
             </div>

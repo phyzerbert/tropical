@@ -42,12 +42,12 @@
                             @endphp                               
                             @foreach ($data as $item)
                                 @php
-                                    $purchases_array = 0;
+                                    $invoice_array = $item->invoices->pluck('id');
                                     $mod_total_amount = 0;
-                                    $mod_paid = 0;
+                                    $mod_paid = \App\Models\Payment::whereIn('paymentable_id', $invoice_array)->where('paymentable_type', 'App\Models\Invoice');
 
-                                    $total_amount = 0;
-                                    $paid = 0;  
+                                    $total_amount = $item->invoices->sum('total_to_pay');
+                                    $paid = $mod_paid->sum('amount');  
 
                                     $footer_total_amount += $total_amount;
                                     $footer_paid += $paid;

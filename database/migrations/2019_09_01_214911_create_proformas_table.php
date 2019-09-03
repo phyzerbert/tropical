@@ -27,6 +27,7 @@ class CreateProformasTable extends Migration
             $table->string('origin')->nullable();
             $table->integer('vat_amount')->nullable();
             $table->integer('total_to_pay')->nullable();
+            $table->integer('is_received')->default(0);
             $table->text('note')->nullable();
             $table->timestamps();
         });

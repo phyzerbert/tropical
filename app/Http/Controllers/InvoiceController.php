@@ -196,7 +196,7 @@ class InvoiceController extends Controller
     }
 
     public function delete($id){
-        $item = Proforma::find($id);
+        $item = Invoice::find($id);
         $item->items()->delete();
         $item->payments()->delete();
         $item->delete();

@@ -192,6 +192,42 @@ class ProformaController extends Controller
     }
 
     public function receive(Request $request, $id){
+        config(['site.page' => 'proforma']); 
+        $invoice = Proforma::find($id);
+        return view('proforma.receive', compact('invoice'));
+    }
 
+    public function save_receive(Request $request){
+        $data = $request->all();
+        $invoice = Proforma::find($request->get('id'));
+        $item = new Invoice();
+        $item->reference_no = $invoice->reference_no;
+        $item->issue_date = $invoice->date;
+        $item->supplier_id = $invoice->supplier_id;
+        $item->due_date = $invoice->due_date;
+        $item->customers_vat = $invoice->customers_vat;
+        $item->concerning_week = $invoice->concerning_week;
+        $item->shipment = $invoice->brand;
+        $item->vessel = $invoice->vessel;
+        $item->port_of_discharge = $invoice->port_of_discharge;
+        $item->origin = $invoice->origin;
+        $item->total_to_pay = $invoice->total_to_pay;
+        $item->note = $invoice->note;        
+        // $item->save();
+        $invoice->update(['is_received' => 1]);
+
+        if(isset($data['product_id']) && count($data['product_id']) > 0){
+            for ($i=0; $i < count($data['product_id']); $i++) {
+                Item::create([
+                    'product_id' => $data['product_id'][$i],
+                    'price' => $data['price'][$i],
+                    'quantity' => $data['quantity'][$i],
+                    'total_amount' => $data['total_amount'][$i],
+                    'itemable_id' => $item->id,
+                    'itemable_type' => Invoice::class,
+                ]);
+            }
+        }
+        return redirect(route('proforma.index'))->with("success", __('page.received_successfully'));
     }
 }

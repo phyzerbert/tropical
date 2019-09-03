@@ -26,7 +26,7 @@
                     <input type="text" class="form-control form-control-sm" style="width: 200px;" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
                     <button type="submit" class="btn btn-sm btn-primary ml-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
                 </form>                
-                <a href="{{route('invoice.create')}}" class="btn btn-success btn-sm" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
+                <a href="{{route('proforma.create')}}" class="btn btn-success btn-sm" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
             </div>
             <div class="block-content block-content-full">
                 <table class="table table-bordered table-hover">
@@ -34,42 +34,29 @@
                         <tr class="bg-blue">
                             <th style="width:50px;">#</th>
                             <th>{{__('page.reference_no')}}</th>
-                            <th>{{__('page.issue_date')}}</th>
+                            <th>{{__('page.supplier')}}</th>
+                            <th>{{__('page.date')}}</th>
                             <th>{{__('page.due_date')}}</th>
                             <th>{{__('page.total_to_pay')}}</th>
-                            <th>{{__('page.paid')}}</th>
-                            <th>{{__('page.balance')}}</th>
                             <th style="width:120px;">{{__('page.action')}}</th>
                         </tr>
                     </thead>
-                    <tbody> 
-                        @php
-                            $footer_total_to_pay = $footer_paid = $footer_balance = 0;
-                        @endphp                               
+                    <tbody>                              
                         @foreach ($data as $item)
-                            @php
-                                $paid = $item->payments()->sum('amount');
-                                $balance = $item->total_to_pay - $paid;
-                                $footer_total_to_pay += $item->total_to_pay;
-                                $footer_balance += $balance;
-                                $footer_paid += $paid;
-                            @endphp
                             <tr>
                                 <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
                                 <td class="reference_no">{{$item->reference_no}}</td>
-                                <td class="issue_date">{{$item->issue_date}}</td>
+                                <td class="supplier">@isset($item->supplier->company){{$item->supplier->company}}@endisset</td>
+                                <td class="date">{{$item->date}}</td>
                                 <td class="due_date">{{$item->due_date}}</td>
                                 <td class="total_to_pay">{{number_format($item->total_to_pay)}}</td>
-                                <td class="paid">{{number_format($paid)}}</td>
-                                <td class="balance" data-value="{{$balance}}">{{number_format($balance)}}</td>
                                 <td class="text-center">
                                     <div class="dropdown">
                                         <button type="button" class="btn btn-sm btn-primary dropdown-toggle" id="dropdown-align-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('page.action')}}&nbsp;</button>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-align-primary">
-                                            <a class="dropdown-item" href="{{route('invoice.detail', $item->id)}}">{{__('page.detail')}}</a>
-                                            <a class="dropdown-item btn-add-payment" data-id="{{$item->id}}" href="javascript:void(0)">{{__('page.add_payment')}}</a>
-                                            <a class="dropdown-item" href="{{route('payment.index', ['invoice', $item->id])}}">{{__('page.payment_list')}}</a>
-                                            <a class="dropdown-item" href="{{route('invoice.edit', $item->id)}}">{{__('page.edit')}}</a>
+                                            <a class="dropdown-item" href="{{route('proforma.detail', $item->id)}}">{{__('page.detail')}}</a>
+                                            <a class="dropdown-item" href="{{route('proforma.receive', $item->id)}}" data-id="{{$item->id}}">{{__('page.receive')}}</a>
+                                            <a class="dropdown-item" href="{{route('proforma.edit', $item->id)}}">{{__('page.edit')}}</a>
                                             <a class="dropdown-item" href="{{route('invoice.delete', $item->id)}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">{{__('page.delete')}}</a>
                                         </div>
                                     </div>

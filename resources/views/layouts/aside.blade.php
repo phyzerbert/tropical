@@ -59,28 +59,24 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-main-item">
+            @php
+                $proforma_items = ['proforma', 'add_proforma'];
+            @endphp
+            <li class="nav-main-item @if($page == in_array($page, $proforma_items)) open @endif">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="be_tables_datatables.html#">
                     <i class="nav-main-link-icon si si-star"></i>
                     <span class="nav-main-link-name">PRO-FORM NR INVOICE</span>
                 </a>
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="be_tables_datatables.html#">
-                            <span class="nav-main-link-name">Page</span>
+                        <a class="nav-main-link @if($page == 'proforma') active @endif" href="{{route('proforma.index')}}">
+                            <span class="nav-main-link-name">{{__('page.invoices')}}</span>
                         </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_layout_page_default.html">
-                                    <span class="nav-main-link-name">Default</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_layout_page_flipped.html">
-                                    <span class="nav-main-link-name">Flipped</span>
-                                </a>
-                            </li>
-                        </ul>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link @if($page == 'add_proforma') active @endif" href="{{route('proforma.create')}}">
+                            <span class="nav-main-link-name">{{__('page.add_invoice')}}</span>
+                        </a>
                     </li>
                 </ul>
             </li>            

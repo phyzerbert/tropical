@@ -47,6 +47,20 @@ Route::post('/invoice/update', 'InvoiceController@update')->name('invoice.update
 Route::get('/invoice/detail/{id}', 'InvoiceController@detail')->name('invoice.detail');
 Route::get('/invoice/delete/{id}', 'InvoiceController@delete')->name('invoice.delete');
 
+Route::any('/proforma/index', 'ProformaController@index')->name('proforma.index');
+Route::get('/proforma/create', 'ProformaController@create')->name('proforma.create');
+Route::post('/proforma/save', 'ProformaController@save')->name('proforma.save');
+Route::get('/proforma/edit/{id}', 'ProformaController@edit')->name('proforma.edit');
+Route::post('/proforma/update', 'ProformaController@update')->name('proforma.update');
+Route::get('/proforma/detail/{id}', 'ProformaController@detail')->name('proforma.detail');
+Route::get('/proforma/delete/{id}', 'ProformaController@delete')->name('proforma.delete');
+Route::get('/proforma/receive/{id}', 'ProformaController@receive')->name('proforma.receive');
+
+Route::any('/payment/index/{type}/{id}', 'PaymentController@index')->name('payment.index');
+Route::post('/payment/create', 'PaymentController@create')->name('payment.create');
+Route::post('/payment/edit', 'PaymentController@edit')->name('payment.edit');
+Route::get('/payment/delete/{id}', 'PaymentController@delete')->name('payment.delete');
+
 Route::get('/profile', 'UserController@profile')->name('profile');
 Route::post('/updateuser', 'UserController@updateuser')->name('updateuser');
 Route::any('/users/index', 'UserController@index')->name('users.index');
@@ -55,10 +69,11 @@ Route::post('/user/edit', 'UserController@edituser')->name('user.edit');
 Route::get('/user/delete/{id}', 'UserController@delete')->name('user.delete');
 
 Route::get('get_products', 'VueController@get_products');
-Route::post('get_items', 'VueController@get_items');
 Route::post('get_product', 'VueController@get_product');
 Route::get('get_first_product', 'VueController@get_first_product');
 Route::post('get_data', 'VueController@get_data');
 Route::post('get_invoice', 'VueController@get_invoice');
+Route::post('get_items', 'VueController@get_items');
+Route::post('get_proforma', 'VueController@get_proforma');
 Route::post('get_received_quantity', 'VueController@get_received_quantity');
 Route::post('get_autocomplete_products', 'VueController@get_autocomplete_products');

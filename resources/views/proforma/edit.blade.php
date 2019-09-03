@@ -9,11 +9,11 @@
     <div class="bg-body-light">
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2"><i class="far fa-file-alt"></i> {{__('page.create_invoice')}}</h1>
+                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2"><i class="far fa-file-alt"></i> {{__('page.edit_invoice')}}</h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><i class="nav-main-link-icon si si-home"></i></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{__('page.create_invoice')}}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{__('page.edit_invoice')}}</li>
                     </ol>
                 </nav>
             </div>
@@ -22,13 +22,14 @@
     <div class="content">
         <div class="block block-rounded block-bordered">
             <div class="block-content block-content-full">
-                <form action="{{route('invoice.save')}}" method="POST" enctype="multipart/form-data" id="app" style="opacity: 0">
+                <form action="{{route('proforma.update')}}" method="POST" enctype="multipart/form-data" id="app" style="opacity: 0">
                     @csrf
+                    <input type="hidden" name="id" id="invoice_id" value="{{$invoice->id}}">
                     <div class="row mb-3">
                         <div class="col-md-3">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.reference_no')}}: <span class="tx-danger">*</span></label>
-                                <input class="form-control" type="text" name="reference_no" placeholder="{{__('page.reference_no')}}" required>
+                                <input class="form-control" type="text" name="reference_no" value="{{$invoice->reference_no}}" placeholder="{{__('page.reference_no')}}" required>
                                 @error('reference_no')
                                     <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -43,7 +44,7 @@
                                     <select class="form-control select2" name="supplier" id="search_supplier" required data-placeholder="{{__('page.select_supplier')}}">
                                         <option label="{{__('page.select_supplier')}}"></option>
                                         @foreach ($suppliers as $item)
-                                            <option value="{{$item->id}}" @if(old('supplier') == $item->id) selected @endif>{{$item->company}}</option>
+                                            <option value="{{$item->id}}" @if($invoice->supplier_id == $item->id) selected @endif>{{$item->company}}</option>
                                         @endforeach
                                     </select>
                                     <span class="input-group-btn">
@@ -58,9 +59,9 @@
                             </div>
                         </div>
                         <div class="form-group col-md-3">
-                            <label class="form-control-label">{{__('page.issue_date')}}: <span class="tx-danger">*</span></label>
-                            <input class="datepicker form-control" type="text" name="issue_date" value="{{date('Y-m-d')}}" placeholder="{{__('page.issue_date')}}" autocomplete="off" required>
-                            @error('issue_date')
+                            <label class="form-control-label">{{__('page.date')}}: <span class="tx-danger">*</span></label>
+                            <input class="datepicker form-control" type="text" name="date" value="{{$invoice->date}}" placeholder="{{__('page.date')}}" autocomplete="off" required>
+                            @error('date')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -69,7 +70,7 @@
                         <div class="col-md-3">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.due_date')}}: <span class="tx-danger">*</span></label>
-                                <input class="form-control datepicker" type="text" name="due_date" value="{{date('Y-m-d')}}" placeholder="{{__('page.due_date')}}" autocomplete="off" required>
+                                <input class="form-control datepicker" type="text" name="due_date" value="{{$invoice->due_date}}" placeholder="{{__('page.due_date')}}" autocomplete="off" required>
                                 @error('due_date')
                                     <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -80,7 +81,7 @@
                         <div class="col-md-3">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.customers_vat')}}</label>
-                                <input class="form-control" type="text" name="customers_vat" value="{{ old('customers_vat') }}" required placeholder="{{__('page.customers_vat')}}">
+                                <input class="form-control" type="text" name="customers_vat" value="{{$invoice->customers_vat}}" required placeholder="{{__('page.customers_vat')}}">
                                 @error('customers_vat')
                                     <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -90,19 +91,8 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mg-b-10-force">
-                                <label class="form-control-label">{{__('page.delivery_date')}}: <span class="tx-danger">*</span></label>
-                                <input class="form-control datepicker" type="text" name="delivery_date" value="{{date('Y-m-d')}}" placeholder="{{__('page.delivery_date')}}" autocomplete="off" required>
-                                @error('delivery_date')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.concerning_week')}}</label>
-                                <input class="form-control" type="text" name="concerning_week" value="{{ old('concerning_week') }}" required placeholder="{{__('page.concerning_week')}}">
+                                <input class="form-control" type="text" name="concerning_week" value="{{ $invoice->concerning_week }}" required placeholder="{{__('page.concerning_week')}}">
                                 @error('concerning_week')
                                     <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -112,19 +102,8 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mg-b-10-force">
-                                <label class="form-control-label">{{__('page.shipment')}}</label>
-                                <input class="form-control" type="text" name="shipment" value="{{ old('shipment') }}" required placeholder="{{__('page.shipment')}}">
-                                @error('shipment')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.vessel')}}</label>
-                                <input class="form-control" type="text" name="vessel" value="{{ old('vessel') }}" required placeholder="{{__('page.vessel')}}">
+                                <input class="form-control" type="text" name="vessel" value="{{ $invoice->vessel }}" required placeholder="{{__('page.vessel')}}">
                                 @error('vessel')
                                     <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -135,7 +114,7 @@
                         <div class="col-md-3">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.port_of_discharge')}}</label>
-                                <input class="form-control" type="text" name="port_of_discharge" value="{{ old('port_of_discharge') }}" required placeholder="{{__('page.port_of_discharge')}}">
+                                <input class="form-control" type="text" name="port_of_discharge" value="{{ $invoice->port_of_discharge }}" required placeholder="{{__('page.port_of_discharge')}}">
                                 @error('port_of_discharge')
                                     <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -145,8 +124,19 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.brand')}}</label>
+                                <input class="form-control" type="text" name="brand" value="{{ $invoice->brand }}" required placeholder="{{__('page.brand')}}">
+                                @error('brand')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.origin')}}</label>
-                                <input class="form-control" type="text" name="origin" value="{{ old('origin') }}" required placeholder="{{__('page.origin')}}">
+                                <input class="form-control" type="text" name="origin" value="{{ $invoice->origin }}" required placeholder="{{__('page.origin')}}">
                                 @error('origin')
                                     <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -169,8 +159,6 @@
                                             <th>{{__('page.product_code')}}</th>
                                             <th>{{__('page.quantity')}}</th>
                                             <th>{{__('page.price')}}</th>
-                                            <th>{{__('page.amount')}}</th>
-                                            <th>{{__('page.surcharge_reduction')}}</th>
                                             <th>{{__('page.total_amount')}}</th>
                                             <th style="width:30px"></th>
                                         </tr>
@@ -183,42 +171,23 @@
                                             </td>
                                             <td><input type="number" class="form-control form-control-sm quantity" name="quantity[]" v-model="item.quantity" required placeholder="{{__('page.quantity')}}" /></td>
                                             <td><input type="number" class="form-control form-control-sm price" name="price[]" step="0.01" v-model="item.price" required placeholder="{{__('page.price')}}" /></td>
-                                            <td class="amount">
-                                                @{{formatPrice(item.amount)}}
-                                                <input type="hidden" name="amount[]" :value="item.amount" />
-                                            </td>
-                                            <td class="surcharge_reduction">
-                                                <input type="number" class="form-control form-control-sm surcharge_reduction" name="surcharge_reduction[]" v-model="item.surcharge_reduction" required placeholder="{{__('page.surcharge_reduction')}}" />
-                                            </td>
                                             <td class="total_amount">
                                                 @{{formatPrice(item.total_amount)}}
                                                 <input type="hidden" name="total_amount[]" :value="item.total_amount" />
+                                                <input type="hidden" name="item_id[]" :value="item.item_id" />
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-sm btn-warning rounded-circle remove-product" @click="remove(i)"><i class="fa fa-times"></i></a>
+                                                <a href="#" class="btn btn-sm btn-warning remove-product" @click="remove(i)"><i class="fa fa-times"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td>{{__('page.total')}}</td>
-                                            <td class="total_quantity">@{{total.quantity}}</td>
-                                            <td colspan="3" align="right">Total Excluding VAT</td>
+                                            <td colspan="3" align="right">{{__('page.total')}}</td>
                                             <td colspan="2" class="total_excluding_vat">@{{formatPrice(total.amount)}}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="5" align="right">V.A.T</td>
-                                            <td colspan="2">
-                                                @{{formatPrice(vat)}}
-                                                <input type="hidden" name="vat_amount" :value="vat" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="5" align="right">Total Including VAT</td>
-                                            <td colspan="2">@{{formatPrice(total.amount - vat)}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="5" align="right">Total To Pay</td>
+                                            <td colspan="3" align="right">Total To Pay</td>
                                             <td colspan="2">
                                                 @{{formatPrice(total_to_pay)}}
                                                 <input type="hidden" name="total_to_pay" :value="total_to_pay" />
@@ -233,13 +202,13 @@
                         <div class="col-md-12">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.note')}}:</label>
-                                <textarea class="form-control" name="note" rows="3" placeholder="{{__('page.note')}}"></textarea>
+                                <textarea class="form-control" name="note" rows="3" placeholder="{{__('page.note')}}">{{ $invoice->note }}</textarea>
                             </div>
                         </div>
                     </div>
                     <div class="form-layout-footer text-right">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check mg-r-2"></i> {{__('page.save')}}</button>
-                        <a href="{{route('invoice.index')}}" class="btn btn-warning"><i class="fa fa-times mg-r-2"></i> {{__('page.cancel')}}</a>
+                        <a href="{{route('proforma.index')}}" class="btn btn-warning"><i class="fa fa-times mg-r-2"></i> {{__('page.cancel')}}</a>
                     </div>
                 </form>                
             </div>
@@ -407,7 +376,7 @@
             });
         });
     </script>
-    <script src="{{asset('master/js/custom/create_invoice.js')}}"></script>
+    <script src="{{asset('master/js/custom/edit_proforma.js')}}"></script>
 @endsection
 
 

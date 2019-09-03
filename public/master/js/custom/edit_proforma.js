@@ -11,11 +11,40 @@ var app = new Vue({
         },
         vat: 0,
         total_to_pay: 0,
+        params: {
+            id: $('#invoice_id').val()
+        }
     },
 
     methods:{
         init() {
-            this.add_item()
+            axios.post('/get_proforma', this.params)
+                .then(response => {
+                    let invoice = response.data                    
+                    this.vat = invoice.vat_amount
+                    for (let i = 0; i < invoice.items.length; i++) {
+                        const item = invoice.items[i];
+                        axios.post('/get_product', {id:item.product_id})
+                            .then(response1 => {
+                                this.items.push({
+                                    product_id: item.product_id,
+                                    product_code: response1.data.code,
+                                    price: item.price,
+                                    quantity: item.quantity,
+                                    amount: item.amount,
+                                    surcharge_reduction: item.surcharge_reduction,
+                                    total_amount: item.total_amount,
+                                    item_id: item.id
+                                })
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });                
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                }); 
         },
         add_item() {
             // let app = this
@@ -26,8 +55,6 @@ var app = new Vue({
                         product_code: response.data.code,
                         price: 0,
                         quantity: 1,
-                        amount: 0,
-                        surcharge_reduction: 0,
                         total_amount: 0,
                     })
                     // Vue.nextTick(function() {
@@ -44,16 +71,15 @@ var app = new Vue({
             let total_amount = 0;
 
             for(let i = 0; i < data.length; i++) {
-                this.items[i].amount = parseFloat(data[i].price) * data[i].quantity
-                this.items[i].total_amount = parseInt(data[i].amount) + parseInt(data[i].surcharge_reduction)
-                total_quantity += parseInt(data[i].quantity)
+                this.items[i].total_amount = parseFloat(data[i].price) * data[i].quantity
+                total_quantity += parseFloat(data[i].quantity)
                 total_amount += data[i].total_amount
             }
             this.total.quantity = total_quantity
             this.total.amount = total_amount
         },
         calc_total_to_pay() {
-            this.total_to_pay = this.total.amount - this.vat
+            this.total_to_pay = this.total.amount
         },
         remove(i) {
             this.items.splice(i, 1)
@@ -98,8 +124,6 @@ var app = new Vue({
                 app.items[index].product_code = ui.item.label
                 app.items[index].price = 0
                 app.items[index].quantity = 1
-                app.items[index].amount = 0
-                app.items[index].surcharge_reduction = 0
                 app.items[index].total_amount = 0
             }
         });

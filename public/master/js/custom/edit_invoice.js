@@ -11,11 +11,40 @@ var app = new Vue({
         },
         vat: 0,
         total_to_pay: 0,
+        params: {
+            id: $('#invoice_id').val()
+        }
     },
 
     methods:{
         init() {
-            this.add_item()
+            axios.post('/get_invoice', this.params)
+                .then(response => {
+                    let invoice = response.data                    
+                    this.vat = invoice.vat_amount
+                    for (let i = 0; i < invoice.items.length; i++) {
+                        const item = invoice.items[i];
+                        axios.post('/get_product', {id:item.product_id})
+                            .then(response1 => {
+                                this.items.push({
+                                    product_id: item.product_id,
+                                    product_code: response1.data.code,
+                                    price: item.price,
+                                    quantity: item.quantity,
+                                    amount: item.amount,
+                                    surcharge_reduction: item.surcharge_reduction,
+                                    total_amount: item.total_amount,
+                                    item_id: item.id
+                                })
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });                
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                }); 
         },
         add_item() {
             // let app = this
@@ -45,8 +74,8 @@ var app = new Vue({
 
             for(let i = 0; i < data.length; i++) {
                 this.items[i].amount = parseFloat(data[i].price) * data[i].quantity
-                this.items[i].total_amount = parseInt(data[i].amount) + parseInt(data[i].surcharge_reduction)
-                total_quantity += parseInt(data[i].quantity)
+                this.items[i].total_amount = parseFloat(data[i].amount) + parseFloat(data[i].surcharge_reduction)
+                total_quantity += parseFloat(data[i].quantity)
                 total_amount += data[i].total_amount
             }
             this.total.quantity = total_quantity

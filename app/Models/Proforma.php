@@ -11,4 +11,8 @@ class Proforma extends Model
     public function items(){
         return $this->morphMany(Item::class, 'itemable');
     }
+
+    public function supplier(){
+        return $this->belongsTo(Supplier::class);
+    }
 }

@@ -16,6 +16,7 @@ class CreateProformasTable extends Migration
         Schema::create('proformas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('reference_no')->nullable();
+            $table->integer('supplier_id')->nullable();
             $table->date('date')->nullable();
             $table->date('due_date')->nullable();
             $table->string('customers_vat')->nullable();

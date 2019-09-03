@@ -79,6 +79,7 @@ class InvoiceController extends Controller
         // dd($data);
         $item = new Invoice();
         $item->reference_no = $data['reference_no'];
+        $item->supplier_id = $data['supplier'];
         $item->issue_date = $data['issue_date'];
         $item->due_date = $data['due_date'];
         $item->customers_vat = $data['customers_vat'];
@@ -95,7 +96,6 @@ class InvoiceController extends Controller
         $item->save();
 
         if(isset($data['product_id']) && count($data['product_id']) > 0){
-
             for ($i=0; $i < count($data['product_id']); $i++) { 
                 Item::create([
                     'product_id' => $data['product_id'][$i],
@@ -114,30 +114,21 @@ class InvoiceController extends Controller
     }
 
     public function edit(Request $request, $id){    
-        config(['site.page' => 'purchase']); 
-        $user = Auth::user();   
-        $purchase = Purchase::find($id);        
+        config(['site.page' => 'invoice']); 
+        $invoice = Invoice::find($id);        
         $suppliers = Supplier::all();
-        $products = Product::all();
-        $stores = Store::all();
-        if($user->role->slug == 'user'){
-            $stores = $user->company->stores;
-        }
-        return view('purchase.edit', compact('purchase', 'suppliers', 'stores', 'products'));
+        return view('invoice.edit', compact('invoice', 'suppliers'));
     }
 
     public function detail(Request $request, $id){    
-        config(['site.page' => 'purchase']);    
-        $purchase = Purchase::find($id);
-
-        return view('purchase.detail', compact('purchase'));
+        config(['site.page' => 'invoice']); 
+        $invoice = Invoice::find($id);
+        return view('invoice.detail', compact('invoice'));
     }
 
     public function update(Request $request){
         $request->validate([
-            'date'=>'required|string',
-            'reference_number'=>'required|string',
-            'store'=>'required',
+            'reference_no'=>'required|string',
             'supplier'=>'required',
         ]);
         $data = $request->all();
@@ -146,64 +137,67 @@ class InvoiceController extends Controller
             return back()->withErrors(['product' => 'Please select a prouct.']);
         }
         // dd($data);
-        $item = Purchase::find($request->get("id"));
+        $item = Invoice::find($request->get("id"));
  
-        $item->timestamp = $data['date'].":00";
-        $item->reference_no = $data['reference_number'];
-        $item->store_id = $data['store'];
-        $store = Store::find($data['store']);
-        $item->company_id = $store->company_id;
+        $item->reference_no = $data['reference_no'];
+        $item->issue_date = $data['issue_date'];
+        $item->due_date = $data['due_date'];
         $item->supplier_id = $data['supplier'];
-        if($data['credit_days'] != ''){
-            $item->credit_days = $data['credit_days'];
-            $item->expiry_date = date('Y-m-d', strtotime("+".$data['credit_days']."days", strtotime($item->timestamp)));
-        }
-        $item->status = $data['status'];
+        $item->customers_vat = $data['customers_vat'];
+        $item->delivery_date = $data['delivery_date'];
+        $item->concerning_week = $data['concerning_week'];
+        $item->shipment = $data['shipment'];
+        $item->vessel = $data['vessel'];
+        $item->port_of_discharge = $data['port_of_discharge'];
+        $item->origin = $data['origin'];
+        $item->vat_amount = $data['vat_amount'];
+        $item->total_to_pay = $data['total_to_pay'];
         $item->note = $data['note'];
-
-        if($request->has("attachment")){
-            $picture = request()->file('attachment');
-            $imageName = "purchase_".time().'.'.$picture->getClientOriginalExtension();
-            $picture->move(public_path('images/uploaded/purchase_images/'), $imageName);
-            $item->attachment = 'images/uploaded/purchase_images/'.$imageName;
-        }
-
-        $item->discount_string = $data['discount_string'];
-        $item->discount = $data['discount'];
-
-        $item->shipping_string = $data['shipping_string'];
-        $item->shipping = -1 * $data['shipping'];
-        $item->returns = $data['returns'];
-        
-        $item->grand_total = $data['grand_total'];
         
         $item->save();
 
-        if(isset($data['order_id']) && count($data['order_id']) > 0){
-            for ($i=0; $i < count($data['order_id']); $i++) { 
-                $order = Order::find($data['order_id'][$i]);
-                $order_original_quantity = $order->quantity;
-                $order->update([
-                    'product_id' => $data['product_id'][$i],
-                    'cost' => $data['cost'][$i],
-                    'quantity' => $data['quantity'][$i],
-                    'expiry_date' => $data['expiry_date'][$i],
-                    'subtotal' => $data['subtotal'][$i],
-                ]);
-                if($order_original_quantity != $data['quantity'][$i]){
-                    $store_product = StoreProduct::where('store_id', $data['store'])->where('product_id', $data['product_id'][$i])->first();                
-                    $store_product->increment('quantity', $data['quantity'][$i]);
-                    $store_product->decrement('quantity', $order_original_quantity);
+        $invoice_items = $item->items->pluck('id')->toArray();
+        $diff_items = array_diff($invoice_items, $data['item_id']);
+        foreach ($diff_items as $key => $value) {
+            Item::find($value)->delete();
+        }
+
+        if(isset($data['item_id']) && count($data['item_id']) > 0){
+
+            for ($i=0; $i < count($data['product_id']); $i++) { 
+                if($data['item_id'][$i] == ''){
+                    Item::create([
+                        'product_id' => $data['product_id'][$i],
+                        'price' => $data['price'][$i],
+                        'quantity' => $data['quantity'][$i],
+                        'amount' => $data['amount'][$i],
+                        'surcharge_reduction' => $data['surcharge_reduction'][$i],
+                        'total_amount' => $data['total_amount'][$i],
+                        'itemable_id' => $item->id,
+                        'itemable_type' => Invoice::class,
+                    ]);
+                }else{
+                    $order = Item::find($data['item_id'][$i]);
+                    $order->update([
+                        'product_id' => $data['product_id'][$i],
+                        'price' => $data['price'][$i],
+                        'quantity' => $data['quantity'][$i],
+                        'amount' => $data['amount'][$i],
+                        'surcharge_reduction' => $data['surcharge_reduction'][$i],
+                        'total_amount' => $data['total_amount'][$i],
+                        'itemable_id' => $item->id,
+                        'itemable_type' => Invoice::class,
+                    ]);
                 }
             }
-        }
+        } 
         
         return back()->with('success', __('page.updated_successfully'));
     }
 
     public function delete($id){
-        $item = Purchase::find($id);
-        $item->orders()->delete();
+        $item = Proforma::find($id);
+        $item->items()->delete();
         $item->payments()->delete();
         $item->delete();
         return back()->with("success", __('page.deleted_successfully'));

@@ -22,7 +22,7 @@
     <div class="content">
         <div class="block block-rounded block-bordered">
             <div class="block-content block-content-full">
-                <form action="{{route('invoice.save')}}" method="POST" enctype="multipart/form-data" id="app" style="opacity: 0">
+                <form action="{{route('proforma.save')}}" method="POST" enctype="multipart/form-data" id="app" style="opacity: 0">
                     @csrf
                     <div class="row mb-3">
                         <div class="col-md-3">
@@ -58,9 +58,9 @@
                             </div>
                         </div>
                         <div class="form-group col-md-3">
-                            <label class="form-control-label">{{__('page.issue_date')}}: <span class="tx-danger">*</span></label>
-                            <input class="datepicker form-control" type="text" name="issue_date" value="{{date('Y-m-d')}}" placeholder="{{__('page.issue_date')}}" autocomplete="off" required>
-                            @error('issue_date')
+                            <label class="form-control-label">{{__('page.date')}}: <span class="tx-danger">*</span></label>
+                            <input class="datepicker form-control" type="text" name="date" value="{{date('Y-m-d')}}" placeholder="{{__('page.date')}}" autocomplete="off" required>
+                            @error('date')
                                 <span class="invalid-feedback d-block" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -90,31 +90,9 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mg-b-10-force">
-                                <label class="form-control-label">{{__('page.delivery_date')}}: <span class="tx-danger">*</span></label>
-                                <input class="form-control datepicker" type="text" name="delivery_date" value="{{date('Y-m-d')}}" placeholder="{{__('page.delivery_date')}}" autocomplete="off" required>
-                                @error('delivery_date')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.concerning_week')}}</label>
                                 <input class="form-control" type="text" name="concerning_week" value="{{ old('concerning_week') }}" required placeholder="{{__('page.concerning_week')}}">
                                 @error('concerning_week')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
-                                <label class="form-control-label">{{__('page.shipment')}}</label>
-                                <input class="form-control" type="text" name="shipment" value="{{ old('shipment') }}" required placeholder="{{__('page.shipment')}}">
-                                @error('shipment')
                                     <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -145,6 +123,17 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.brand')}}</label>
+                                <input class="form-control" type="text" name="brand" value="{{ old('brand') }}" required placeholder="{{__('page.brand')}}">
+                                @error('brand')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.origin')}}</label>
                                 <input class="form-control" type="text" name="origin" value="{{ old('origin') }}" required placeholder="{{__('page.origin')}}">
                                 @error('origin')
@@ -159,8 +148,7 @@
                         <div class="col-md-12">
                             <div>
                                 <h3 class="mb-2" style="float:left">{{__('page.items')}}</h3>
-                                {{-- <button type="button" class="btn btn-primary mg-b-10 add-product" style="float:right">ADD</button> --}}
-                            <a href="#" class="btn btn-sm btn-primary btn-icon mb-2 add-item" style="float:right" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add')}}</a>
+                                <a href="#" class="btn btn-sm btn-primary btn-icon mb-2 add-item" style="float:right" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add')}}</a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-colored table-success" id="item_table">
@@ -169,8 +157,6 @@
                                             <th>{{__('page.product_code')}}</th>
                                             <th>{{__('page.quantity')}}</th>
                                             <th>{{__('page.price')}}</th>
-                                            <th>{{__('page.amount')}}</th>
-                                            <th>{{__('page.surcharge_reduction')}}</th>
                                             <th>{{__('page.total_amount')}}</th>
                                             <th style="width:30px"></th>
                                         </tr>
@@ -183,13 +169,6 @@
                                             </td>
                                             <td><input type="number" class="form-control form-control-sm quantity" name="quantity[]" v-model="item.quantity" required placeholder="{{__('page.quantity')}}" /></td>
                                             <td><input type="number" class="form-control form-control-sm price" name="price[]" step="0.01" v-model="item.price" required placeholder="{{__('page.price')}}" /></td>
-                                            <td class="amount">
-                                                @{{formatPrice(item.amount)}}
-                                                <input type="hidden" name="amount[]" :value="item.amount" />
-                                            </td>
-                                            <td class="surcharge_reduction">
-                                                <input type="number" class="form-control form-control-sm surcharge_reduction" name="surcharge_reduction[]" v-model="item.surcharge_reduction" required placeholder="{{__('page.surcharge_reduction')}}" />
-                                            </td>
                                             <td class="total_amount">
                                                 @{{formatPrice(item.total_amount)}}
                                                 <input type="hidden" name="total_amount[]" :value="item.total_amount" />
@@ -201,24 +180,11 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td>{{__('page.total')}}</td>
-                                            <td class="total_quantity">@{{total.quantity}}</td>
-                                            <td colspan="3" align="right">Total Excluding VAT</td>
+                                            <td colspan="3">{{__('page.total')}}</td>
                                             <td colspan="2" class="total_excluding_vat">@{{formatPrice(total.amount)}}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="5" align="right">V.A.T</td>
-                                            <td colspan="2">
-                                                @{{formatPrice(vat)}}
-                                                <input type="hidden" name="vat_amount" :value="vat" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="5" align="right">Total Including VAT</td>
-                                            <td colspan="2">@{{formatPrice(total.amount - vat)}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="5" align="right">Total To Pay</td>
+                                            <td colspan="3" align="right">Total</td>
                                             <td colspan="2">
                                                 @{{formatPrice(total_to_pay)}}
                                                 <input type="hidden" name="total_to_pay" :value="total_to_pay" />
@@ -239,7 +205,7 @@
                     </div>
                     <div class="form-layout-footer text-right">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check mg-r-2"></i> {{__('page.save')}}</button>
-                        <a href="{{route('invoice.index')}}" class="btn btn-warning"><i class="fa fa-times mg-r-2"></i> {{__('page.cancel')}}</a>
+                        <a href="{{route('proforma.index')}}" class="btn btn-warning"><i class="fa fa-times mg-r-2"></i> {{__('page.cancel')}}</a>
                     </div>
                 </form>                
             </div>
@@ -407,7 +373,7 @@
             });
         });
     </script>
-    <script src="{{asset('master/js/custom/create_invoice.js')}}"></script>
+    <script src="{{asset('master/js/custom/create_proforma.js')}}"></script>
 @endsection
 
 

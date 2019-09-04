@@ -26,12 +26,12 @@
     </div>
     <div class="content-side content-side-full">
         <ul class="nav-main">
-            <li class="nav-main-item">
+            {{-- <li class="nav-main-item">
                 <a class="nav-main-link" href="{{route('home')}}">
                     <i class="nav-main-link-icon si si-cursor"></i>
                     <span class="nav-main-link-name">{{__('page.dashboard')}}</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-main-item">
                 <a class="nav-main-link @if($page == 'product') active @endif" href="{{route('product.index')}}">
                     <i class="nav-main-link-icon si si-present"></i>

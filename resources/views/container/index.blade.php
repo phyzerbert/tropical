@@ -1,5 +1,11 @@
 @extends('layouts.master')
-
+@section('style')
+    <style>
+    td, th {
+        white-space: nowrap;
+    }
+    </style>
+@endsection
 @section('content')
     <div class="bg-body-light">
         <div class="content content-full">
@@ -21,22 +27,23 @@
             </div>
             <div class="block-content block-content-full">
                 <div class="table-responsive">
-                    <table class="table table-sm table-bordered table-vcenter">
-                        <thead class="thead-light">
+                    <table class="table table-bordered table-vcenter">
+                        <thead>
                             <tr>
-                                <td>#</td>
-                                <td>IDENTIFICACION O NIT</td>
-                                <td>PRECINTO</td>
-                                <td>CONTENEDOR</td>
-                                <td>TEMPERATURA</td>
-                                <td>DAMPER</td>
-                                <td>BOOKING</td>
-                                <td>PUERTO DE DESTINO</td>
-                                <td>FECHA</td>
-                                <td>EMBARCADERO</td>
-                                <td>TIPO DE MERCANCIA</td>
-                                <td>AGENCIA ADUANERA</td>
-                                <td>EMPRESA O PERSONA NATURAL</td>
+                                <th>#</th>
+                                <th>IDENTIFICACION O NIT</th>
+                                <th>PRECINTO</th>
+                                <th>CONTENEDOR</th>
+                                <th>TEMPERATURA</th>
+                                <th>DAMPER</th>
+                                <th>BOOKING</th>
+                                <th>PUERTO DE DESTINO</th>
+                                <th>FECHA</th>
+                                <th>EMBARCADERO</th>
+                                <th>TIPO DE MERCANCIA</th>
+                                <th>AGENCIA ADUANERA</th>
+                                <th>EMPRESA O PERSONA NATURAL</th>
+                                <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,7 +53,7 @@
                                     <td>{{$item->proforma->reference_no}}</td>
                                     <td>{{$item->contenedor}}</td>
                                     <td>{{$item->precinto}}</td>
-                                    <td>{{$item->temperatura}}</td>
+                                    <td>{{$item->temperatura}} °C</td>
                                     <td>{{$item->damper}}</td>
                                     <td>{{$item->booking}}</td>
                                     <td>{{$item->port_of_discharge}}</td>
@@ -55,9 +62,18 @@
                                     <td>{{$item->tipo_de_mercancia}}</td>
                                     <td>{{$item->agencia_aduanera}}</td>
                                     <td>{{$item->company_or_person}}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-sm btn-primary dropdown-toggle" id="dropdown-align-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('page.action')}}&nbsp;</button>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-align-primary">
+                                                <a class="dropdown-item product_list" href="javascript:void(0)" data-value='{{$item->product_list}}''>{{__('page.product')}}</a>
+                                                <a class="dropdown-item" href="{{route('container.edit', $item->id)}}">{{__('page.edit')}}</a>
+                                                <a class="dropdown-item" href="{{route('container.delete', $item->id)}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">{{__('page.delete')}}</a>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
-                            @endforeach
-                            
+                            @endforeach                            
                         </tbody>
                     </table>
                 </div>                 
@@ -65,24 +81,28 @@
         </div>
     </div>
 
-    <div class="modal fade" id="addModal">
-        <div class="modal-dialog">
+    <div class="modal fade" id="productModal">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">{{__('page.container_load')}}</h4>
+                    <h4 class="modal-title">{{__('page.product')}}</h4>
                     <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
-                <form action="" id="create_form" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body">
-                        
-                        
-                    </div>    
-                    <div class="modal-footer">
-                        <button type="submit" id="btn_create" class="btn btn-primary btn-submit"><i class="fa fa-check"></i>&nbsp;{{__('page.save')}}</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;{{__('page.close')}}</button>
-                    </div>
-                </form>
+                <div class="modal-body p-3">
+                    <table class="table table-bordered w-100" id="productTable">
+                        <thead>
+                            <tr>
+                                <th>{{__('page.product_code')}}</th>
+                                <th>{{__('page.description')}}</th>
+                                <th>{{__('page.quantity')}}</th>
+                            </tr>
+                            <tbody></tbody>
+                        </thead>
+                    </table>                        
+                </div>    
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;{{__('page.close')}}</button>
+                </div>
             </div>
         </div>
     </div>
@@ -92,8 +112,30 @@
 @section('script')
     <script>
         $(document).ready(function(){
-            $("#btn-add").click(function(){
-                $("#addModal").modal();
+            $(".product_list").click(function(){
+                let product_list = $(this).data('value')
+                $('#productTable tbody').html('')
+                for (const id in product_list) {
+                    if (product_list.hasOwnProperty(id)) {
+                        const element = product_list[id];
+                        $.ajax({
+                            url: '/get_product',
+                            type: "POST",
+                            data: {id:id},
+                            dataType: 'json',
+                            success: function(data){
+                                $('#productTable tbody').append(`
+                                    <tr>
+                                        <td>${data.code}</td>
+                                        <td>${data.description}</td>
+                                        <td>${element}</td>
+                                    </tr>
+                                `)
+                            }
+                        })
+                    }
+                }
+                $("#productModal").modal();
             });
         })
     </script>

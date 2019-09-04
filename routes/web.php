@@ -85,5 +85,6 @@ Route::post('get_data', 'VueController@get_data');
 Route::post('get_invoice', 'VueController@get_invoice');
 Route::post('get_items', 'VueController@get_items');
 Route::post('get_proforma', 'VueController@get_proforma');
+Route::post('get_container', 'VueController@get_container');
 Route::post('get_received_quantity', 'VueController@get_received_quantity');
 Route::post('get_autocomplete_products', 'VueController@get_autocomplete_products');

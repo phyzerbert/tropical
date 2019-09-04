@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Invoice;
 use App\Models\Proforma;
+use App\Models\Container;
 use App\Models\Item;
 
 use App;
@@ -71,6 +72,12 @@ class VueController extends Controller
     public function get_proforma(Request $request){
         $id = $request->get('id');
         $item = Proforma::find($id)->load('items');
+        return response()->json($item);
+    }
+
+    public function get_container(Request $request){
+        $id = $request->get('id');
+        $item = Container::find($id);
         return response()->json($item);
     }
 

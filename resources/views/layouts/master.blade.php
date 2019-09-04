@@ -38,6 +38,13 @@
     <script src="{{asset('master/js/plugins/toastr/toastr.min.js')}}"></script>
     @yield('script')
         <script>
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        </script>
+        <script>
             var notification = '{{ session()->get("success")}}';
             if(notification != ''){
                 toastr_call("success","{{__('page.success')}}",notification);

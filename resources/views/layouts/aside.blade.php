@@ -15,9 +15,9 @@
                 </span>
             </a>
             <div>
-                <a class="js-class-toggle text-white-75" data-target="#sidebar-style-toggler" data-class="fa-toggle-off fa-toggle-on" data-toggle="layout" data-action="sidebar_style_toggle" href="javascript:void(0)">
+                {{-- <a class="js-class-toggle text-white-75" data-target="#sidebar-style-toggler" data-class="fa-toggle-off fa-toggle-on" data-toggle="layout" data-action="sidebar_style_toggle" href="javascript:void(0)">
                     <i class="fa fa-toggle-off" id="sidebar-style-toggler"></i>
-                </a>
+                </a> --}}
                 <a class="d-lg-none text-white ml-2" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
                     <i class="fa fa-times-circle"></i>
                 </a>

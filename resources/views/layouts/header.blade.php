@@ -23,7 +23,7 @@
                         User Options
                     </div>
                     <div class="p-2">
-                        <a class="dropdown-item" href="{{ route('profile') }}">
+                        <a class="dropdown-item" href="#">
                             <i class="far fa-fw fa-user mr-1"></i> {{__('page.profile')}}
                         </a>
                         <div role="separator" class="dropdown-divider"></div>

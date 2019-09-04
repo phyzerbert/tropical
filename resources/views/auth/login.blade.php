@@ -13,7 +13,7 @@
                 @csrf
                 <div class="form-group mt-4">
                     <div class="input-group">
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="login-username" name="name" placeholder="Username" required autocomplete="name" autofocus />
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="login-username" name="name" placeholder="Username" required autocomplete="name" autofocus style="outline:none" />
                         <div class="input-group-append">
                             <span class="input-group-text">
                                 <i class="fa fa-user-circle"></i>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group mt-5">
                     <div class="input-group">
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="login-password" name="password" placeholder="Password" required autocomplete="current-password" />
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="login-password" name="password" placeholder="Password" required autocomplete="current-password" style="outline:none" />
                         <div class="input-group-append">
                             <span class="input-group-text">
                                 <i class="fa fa-asterisk"></i>

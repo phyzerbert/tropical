@@ -21,7 +21,7 @@
         <main id="main-container">
             <div class="bg-image" style="background-image: url('master/media/photos/bg_auth.jpg');">
                 <div class="row no-gutters justify-content-center">
-                    <div class="hero-static col-sm-8 col-md-6 col-xl-4 d-flex align-items-center p-2 px-sm-0">
+                    <div class="hero-static col-sm-8 col-md-4 d-flex align-items-center p-2 px-sm-0" style="max-width: 420px">
                         @yield('content')
                     </div>
                 </div>

@@ -8,6 +8,25 @@
         <div>
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @php $locale = session()->get('locale'); @endphp
+                    @switch($locale)
+                        @case('en')
+                            <img src="{{asset('images/lang/en.png')}}" width="30px">&nbsp;&nbsp;English
+                            @break
+                        @case('es')
+                            <img src="{{asset('images/lang/es.png')}}" width="30px">&nbsp;&nbsp;Espanol
+                            @break
+                        @default
+                            <img src="{{asset('images/lang/es.png')}}" width="30px">&nbsp;&nbsp;Espanol
+                    @endswitch
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="{{route('lang', 'en')}}"><img src="{{asset('images/lang/en.png')}}" class="rounded-circle" width="30" height="28">  English</a>
+                    <a class="dropdown-item" href="{{route('lang', 'es')}}"><img src="{{asset('images/lang/es.png')}}" class="rounded-circle" width="30" height="28">  Espanol</a>
+                </div>
+            </div>
+            <div class="dropdown d-inline-block">
+                <button type="button" class="btn btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-fw fa-user d-sm-none"></i>
                     <span class="d-none d-sm-inline-block">
                         @if (Auth::user()->first_name && Auth::user()->last_name)

@@ -14,8 +14,11 @@
     <link rel="icon" type="image/png" sizes="192x192" href="{{asset('master/media/favicons/favicon-192x192.png')}}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('master/media/favicons/apple-touch-icon-180x180.png')}}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700">
+    
     @yield('style')
+    
     <link rel="stylesheet" id="css-main" href="{{asset('master/css/dashmix.min-2.0.css')}}">
+    <link href="{{asset('master/js/plugins/toastr/toastr.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('master/css/custom.css')}}">
     
 </head>
@@ -32,7 +35,44 @@
     </div>
     <script src="{{asset('master/js/dashmix.core.min-2.0.js')}}"></script>
     <script src="{{asset('master/js/dashmix.app.min-2.0.js')}}"></script>
+    <script src="{{asset('master/js/plugins/toastr/toastr.min.js')}}"></script>
     @yield('script')
+        <script>
+            var notification = '{{ session()->get("success")}}';
+            if(notification != ''){
+                toastr_call("success","{{__('page.success')}}",notification);
+            }
+            var errors_string = '<?php echo json_encode($errors->all()); ?>';
+            errors_string=errors_string.replace("[","").replace("]","").replace(/\"/g,"");
+            var errors = errors_string.split(",");
+            if (errors_string != "") {
+                for (let i = 0; i < errors.length; i++) {
+                    const element = errors[i];
+                    toastr_call("error","{{__('page.error')}}",element);             
+                } 
+            }       
+    
+            function toastr_call(type,title,msg,override){
+                toastr[type](msg, title,override);
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-center",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }  
+            }
+        </script>
 </body>
 
 </html>

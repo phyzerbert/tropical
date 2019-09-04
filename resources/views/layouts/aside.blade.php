@@ -42,7 +42,7 @@
                 $invoice_items = ['invoice', 'add_invoice'];
             @endphp
             <li class="nav-main-item @if($page == in_array($page, $invoice_items)) open @endif">
-                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="be_tables_datatables.html#">
+                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                     <i class="nav-main-link-icon si si-puzzle"></i>
                     <span class="nav-main-link-name">{{__('page.invoice')}}</span>
                 </a>
@@ -79,7 +79,28 @@
                         </a>
                     </li>
                 </ul>
-            </li>            
+            </li>
+            @php
+                $container_items = ['container', 'add_container'];
+            @endphp
+            <li class="nav-main-item @if($page == in_array($page, $container_items)) open @endif">
+                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                    <i class="nav-main-link-icon si si-star"></i>
+                    <span class="nav-main-link-name">Container Loads</span>
+                </a>
+                <ul class="nav-main-submenu">
+                    <li class="nav-main-item">
+                        <a class="nav-main-link @if($page == 'container') active @endif" href="{{route('container.index')}}">
+                            <span class="nav-main-link-name">Container Loads</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link @if($page == 'add_container') active @endif" href="{{route('container.create')}}">
+                            <span class="nav-main-link-name">Add Container Loads</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="nav-main-item">
                 <a class="nav-main-link @if($page == 'supplier') active @endif" href="{{route('supplier.index')}}">
                     <i class="nav-main-link-icon si si-handbag"></i>

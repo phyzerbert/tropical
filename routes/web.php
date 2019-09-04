@@ -57,10 +57,19 @@ Route::get('/proforma/delete/{id}', 'ProformaController@delete')->name('proforma
 Route::get('/proforma/receive/{id}', 'ProformaController@receive')->name('proforma.receive');
 Route::post('/proforma/save_receive', 'ProformaController@save_receive')->name('proforma.save_receive');
 
+
 Route::any('/payment/index/{type}/{id}', 'PaymentController@index')->name('payment.index');
 Route::post('/payment/create', 'PaymentController@create')->name('payment.create');
 Route::post('/payment/edit', 'PaymentController@edit')->name('payment.edit');
 Route::get('/payment/delete/{id}', 'PaymentController@delete')->name('payment.delete');
+
+Route::any('/container/index', 'ContainerController@index')->name('container.index');
+Route::get('/container/create', 'ContainerController@create')->name('container.create');
+Route::post('/container/save', 'ContainerController@save')->name('container.save');
+Route::get('/container/edit/{id}', 'ContainerController@edit')->name('container.edit');
+Route::post('/container/update', 'ContainerController@update')->name('container.update');
+Route::get('/container/detail/{id}', 'ContainerController@detail')->name('container.detail');
+Route::get('/container/delete/{id}', 'ContainerController@delete')->name('container.delete');
 
 Route::get('/profile', 'UserController@profile')->name('profile');
 Route::post('/updateuser', 'UserController@updateuser')->name('updateuser');

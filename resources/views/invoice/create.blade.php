@@ -26,7 +26,7 @@
                     @csrf
                     <div class="row mb-3">
                         <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
+                            <div class="form-group">
                                 <label class="form-control-label">{{__('page.reference_no')}}: <span class="tx-danger">*</span></label>
                                 <input class="form-control" type="text" name="reference_no" placeholder="{{__('page.reference_no')}}" required>
                                 @error('reference_no')
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
+                            <div class="form-group">
                                 <label class="form-control-label">{{__('page.supplier')}}:</label>
                                 <div class="input-group">                                  
                                     <select class="form-control select2" name="supplier" id="search_supplier" required data-placeholder="{{__('page.select_supplier')}}">
@@ -67,7 +67,7 @@
                             @enderror
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
+                            <div class="form-group">
                                 <label class="form-control-label">{{__('page.due_date')}}: <span class="tx-danger">*</span></label>
                                 <input class="form-control datepicker" type="text" name="due_date" value="{{date('Y-m-d')}}" placeholder="{{__('page.due_date')}}" autocomplete="off" required>
                                 @error('due_date')
@@ -78,7 +78,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
+                            <div class="form-group">
                                 <label class="form-control-label">{{__('page.customers_vat')}}</label>
                                 <input class="form-control" type="text" name="customers_vat" value="{{ old('customers_vat') }}" required placeholder="{{__('page.customers_vat')}}">
                                 @error('customers_vat')
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
+                            <div class="form-group">
                                 <label class="form-control-label">{{__('page.delivery_date')}}: <span class="tx-danger">*</span></label>
                                 <input class="form-control datepicker" type="text" name="delivery_date" value="{{date('Y-m-d')}}" placeholder="{{__('page.delivery_date')}}" autocomplete="off" required>
                                 @error('delivery_date')
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
+                            <div class="form-group">
                                 <label class="form-control-label">{{__('page.concerning_week')}}</label>
                                 <input class="form-control" type="text" name="concerning_week" value="{{ old('concerning_week') }}" required placeholder="{{__('page.concerning_week')}}">
                                 @error('concerning_week')
@@ -111,7 +111,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
+                            <div class="form-group">
                                 <label class="form-control-label">{{__('page.shipment')}}</label>
                                 <input class="form-control" type="text" name="shipment" value="{{ old('shipment') }}" required placeholder="{{__('page.shipment')}}">
                                 @error('shipment')
@@ -122,7 +122,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
+                            <div class="form-group">
                                 <label class="form-control-label">{{__('page.vessel')}}</label>
                                 <input class="form-control" type="text" name="vessel" value="{{ old('vessel') }}" required placeholder="{{__('page.vessel')}}">
                                 @error('vessel')
@@ -133,7 +133,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
+                            <div class="form-group">
                                 <label class="form-control-label">{{__('page.port_of_discharge')}}</label>
                                 <input class="form-control" type="text" name="port_of_discharge" value="{{ old('port_of_discharge') }}" required placeholder="{{__('page.port_of_discharge')}}">
                                 @error('port_of_discharge')
@@ -144,7 +144,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
+                            <div class="form-group">
                                 <label class="form-control-label">{{__('page.origin')}}</label>
                                 <input class="form-control" type="text" name="origin" value="{{ old('origin') }}" required placeholder="{{__('page.origin')}}">
                                 @error('origin')
@@ -231,7 +231,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group mg-b-10-force">
+                            <div class="form-group">
                                 <label class="form-control-label">{{__('page.note')}}:</label>
                                 <textarea class="form-control" name="note" rows="3" placeholder="{{__('page.note')}}"></textarea>
                             </div>

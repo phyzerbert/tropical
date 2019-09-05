@@ -1,9 +1,17 @@
 @extends('layouts.master')
 @section('style')
     <link rel="stylesheet" href="{{asset('master/js/plugins/jquery-ui/jquery-ui.css')}}">
-    <link rel="stylesheet" href="{{asset('master/js/plugins/select2/css/select2.min.css')}}">
-    <script src="{{asset('master/js/plugins/vuejs/vue.js')}}"></script>
-    <script src="{{asset('master/js/plugins/vuejs/axios.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('master/js/plugins/select2/css/select2.min.css')}}">  
+    <link rel="stylesheet" href="{{asset('master/js/plugins/imageviewer/css/jquery.verySimpleImageViewer.css')}}">
+    <style>
+        #image_preview {
+            max-width: 600px;
+            height: 600px;
+        }
+        .image_viewer_inner_container {
+            width: 100% !important;
+        }
+    </style>
 @endsection
 @section('content')
     <div class="bg-body-light">
@@ -107,11 +115,54 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
+                            @php
+                                $paid = $invoice->payments->sum('amount');
+                            @endphp
+                            <h4 class="text-right">
+                                {{__('page.invoice')}} : <span class="text-primary">{{number_format($invoice->total_to_pay, 2)}}</span> 
+                                {{__('page.payment')}} : <span class="text-primary">{{number_format($paid, 2)}}</span>
+                                {{__('page.balance')}} : <span class="text-primary">{{$invoice->total_to_pay - $paid}}</span>
+                            </h4>
+                        </div>
+                        <div class="col-12">
                             <div class="block block-rounded block-bordered">
                                 <div class="block-content">
                                     <p>{{$invoice->note}}</p>
                                 </div>                                
                             </div>                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead class="thead-colored">
+                                        <tr class="bg-blue">
+                                            <th style="width:40px;">#</th>
+                                            <th>{{__('page.date')}}</th>
+                                            <th>{{__('page.reference_no')}}</th>
+                                            <th>{{__('page.amount')}}</th> 
+                                            <th>{{__('page.note')}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>                                
+                                        @foreach ($invoice->payments as $item)
+                                            <tr>
+                                                <td>{{ $loop->index + 1 }}</td>
+                                                <td class="date">{{date('Y-m-d H:i', strtotime($item->timestamp))}}</td>
+                                                <td class="reference_no">{{$item->reference_no}}</td>
+                                                <td class="amount" data-value="{{$item->amount}}">{{number_format($item->amount)}}</td>
+                                                <td class="" data-path="{{$item->attachment}}">
+                                                    <span class="tx-info note">{{$item->note}}</span>&nbsp;
+                                                    @if($item->attachment != "")
+                                                        <a href="#" class="attachment" data-value="{{asset($item->attachment)}}"><i class="fa fa-paperclip"></i></a>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div> 
                         </div>
                     </div>
                     <div class="clearfix">
@@ -122,12 +173,38 @@
         </div>
     </div>
 
+    <div class="modal fade" id="attachModal">
+        <div class="modal-dialog" style="margin-top:17vh">
+            <div class="modal-content">
+                <div id="image_preview"></div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
 
 @section('script')
-
+<script src="{{asset('master/js/plugins/imageviewer/js/jquery.verySimpleImageViewer.min.js')}}"></script>
+<script>
+        $(document).ready(function(){
+            $(".attachment").click(function(e){
+                e.preventDefault();
+                let path = $(this).data('value');
+                $("#image_preview").html('')
+                $("#image_preview").verySimpleImageViewer({
+                    imageSource: path,
+                    frame: ['100%', '100%'],
+                    maxZoom: '900%',
+                    zoomFactor: '10%',
+                    mouse: true,
+                    keyboard: true,
+                    toolbar: true,
+                });
+                $("#attachModal").modal();
+            });
+        })
+    </script>
 @endsection
 
 

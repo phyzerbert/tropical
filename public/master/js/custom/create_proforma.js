@@ -41,7 +41,7 @@ var app = new Vue({
             let total_amount = 0;
 
             for(let i = 0; i < data.length; i++) {
-                this.items[i].total_amount = parseFloat(data[i].price) * data[i].quantity
+                this.items[i].total_amount = (parseFloat(data[i].price) * data[i].quantity).toFixed(2)
                 total_quantity += parseInt(data[i].quantity)
                 total_amount += data[i].total_amount
             }

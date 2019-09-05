@@ -45,7 +45,7 @@ class ProformaController extends Controller
                         ->orWhereIn('supplier_id', $supplier_array)
                         ->orWhere('issue_date', 'LIKE', "%$keyword%")
                         ->orWhere('due_date', 'LIKE', "%$keyword%")
-                        ->orWhere('delivery_date', 'LIKE', "%$delivery_date%");
+                        ->orWhere('delivery_date', 'LIKE', "%$keyword%");
             });
         }
         if($request->sort_by_date != ''){

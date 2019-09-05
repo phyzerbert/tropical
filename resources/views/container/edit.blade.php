@@ -59,7 +59,12 @@
                         <div class="col-md-4 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">TEMPERATURA</label>
-                                <input class="form-control" type="text" name="temperatura" value="{{$container->temperatura}}" placeholder="TEMPERATURA">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" name="temperatura" value="{{$container->temperatura}}" placeholder="TEMPERATURA" />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">°C</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">

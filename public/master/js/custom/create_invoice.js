@@ -44,10 +44,10 @@ var app = new Vue({
             let total_amount = 0;
 
             for(let i = 0; i < data.length; i++) {
-                this.items[i].amount = parseFloat(data[i].price) * data[i].quantity
+                this.items[i].amount = (parseFloat(data[i].price) * data[i].quantity).toFixed(2)
                 this.items[i].total_amount = parseInt(data[i].amount) + parseInt(data[i].surcharge_reduction)
                 total_quantity += parseInt(data[i].quantity)
-                total_amount += data[i].total_amount
+                total_amount += parseFloat(data[i].total_amount)
             }
             this.total.quantity = total_quantity
             this.total.amount = total_amount

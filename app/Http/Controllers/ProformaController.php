@@ -232,6 +232,7 @@ class ProformaController extends Controller
     }
 
     public function container(Request $request, $id){
+        config(['site.page' => 'proforma']); 
         $invoice = Proforma::find($id);
         $data = $invoice->containers;
         return view('proforma.container', compact('data', 'invoice'));

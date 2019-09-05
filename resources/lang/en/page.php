@@ -272,4 +272,7 @@ return [
     'container_load' => 'Container Load',
     'units_boxes' => 'Units(Boxes)',
     
+    'proforma' => 'Proforma',
+    'add_proforma' => 'Add Proforma',
+    
 ];

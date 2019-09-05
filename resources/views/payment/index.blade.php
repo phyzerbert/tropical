@@ -73,6 +73,9 @@
                         @if($type == 'invoice')
                             <a href="{{route('invoice.create')}}" class="btn btn-oblong btn-primary mr-3"><i class="fa fa-plus"></i>  {{__('page.add_invoice')}}</a>                                       
                             <a href="{{route('invoice.index')}}" class="btn btn-oblong btn-success"><i class="fa fa-list"></i>  {{__('page.invoices')}}</a>
+                        @elseif($type == 'proforma')
+                            <a href="{{route('proforma.create')}}" class="btn btn-oblong btn-primary mr-3"><i class="fa fa-plus"></i>  {{__('page.add_proforma')}}</a>                                       
+                            <a href="{{route('proforma.index')}}" class="btn btn-oblong btn-success"><i class="fa fa-list"></i>  {{__('page.proforma')}}</a>
                         @endif
                     </div>
                 </div>                               

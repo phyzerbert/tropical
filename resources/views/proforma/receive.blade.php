@@ -25,7 +25,7 @@
                 <div class="block-header-default pb-3 px-3 clearfix">
                     <a href="#" class="btn btn-sm btn-primary btn-icon mt-3 float-right add-item" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add_product')}}</a>
                     <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="shipment" style="width:200px;" placeholder="Shipment" />
-                    <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="reference_no" style="width:200px;" placeholder="Invoice" />
+                    <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="invoice" style="width:200px;" placeholder="Invoice" />
                 </div>
                 <div class="block-content block-content-full">
                     @csrf

@@ -39,18 +39,32 @@
                                 <th>{{__('page.date')}}</th>
                                 <th>{{__('page.due_date')}}</th>
                                 <th>{{__('page.total_to_pay')}}</th>
+                                <th>{{__('page.paid')}}</th>
+                                <th>{{__('page.balance')}}</th>
                                 <th style="width:120px;">{{__('page.action')}}</th>
                             </tr>
                         </thead>
                         <tbody>                              
                             @foreach ($data as $item)
+                                @php
+                                    $footer_total_to_pay = $footer_paid = $footer_balance = 0;
+                                @endphp
                                 <tr>
+                                    @php
+                                        $paid = $item->payments()->sum('amount');
+                                        $balance = $item->total_to_pay - $paid;
+                                        $footer_total_to_pay += $item->total_to_pay;
+                                        $footer_balance += $balance;
+                                        $footer_paid += $paid;
+                                    @endphp
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
                                     <td class="reference_no">{{$item->reference_no}}</td>
                                     <td class="supplier">@isset($item->supplier->company){{$item->supplier->company}}@endisset</td>
                                     <td class="date">{{ date('d/m/Y', strtotime($item->date)) }}</td>
                                     <td class="due_date">{{ date('d/m/Y', strtotime($item->due_date)) }}</td>
                                     <td class="total_to_pay">{{number_format($item->total_to_pay, 2)}}</td>
+                                    <td class="paid">{{number_format($paid, 2)}}</td>
+                                    <td class="balance" data-value="{{$balance}}">{{number_format($balance, 2)}}</td>
                                     <td class="text-center">
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle" id="dropdown-align-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('page.action')}}&nbsp;</button>

@@ -311,5 +311,8 @@ return [
     'average_quantity' => 'Cantidad Promedio',
 
     'units_boxes' => 'Unidades (Cajas)',
+
+    'proforma' => 'Proforma',
+    'add_proforma' => 'Add Proforma',
     
 ];

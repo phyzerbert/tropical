@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Invoice;
 use App\Models\Proforma;
 use App\Models\Item;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\Supplier;
 
@@ -200,13 +201,17 @@ class ProformaController extends Controller
     }
 
     public function save_receive(Request $request){
+        $request->validate([
+            'invoice'=>'required|string',
+            'shipment'=>'required',
+        ]);
         $data = $request->all();
         $invoice = Proforma::find($request->get('id'));
         if($invoice->is_received == 1){
             return back()->withErrors(['received' => 'This proforma has been already received.']);
         }
         $item = new Invoice();
-        $item->reference_no = $data['reference_no'];
+        $item->reference_no = $data['invoice'];
         $item->issue_date = $invoice->date;
         $item->supplier_id = $invoice->supplier_id;
         $item->due_date = $invoice->due_date;
@@ -217,8 +222,9 @@ class ProformaController extends Controller
         $item->port_of_discharge = $invoice->port_of_discharge;
         $item->origin = $invoice->origin;
         $item->total_to_pay = $invoice->total_to_pay;
-        $item->note = $invoice->note;        
-        // $item->save();
+        $item->note = $invoice->note; 
+        $item->proforma_id = $invoice->id;       
+        $item->save();
         $invoice->update(['is_received' => 1]);
 
         if(isset($data['product_id']) && count($data['product_id']) > 0){
@@ -232,6 +238,18 @@ class ProformaController extends Controller
                     'itemable_type' => Invoice::class,
                 ]);
             }
+        }
+
+        foreach ($invoice->payments as $payment) {
+            Payment::create([
+                'timestamp' => $payment->timestamp,
+                'reference_no' => $payment->reference_no,
+                'amount' => $payment->amount,
+                'attachment' => $payment->attachment,
+                'note' => $payment->note,
+                'paymentable_id' => $item->id,
+                'paymentable_type' => Invoice::class,
+            ]);
         }
         return redirect(route('proforma.index'))->with("success", __('page.received_successfully'));
     }

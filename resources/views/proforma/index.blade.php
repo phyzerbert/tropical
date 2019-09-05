@@ -58,6 +58,8 @@
                                                 <a class="dropdown-item" href="{{route('proforma.detail', $item->id)}}">{{__('page.detail')}}</a>
                                                 <a class="dropdown-item" href="{{route('proforma.container', $item->id)}}">{{__('page.container')}}</a>
                                                 <a class="dropdown-item" href="{{route('proforma.receive', $item->id)}}" data-id="{{$item->id}}">{{__('page.receive')}}</a>
+                                                <a class="dropdown-item btn-add-payment" data-id="{{$item->id}}" href="javascript:void(0)">{{__('page.add_payment')}}</a>
+                                                <a class="dropdown-item" href="{{route('payment.index', ['proforma', $item->id])}}">{{__('page.payment_list')}}</a>
                                                 <a class="dropdown-item" href="{{route('proforma.edit', $item->id)}}">{{__('page.edit')}}</a>
                                                 <a class="dropdown-item" href="{{route('invoice.delete', $item->id)}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">{{__('page.delete')}}</a>
                                             </div>
@@ -89,7 +91,7 @@
                 </div>
                 <form action="{{route('payment.create')}}" id="payment_form" method="post" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="type" value="invoice">
+                    <input type="hidden" name="type" value="proforma">
                     <input type="hidden" class="paymentable_id" name="paymentable_id" />
                     <div class="modal-body">
                         <div class="form-group">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Invoice;
+use App\Models\Proforma;
 
 class PaymentController extends Controller
 {
@@ -16,8 +17,11 @@ class PaymentController extends Controller
     public function index(Request $request, $type, $id)
     {
         if($type == 'invoice'){
-            config(['site.page' => 'purchase_list']);
+            config(['site.page' => 'invoice']);
             $paymentable = Invoice::find($id);
+        }else if($type == 'proforma'){
+            config(['site.page' => 'proforma']);
+            $paymentable = Proforma::find($id);
         }        
         $data = $paymentable->payments;
         return view('payment.index', compact('data', 'type'));
@@ -32,6 +36,8 @@ class PaymentController extends Controller
 
         if($request->type == 'invoice'){
             $paymentable_type = Invoice::class;
+        }else if($request->type == 'proforma'){
+            $paymentable_type = Proforma::class;
         }
         
         $item = new Payment();

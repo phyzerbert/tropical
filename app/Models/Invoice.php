@@ -19,4 +19,8 @@ class Invoice extends Model
     public function supplier(){
         return $this->belongsTo(Supplier::class);
     }
+
+    public function proforma(){
+        return $this->belongsTo(Proforma::class);
+    }
 }

@@ -18,4 +18,9 @@ class Payment extends Model
         return $this->morphedByMany('App\Models\Invoice', 'paymentable');
     }
 
+    public function proforma()
+    {
+        return $this->morphedByMany('App\Models\Proforma', 'paymentable');
+    }
+
 }

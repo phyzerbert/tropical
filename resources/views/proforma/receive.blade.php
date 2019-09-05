@@ -21,61 +21,64 @@
     </div>
     <div class="content">  
         <div class="block block-rounded block-bordered" id="app" style="opacity: 0">
-            <div class="block-header block-header-default justify-content-end">
-                <a href="#" class="btn btn-sm btn-primary btn-icon mr-2 add-item" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add_product')}}</a>
-                {{-- <input type="text" class="form-control form-control-sm float-right" style="width:300px;" name="" id="" v-model="keyword" placeholder="Product Name" @keyup="searchProduct"> --}}
-            </div>
-            <div class="block-content block-content-full">
-                <form action="{{route('proforma.save_receive')}}" method="post">
+            <form action="{{route('proforma.save_receive')}}" method="post">
+                <div class="block-header-default pb-3 px-3 clearfix">
+                    <a href="#" class="btn btn-sm btn-primary btn-icon mt-3 float-right add-item" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add_product')}}</a>
+                    <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="shipment" style="width:200px;" placeholder="Shipment" />
+                    <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="reference_no" style="width:200px;" placeholder="Invoice" />
+                </div>
+                <div class="block-content block-content-full">
                     @csrf
                     <input type="hidden" name="id" value="{{$invoice->id}}" id="invoice_id" />
-                    <table class="table table-bordered table-colored" id="item_table">
-                        <thead class="table-success">
-                            <tr>
-                                <th>{{__('page.product_code')}}</th>
-                                <th>{{__('page.quantity')}}</th>
-                                <th>{{__('page.price')}}</th>
-                                <th>{{__('page.total_amount')}}</th>
-                                <th style="width:30px"></th>
-                            </tr>
-                        </thead>
-                        <tbody class="top-search-form">
-                            <tr v-for="(item,i) in items" :key="i">
-                                <td>
-                                    <input type="hidden" name="product_id[]" class="product_id" :value="item.product_id" />
-                                    <input type="text" name="product_name[]" class="form-control form-control-sm product" ref="product" v-model="item.product_code" required />
-                                </td>
-                                <td><input type="number" class="form-control form-control-sm quantity" name="quantity[]" v-model="item.quantity" required placeholder="{{__('page.quantity')}}" /></td>
-                                <td><input type="number" class="form-control form-control-sm price" name="price[]" step="0.01" v-model="item.price" required placeholder="{{__('page.price')}}" /></td>
-                                <td class="total_amount">
-                                    @{{formatPrice(item.total_amount)}}
-                                    <input type="hidden" name="total_amount[]" :value="item.total_amount" />
-                                    <input type="hidden" name="item_id[]" :value="item.item_id" />
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-warning remove-product" @click="remove(i)"><i class="fa fa-times"></i></a>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="3" align="right">{{__('page.total')}}</td>
-                                <td colspan="2" class="total_excluding_vat">@{{formatPrice(total.amount)}}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" align="right">Total To Pay</td>
-                                <td colspan="2">
-                                    @{{formatPrice(total_to_pay)}}
-                                    <input type="hidden" name="total_to_pay" :value="total_to_pay" />
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                    <div class="table-responsive">                        
+                        <table class="table table-bordered table-colored" id="item_table">
+                            <thead class="table-success">
+                                <tr>
+                                    <th>{{__('page.product_code')}}</th>
+                                    <th>{{__('page.quantity')}}</th>
+                                    <th>{{__('page.price')}}</th>
+                                    <th>{{__('page.total_amount')}}</th>
+                                    <th style="width:30px"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="top-search-form">
+                                <tr v-for="(item,i) in items" :key="i">
+                                    <td>
+                                        <input type="hidden" name="product_id[]" class="product_id" :value="item.product_id" />
+                                        <input type="text" name="product_name[]" class="form-control form-control-sm product" ref="product" v-model="item.product_code" required />
+                                    </td>
+                                    <td><input type="number" class="form-control form-control-sm quantity" name="quantity[]" v-model="item.quantity" required placeholder="{{__('page.quantity')}}" /></td>
+                                    <td><input type="number" class="form-control form-control-sm price" name="price[]" step="0.01" v-model="item.price" required placeholder="{{__('page.price')}}" /></td>
+                                    <td class="total_amount">
+                                        @{{formatPrice(item.total_amount)}}
+                                        <input type="hidden" name="total_amount[]" :value="item.total_amount" />
+                                        <input type="hidden" name="item_id[]" :value="item.item_id" />
+                                    </td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-warning remove-product" @click="remove(i)"><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="3" class="text-right">{{__('page.total')}}</th>
+                                    <th colspan="2" class="total_excluding_vat">@{{formatPrice(total.amount)}}</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="3" class="text-right">Total To Pay</th>
+                                    <th colspan="2">
+                                        @{{formatPrice(total_to_pay)}}
+                                        <input type="hidden" name="total_to_pay" :value="total_to_pay" />
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-file-download"></i> {{__('page.receive')}}</button>
-                    </div>
-                </form>                
-            </div>
+                    </div>                
+                </div>
+            </form>
         </div>
     </div>
 

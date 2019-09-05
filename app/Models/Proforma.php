@@ -11,6 +11,10 @@ class Proforma extends Model
     public function items(){
         return $this->morphMany(Item::class, 'itemable');
     }
+    
+    public function payments(){
+        return $this->morphMany(Payment::class, 'paymentable');
+    }
 
     public function supplier(){
         return $this->belongsTo(Supplier::class);

@@ -206,13 +206,13 @@ class ProformaController extends Controller
             return back()->withErrors(['received' => 'This proforma has been already received.']);
         }
         $item = new Invoice();
-        $item->reference_no = $invoice->reference_no;
+        $item->reference_no = $data['reference_no'];
         $item->issue_date = $invoice->date;
         $item->supplier_id = $invoice->supplier_id;
         $item->due_date = $invoice->due_date;
         $item->customers_vat = $invoice->customers_vat;
         $item->concerning_week = $invoice->concerning_week;
-        $item->shipment = $invoice->brand;
+        $item->shipment = $data['shipment'];
         $item->vessel = $invoice->vessel;
         $item->port_of_discharge = $invoice->port_of_discharge;
         $item->origin = $invoice->origin;

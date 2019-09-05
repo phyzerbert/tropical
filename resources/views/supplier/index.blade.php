@@ -68,7 +68,7 @@
                                     <td>{{number_format($total_amount - $paid)}}</td>
                                     <td class="text-center">
                                         <div class="btn-group">
-                                            <a href="{{route('supplier.report', $item->id)}}" class="btn btn-sm btn-primary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="{{__('page.delete')}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">
+                                            <a href="{{route('supplier.report', $item->id)}}" class="btn btn-sm btn-primary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="{{__('page.delete')}}">
                                                 <i class="far fa-file-pdf"></i>
                                             </a>
                                             <button type="button" class="btn btn-sm btn-primary js-tooltip-enabled btn-edit" data-id="{{$item->id}}" data-toggle="tooltip" title="" data-original-title="{{__('page.edit')}}">

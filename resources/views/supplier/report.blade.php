@@ -60,7 +60,7 @@
             </tr>
             <tr>
                 <td class="w-50">{{__('page.email')}} : <span class="value">{{$supplier->email}}</span></td>
-                <td class="w-50">{{__('page.phone_number')}} : <span class="value">{{$supplier->name}}</td>
+                <td class="w-50">{{__('page.phone_number')}} : <span class="value">{{$supplier->phone_number}}</td>
             </tr>
             <tr>
                 <td colspan="2" class="w-50">{{__('page.address')}} : <span class="value">{{$supplier->address}}</td>

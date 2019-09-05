@@ -76,16 +76,16 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="2" class="text-right">{{__('page.total')}} : </td>
-                                    <td class="total_quantity">{{ $footer_quantity }}</td>
-                                    <td></td>
-                                    <td colspan="2" class="total">{{ number_format($footer_amount, 2) }}</td>
+                                    <th colspan="2" class="text-right">{{__('page.total')}} : </th>
+                                    <th class="total_quantity">{{ $footer_quantity }}</th>
+                                    <th></th>
+                                    <th colspan="2" class="total">{{ number_format($footer_amount, 2) }}</th>
                                 </tr>
                                 <tr>
-                                    <td colspan="4" align="right">Total To Pay</td>
-                                    <td colspan="2">
+                                    <th colspan="4" class="text-right">Total To Pay</th>
+                                    <th colspan="2">
                                         {{ number_format($invoice->total_to_pay, 2) }}
-                                    </td>
+                                    </th>
                                 </tr>
                             </tfoot>
                         </table>

@@ -56,6 +56,7 @@ Route::get('/proforma/detail/{id}', 'ProformaController@detail')->name('proforma
 Route::get('/proforma/delete/{id}', 'ProformaController@delete')->name('proforma.delete');
 Route::get('/proforma/receive/{id}', 'ProformaController@receive')->name('proforma.receive');
 Route::post('/proforma/save_receive', 'ProformaController@save_receive')->name('proforma.save_receive');
+Route::get('/proforma/container/{id}', 'ProformaController@container')->name('proforma.container');
 
 
 Route::any('/payment/index/{type}/{id}', 'PaymentController@index')->name('payment.index');

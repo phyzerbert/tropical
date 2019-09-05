@@ -118,6 +118,7 @@
                 for (const id in product_list) {
                     if (product_list.hasOwnProperty(id)) {
                         const element = product_list[id];
+                        Dashmix.loader('show')
                         $.ajax({
                             url: '/get_product',
                             type: "POST",
@@ -131,6 +132,7 @@
                                         <td>${element}</td>
                                     </tr>
                                 `)
+                                Dashmix.loader('hide')
                             }
                         })
                     }

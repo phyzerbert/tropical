@@ -15,4 +15,8 @@ class Proforma extends Model
     public function supplier(){
         return $this->belongsTo(Supplier::class);
     }
+
+    public function containers(){
+        return $this->hasMany(Container::class);
+    }
 }

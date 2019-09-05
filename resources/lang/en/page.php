@@ -268,7 +268,7 @@ return [
     'upload' => 'Upload',
     'file' => 'File',
     'proforma_invoice' => 'PROFORMA NE INVOICE',
-    '' => '',
-    '' => '',
+    'container' => 'Container',
+    'container_load' => 'Container Load',
     
 ];

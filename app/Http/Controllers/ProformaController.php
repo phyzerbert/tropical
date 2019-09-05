@@ -230,4 +230,10 @@ class ProformaController extends Controller
         }
         return redirect(route('proforma.index'))->with("success", __('page.received_successfully'));
     }
+
+    public function container(Request $request, $id){
+        $invoice = Proforma::find($id);
+        $data = $invoice->containers;
+        return view('proforma.container', compact('data', 'invoice'));
+    }
 }

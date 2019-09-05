@@ -55,6 +55,7 @@
                                         <button type="button" class="btn btn-sm btn-primary dropdown-toggle" id="dropdown-align-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('page.action')}}&nbsp;</button>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-align-primary">
                                             <a class="dropdown-item" href="{{route('proforma.detail', $item->id)}}">{{__('page.detail')}}</a>
+                                            <a class="dropdown-item" href="{{route('proforma.container', $item->id)}}">{{__('page.container')}}</a>
                                             <a class="dropdown-item" href="{{route('proforma.receive', $item->id)}}" data-id="{{$item->id}}">{{__('page.receive')}}</a>
                                             <a class="dropdown-item" href="{{route('proforma.edit', $item->id)}}">{{__('page.edit')}}</a>
                                             <a class="dropdown-item" href="{{route('invoice.delete', $item->id)}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">{{__('page.delete')}}</a>

@@ -309,5 +309,7 @@ return [
     'add_order' => 'Agregar Orden',
     'total_quantity' =>'Cantidad Total',
     'average_quantity' => 'Cantidad Promedio',
+
+    'units_boxes' => 'Unidades (Cajas)',
     
 ];

@@ -70,7 +70,7 @@
                                             <span class="badge badge-pill badge-primary">{{number_format($item->quantity)}}</span>
                                         </td>
                                         <td class="text-right">{{$item->price}}</td>
-                                        <td class="text-right">{{number_format($item->total_amount)}}</td>
+                                        <td class="text-right">{{number_format($item->total_amount, 2)}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -79,12 +79,12 @@
                                     <td colspan="2" class="text-right">{{__('page.total')}} : </td>
                                     <td class="total_quantity">{{ $footer_quantity }}</td>
                                     <td></td>
-                                    <td colspan="2" class="total">{{ number_format($footer_amount) }}</td>
+                                    <td colspan="2" class="total">{{ number_format($footer_amount, 2) }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="4" align="right">Total To Pay</td>
                                     <td colspan="2">
-                                        {{ number_format($invoice->total_to_pay) }}
+                                        {{ number_format($invoice->total_to_pay, 2) }}
                                     </td>
                                 </tr>
                             </tfoot>

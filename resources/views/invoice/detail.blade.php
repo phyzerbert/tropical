@@ -47,7 +47,7 @@
                                 <tr>
                                     <th class="text-center" style="width: 60px;"></th>
                                     <th>{{__('page.product')}}</th>
-                                    <th class="text-right" style="width: 90px;">{{__('page.quantity')}}</th>
+                                    <th class="text-right" style="width: 90px;">{{__('page.units_boxes')}}</th>
                                     <th class="text-right" style="width: 120px;">{{__('page.price')}}</th>
                                     <th class="text-right">{{__('page.amount')}}</th>
                                     <th class="text-right">{{__('page.surcharge_reduction')}}</th>
@@ -70,21 +70,23 @@
                                             <div class="text-muted">{{$item->product->description}}</div>
                                         </td>
                                         <td class="text-center">
-                                            <span class="badge badge-pill badge-primary">{{$item->quantity}}</span>
+                                            <span class="badge badge-pill badge-primary">{{number_format($item->quantity)}}</span>
                                         </td>
                                         <td class="text-right">{{$item->price}}</td>
-                                        <td class="text-right">{{$item->amount}}</td>
+                                        <td class="text-right">{{number_format($item->amount, 2)}}</td>
                                         <td class="text-right">{{$item->surcharge_reduction}}</td>
-                                        <td class="text-right">{{$item->total_amount}}</td>
+                                        <td class="text-right">{{number_format($item->total_amount, 2)}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td colspan="2" class="text-right">{{__('page.total')}} : </td>
-                                    <td class="total_quantity">{{ $footer_quantity }}</td>
+                                    <td class="total_quantity text-center">
+                                        <span class="badge badge-pill badge-success">{{number_format($footer_quantity)}}</span>
+                                    </td>
                                     <td colspan="3" align="right">Total Excluding VAT</td>
-                                    <td colspan="2" class="total_excluding_vat">{{ $footer_amount }}</td>
+                                    <td colspan="2" class="total_excluding_vat">{{ number_format($footer_amount, 2) }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" align="right">V.A.T</td>
@@ -92,12 +94,12 @@
                                 </tr>
                                 <tr>
                                     <td colspan="6" align="right">Total Including VAT</td>
-                                    <td colspan="2">{{ $invoice->total_to_pay }}</td>
+                                    <td colspan="2">{{ number_format($invoice->total_to_pay, 2) }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" align="right">Total To Pay</td>
                                     <td colspan="2">
-                                        {{ $invoice->total_to_pay }}
+                                        {{ number_format($invoice->total_to_pay, 2) }}
                                     </td>
                                 </tr>
                             </tfoot>

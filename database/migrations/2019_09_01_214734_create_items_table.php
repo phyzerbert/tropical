@@ -16,13 +16,13 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('product_id')->nullable();
-            $table->decimal('quantity', 8, 2)->nullable();
+            $table->integer('quantity')->nullable();
             $table->decimal('price', 8, 2)->nullable();
-            $table->decimal('amount', 8, 2)->nullable();
-            $table->decimal('surcharge_reduction', 8, 2)->nullable();
-            $table->decimal('total_amount', 8, 2)->nullable();
+            $table->decimal('amount', 14, 2)->nullable();
+            $table->decimal('surcharge_reduction', 14, 2)->nullable();
+            $table->decimal('total_amount', 14, 2)->nullable();
             $table->integer('itemable_id')->nullable();
-            $table->string('itemable_type')->nullable();            
+            $table->string('itemable_type')->nullable();
         });
     }
 

@@ -60,9 +60,9 @@
                                     <td class="reference_no">{{$item->reference_no}}</td>
                                     <td class="issue_date">{{$item->issue_date}}</td>
                                     <td class="due_date">{{$item->due_date}}</td>
-                                    <td class="total_to_pay">{{number_format($item->total_to_pay)}}</td>
-                                    <td class="paid">{{number_format($paid)}}</td>
-                                    <td class="balance" data-value="{{$balance}}">{{number_format($balance)}}</td>
+                                    <td class="total_to_pay">{{number_format($item->total_to_pay, 2)}}</td>
+                                    <td class="paid">{{number_format($paid, 2)}}</td>
+                                    <td class="balance" data-value="{{$balance}}">{{number_format($balance, 2)}}</td>
                                     <td class="text-center">
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle" id="dropdown-align-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('page.action')}}&nbsp;</button>

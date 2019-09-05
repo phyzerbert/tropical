@@ -270,5 +270,6 @@ return [
     'proforma_invoice' => 'PROFORMA NE INVOICE',
     'container' => 'Container',
     'container_load' => 'Container Load',
+    'units_boxes' => 'Units(Boxes)',
     
 ];

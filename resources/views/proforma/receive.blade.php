@@ -35,6 +35,7 @@
                             <thead class="table-success">
                                 <tr>
                                     <th>{{__('page.product_code')}}</th>
+                                    <th>{{__('page.description')}}</th>
                                     <th>{{__('page.quantity')}}</th>
                                     <th>{{__('page.price')}}</th>
                                     <th>{{__('page.total_amount')}}</th>
@@ -47,6 +48,7 @@
                                         <input type="hidden" name="product_id[]" class="product_id" :value="item.product_id" />
                                         <input type="text" name="product_name[]" class="form-control form-control-sm product" ref="product" v-model="item.product_code" required />
                                     </td>
+                                    <td>@{{item.product_description}}</td>
                                     <td><input type="number" class="form-control form-control-sm quantity" name="quantity[]" v-model="item.quantity" required placeholder="{{__('page.quantity')}}" /></td>
                                     <td><input type="number" class="form-control form-control-sm price" name="price[]" step="0.01" v-model="item.price" required placeholder="{{__('page.price')}}" /></td>
                                     <td class="total_amount">

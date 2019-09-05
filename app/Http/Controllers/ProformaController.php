@@ -193,12 +193,18 @@ class ProformaController extends Controller
     public function receive(Request $request, $id){
         config(['site.page' => 'proforma']); 
         $invoice = Proforma::find($id);
+        if($invoice->is_received == 1){
+            return back()->withErrors(['received' => 'This proforma has been already received.']);
+        }
         return view('proforma.receive', compact('invoice'));
     }
 
     public function save_receive(Request $request){
         $data = $request->all();
         $invoice = Proforma::find($request->get('id'));
+        if($invoice->is_received == 1){
+            return back()->withErrors(['received' => 'This proforma has been already received.']);
+        }
         $item = new Invoice();
         $item->reference_no = $invoice->reference_no;
         $item->issue_date = $invoice->date;

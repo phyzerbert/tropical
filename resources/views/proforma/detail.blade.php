@@ -22,7 +22,7 @@
     <div class="content content-boxed">
         <div class="block block-fx-shadow">
             <div class="block-header block-header-default">
-                <h3 class="block-title py-3" style="font-size:35px">PRO-FORMA INVOICE NR : {{$invoice->reference_no}}</h3>
+                <h3 class="block-title p-3" style="font-size:35px">PRO-FORMA INVOICE NR : {{$invoice->reference_no}}</h3>
             </div>
             <div class="block-content">
                 <div class="p-sm-4 p-xl-6">
@@ -110,11 +110,6 @@
 
 @endsection
 
-
 @section('script')
 
 @endsection
-
-
-
-

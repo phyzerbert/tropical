@@ -7,12 +7,12 @@
                 <a class="link-fx font-w700 font-size-h1" href="{{route('home')}}">
                     <span class="text-dark">TROPICAL</span><span class="text-primary">GIDA</span>
                 </a>
-                <p class="text-uppercase font-w700 font-size-sm text-muted">Sign In</p>
+                <p class="text-uppercase font-w700 font-size-sm text-muted">{{__('page.sign_in')}}</p>
             </div>
             <form class="js-validation-signin" action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="form-group mt-4">
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="login-username" name="name" placeholder="Username" required autocomplete="name" autofocus style="outline:none" />
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="login-username" name="name" placeholder="{{__('page.username')}}" required autocomplete="name" autofocus />
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -20,7 +20,7 @@
                     @enderror
                 </div>
                 <div class="form-group mt-5">
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="login-password" name="password" placeholder="Password" required autocomplete="current-password" style="outline:none" />                        
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="login-password" name="password" placeholder="{{__('page.password')}}" required autocomplete="current-password" />                        
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -30,12 +30,12 @@
                 <div class="form-group mt-4 d-sm-flex justify-content-sm-between align-items-sm-center text-center text-sm-left">
                     <div class="custom-control custom-checkbox custom-control-primary">
                         <input type="checkbox" class="custom-control-input" id="login-remember-me" name="remember"  {{ old('remember') ? 'checked' : '' }} />
-                        <label class="custom-control-label" for="login-remember-me">Remember Me</label>
+                        <label class="custom-control-label" for="login-remember-me">{{__('page.remember_me')}}</label>
                     </div>
                 </div>
                 <div class="form-group text-center mt-4">
                     <button type="submit" class="btn btn-hero-primary">
-                        <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Sign In
+                        <i class="fa fa-fw fa-sign-in-alt mr-1"></i> {{__('page.sign_in')}}
                     </button>
                 </div>
             </form>

@@ -18,10 +18,12 @@
         </div>
     </div>
     <div class="content">
-        <div class="block block-rounded block-bordered">
+        <div class="block block-rounded block-bordered">            
+            <div class="block-header block-header-default justify-content-end">
+                <button type="button" class="btn btn-success btn-sm ml-3 float-right" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</button>
+            </div>
             <div class="block-content block-content-full">
                 <div class="table-responsive">                    
-                    <button type="button" class="btn btn-success btn-sm ml-3 float-right" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</button>
                     <table class="table table-striped table-bordered table-hover" id="suppliersTable">
                         <thead>
                             <tr>

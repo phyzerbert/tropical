@@ -20,45 +20,47 @@
                 <button type="button" class="btn btn-success btn-sm float-right" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</button>
             </div>
             <div class="block-content block-content-full">
-                <table class="table table-bordered table-hover">
-                    <thead class="thead-colored thead-primary">
-                        <tr class="bg-blue">
-                            <th style="width:50px;">#</th>
-                            <th>{{__('page.username')}}</th>
-                            <th>{{__('page.first_name')}}</th>
-                            <th>{{__('page.last_name')}}</th>
-                            <th style="width:120px;">{{__('page.action')}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>                                
-                        @foreach ($data as $item)
-                            <tr>
-                                <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
-                                <td class="name">{{$item->name}}</td>
-                                <td class="first_name">{{$item->first_name}}</td>
-                                <td class="last_name">{{$item->last_name}}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-primary js-tooltip-enabled btn-edit" data-id="{{$item->id}}" data-toggle="tooltip" title="" data-original-title="{{__('page.edit')}}">
-                                            <i class="fa fa-pencil-alt"></i>
-                                        </button>
-                                        <a href="{{route('user.delete', $item->id)}}" class="btn btn-sm btn-primary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="{{__('page.delete')}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </div>
-                                </td>
+                <div class="table-responsive">                    
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-colored thead-primary">
+                            <tr class="bg-blue">
+                                <th style="width:50px;">#</th>
+                                <th>{{__('page.username')}}</th>
+                                <th>{{__('page.first_name')}}</th>
+                                <th>{{__('page.last_name')}}</th>
+                                <th style="width:120px;">{{__('page.action')}}</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>                
-                <div class="clearfix mt-2">
-                    <div class="float-left" style="margin: 0;">
-                        <p>{{__('page.total')}} <strong style="color: red">{{ $data->total() }}</strong> {{__('page.items')}}</p>
-                    </div>
-                    <div class="float-right" style="margin: 0;">
-                        {!! $data->appends(['name' => $name])->links() !!}
-                    </div>
-                </div>                
+                        </thead>
+                        <tbody>                                
+                            @foreach ($data as $item)
+                                <tr>
+                                    <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
+                                    <td class="name">{{$item->name}}</td>
+                                    <td class="first_name">{{$item->first_name}}</td>
+                                    <td class="last_name">{{$item->last_name}}</td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-primary js-tooltip-enabled btn-edit" data-id="{{$item->id}}" data-toggle="tooltip" title="" data-original-title="{{__('page.edit')}}">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </button>
+                                            <a href="{{route('user.delete', $item->id)}}" class="btn btn-sm btn-primary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="{{__('page.delete')}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>                
+                    <div class="clearfix mt-2">
+                        <div class="float-left" style="margin: 0;">
+                            <p>{{__('page.total')}} <strong style="color: red">{{ $data->total() }}</strong> {{__('page.items')}}</p>
+                        </div>
+                        <div class="float-right" style="margin: 0;">
+                            {!! $data->appends(['name' => $name])->links() !!}
+                        </div>
+                    </div>  
+                </div>              
             </div>
         </div>
     </div>

@@ -17,11 +17,10 @@
         <div class="clearfix">
             <form action="" class="form-inline float-left">
                 @csrf
-                <input type="text" class="form-control form-control-sm" style="width: 200px;" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
-                <button type="submit" class="btn btn-sm btn-primary ml-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
-            </form>
-            
-            <button type="button" class="btn btn-success btn-sm float-right" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</button>
+                <input type="text" class="form-control form-control-sm mt-2" style="width: 200px;" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
+                <button type="submit" class="btn btn-sm btn-primary mt-2 ml-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
+            </form>            
+            <button type="button" class="btn btn-success btn-sm mt-2 float-right" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</button>
         </div>
         <hr />    
         <div class="row">

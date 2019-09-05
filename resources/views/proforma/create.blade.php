@@ -9,11 +9,11 @@
     <div class="bg-body-light">
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2"><i class="far fa-file-alt"></i> {{__('page.create_invoice')}}</h1>
+                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2"><i class="far fa-file-alt"></i> PRO-FORMA INVOICE NR</h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><i class="nav-main-link-icon si si-home"></i></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{__('page.create_invoice')}}</li>
+                        <li class="breadcrumb-item active" aria-current="page">PRO-FORMA INVOICE NR</li>
                     </ol>
                 </nav>
             </div>
@@ -155,6 +155,7 @@
                                     <thead>
                                         <tr>
                                             <th>{{__('page.product_code')}}</th>
+                                            <th>{{__('page.description')}}</th>
                                             <th>{{__('page.quantity')}}</th>
                                             <th>{{__('page.price')}}</th>
                                             <th>{{__('page.total_amount')}}</th>
@@ -167,6 +168,7 @@
                                                 <input type="hidden" name="product_id[]" class="product_id" :value="item.product_id" />
                                                 <input type="text" name="product_name[]" class="form-control form-control-sm product" ref="product" v-model="item.product_code" required />
                                             </td>
+                                            <td>@{{item.product_description}}</td>
                                             <td><input type="number" class="form-control form-control-sm quantity" name="quantity[]" v-model="item.quantity" required placeholder="{{__('page.quantity')}}" /></td>
                                             <td><input type="number" class="form-control form-control-sm price" name="price[]" step="0.01" v-model="item.price" required placeholder="{{__('page.price')}}" /></td>
                                             <td class="total_amount">
@@ -180,15 +182,15 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="3">{{__('page.total')}}</td>
-                                            <td colspan="2" class="total_excluding_vat">@{{formatPrice(total.amount)}}</td>
+                                            <th colspan="4" class="text-right">{{__('page.total')}}</th>
+                                            <th colspan="2" class="total_excluding_vat">@{{formatPrice(total.amount)}}</th>
                                         </tr>
                                         <tr>
-                                            <td colspan="3" align="right">Total</td>
-                                            <td colspan="2">
+                                            <th colspan="4" class="text-right">{{__('page.total')}}</th>
+                                            <th colspan="2">
                                                 @{{formatPrice(total_to_pay)}}
                                                 <input type="hidden" name="total_to_pay" :value="total_to_pay" />
-                                            </td>
+                                            </th>
                                         </tr>
                                     </tfoot>
                                 </table>

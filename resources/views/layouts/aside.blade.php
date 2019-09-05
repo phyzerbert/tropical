@@ -70,12 +70,12 @@
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
                         <a class="nav-main-link @if($page == 'proforma') active @endif" href="{{route('proforma.index')}}">
-                            <span class="nav-main-link-name">{{__('page.invoices')}}</span>
+                            <span class="nav-main-link-name">Proforma</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link @if($page == 'add_proforma') active @endif" href="{{route('proforma.create')}}">
-                            <span class="nav-main-link-name">{{__('page.add_invoice')}}</span>
+                            <span class="nav-main-link-name">Add Proforma</span>
                         </a>
                     </li>
                 </ul>

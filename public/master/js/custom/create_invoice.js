@@ -24,6 +24,7 @@ var app = new Vue({
                     this.items.push({
                         product_id: response.data.id,
                         product_code: response.data.code,
+                        product_description: response.data.description,
                         price: 0,
                         quantity: 1,
                         amount: 0,
@@ -81,6 +82,7 @@ var app = new Vue({
                                 return {
                                     label: item.code,
                                     value: item.code,
+                                    description: item.description,
                                     id: item.id,
                                 }
                             })
@@ -96,6 +98,7 @@ var app = new Vue({
                 let index = $(".product").index($(this));
                 app.items[index].product_id = ui.item.id
                 app.items[index].product_code = ui.item.label
+                app.items[index].product_description = ui.item.description
                 app.items[index].price = 0
                 app.items[index].quantity = 1
                 app.items[index].amount = 0

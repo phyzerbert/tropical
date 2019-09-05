@@ -167,6 +167,7 @@
                                     <thead>
                                         <tr>
                                             <th>{{__('page.product_code')}}</th>
+                                            <th>{{__('page.description')}}</th>
                                             <th>{{__('page.quantity')}}</th>
                                             <th>{{__('page.price')}}</th>
                                             <th>{{__('page.amount')}}</th>
@@ -181,6 +182,7 @@
                                                 <input type="hidden" name="product_id[]" class="product_id" :value="item.product_id" />
                                                 <input type="text" name="product_name[]" class="form-control form-control-sm product" ref="product" v-model="item.product_code" required />
                                             </td>
+                                            <td>@{{item.product_description}}</td>
                                             <td><input type="number" class="form-control form-control-sm quantity" name="quantity[]" v-model="item.quantity" required placeholder="{{__('page.quantity')}}" /></td>
                                             <td><input type="number" class="form-control form-control-sm price" name="price[]" step="0.01" v-model="item.price" required placeholder="{{__('page.price')}}" /></td>
                                             <td class="amount">
@@ -201,28 +203,28 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td>{{__('page.total')}}</td>
-                                            <td class="total_quantity">@{{total.quantity}}</td>
-                                            <td colspan="3" align="right">Total Excluding VAT</td>
-                                            <td colspan="2" class="total_excluding_vat">@{{formatPrice(total.amount)}}</td>
+                                            <th class="text-right" colspan="2">{{__('page.total')}}</th>
+                                            <th class="total_quantity">@{{total.quantity}}</th>
+                                            <th colspan="3" class="text-right">Total Excluding VAT</th>
+                                            <th colspan="2" class="total_excluding_vat">@{{formatPrice(total.amount)}}</th>
                                         </tr>
                                         <tr>
-                                            <td colspan="5" align="right">V.A.T</td>
-                                            <td colspan="2">
+                                            <th colspan="6" class="text-right">V.A.T</th>
+                                            <th colspan="2">
                                                 @{{formatPrice(vat)}}
                                                 <input type="hidden" name="vat_amount" :value="vat" />
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="5" align="right">Total Including VAT</td>
-                                            <td colspan="2">@{{formatPrice(total.amount - vat)}}</td>
+                                            <th colspan="6" class="text-right">Total Including VAT</th>
+                                            <th colspan="2">@{{formatPrice(total.amount - vat)}}</th>
                                         </tr>
                                         <tr>
-                                            <td colspan="5" align="right">Total To Pay</td>
-                                            <td colspan="2">
+                                            <th colspan="6" class="text-right">Total To Pay</th>
+                                            <th colspan="2">
                                                 @{{formatPrice(total_to_pay)}}
                                                 <input type="hidden" name="total_to_pay" :value="total_to_pay" />
-                                            </td>
+                                            </th>
                                         </tr>
                                     </tfoot>
                                 </table>

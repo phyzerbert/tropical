@@ -8,11 +8,11 @@
     <div class="bg-body-light">
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2"><i class="far fa-file-alt"></i> PRO-FORMA NR INVOICE</h1>
+                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2"><i class="far fa-file-alt"></i> PRO-FORMA INVOICE NR</h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><i class="nav-main-link-icon si si-home"></i></li>
-                        <li class="breadcrumb-item active" aria-current="page">PRO-FORMA NR INVOICE</li>
+                        <li class="breadcrumb-item active" aria-current="page">PRO-FORMA INVOICE NR</li>
                     </ol>
                 </nav>
             </div>
@@ -48,8 +48,8 @@
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
                                     <td class="reference_no">{{$item->reference_no}}</td>
                                     <td class="supplier">@isset($item->supplier->company){{$item->supplier->company}}@endisset</td>
-                                    <td class="date">{{$item->date}}</td>
-                                    <td class="due_date">{{$item->due_date}}</td>
+                                    <td class="date">{{ date('d/m/Y', strtotime($item->date)) }}</td>
+                                    <td class="due_date">{{ date('d/m/Y', strtotime($item->due_date)) }}</td>
                                     <td class="total_to_pay">{{number_format($item->total_to_pay, 2)}}</td>
                                     <td class="text-center">
                                         <div class="dropdown">

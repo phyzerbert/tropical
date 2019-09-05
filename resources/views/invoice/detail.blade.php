@@ -81,26 +81,26 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="2" class="text-right">{{__('page.total')}} : </td>
-                                    <td class="total_quantity text-center">
+                                    <th colspan="2" class="text-right">{{__('page.total')}} : </th>
+                                    <th class="total_quantity text-center">
                                         <span class="badge badge-pill badge-success">{{number_format($footer_quantity)}}</span>
-                                    </td>
-                                    <td colspan="3" align="right">Total Excluding VAT</td>
-                                    <td colspan="2" class="total_excluding_vat">{{ number_format($footer_amount, 2) }}</td>
+                                    </th>
+                                    <th colspan="3" class="text-right">Total Excluding VAT</th>
+                                    <th colspan="2" class="total_excluding_vat">{{ number_format($footer_amount, 2) }}</th>
                                 </tr>
                                 <tr>
-                                    <td colspan="6" align="right">V.A.T</td>
-                                    <td colspan="2">{{ $invoice->vat_amount }}</td>
+                                    <th colspan="6" class="text-right">V.A.T</th>
+                                    <th colspan="2">{{ $invoice->vat_amount }}</th>
                                 </tr>
                                 <tr>
-                                    <td colspan="6" align="right">Total Including VAT</td>
-                                    <td colspan="2">{{ number_format($invoice->total_to_pay, 2) }}</td>
+                                    <th colspan="6" class="text-right">Total Including VAT</th>
+                                    <th colspan="2">{{ number_format($invoice->total_to_pay, 2) }}</th>
                                 </tr>
                                 <tr>
-                                    <td colspan="6" align="right">Total To Pay</td>
-                                    <td colspan="2">
+                                    <th colspan="6" class="text-right">Total To Pay</th>
+                                    <th colspan="2">
                                         {{ number_format($invoice->total_to_pay, 2) }}
-                                    </td>
+                                    </th>
                                 </tr>
                             </tfoot>
                         </table>

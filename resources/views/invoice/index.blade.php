@@ -74,6 +74,9 @@
                                                 <a class="dropdown-item" href="{{route('payment.index', ['invoice', $item->id])}}">{{__('page.payment_list')}}</a>
                                                 <a class="dropdown-item" href="{{route('invoice.edit', $item->id)}}">{{__('page.edit')}}</a>
                                                 <a class="dropdown-item" href="{{route('invoice.delete', $item->id)}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">{{__('page.delete')}}</a>
+                                                @if($item->proforma_id)
+                                                    <a class="dropdown-item" href="{{route('proforma.container', $item->proforma_id)}}">{{__('page.container')}}</a>
+                                                @endif
                                             </div>
                                         </div>
                                     </td>

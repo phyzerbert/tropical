@@ -153,25 +153,25 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="form-control-label">TOTAL CONTENEDOR</label>
-                                <input class="form-control" type="text" name="total_container" v-model="total_container" placeholder="TOTAL CONTENEDOR" >
+                                <input class="form-control" type="number" name="total_container" v-model="total_container" placeholder="TOTAL CONTENEDOR" >
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="form-control-label">PESO CARGA</label>
-                                <input class="form-control" type="text" name="peso_carga" v-model="peso_carga" placeholder="PESO CARGA" >
+                                <input class="form-control" type="number" name="peso_carga" v-model="peso_carga" placeholder="PESO CARGA" >
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="form-control-label">TARA</label>
-                                <input class="form-control" type="text" name="tara" v-model="tara" placeholder="TARA" >
+                                <input class="form-control" type="number" name="tara" v-model="tara" placeholder="TARA" >
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="form-control-label">VGM</label>
-                                <input class="form-control" type="text" name="vgm" v-model="vgm" placeholder="VGM" >
+                                <input class="form-control" type="number" name="vgm" v-model="vgm" placeholder="VGM" >
                             </div>
                         </div>
                     </div>

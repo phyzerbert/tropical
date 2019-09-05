@@ -35,6 +35,7 @@
                             <tr class="bg-blue">
                                 <th style="width:50px;">#</th>
                                 <th>{{__('page.reference_no')}}</th>
+                                <th>{{__('page.supplier')}}</th>
                                 <th>{{__('page.issue_date')}}</th>
                                 <th>{{__('page.due_date')}}</th>
                                 <th>{{__('page.total_to_pay')}}</th>
@@ -58,6 +59,7 @@
                                 <tr>
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
                                     <td class="reference_no">{{$item->reference_no}}</td>
+                                    <td class="supplier">@isset($item->supplier->company){{$item->supplier->company}}@endisset</td>
                                     <td class="issue_date">{{ date('d/m/Y', strtotime($item->issue_date)) }}</td>
                                     <td class="due_date">{{ date('d/m/Y', strtotime($item->due_date)) }}</td>
                                     <td class="total_to_pay">{{number_format($item->total_to_pay, 2)}}</td>

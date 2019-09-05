@@ -105,6 +105,15 @@
                             </tfoot>
                         </table>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="block block-rounded block-bordered">
+                                <div class="block-content">
+                                    <p>{{$invoice->note}}</p>
+                                </div>                                
+                            </div>                            
+                        </div>
+                    </div>
                     <div class="clearfix">
                         <a href="{{route('invoice.index')}}" class="btn btn-primary float-right"><i class="far fa-file-alt"></i> {{__('page.invoices')}}</a>
                     </div>

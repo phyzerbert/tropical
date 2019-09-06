@@ -46,6 +46,12 @@
                         </div>
                         <div class="col-md-4 mt-3">
                             <div class="form-group">
+                                <label class="form-control-label">IDENTIFICATION O NIT</label>
+                                <input class="form-control" type="text" name="identification_or_nit" value="{{$container->identification_or_nit}}" placeholder="IDENTIFICATION O NIT">
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <div class="form-group">
                                 <label class="form-control-label">CONTENEDOR</label>
                                 <input class="form-control" type="text" name="contenedor" value="{{$container->contenedor}}" placeholder="CONTENEDOR">
                             </div>

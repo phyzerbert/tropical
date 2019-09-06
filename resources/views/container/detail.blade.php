@@ -43,6 +43,14 @@
                         <div class="col-md-6 col-xl-4">
                             <div class="block block-rounded block-bordered block-link-pop">
                                 <div class="block-content block-content-default p-3 text-center">
+                                    <p class="font-size-h3 font-w300 mb-0">{{$container->identification_or_nit}}</p>
+                                    <p class="text-muted font-weight-bold mb-0">IDENTIFICACION O NIT</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="block block-rounded block-bordered block-link-pop">
+                                <div class="block-content block-content-default p-3 text-center">
                                     <p class="font-size-h3 font-w300 mb-0">{{$container->contenedor}}</p>
                                     <p class="text-muted font-weight-bold mb-0">CONTENEDOR</p>
                                 </div>

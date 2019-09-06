@@ -40,6 +40,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>PRO-FORMA INVOICE NE</th>
                                 <th>IDENTIFICACION O NIT</th>
                                 <th>CONTENEDOR</th>
                                 <th>PRECINTO</th>
@@ -60,6 +61,7 @@
                                 <tr>
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
                                     <td>{{$item->proforma->reference_no}}</td>
+                                    <td>{{$item->identification_or_nit}}</td>
                                     <td>{{$item->contenedor}}</td>
                                     <td>{{$item->precinto}}</td>
                                     <td>{{$item->temperatura}} °C</td>

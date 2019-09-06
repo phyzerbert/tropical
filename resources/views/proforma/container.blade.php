@@ -110,7 +110,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="13" class="text-right">TOTAL </th>
+                                <th colspan="14" class="text-right">TOTAL </th>
                                 @foreach ($products as $id)
                                     <th>{{number_format($footer_product_total[$id])}}</th>
                                 @endforeach

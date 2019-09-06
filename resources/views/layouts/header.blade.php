@@ -42,9 +42,9 @@
                         User Options
                     </div>
                     <div class="p-2">
-                        <a class="dropdown-item" href="#">
+                        {{-- <a class="dropdown-item" href="#">
                             <i class="far fa-fw fa-user mr-1"></i> {{__('page.profile')}}
-                        </a>
+                        </a> --}}
                         <div role="separator" class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();

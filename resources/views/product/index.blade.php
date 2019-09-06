@@ -44,7 +44,7 @@
                                     </button>
                                 </div>
                                 <div class="col-6">
-                                    <a href="{{route('product.delete', $item->id)}}" class="btn btn-sm btn-outline-danger" style="min-width: 85px">
+                                    <a href="{{route('product.delete', $item->id)}}" class="btn btn-sm btn-outline-danger" style="min-width: 85px" onclick="return window.confirm('{{__('page.are_you_sure')}}')">
                                         <i class="fa fa-fw fa-times mr-1"></i> {{__('page.delete')}}
                                     </a>
                                 </div>

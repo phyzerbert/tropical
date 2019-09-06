@@ -21,8 +21,28 @@ class ContainerController extends Controller
         
         $mod = new Container();
         $keyword = '';
-        if($request->keyword != ''){
+        if ($request->get('keyword') != ""){
+            $keyword = $request->keyword;
+            $proforma_array = Proforma::where('reference_no', 'LIKE', "%$keyword%")->pluck('id');
 
+            $mod = $mod->where(function($query) use($keyword, $proforma_array){
+                return $query->whereIn('proforma_id', $proforma_array)
+                        ->orWhere('contenedor', 'LIKE', "%$keyword%")
+                        ->orWhere('precinto', 'LIKE', "%$keyword%")
+                        ->orWhere('temperatura', 'LIKE', "%$keyword%")
+                        ->orWhere('damper', 'LIKE', "%$keyword%")
+                        ->orWhere('booking', 'LIKE', "%$keyword%")
+                        ->orWhere('port_of_discharge', 'LIKE', "%$keyword%")
+                        ->orWhere('fetcha', 'LIKE', "%$keyword%")
+                        ->orWhere('embarcadero', 'LIKE', "%$keyword%")
+                        ->orWhere('tipo_de_mercancia', 'LIKE', "%$keyword%")
+                        ->orWhere('agencia_aduanera', 'LIKE', "%$keyword%")
+                        ->orWhere('company_or_person', 'LIKE', "%$keyword%")
+                        ->orWhere('total_container', 'LIKE', "%$keyword%")
+                        ->orWhere('peso_carga', 'LIKE', "%$keyword%")
+                        ->orWhere('tara', 'LIKE', "%$keyword%")
+                        ->orWhere('vgm', 'LIKE', "%$keyword%");
+            });
         }
 
         $data = $mod->orderBy('created_at', 'desc')->paginate(15);

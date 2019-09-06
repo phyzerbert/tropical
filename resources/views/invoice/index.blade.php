@@ -83,7 +83,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>                
+                    </table>
                     <div class="clearfix mt-2">
                         <div class="float-left" style="margin: 0;">
                             <p>{{__('page.total')}} <strong style="color: red">{{ $data->total() }}</strong> {{__('page.items')}}</p>

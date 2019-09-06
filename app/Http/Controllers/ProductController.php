@@ -73,6 +73,9 @@ class ProductController extends Controller
 
     public function delete($id){
         $item = Product::find($id);
+        if($item->items->isNotEmpty()){
+            return back()->withErrors(['product' => 'You can not delete this product.']);
+        }
         $item->delete();       
         return back()->with('success', __('page.deleted_successfully'));
     }

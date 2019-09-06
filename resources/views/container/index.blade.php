@@ -61,8 +61,8 @@
                             @foreach ($data as $item)
                                 <tr>
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
-                                    <td>{{$item->proforma->reference_no}}</td>
-                                    <td>{{$item->proforma->concerning_week}}</td>
+                                    <td>@isset($item->proforma->reference_no){{$item->proforma->reference_no}}@endisset</td>
+                                    <td>@isset($item->proforma->reference_no){{$item->proforma->concerning_week}}@endisset</td>
                                     <td>{{$item->identification_or_nit}}</td>
                                     <td>{{$item->contenedor}}</td>
                                     <td>{{$item->precinto}}</td>

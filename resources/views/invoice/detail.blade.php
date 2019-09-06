@@ -121,7 +121,7 @@
                             <h4 class="text-right">
                                 {{__('page.invoice')}} : <span class="text-primary">{{number_format($invoice->total_to_pay, 2)}}</span> 
                                 {{__('page.payment')}} : <span class="text-primary">{{number_format($paid, 2)}}</span>
-                                {{__('page.balance')}} : <span class="text-primary">{{$invoice->total_to_pay - $paid}}</span>
+                                {{__('page.balance')}} : <span class="text-primary">{{number_format($invoice->total_to_pay - $paid, 2)}}</span>
                             </h4>
                         </div>
                         <div class="col-12">
@@ -151,7 +151,7 @@
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td class="date">{{date('Y-m-d H:i', strtotime($item->timestamp))}}</td>
                                                 <td class="reference_no">{{$item->reference_no}}</td>
-                                                <td class="amount" data-value="{{$item->amount}}">{{number_format($item->amount)}}</td>
+                                                <td class="amount" data-value="{{$item->amount}}">{{number_format($item->amount, 2)}}</td>
                                                 <td class="" data-path="{{$item->attachment}}">
                                                     <span class="tx-info note">{{$item->note}}</span>&nbsp;
                                                     @if($item->attachment != "")

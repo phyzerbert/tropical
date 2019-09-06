@@ -84,7 +84,7 @@
                                     <td>{{$item->damper}}</td>
                                     <td>{{$item->booking}}</td>
                                     <td>{{$item->port_of_discharge}}</td>
-                                    <td>{{$item->fetcha}}</td>
+                                    <td>{{ date('d/m/Y', strtotime($item->fetcha)) }}</td>
                                     <td>{{$item->embarcadero}}</td>
                                     <td>{{$item->tipo_de_mercancia}}</td>
                                     <td>{{$item->agencia_aduanera}}</td>

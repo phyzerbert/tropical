@@ -104,7 +104,7 @@
                             <h4 class="text-right">
                                 {{__('page.invoice')}} : <span class="text-primary">{{number_format($invoice->total_to_pay, 2)}}</span> 
                                 {{__('page.payment')}} : <span class="text-primary">{{number_format($paid, 2)}}</span>
-                                {{__('page.balance')}} : <span class="text-primary">{{$invoice->total_to_pay - $paid}}</span>
+                                {{__('page.balance')}} : <span class="text-primary">{{number_format($invoice->total_to_pay - $paid, 2)}}</span>
                             </h4>
                         </div>
                         <div class="col-12">

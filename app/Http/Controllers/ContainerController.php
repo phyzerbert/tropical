@@ -23,7 +23,7 @@ class ContainerController extends Controller
         $keyword = '';
         if ($request->get('keyword') != ""){
             $keyword = $request->keyword;
-            $proforma_array = Proforma::where('reference_no', 'LIKE', "%$keyword%")->pluck('id');
+            $proforma_array = Proforma::where('reference_no', 'LIKE', "%$keyword%")->orWhere('concerning_week', 'LIKE', "%$keyword%")->pluck('id');
 
             $mod = $mod->where(function($query) use($keyword, $proforma_array){
                 return $query->whereIn('proforma_id', $proforma_array)

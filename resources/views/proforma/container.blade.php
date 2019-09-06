@@ -41,8 +41,8 @@
                             <tr>
                                 <th rowspan="2">#</th>
                                 <th rowspan="2">IDENTIFICACION O NIT</th>
-                                <th rowspan="2">PRECINTO</th>
                                 <th rowspan="2">CONTENEDOR</th>
+                                <th rowspan="2">PRECINTO</th>
                                 <th rowspan="2">TEMPERATURA</th>
                                 <th rowspan="2">DAMPER</th>
                                 <th rowspan="2">BOOKING</th>

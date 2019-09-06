@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <label class="form-control-label">TEMPERATURA</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="text" name="temperatura" placeholder="TEMPERATURA">
+                                    <input class="form-control" type="number" step="0.1" name="temperatura" placeholder="TEMPERATURA" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">°C</span>
                                     </div>
@@ -159,19 +159,19 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="form-control-label">PESO CARGA</label>
-                                <input class="form-control" type="number" name="peso_carga" v-model="peso_carga" placeholder="PESO CARGA" >
+                                <input class="form-control" type="number" name="peso_carga" step="0.01" v-model="peso_carga" placeholder="PESO CARGA" >
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="form-control-label">TARA</label>
-                                <input class="form-control" type="number" name="tara" v-model="tara" placeholder="TARA" >
+                                <input class="form-control" type="number" name="tara" step="0.01" v-model="tara" placeholder="TARA" >
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="form-control-label">VGM</label>
-                                <input class="form-control" type="number" name="vgm" v-model="vgm" placeholder="VGM" >
+                                <input class="form-control" type="number" name="vgm" step="0.01" v-model="vgm" placeholder="VGM" >
                             </div>
                         </div>
                     </div>

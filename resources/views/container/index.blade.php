@@ -41,8 +41,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>IDENTIFICACION O NIT</th>
-                                <th>PRECINTO</th>
                                 <th>CONTENEDOR</th>
+                                <th>PRECINTO</th>
                                 <th>TEMPERATURA</th>
                                 <th>DAMPER</th>
                                 <th>BOOKING</th>

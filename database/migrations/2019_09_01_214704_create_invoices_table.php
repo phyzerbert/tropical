@@ -27,7 +27,7 @@ class CreateInvoicesTable extends Migration
             $table->string('vessel')->nullable();
             $table->string('port_of_discharge')->nullable();
             $table->string('origin')->nullable();
-            $table->integer('vat_amount')->nullable();
+            $table->integer('vat_amount')->default(0);
             $table->decimal('total_to_pay', 14, 2)->nullable();
             $table->text('note')->nullable();
             $table->integer('proforma_id')->nullable();

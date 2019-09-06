@@ -79,7 +79,7 @@ return [
     'close' => 'Cerrar',
     'back' => 'Regresar',
     'cancel' => 'Cancelar',
-    'receive' => 'Recivido',
+    'receive' => 'Recibir',
     'name' => 'Nombre',
     'type' => 'Tipo',
     'total' => 'Total',

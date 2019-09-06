@@ -31,9 +31,9 @@ var app = new Vue({
                         surcharge_reduction: 0,
                         total_amount: 0,
                     })
-                    // Vue.nextTick(function() {
-                    //     app.$refs['product'][app.$refs['product'].length - 1].select()
-                    // });
+                    Vue.nextTick(function() {
+                        app.$refs['product'][app.$refs['product'].length - 1].select()
+                    });
                 })
                 .catch(error => {
                     console.log(error);

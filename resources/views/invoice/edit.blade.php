@@ -203,28 +203,28 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td>{{__('page.total')}}</td>
-                                            <td class="total_quantity">@{{total.quantity}}</td>
-                                            <td colspan="3" align="right">Total Excluding VAT</td>
-                                            <td colspan="2" class="total_excluding_vat">@{{formatPrice(total.amount)}}</td>
+                                            <th class="text-right">{{__('page.total')}}</th>
+                                            <th class="total_quantity">@{{formatPrice(total.quantity)}}</th>
+                                            <th colspan="3" class="text-right">Total Excluding VAT</th>
+                                            <th colspan="2" class="total_excluding_vat">@{{formatPrice(total.amount)}}</th>
                                         </tr>
                                         <tr>
-                                            <td colspan="5" align="right">V.A.T</td>
-                                            <td colspan="2">
+                                            <th colspan="5" class="text-right">V.A.T</th>
+                                            <th colspan="2">
                                                 @{{formatPrice(vat)}}
                                                 <input type="hidden" name="vat_amount" :value="vat" />
-                                            </td>
+                                            </th>
                                         </tr>
                                         <tr>
-                                            <td colspan="5" align="right">Total Including VAT</td>
-                                            <td colspan="2">@{{formatPrice(total.amount - vat)}}</td>
+                                            <th colspan="5" class="text-right">Total Including VAT</th>
+                                            <th colspan="2">@{{formatPrice(total.amount - vat)}}</th>
                                         </tr>
                                         <tr>
-                                            <td colspan="5" align="right">Total To Pay</td>
-                                            <td colspan="2">
+                                            <th colspan="5" class="text-right">Total To Pay</th>
+                                            <th colspan="2">
                                                 @{{formatPrice(total_to_pay)}}
                                                 <input type="hidden" name="total_to_pay" :value="total_to_pay" />
-                                            </td>
+                                            </th>
                                         </tr>
                                     </tfoot>
                                 </table>

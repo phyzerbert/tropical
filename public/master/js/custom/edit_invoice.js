@@ -59,9 +59,9 @@ var app = new Vue({
                         surcharge_reduction: 0,
                         total_amount: 0,
                     })
-                    // Vue.nextTick(function() {
-                    //     app.$refs['product'][app.$refs['product'].length - 1].select()
-                    // });
+                    Vue.nextTick(function() {
+                        app.$refs['product'][app.$refs['product'].length - 1].select()
+                    });
                 })
                 .catch(error => {
                     console.log(error);
@@ -71,12 +71,11 @@ var app = new Vue({
             let data = this.items
             let total_quantity = 0;
             let total_amount = 0;
-
             for(let i = 0; i < data.length; i++) {
-                this.items[i].amount = parseFloat(data[i].price) * data[i].quantity
+                this.items[i].amount = (parseFloat(data[i].price) * data[i].quantity).toFixed(2)
                 this.items[i].total_amount = parseFloat(data[i].amount) + parseFloat(data[i].surcharge_reduction)
-                total_quantity += parseFloat(data[i].quantity)
-                total_amount += data[i].total_amount
+                total_quantity += parseInt(data[i].quantity)
+                total_amount += parseFloat(data[i].total_amount)
             }
             this.total.quantity = total_quantity
             this.total.amount = total_amount

@@ -38,9 +38,17 @@ class PaymentController extends Controller
         $item->reference_no = $request->get('reference_no');
         $item->amount = $request->get('amount');
         if($request->type == 'invoice'){
-            $invoice_id = $request->invoice_id;
+            $item->invoice_id = $request->invoice_id;
+            $invoice = Invoice::find($request->invoice_id);
+            if($invoice->proforma_id) {
+                $item->proforma_id = $invoice->proforma_id;
+            }
         }else if($request->type == 'proforma'){
-            $proforma_id = $request->proforma_id;
+            $item->proforma_id = $request->proforma_id;
+            $proforma = Proforma::find($request->proforma_id);
+            if($proforma->invoice) {
+                $item->invoice_id = $proforma->invoice->id;
+            }
         }
         $item->note = $request->get('note');
         if($request->has("attachment")){

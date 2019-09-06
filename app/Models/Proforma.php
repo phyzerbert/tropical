@@ -23,4 +23,8 @@ class Proforma extends Model
     public function containers(){
         return $this->hasMany(Container::class);
     }
+
+    public function invoice(){
+        return $this->hasOne(Invoice::class);
+    }
 }

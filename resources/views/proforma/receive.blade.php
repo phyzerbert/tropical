@@ -63,11 +63,11 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th colspan="3" class="text-right">{{__('page.total')}}</th>
+                                    <th colspan="4" class="text-right">{{__('page.total')}}</th>
                                     <th colspan="2" class="total_excluding_vat">@{{formatPrice(total.amount)}}</th>
                                 </tr>
                                 <tr>
-                                    <th colspan="3" class="text-right">Total To Pay</th>
+                                    <th colspan="4" class="text-right">Total To Pay</th>
                                     <th colspan="2">
                                         @{{formatPrice(total_to_pay)}}
                                         <input type="hidden" name="total_to_pay" :value="total_to_pay" />

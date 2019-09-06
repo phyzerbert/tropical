@@ -38,6 +38,7 @@
                                 <th>{{__('page.supplier')}}</th>
                                 <th>{{__('page.date')}}</th>
                                 <th>{{__('page.due_date')}}</th>
+                                <th>{{__('page.status')}}</th>
                                 <th>{{__('page.total_to_pay')}}</th>
                                 <th>{{__('page.paid')}}</th>
                                 <th>{{__('page.balance')}}</th>
@@ -62,6 +63,13 @@
                                     <td class="supplier">@isset($item->supplier->company){{$item->supplier->company}}@endisset</td>
                                     <td class="date">{{ date('d/m/Y', strtotime($item->date)) }}</td>
                                     <td class="due_date">{{ date('d/m/Y', strtotime($item->due_date)) }}</td>
+                                    <td class="status">
+                                        @if($item->is_received == 1)
+                                            <span class="badge badge-success">{{__('page.received')}}</span>
+                                        @else
+                                            <span class="badge badge-warning">{{__('page.pending')}}</span>
+                                        @endif
+                                    </td>
                                     <td class="total_to_pay">{{number_format($item->total_to_pay, 2)}}</td>
                                     <td class="paid">{{number_format($paid, 2)}}</td>
                                     <td class="balance" data-value="{{$balance}}">{{number_format($balance, 2)}}</td>
@@ -71,7 +79,9 @@
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-align-primary">
                                                 <a class="dropdown-item" href="{{route('proforma.detail', $item->id)}}">{{__('page.detail')}}</a>
                                                 <a class="dropdown-item" href="{{route('proforma.container', $item->id)}}">{{__('page.container')}}</a>
-                                                <a class="dropdown-item" href="{{route('proforma.receive', $item->id)}}" data-id="{{$item->id}}">{{__('page.receive')}}</a>
+                                                @if (!$item->is_received)                                                    
+                                                    <a class="dropdown-item" href="{{route('proforma.receive', $item->id)}}" data-id="{{$item->id}}">{{__('page.receive')}}</a>
+                                                @endif
                                                 <a class="dropdown-item btn-add-payment" data-id="{{$item->id}}" href="javascript:void(0)">{{__('page.add_payment')}}</a>
                                                 <a class="dropdown-item" href="{{route('payment.index', ['proforma', $item->id])}}">{{__('page.payment_list')}}</a>
                                                 <a class="dropdown-item" href="{{route('proforma.edit', $item->id)}}">{{__('page.edit')}}</a>

@@ -225,7 +225,7 @@ class ProformaController extends Controller
         $item->note = $proforma->note; 
         $item->proforma_id = $proforma->id;       
         $item->save();
-        $invoice->update(['is_received' => 1]);
+        $proforma->update(['is_received' => 1]);
 
         if(isset($data['product_id']) && count($data['product_id']) > 0){
             for ($i=0; $i < count($data['product_id']); $i++) {
@@ -240,7 +240,7 @@ class ProformaController extends Controller
             }
         }
 
-        foreach ($invoice->payments as $payment) {
+        foreach ($proforma->payments as $payment) {
             $payment->invoice_id = $item->id;
             $payment->save();
         }

@@ -27,7 +27,8 @@
     <div class="content">
         <div class="block block-rounded block-bordered">
             <div class="clearfix block-header-default p-3">
-                <h3 class="float-left mb-0 mr-auto">PRO-FORMA NE INVOICE : <ins class="text-primary">{{$invoice->reference_no}}</ins></h3>
+                <h3 class="float-left mb-0">PRO-FORMA NE INVOICE : <ins class="text-primary">{{$invoice->reference_no}}</ins></h3>
+                <h3 class="float-left mb-0 ml-3 mr-auto">SEMANA : <ins class="text-primary">{{$invoice->concerning_week}}</ins></h3>
                 <a href="{{route('container.create')}}" class="btn btn-success btn-sm float-right" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
             </div>
             <div class="block-content block-content-full">
@@ -41,6 +42,7 @@
                             <tr>
                                 <th rowspan="2">#</th>
                                 <th rowspan="2">PRO-FORMA INVOICE NE</th>
+                                <th rowspan="2">SEMANA</th>
                                 <th rowspan="2">IDENTIFICACION O NIT</th>
                                 <th rowspan="2">CONTENEDOR</th>
                                 <th rowspan="2">PRECINTO</th>
@@ -83,6 +85,7 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{$item->proforma->reference_no}}</td>
+                                    <td>{{$item->proforma->concerning_week}}</td>
                                     <td>{{$item->identification_or_nit}}</td>
                                     <td>{{$item->contenedor}}</td>
                                     <td>{{$item->precinto}}</td>

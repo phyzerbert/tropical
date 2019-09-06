@@ -66,6 +66,7 @@
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle" id="dropdown-align-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('page.action')}}&nbsp;</button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-align-primary">
+                                                <a class="dropdown-item" href="{{route('container.detail', $item->id)}}">{{__('page.detail')}}</a>
                                                 <a class="dropdown-item product_list" href="javascript:void(0)" data-value='{{$item->product_list}}''>{{__('page.product')}}</a>
                                                 <a class="dropdown-item" href="{{route('container.edit', $item->id)}}">{{__('page.edit')}}</a>
                                                 <a class="dropdown-item" href="{{route('container.delete', $item->id)}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">{{__('page.delete')}}</a>

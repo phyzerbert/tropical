@@ -78,7 +78,7 @@ class ContainerController extends Controller
 
     public function detail(Request $request, $id){    
         config(['site.page' => 'container']); 
-        $container = Invoice::find($id);
+        $container = Container::find($id);
         return view('container.detail', compact('container'));
     }
 

@@ -20,8 +20,8 @@ class CreatePaymentsTable extends Migration
             $table->integer('amount')->nullable();
             $table->string('attachment')->nullable();
             $table->text('note')->nullable();
-            $table->integer('paymentable_id')->nullable();
-            $table->string('paymentable_type')->nullable();
+            $table->integer('invoice_id')->nullable();
+            $table->integer('proforma_id')->nullable();
             $table->timestamps();
         });
     }

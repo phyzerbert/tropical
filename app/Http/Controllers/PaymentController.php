@@ -31,21 +31,17 @@ class PaymentController extends Controller
         $request->validate([
             'date'=>'required|string',
             'reference_no'=>'required|string',
-            'paymentable_id'=>'required',
-        ]);
-
-        if($request->type == 'invoice'){
-            $paymentable_type = Invoice::class;
-        }else if($request->type == 'proforma'){
-            $paymentable_type = Proforma::class;
-        }
+        ]);        
         
         $item = new Payment();
         $item->timestamp = $request->get('date').":00";
         $item->reference_no = $request->get('reference_no');
         $item->amount = $request->get('amount');
-        $item->paymentable_id = $request->get('paymentable_id');
-        $item->paymentable_type = $paymentable_type;
+        if($request->type == 'invoice'){
+            $invoice_id = $request->invoice_id;
+        }else if($request->type == 'proforma'){
+            $proforma_id = $request->proforma_id;
+        }
         $item->note = $request->get('note');
         if($request->has("attachment")){
             $picture = request()->file('attachment');

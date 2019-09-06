@@ -8,19 +8,14 @@ class Payment extends Model
 {
     protected $guarded = [];
 
-    public function paymentable()
-    {
-        return $this->morphTo();
-    }
-
     public function invoice()
     {
-        return $this->morphedByMany('App\Models\Invoice', 'paymentable');
+        return $this->belongsTo(Invoice::class);
     }
 
     public function proforma()
     {
-        return $this->morphedByMany('App\Models\Proforma', 'paymentable');
+        return $this->belongsTo(Proforma::class);
     }
 
 }

@@ -206,24 +206,24 @@ class ProformaController extends Controller
             'shipment'=>'required',
         ]);
         $data = $request->all();
-        $invoice = Proforma::find($request->get('id'));
-        if($invoice->is_received == 1){
+        $proforma = Proforma::find($request->get('id'));
+        if($proforma->is_received == 1){
             return back()->withErrors(['received' => 'This proforma has been already received.']);
         }
         $item = new Invoice();
         $item->reference_no = $data['invoice'];
-        $item->issue_date = $invoice->date;
-        $item->supplier_id = $invoice->supplier_id;
-        $item->due_date = $invoice->due_date;
-        $item->customers_vat = $invoice->customers_vat;
-        $item->concerning_week = $invoice->concerning_week;
+        $item->issue_date = $proforma->date;
+        $item->supplier_id = $proforma->supplier_id;
+        $item->due_date = $proforma->due_date;
+        $item->customers_vat = $proforma->customers_vat;
+        $item->concerning_week = $proforma->concerning_week;
         $item->shipment = $data['shipment'];
-        $item->vessel = $invoice->vessel;
-        $item->port_of_discharge = $invoice->port_of_discharge;
-        $item->origin = $invoice->origin;
-        $item->total_to_pay = $invoice->total_to_pay;
-        $item->note = $invoice->note; 
-        $item->proforma_id = $invoice->id;       
+        $item->vessel = $proforma->vessel;
+        $item->port_of_discharge = $proforma->port_of_discharge;
+        $item->origin = $proforma->origin;
+        $item->total_to_pay = $proforma->total_to_pay;
+        $item->note = $proforma->note; 
+        $item->proforma_id = $proforma->id;       
         $item->save();
         $invoice->update(['is_received' => 1]);
 
@@ -241,15 +241,8 @@ class ProformaController extends Controller
         }
 
         foreach ($invoice->payments as $payment) {
-            Payment::create([
-                'timestamp' => $payment->timestamp,
-                'reference_no' => $payment->reference_no,
-                'amount' => $payment->amount,
-                'attachment' => $payment->attachment,
-                'note' => $payment->note,
-                'paymentable_id' => $item->id,
-                'paymentable_type' => Invoice::class,
-            ]);
+            $payment->invoice_id = $item->id;
+            $payment->save();
         }
         return redirect(route('proforma.index'))->with("success", __('page.received_successfully'));
     }

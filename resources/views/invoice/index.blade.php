@@ -107,7 +107,7 @@
                 <form action="{{route('payment.create')}}" id="payment_form" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="type" value="invoice">
-                    <input type="hidden" class="paymentable_id" name="paymentable_id" />
+                    <input type="hidden" class="invoice_id" name="invoice_id" />
                     <div class="modal-body">
                         <div class="form-group">
                             <label class="control-label">{{__('page.date')}}</label>
@@ -157,7 +157,7 @@
             $(".btn-add-payment").click(function(){
                 let id = $(this).data('id');
                 let balance = $(this).parents('tr').find('.balance').data('value');
-                $("#payment_form .paymentable_id").val(id);
+                $("#payment_form .invoice_id").val(id);
                 $("#payment_form .amount").val(balance);
                 $("#paymentModal").modal();
             });

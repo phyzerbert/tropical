@@ -29,12 +29,12 @@
                 <a href="{{route('proforma.create')}}" class="btn btn-success btn-sm mt-2" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
             </div>
             <div class="block-content block-content-full">
-                <div class="table-responsive">                    
+                <div class="table-responsive pb-7">                    
                     <table class="table table-bordered table-hover">
                         <thead class="thead-colored thead-primary">
                             <tr class="bg-blue">
                                 <th style="width:50px;">#</th>
-                                <th>{{__('page.reference_no')}}</th>
+                                <th>PRO-FORMA INVOICE NR</th>
                                 <th>{{__('page.supplier')}}</th>
                                 <th>{{__('page.date')}}</th>
                                 <th>{{__('page.due_date')}}</th>

@@ -28,7 +28,7 @@
                     <div class="row mb-3">
                         <div class="col-md-3">
                             <div class="form-group mg-b-10-force">
-                                <label class="form-control-label">{{__('page.reference_no')}}: <span class="tx-danger">*</span></label>
+                                <label class="form-control-label">PRO-FORMA INVOICE NR</label>
                                 <input class="form-control" type="text" name="reference_no" value="{{$invoice->reference_no}}" placeholder="{{__('page.reference_no')}}" required>
                                 @error('reference_no')
                                     <span class="invalid-feedback d-block" role="alert">
@@ -149,14 +149,14 @@
                         <div class="col-md-12">
                             <div>
                                 <h3 class="mb-2" style="float:left">{{__('page.items')}}</h3>
-                                {{-- <button type="button" class="btn btn-primary mg-b-10 add-product" style="float:right">ADD</button> --}}
-                            <a href="#" class="btn btn-sm btn-primary btn-icon mb-2 add-item" style="float:right" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add')}}</a>
+                                <a href="#" class="btn btn-sm btn-primary btn-icon mb-2 add-item" style="float:right" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add')}}</a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-colored table-success" id="item_table">
                                     <thead>
                                         <tr>
                                             <th>{{__('page.product_code')}}</th>
+                                            <th>{{__('page.description')}}</th>
                                             <th>{{__('page.quantity')}}</th>
                                             <th>{{__('page.price')}}</th>
                                             <th>{{__('page.total_amount')}}</th>
@@ -169,6 +169,7 @@
                                                 <input type="hidden" name="product_id[]" class="product_id" :value="item.product_id" />
                                                 <input type="text" name="product_name[]" class="form-control form-control-sm product" ref="product" v-model="item.product_code" required />
                                             </td>
+                                            <td>@{{item.product_description}}</td>
                                             <td><input type="number" class="form-control form-control-sm quantity" name="quantity[]" v-model="item.quantity" required placeholder="{{__('page.quantity')}}" /></td>
                                             <td><input type="number" class="form-control form-control-sm price" name="price[]" step="0.01" v-model="item.price" required placeholder="{{__('page.price')}}" /></td>
                                             <td class="total_amount">

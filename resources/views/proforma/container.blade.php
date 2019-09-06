@@ -85,7 +85,7 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{$item->proforma->reference_no}}</td>
-                                    <td>{{$item->proforma->concerning_week}}</td>
+                                    <td>{{$item->semana}}</td>
                                     <td>{{$item->identification_or_nit}}</td>
                                     <td>{{$item->contenedor}}</td>
                                     <td>{{$item->precinto}}</td>

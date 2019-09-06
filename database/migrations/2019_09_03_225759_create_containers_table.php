@@ -17,6 +17,7 @@ class CreateContainersTable extends Migration
             $table->bigIncrements('id');
             $table->string('proforma_id')->nullable();
             $table->string('identification_or_nit')->nullable();
+            $table->string('semana')->nullable();
             $table->string('contenedor')->nullable();
             $table->string('precinto')->nullable();
             $table->decimal('temperatura', 4, 1)->nullable();

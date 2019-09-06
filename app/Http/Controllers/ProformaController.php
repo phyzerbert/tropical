@@ -164,6 +164,7 @@ class ProformaController extends Controller
                         'product_id' => $data['product_id'][$i],
                         'price' => $data['price'][$i],
                         'quantity' => $data['quantity'][$i],
+                        'amount' => $data['total_amount'][$i],
                         'total_amount' => $data['total_amount'][$i],
                         'itemable_id' => $item->id,
                         'itemable_type' => Proforma::class,
@@ -174,6 +175,7 @@ class ProformaController extends Controller
                         'product_id' => $data['product_id'][$i],
                         'price' => $data['price'][$i],
                         'quantity' => $data['quantity'][$i],
+                        'amount' => $data['total_amount'][$i],
                         'total_amount' => $data['total_amount'][$i],
                         'itemable_id' => $item->id,
                         'itemable_type' => Proforma::class,
@@ -186,6 +188,9 @@ class ProformaController extends Controller
 
     public function delete($id){
         $item = Proforma::find($id);
+        if($item->containers->isNotEmpty()){
+            return back()->withErrors(['product' => 'You can not delete this pro-forma.']);
+        }
         $item->items()->delete();
         $item->delete();
         return back()->with("success", __('page.deleted_successfully'));

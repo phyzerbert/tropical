@@ -52,6 +52,12 @@
                         </div>
                         <div class="col-md-4 mt-3">
                             <div class="form-group">
+                                <label class="form-control-label">SEMANA</label>
+                                <input class="form-control" type="text" name="semana" value="{{$container->semana}}" placeholder="SEMANA">
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <div class="form-group">
                                 <label class="form-control-label">CONTENEDOR</label>
                                 <input class="form-control" type="text" name="contenedor" value="{{$container->contenedor}}" placeholder="CONTENEDOR">
                             </div>

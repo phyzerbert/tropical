@@ -41,8 +41,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>PRO-FORMA INVOICE NE</th>
-                                <th>SEMANA</th>
                                 <th>IDENTIFICACION O NIT</th>
+                                <th>SEMANA</th>
                                 <th>CONTENEDOR</th>
                                 <th>PRECINTO</th>
                                 <th>TEMPERATURA</th>
@@ -62,8 +62,8 @@
                                 <tr>
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
                                     <td>@isset($item->proforma->reference_no){{$item->proforma->reference_no}}@endisset</td>
-                                    <td>@isset($item->proforma->reference_no){{$item->proforma->concerning_week}}@endisset</td>
                                     <td>{{$item->identification_or_nit}}</td>
+                                    <td>{{$item->semana}}</td>
                                     <td>{{$item->contenedor}}</td>
                                     <td>{{$item->precinto}}</td>
                                     <td>{{$item->temperatura}} °C</td>

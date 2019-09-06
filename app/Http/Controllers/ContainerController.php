@@ -23,11 +23,12 @@ class ContainerController extends Controller
         $keyword = '';
         if ($request->get('keyword') != ""){
             $keyword = $request->keyword;
-            $proforma_array = Proforma::where('reference_no', 'LIKE', "%$keyword%")->orWhere('concerning_week', 'LIKE', "%$keyword%")->pluck('id');
+            $proforma_array = Proforma::where('reference_no', 'LIKE', "%$keyword%")->pluck('id');
 
             $mod = $mod->where(function($query) use($keyword, $proforma_array){
                 return $query->whereIn('proforma_id', $proforma_array)
                         ->orWhere('contenedor', 'LIKE', "%$keyword%")
+                        ->orWhere('semana', 'LIKE', "%$keyword%")
                         ->orWhere('identification_or_nit', 'LIKE', "%$keyword%")
                         ->orWhere('precinto', 'LIKE', "%$keyword%")
                         ->orWhere('temperatura', 'LIKE', "%$keyword%")
@@ -67,6 +68,7 @@ class ContainerController extends Controller
         $item = new Container();
         $item->proforma_id = $data['proforma'];
         $item->identification_or_nit = $data['identification_or_nit'];
+        $item->semana = $data['semana'];
         $item->contenedor = $data['contenedor'];
         $item->precinto = $data['precinto'];
         $item->temperatura = $data['temperatura'];
@@ -114,6 +116,7 @@ class ContainerController extends Controller
         $item = Container::find($request->id);
         $item->proforma_id = $data['proforma'];
         $item->identification_or_nit = $data['identification_or_nit'];
+        $item->semana = $data['semana'];
         $item->contenedor = $data['contenedor'];
         $item->precinto = $data['precinto'];
         $item->temperatura = $data['temperatura'];

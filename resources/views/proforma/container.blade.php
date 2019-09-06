@@ -4,6 +4,10 @@
     td, th {
         white-space: nowrap;
     }
+    .table-responsive table tr th:last-child,
+    .table-responsive table tr td:last-child {
+        border-right-width: 2px;
+    }
     </style>
 @endsection
 @section('content')
@@ -27,7 +31,7 @@
                 <a href="{{route('container.create')}}" class="btn btn-success btn-sm float-right" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
             </div>
             <div class="block-content block-content-full">
-                <div class="table-responsive">
+                <div class="table-responsive px-1">
                     @php
                         $products = $invoice->items->pluck('product_id')->toArray();
                         $footer_product_total = array();

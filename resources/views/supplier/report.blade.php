@@ -46,10 +46,10 @@
     <h1 class="title">{{__('page.supplier')}} {{__('page.report')}}</h1>
 
     @php
-        $purchases_array = $supplier->invoices()->pluck('id');
+        $invoices_array = $supplier->invoices()->pluck('id');
         $total_purchases = $supplier->invoices()->count();
         $total_to_pay = $supplier->invoices()->sum('total_to_pay');
-        $paid = \App\Models\Payment::whereIn('paymentable_id', $purchases_array)->where('paymentable_type', 'App\Models\Invoice')->sum('amount');
+        $paid = \App\Models\Payment::whereIn('invoice_id', $invoices_array)->sum('amount');
     @endphp
 
     <table class="w-100 mt-5" id="table-supplier">

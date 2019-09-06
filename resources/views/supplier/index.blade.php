@@ -46,7 +46,7 @@
                                 @php
                                     $invoice_array = $item->invoices->pluck('id');
                                     $mod_total_amount = 0;
-                                    $mod_paid = \App\Models\Payment::whereIn('paymentable_id', $invoice_array)->where('paymentable_type', 'App\Models\Invoice');
+                                    $mod_paid = \App\Models\Payment::whereIn('invoice_id', $invoice_array);
 
                                     $total_amount = $item->invoices->sum('total_to_pay');
                                     $paid = $mod_paid->sum('amount');  

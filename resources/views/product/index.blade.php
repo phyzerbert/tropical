@@ -91,7 +91,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('page.description')}}</label>
-                            <textarea class="form-control description" name="description" placeholder="{{__('page.description')}}">
+                            <textarea class="form-control description" name="description">
                                 {{-- <p style="text-align: center; ">
                                     <b>ESPECIFICACIONES DE CALIDAD FRUTA-2019/FRUIT SPECS 2019</b>
                                 </p> --}}
@@ -142,7 +142,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('page.description')}}</label>
-                            <textarea class="form-control description" name="description" placeholder="{{__('page.description')}}"></textarea>
+                            <textarea class="form-control description" name="description"></textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('page.image')}}</label>

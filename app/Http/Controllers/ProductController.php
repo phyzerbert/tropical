@@ -33,7 +33,6 @@ class ProductController extends Controller
         $request->validate([
             'code'=>'required',
             'name'=>'required|string',
-            'description'=>'required',
         ]);
         // dd($request->all());
         $item = Product::find($request->get("id"));
@@ -57,7 +56,6 @@ class ProductController extends Controller
         $request->validate([
             'code'=>'required|string',
             'name'=>'required|string',
-            'description'=>'required|string',
         ]);
         $item = new Product();
         $item->code = $request->get("code");
@@ -88,7 +86,7 @@ class ProductController extends Controller
     public function produce_create(Request $request){
         $request->validate([
             'code'=>'required',
-            'description'=>'required',
+            'name'=>'required',
             'image' => 'required|file',
         ]);
         $item = new Product();

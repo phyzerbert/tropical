@@ -27,7 +27,7 @@
                     <div class="row mb-3">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="form-control-label">{{__('page.reference_no')}}: <span class="tx-danger">*</span></label>
+                                <label class="form-control-label">{{__('page.reference_no')}}: <span class="text-danger">*</span></label>
                                 <input class="form-control" type="text" name="reference_no" placeholder="{{__('page.reference_no')}}" required>
                                 @error('reference_no')
                                     <span class="invalid-feedback d-block" role="alert">
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-3">
-                            <label class="form-control-label">{{__('page.issue_date')}}: <span class="tx-danger">*</span></label>
+                            <label class="form-control-label">{{__('page.issue_date')}}: <span class="text-danger">*</span></label>
                             <input class="datepicker form-control" type="text" name="issue_date" value="{{date('Y-m-d')}}" placeholder="{{__('page.issue_date')}}" autocomplete="off" required>
                             @error('issue_date')
                                 <span class="invalid-feedback d-block" role="alert">
@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="form-control-label">{{__('page.due_date')}}: <span class="tx-danger">*</span></label>
+                                <label class="form-control-label">{{__('page.due_date')}}: <span class="text-danger">*</span></label>
                                 <input class="form-control datepicker" type="text" name="due_date" value="{{date('Y-m-d')}}" placeholder="{{__('page.due_date')}}" autocomplete="off" required>
                                 @error('due_date')
                                     <span class="invalid-feedback d-block" role="alert">
@@ -90,7 +90,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="form-control-label">{{__('page.delivery_date')}}: <span class="tx-danger">*</span></label>
+                                <label class="form-control-label">{{__('page.delivery_date')}}: <span class="text-danger">*</span></label>
                                 <input class="form-control datepicker" type="text" name="delivery_date" value="{{date('Y-m-d')}}" placeholder="{{__('page.delivery_date')}}" autocomplete="off" required>
                                 @error('delivery_date')
                                     <span class="invalid-feedback d-block" role="alert">

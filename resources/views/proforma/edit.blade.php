@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-3">
-                            <label class="form-control-label">{{__('page.date')}}: <span class="tx-danger">*</span></label>
+                            <label class="form-control-label">{{__('page.date')}}: <span class="text-danger">*</span></label>
                             <input class="datepicker form-control" type="text" name="date" value="{{$invoice->date}}" placeholder="{{__('page.date')}}" autocomplete="off" required>
                             @error('date')
                                 <span class="invalid-feedback d-block" role="alert">
@@ -69,7 +69,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mg-b-10-force">
-                                <label class="form-control-label">{{__('page.due_date')}}: <span class="tx-danger">*</span></label>
+                                <label class="form-control-label">{{__('page.due_date')}}: <span class="text-danger">*</span></label>
                                 <input class="form-control datepicker" type="text" name="due_date" value="{{$invoice->due_date}}" placeholder="{{__('page.due_date')}}" autocomplete="off" required>
                                 @error('due_date')
                                     <span class="invalid-feedback d-block" role="alert">
@@ -78,7 +78,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.customers_vat')}}</label>
                                 <input class="form-control" type="text" name="customers_vat" value="{{$invoice->customers_vat}}" required placeholder="{{__('page.customers_vat')}}">
@@ -89,7 +89,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.concerning_week')}}</label>
                                 <input class="form-control" type="text" name="concerning_week" value="{{ $invoice->concerning_week }}" required placeholder="{{__('page.concerning_week')}}">
@@ -100,7 +100,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.vessel')}}</label>
                                 <input class="form-control" type="text" name="vessel" value="{{ $invoice->vessel }}" required placeholder="{{__('page.vessel')}}">
@@ -111,7 +111,18 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.port_of_charge')}}</label>
+                                <input class="form-control" type="text" name="port_of_charge" value="{{ $invoice->port_of_charge }}" required placeholder="{{__('page.port_of_charge')}}">
+                                @error('port_of_charge')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.port_of_discharge')}}</label>
                                 <input class="form-control" type="text" name="port_of_discharge" value="{{ $invoice->port_of_discharge }}" required placeholder="{{__('page.port_of_discharge')}}">
@@ -122,18 +133,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
-                                <label class="form-control-label">{{__('page.brand')}}</label>
-                                <input class="form-control" type="text" name="brand" value="{{ $invoice->brand }}" required placeholder="{{__('page.brand')}}">
-                                @error('brand')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.origin')}}</label>
                                 <input class="form-control" type="text" name="origin" value="{{ $invoice->origin }}" required placeholder="{{__('page.origin')}}">
@@ -142,6 +142,27 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.week_c')}}</label>
+                                <input class="form-control" type="text" name="week_c" value="{{ $invoice->week_c }}" required placeholder="{{__('page.week_c')}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.week_d')}}</label>
+                                <input class="form-control" type="text" name="week_d" value="{{ $invoice->week_d }}" required placeholder="{{__('page.week_d')}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label">{{__('page.image')}}</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" data-toggle="custom-file-input" name="image" accept="image/*">
+                                    <label class="custom-file-label" for="example-file-input-custom">Choose file</label>
+                                </div>                               
                             </div>
                         </div>
                     </div> 

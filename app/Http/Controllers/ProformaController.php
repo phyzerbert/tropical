@@ -84,13 +84,20 @@ class ProformaController extends Controller
         $item->due_date = $data['due_date'];
         $item->customers_vat = $data['customers_vat'];
         $item->concerning_week = $data['concerning_week'];
-        $item->brand = $data['brand'];
         $item->vessel = $data['vessel'];
+        $item->port_of_charge = $data['port_of_charge'];
         $item->port_of_discharge = $data['port_of_discharge'];
         $item->origin = $data['origin'];
+        $item->week_c = $data['week_c'];
+        $item->week_d = $data['week_d'];
         $item->total_to_pay = $data['total_to_pay'];
         $item->note = $data['note'];
-        
+        if($request->has("image")){
+            $picture = request()->file('image');
+            $imageName = "proforma_".time().'.'.$picture->getClientOriginalExtension();
+            $picture->move(public_path('images/uploaded/proforma_images/'), $imageName);
+            $item->image = 'images/uploaded/proforma_images/'.$imageName;
+        }
         $item->save();
 
         if(isset($data['product_id']) && count($data['product_id']) > 0){
@@ -141,12 +148,21 @@ class ProformaController extends Controller
         $item->due_date = $data['due_date'];
         $item->customers_vat = $data['customers_vat'];
         $item->concerning_week = $data['concerning_week'];
-        $item->brand = $data['brand'];
         $item->vessel = $data['vessel'];
+        $item->port_of_charge = $data['port_of_charge'];
         $item->port_of_discharge = $data['port_of_discharge'];
         $item->origin = $data['origin'];
+        $item->week_c = $data['week_c'];
+        $item->week_d = $data['week_d'];
+        $item->brand = $data['brand'];
         $item->total_to_pay = $data['total_to_pay'];
         $item->note = $data['note'];
+        if($request->has("image")){
+            $picture = request()->file('image');
+            $imageName = "proforma_".time().'.'.$picture->getClientOriginalExtension();
+            $picture->move(public_path('images/uploaded/proforma_images/'), $imageName);
+            $item->image = 'images/uploaded/proforma_images/'.$imageName;
+        }
         
         $item->save();
 

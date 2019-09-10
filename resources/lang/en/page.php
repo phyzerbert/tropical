@@ -255,6 +255,7 @@ return [
     'concerning_week' => 'Concerning Week',
     'shipment' => 'Shipment',
     'vessel' => 'VESSEL',
+    'port_of_charge' => 'Port Of Charge',
     'port_of_discharge' => 'Port Of Discharge',
     'origin' => 'Origin',
     'surcharge_reduction' => 'Surcharge / Reductioin',
@@ -275,5 +276,8 @@ return [
     
     'proforma' => 'Proforma',
     'add_proforma' => 'Add Proforma',
+    'submit' => 'Submit',
+    'week_c' => 'WEEK C',
+    'week_d' => 'WEEK D',
     
 ];

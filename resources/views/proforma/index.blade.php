@@ -37,7 +37,9 @@
                                 <th>PRO-FORMA INVOICE NR</th>
                                 <th>{{__('page.supplier')}}</th>
                                 <th>{{__('page.date')}}</th>
-                                <th>{{__('page.due_date')}}</th>
+                                <th>{{__('page.vessel')}}</th>
+                                <th>{{__('page.port_of_charge')}}</th>
+                                <th>{{__('page.port_of_discharge')}}</th>
                                 <th>{{__('page.status')}}</th>
                                 <th>{{__('page.total_to_pay')}}</th>
                                 <th>{{__('page.paid')}}</th>
@@ -62,7 +64,9 @@
                                     <td class="reference_no">{{$item->reference_no}}</td>
                                     <td class="supplier">@isset($item->supplier->company){{$item->supplier->company}}@endisset</td>
                                     <td class="date">{{ date('d/m/Y', strtotime($item->date)) }}</td>
-                                    <td class="due_date">{{ date('d/m/Y', strtotime($item->due_date)) }}</td>
+                                    <td class="vessel">{{ $item->vessel }}</td>
+                                    <td class="port_of_charge">{{ $item->port_of_charge }}</td>
+                                    <td class="port_of_discharge">{{ $item->port_of_discharge }}</td>
                                     <td class="status">
                                         @if($item->is_received == 1)
                                             <span class="badge badge-success">{{__('page.received')}}</span>

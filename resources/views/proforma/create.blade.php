@@ -77,7 +77,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.customers_vat')}}</label>
                                 <input class="form-control" type="text" name="customers_vat" value="{{ old('customers_vat') }}" required placeholder="{{__('page.customers_vat')}}">
@@ -88,7 +88,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.concerning_week')}}</label>
                                 <input class="form-control" type="text" name="concerning_week" value="{{ old('concerning_week') }}" required placeholder="{{__('page.concerning_week')}}">
@@ -99,7 +99,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.vessel')}}</label>
                                 <input class="form-control" type="text" name="vessel" value="{{ old('vessel') }}" required placeholder="{{__('page.vessel')}}">
@@ -110,7 +110,18 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.port_of_charge')}}</label>
+                                <input class="form-control" type="text" name="brand" value="{{ old('port_of_charge') }}" required placeholder="{{__('page.port_of_charge')}}">
+                                @error('port_of_charge')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.port_of_discharge')}}</label>
                                 <input class="form-control" type="text" name="port_of_discharge" value="{{ old('port_of_discharge') }}" required placeholder="{{__('page.port_of_discharge')}}">
@@ -121,18 +132,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group mg-b-10-force">
-                                <label class="form-control-label">{{__('page.brand')}}</label>
-                                <input class="form-control" type="text" name="brand" value="{{ old('brand') }}" required placeholder="{{__('page.brand')}}">
-                                @error('brand')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.origin')}}</label>
                                 <input class="form-control" type="text" name="origin" value="{{ old('origin') }}" required placeholder="{{__('page.origin')}}">
@@ -141,6 +141,27 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.week_c')}}</label>
+                                <input class="form-control" type="text" name="week_c" value="{{ old('week_c') }}" placeholder="{{__('page.week_c')}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.week_d')}}</label>
+                                <input class="form-control" type="text" name="week_d" value="{{ old('week_d') }}" placeholder="{{__('page.week_d')}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label">{{__('page.image')}}</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" data-toggle="custom-file-input" name="image" accept="image/*">
+                                    <label class="custom-file-label" for="example-file-input-custom">Choose file</label>
+                                </div>                               
                             </div>
                         </div>
                     </div> 

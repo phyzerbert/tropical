@@ -154,6 +154,15 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="form-control-label">{{__('page.image')}}</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" data-toggle="custom-file-input" name="image" accept="image/*">
+                                    <label class="custom-file-label" for="example-file-input-custom">Choose file</label>
+                                </div>                               
+                            </div>
+                        </div>
                     </div> 
                     <div class="row mg-b-25">
                         <div class="col-md-12">

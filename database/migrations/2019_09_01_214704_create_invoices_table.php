@@ -29,6 +29,7 @@ class CreateInvoicesTable extends Migration
             $table->string('origin')->nullable();
             $table->integer('vat_amount')->default(0);
             $table->decimal('total_to_pay', 14, 2)->nullable();
+            $table->string('image')->nullable();
             $table->text('note')->nullable();
             $table->integer('proforma_id')->nullable();
             $table->timestamps();

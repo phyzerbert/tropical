@@ -92,6 +92,13 @@ class InvoiceController extends Controller
         $item->vat_amount = $data['vat_amount'];
         $item->total_to_pay = $data['total_to_pay'];
         $item->note = $data['note'];
+
+        if($request->has("image")){
+            $picture = request()->file('image');
+            $imageName = "invoice_".time().'.'.$picture->getClientOriginalExtension();
+            $picture->move(public_path('images/uploaded/invoice_images/'), $imageName);
+            $item->image = 'images/uploaded/invoice_images/'.$imageName;
+        }
         
         $item->save();
 
@@ -153,7 +160,12 @@ class InvoiceController extends Controller
         $item->vat_amount = $data['vat_amount'];
         $item->total_to_pay = $data['total_to_pay'];
         $item->note = $data['note'];
-        
+        if($request->has("image")){
+            $picture = request()->file('image');
+            $imageName = "invoice_".time().'.'.$picture->getClientOriginalExtension();
+            $picture->move(public_path('images/uploaded/invoice_images/'), $imageName);
+            $item->image = 'images/uploaded/invoice_images/'.$imageName;
+        }
         $item->save();
 
         $invoice_items = $item->items->pluck('id')->toArray();

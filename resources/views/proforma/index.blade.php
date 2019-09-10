@@ -84,7 +84,7 @@
                                                 <a class="dropdown-item" href="{{route('proforma.detail', $item->id)}}">{{__('page.detail')}}</a>
                                                 <a class="dropdown-item" href="{{route('proforma.container', $item->id)}}">{{__('page.container')}}</a>
                                                 @if (!$item->is_received)                                                    
-                                                    <a class="dropdown-item" href="{{route('proforma.receive', $item->id)}}" data-id="{{$item->id}}">{{__('page.receive')}}</a>
+                                                    <a class="dropdown-item" href="{{route('proforma.submit', $item->id)}}" data-id="{{$item->id}}">{{__('page.receive')}}</a>
                                                 @endif
                                                 <a class="dropdown-item btn-add-payment" data-id="{{$item->id}}" href="javascript:void(0)">{{__('page.add_payment')}}</a>
                                                 <a class="dropdown-item" href="{{route('payment.index', ['proforma', $item->id])}}">{{__('page.payment_list')}}</a>

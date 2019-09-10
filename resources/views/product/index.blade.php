@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('style')    
+    <link href="{{asset('master/js/plugins/summernote/summernote-bs4.css')}}" rel="stylesheet">
+@endsection
 @section('content')
     <div class="bg-body-light">
         <div class="content content-full">
@@ -32,22 +35,21 @@
                         </div>
                         <div class="block-content">
                             <h4 class="mb-1">{{ $item->code }}</h4>
-                            <p class="font-size-sm description" title="{{ $item->description }}">
-                                {{ $item->description }}
+                            <p class="font-size-sm name" title="{{ $item->name }}">
+                                {{ $item->name }}
                             </p>
                         </div>
                         <div class="block-content block-content-full bg-body-light">
-                            <div class="row no-gutters font-size-sm text-center">
-                                <div class="col-6">
-                                    <button type="button" data-id="{{$item->id}}" data-code="{{$item->code}}" data-description="{{$item->description}}" class="btn btn-sm btn-outline-primary btn-edit" style="min-width: 85px">
-                                        <i class="fa fa-fw fa-edit mr-1"></i> {{__('page.edit')}}
-                                    </button>
-                                </div>
-                                <div class="col-6">
-                                    <a href="{{route('product.delete', $item->id)}}" class="btn btn-sm btn-outline-danger" style="min-width: 85px" onclick="return window.confirm('{{__('page.are_you_sure')}}')">
-                                        <i class="fa fa-fw fa-times mr-1"></i> {{__('page.delete')}}
-                                    </a>
-                                </div>
+                            <div class="d-flex justify-content-around">
+                                <button type="button" data-id="{{$item->id}}" class="btn btn-sm btn-outline-primary btn-edit" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{__('page.edit')}}">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </button>
+                                <button type="button" data-id="{{$item->id}}" class="btn btn-sm btn-outline-info btn-description" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{__('page.description')}}">
+                                    <i class="fa fa-fw fa-eye"></i>
+                                </button>
+                                <a href="{{route('product.delete', $item->id)}}" class="btn btn-sm btn-outline-danger" onclick="return window.confirm('{{__('page.are_you_sure')}}')" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{__('page.delete')}}">
+                                    <i class="fa fa-fw fa-times"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -70,7 +72,7 @@
 
     <!-- The Modal -->
     <div class="modal fade" id="addModal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">{{__('page.add_product')}}</h4>
@@ -84,8 +86,12 @@
                             <input class="form-control code" type="text" name="code" placeholder="{{__('page.code')}}">
                         </div>
                         <div class="form-group">
+                            <label class="control-label">{{__('page.name')}}</label>
+                            <input class="form-control name" type="text" name="name" placeholder="{{__('page.name')}}">
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">{{__('page.description')}}</label>
-                            <input class="form-control description" type="text" name="description" placeholder="{{__('page.description')}}">
+                            <textarea class="form-control description" name="description" placeholder="{{__('page.description')}}"></textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('page.image')}}</label>
@@ -104,7 +110,7 @@
         </div>
     </div>
     <div class="modal fade" id="editModal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">{{__('page.edit_product')}}</h4>
@@ -119,8 +125,12 @@
                             <input class="form-control code" type="text" name="code" placeholder="{{__('page.code')}}">
                         </div>
                         <div class="form-group">
+                            <label class="control-label">{{__('page.name')}}</label>
+                            <input class="form-control name" type="text" name="name" placeholder="{{__('page.name')}}">
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">{{__('page.description')}}</label>
-                            <input class="form-control description" type="text" name="description" placeholder="{{__('page.description')}}">
+                            <textarea class="form-control description" name="description" placeholder="{{__('page.description')}}"></textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label">{{__('page.image')}}</label>
@@ -138,12 +148,30 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="descriptionModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{__('page.description')}}</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>                
+                <div class="modal-body">
+                    <div class="p-3" id="description_body"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times mg-r-10"></i>&nbsp;{{__('page.close')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
 @section('script')
+    <script src="{{asset('master/js/plugins/summernote/summernote-bs4.min.js')}}"></script>
     <script>
         $(document).ready(function(){
+            $(".modal .description").summernote();
             $("#btn-add").click(function(){
                 $("#create_form input.form-control").val('');
                 $("#addModal").modal();
@@ -151,15 +179,43 @@
 
             $(".btn-edit").click(function(){
                 let id = $(this).data("id");
-                let code = $(this).data("code");
-                let description = $(this).data("description");
-                $("#edit_form input.form-control").val('');
-                $("#editModal .id").val(id);
-                $("#editModal .code").val(code);
-                $("#editModal .description").val(description);
-                $("#editModal").modal();
+                $.ajax({
+                    url: "{{route('get_product')}}",
+                    type: "POST",
+                    data: {id : id},
+                    success: function(data){
+                        $("#edit_form input.form-control").val('');
+                        $("#editModal .id").val(id);
+                        $("#editModal .code").val(data.code);
+                        $("#editModal .name").val(data.name);
+                        $("#editModal .description").summernote("code", data.description);
+                        $("#editModal").modal();
+                    },
+                    error(error){
+                        console.log(error);
+                        alert("Something went wrong!");
+                    }
+                });                
             });
 
+            
+            $(".btn-description").click(function(){
+                let id = $(this).data("id");
+                $.ajax({
+                    url: "{{route('get_product')}}",
+                    type: "POST",
+                    data: {id : id},
+                    success: function(data){
+                        $("#description_body").html('');
+                        $("#description_body").html(data.description);
+                        $("#descriptionModal").modal('show');
+                    },
+                    error(error){
+                        console.log(error);
+                        alert("Something went wrong!");
+                    }
+                });                
+            });
         })
     </script>
 @endsection

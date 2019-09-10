@@ -80,7 +80,7 @@ Route::post('/user/edit', 'UserController@edituser')->name('user.edit');
 Route::get('/user/delete/{id}', 'UserController@delete')->name('user.delete');
 
 Route::get('get_products', 'VueController@get_products');
-Route::post('get_product', 'VueController@get_product');
+Route::post('get_product', 'VueController@get_product')->name('get_product');
 Route::get('get_first_product', 'VueController@get_first_product');
 Route::post('get_data', 'VueController@get_data');
 Route::post('get_invoice', 'VueController@get_invoice');

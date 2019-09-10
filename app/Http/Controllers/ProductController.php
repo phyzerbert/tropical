@@ -21,7 +21,9 @@ class ProductController extends Controller
         $keyword = '';
         if($request->keyword != ''){
             $keyword = $request->keyword;
-            $mod = $mod->where('code', 'like', "%$keyword%")->orWhere('description', 'like', "%$keyword%");
+            $mod = $mod->where('code', 'like', "%$keyword%")
+                ->orWhere('name', 'like', "%$keyword%")
+                ->orWhere('description', 'like', "%$keyword%");
         }
         $data = $mod->orderBy('created_at', 'desc')->paginate(12);
         return view('product.index', compact('data', 'keyword'));
@@ -30,11 +32,13 @@ class ProductController extends Controller
     public function edit(Request $request){
         $request->validate([
             'code'=>'required',
+            'name'=>'required|string',
             'description'=>'required',
         ]);
         // dd($request->all());
         $item = Product::find($request->get("id"));
         $item->code = $request->get("code");
+        $item->name = $request->get("name");
         $item->description = $request->get("description");
         if($request->has("image")){
             $picture = $request->file('image');
@@ -52,11 +56,12 @@ class ProductController extends Controller
     public function create(Request $request){
         $request->validate([
             'code'=>'required|string',
+            'name'=>'required|string',
             'description'=>'required|string',
         ]);
-
         $item = new Product();
         $item->code = $request->get("code");
+        $item->name = $request->get("name");
         $item->description = $request->get("description");
         if($request->has("image")){
             $picture = $request->file('image');
@@ -88,6 +93,7 @@ class ProductController extends Controller
         ]);
         $item = new Product();
         $item->code = $request->get("code");
+        $item->name = $request->get("name");
         $item->description = $request->get("description");
         if($request->has("image")){
             $picture = $request->file('image');

@@ -222,7 +222,8 @@
                                         <tr>
                                             <th colspan="6" class="text-right">Total To Pay</th>
                                             <th colspan="2">
-                                                @{{formatPrice(total_to_pay)}}
+                                                {{-- @{{formatPrice(total_to_pay)}} --}}
+                                                @{{total_to_pay | currency}}
                                                 <input type="hidden" name="total_to_pay" :value="total_to_pay" />
                                             </th>
                                         </tr>

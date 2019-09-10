@@ -30,7 +30,7 @@ class CreateProformasTable extends Migration
             $table->string('image')->nullable();
             $table->integer('vat_amount')->default(0);
             $table->decimal('total_to_pay', 14, 2)->nullable();
-            $table->integer('is_received')->default(0);
+            $table->integer('is_submitted')->default(0);
             $table->text('note')->nullable();
             $table->timestamps();
         });

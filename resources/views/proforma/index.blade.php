@@ -68,7 +68,7 @@
                                     <td class="port_of_charge">{{ $item->port_of_charge }}</td>
                                     <td class="port_of_discharge">{{ $item->port_of_discharge }}</td>
                                     <td class="status">
-                                        @if($item->is_received == 1)
+                                        @if($item->is_submitted == 1)
                                             <span class="badge badge-success">{{__('page.received')}}</span>
                                         @else
                                             <span class="badge badge-warning">{{__('page.pending')}}</span>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Invoice;
 use App\Models\Proforma;
+use App\Models\Shipment;
 use App\Models\Item;
 use App\Models\Payment;
 use App\Models\Product;
@@ -212,41 +213,30 @@ class ProformaController extends Controller
         return back()->with("success", __('page.deleted_successfully'));
     }
 
-    public function receive(Request $request, $id){
+    public function submit(Request $request, $id){
         config(['site.page' => 'proforma']); 
         $invoice = Proforma::find($id);
-        if($invoice->is_received == 1){
-            return back()->withErrors(['received' => 'This proforma has been already received.']);
+        if($invoice->is_submitted == 1){
+            return back()->withErrors(['submitted' => 'This proforma has been already submitted.']);
         }
-        return view('proforma.receive', compact('invoice'));
+        return view('proforma.submit', compact('invoice'));
     }
 
-    public function save_receive(Request $request){
+    public function save_submit(Request $request){
         $request->validate([
             'invoice'=>'required|string',
-            'shipment'=>'required',
+            'week_c'=>'required',
         ]);
         $data = $request->all();
         $proforma = Proforma::find($request->get('id'));
-        if($proforma->is_received == 1){
-            return back()->withErrors(['received' => 'This proforma has been already received.']);
+        if($proforma->is_submitted == 1){
+            return back()->withErrors(['submitted' => 'This proforma has been already submitted.']);
         }
-        $item = new Invoice();
+        $item = new Shipment();
         $item->reference_no = $data['invoice'];
-        $item->issue_date = $proforma->date;
-        $item->supplier_id = $proforma->supplier_id;
-        $item->due_date = $proforma->due_date;
-        $item->customers_vat = $proforma->customers_vat;
-        $item->concerning_week = $proforma->concerning_week;
-        $item->shipment = $data['shipment'];
-        $item->vessel = $proforma->vessel;
-        $item->port_of_discharge = $proforma->port_of_discharge;
-        $item->origin = $proforma->origin;
-        $item->total_to_pay = $proforma->total_to_pay;
-        $item->note = $proforma->note; 
-        $item->proforma_id = $proforma->id;       
+        $item->week_c = $data['week_c'];
         $item->save();
-        $proforma->update(['is_received' => 1]);
+        $proforma->update(['is_submitted' => 1]);
 
         if(isset($data['product_id']) && count($data['product_id']) > 0){
             for ($i=0; $i < count($data['product_id']); $i++) {
@@ -256,7 +246,7 @@ class ProformaController extends Controller
                     'quantity' => $data['quantity'][$i],
                     'total_amount' => $data['total_amount'][$i],
                     'itemable_id' => $item->id,
-                    'itemable_type' => Invoice::class,
+                    'itemable_type' => Shipment::class,
                 ]);
             }
         }
@@ -265,7 +255,7 @@ class ProformaController extends Controller
             $payment->invoice_id = $item->id;
             $payment->save();
         }
-        return redirect(route('proforma.index'))->with("success", __('page.received_successfully'));
+        return redirect(route('proforma.index'))->with("success", __('page.submitted_successfully'));
     }
 
     public function container(Request $request, $id){

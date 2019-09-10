@@ -23,6 +23,11 @@ class Item extends Model
         return $this->morphedByMany(Proforma::class, 'itemable');
     }
 
+    public function shipment()
+    {
+        return $this->morphedByMany(Shipment::class, 'itemable');
+    }
+
     public function product() {
         return $this->belongsTo(Product::class);
     }

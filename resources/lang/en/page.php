@@ -76,6 +76,7 @@ return [
     'updated_successfully' => 'Updated Successfully',
     'deleted_successfully' => 'Deleted Successfully',
     'received_successfully' => 'Received Successfully',
+    'submitted_successfully' => 'Submitted Successfully',
     'insufficient' => 'Insufficient',
     'insufficient_balance' => 'Insufficient Balance',
     'delete_product_error' => 'You can not delete this product.',

@@ -9,7 +9,7 @@
     <meta name="author" content="Yuyuan Zhang">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="shortcut icon" href="{{asset('master/media/favicons/favicon.png')}}">
+    <link rel="shortcut icon" href="{{asset('images//favicon.ico')}}">
     <link rel="icon" type="image/png" sizes="192x192" href="{{asset('master/media/favicons/favicon-192x192.png')}}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('master/media/favicons/apple-touch-icon-180x180.png')}}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700">

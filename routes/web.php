@@ -54,8 +54,8 @@ Route::get('/proforma/edit/{id}', 'ProformaController@edit')->name('proforma.edi
 Route::post('/proforma/update', 'ProformaController@update')->name('proforma.update');
 Route::get('/proforma/detail/{id}', 'ProformaController@detail')->name('proforma.detail');
 Route::get('/proforma/delete/{id}', 'ProformaController@delete')->name('proforma.delete');
-Route::get('/proforma/receive/{id}', 'ProformaController@receive')->name('proforma.receive');
-Route::post('/proforma/save_receive', 'ProformaController@save_receive')->name('proforma.save_receive');
+Route::get('/proforma/submit/{id}', 'ProformaController@submit')->name('proforma.submit');
+Route::post('/proforma/save_submit', 'ProformaController@save_submit')->name('proforma.save_submit');
 Route::get('/proforma/container/{id}', 'ProformaController@container')->name('proforma.container');
 
 

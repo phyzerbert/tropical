@@ -60,7 +60,7 @@
                 </ul>
             </li>
             @php
-                $proforma_items = ['proforma', 'add_proforma'];
+                $proforma_items = ['proforma', 'add_proforma', 'shipment'];
             @endphp
             <li class="nav-main-item @if($page == in_array($page, $proforma_items)) open @endif">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="be_tables_datatables.html#">
@@ -76,6 +76,11 @@
                     <li class="nav-main-item">
                         <a class="nav-main-link @if($page == 'add_proforma') active @endif" href="{{route('proforma.create')}}">
                             <span class="nav-main-link-name">Add Proforma</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link @if($page == 'shipment') active @endif" href="{{route('shipment.index')}}">
+                            <span class="nav-main-link-name">Shipment</span>
                         </a>
                     </li>
                 </ul>

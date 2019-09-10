@@ -9,11 +9,11 @@
     <div class="bg-body-light">
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2"><i class="far fa-file-alt"></i> Submit PRO-FORMA NE INVOICE</h1>
+                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2"><i class="far fa-file-alt"></i> Receive Shipment</h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><i class="nav-main-link-icon si si-home"></i></li>
-                        <li class="breadcrumb-item active" aria-current="page">Submit Pro-Forma</li>
+                        <li class="breadcrumb-item active" aria-current="page">Receive Shipment</li>
                     </ol>
                 </nav>
             </div>
@@ -21,15 +21,15 @@
     </div>
     <div class="content">  
         <div class="block block-rounded block-bordered" id="app" style="opacity: 0">
-            <form action="{{route('proforma.save_submit')}}" method="post">
+            <form action="{{route('shipment.save_receive')}}" method="post">
                 <div class="block-header-default pb-3 px-3 clearfix">
-                    <a href="#" class="btn btn-sm btn-primary btn-icon mt-3 float-right add-item" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add_product')}}</a>
-                    <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="week_c" style="width:200px;" value="{{$invoice->week_c}}" placeholder="WEEK C" />
-                    <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="invoice" style="width:200px;" value="{{$invoice->reference_no}}" placeholder="Invoice" />
+                    {{-- <a href="#" class="btn btn-sm btn-primary btn-icon mt-3 float-right add-item" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add_product')}}</a> --}}
+                    {{-- <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="week_c" style="width:200px;" placeholder="WEEK C" /> --}}
+                    <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="invoice" style="width:200px;" value="{{$shipment->reference_no}}" placeholder="Invoice" />
                 </div>
                 <div class="block-content block-content-full">
                     @csrf
-                    <input type="hidden" name="id" value="{{$invoice->id}}" id="invoice_id" />
+                    <input type="hidden" name="id" value="{{$shipment->id}}" id="shipment_id" />
                     <div class="table-responsive">                        
                         <table class="table table-bordered table-colored" id="item_table">
                             <thead class="table-success">
@@ -47,6 +47,7 @@
                                     <td>
                                         <input type="hidden" name="product_id[]" class="product_id" :value="item.product_id" />
                                         <input type="text" name="product_name[]" class="form-control form-control-sm product" ref="product" v-model="item.product_code" required />
+                                        {{-- @{{item.product_code}} --}}
                                     </td>
                                     <td>@{{item.product_name}}</td>
                                     <td><input type="number" class="form-control form-control-sm quantity" name="quantity[]" v-model="item.quantity" required placeholder="{{__('page.quantity')}}" /></td>
@@ -77,7 +78,7 @@
                         </table>
                     </div>
                     <div class="text-right">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane mr-2"></i> {{__('page.submit')}}</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane mr-2"></i> {{__('page.receive')}}</button>
                     </div>                
                 </div>
             </form>
@@ -89,11 +90,10 @@
 
 @section('script')
     <script src="{{asset('master/js/plugins/jquery-ui/jquery-ui.js')}}"></script>
-    <script src="{{asset('master/js/plugins/select2/js/select2.full.min.js')}}"></script>
     <script>
         $(document).ready(function(){
             
         })
     </script>
-    <script src="{{asset('master/js/custom/submit_proforma.js')}}"></script>
+    <script src="{{asset('master/js/custom/receive_shipment.js')}}"></script>
 @endsection

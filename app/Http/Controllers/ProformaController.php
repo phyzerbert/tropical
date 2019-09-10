@@ -235,6 +235,8 @@ class ProformaController extends Controller
         $item = new Shipment();
         $item->reference_no = $data['invoice'];
         $item->week_c = $data['week_c'];
+        $item->proforma_id = $proforma->id;
+        $item->total_to_pay = $data['total_to_pay'];
         $item->save();
         $proforma->update(['is_submitted' => 1]);
 
@@ -249,11 +251,6 @@ class ProformaController extends Controller
                     'itemable_type' => Shipment::class,
                 ]);
             }
-        }
-
-        foreach ($proforma->payments as $payment) {
-            $payment->invoice_id = $item->id;
-            $payment->save();
         }
         return redirect(route('proforma.index'))->with("success", __('page.submitted_successfully'));
     }

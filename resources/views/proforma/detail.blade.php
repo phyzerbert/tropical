@@ -33,17 +33,23 @@
             <div class="block-content">
                 <div class="p-sm-4 p-xl-6">
                     <div class="row mb-5">
-                        <div class="col-md-6">
-                            <h4>{{__('page.date')}} : {{$invoice->date}}</h4>
-                            <h4>{{__('page.due_date')}} : {{$invoice->due_date}}</h4>
+                        <div class="col-md-5">
+                            <h4>{{__('page.supplier')}} : @isset($invoice->supplier->company){{ $invoice->supplier->company }}@endif</h4>
+                            <h4>{{__('page.date')}} : {{ date('d/m/Y', strtotime($invoice->date)) }}</h4>
+                            <h4>{{__('page.due_date')}} : {{ date('d/m/Y', strtotime($invoice->due_date)) }}</h4>
                             <h4>{{__('page.customers_vat')}} : {{$invoice->customers_vat}}</h4>
                             <h4>{{__('page.concerning_week')}} : {{$invoice->concerning_week}}</h4>
-                        </div>
-                        <div class="col-md-6">
-                            <h4>{{__('page.brand')}} : {{$invoice->brand}}</h4>
                             <h4>{{__('page.vessel')}} : {{$invoice->vessel}}</h4>
+                            <h4>{{__('page.port_of_charge')}} : {{$invoice->port_of_charge}}</h4>
                             <h4>{{__('page.port_of_discharge')}} : {{$invoice->port_of_discharge}}</h4>
                             <h4>{{__('page.origin')}} : {{$invoice->origin}}</h4>
+                            <h4>{{__('page.week_c')}} : {{$invoice->week_c}}</h4>
+                            <h4>{{__('page.week_d')}} : {{$invoice->week_d}}</h4>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="block block-content">
+                                <img src="@if($invoice->image){{asset($invoice->image)}}@else{{asset('images/no-image.jpg')}}@endif" width="100%" alt="">                                
+                            </div>
                         </div>
                     </div>
                     <div class="table-responsive push">

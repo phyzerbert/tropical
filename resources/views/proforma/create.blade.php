@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-3">
-                            <label class="form-control-label">{{__('page.date')}}: <span class="tx-danger">*</span></label>
+                            <label class="form-control-label">{{__('page.date')}}: <span class="text-danger">*</span></label>
                             <input class="datepicker form-control" type="text" name="date" value="{{date('Y-m-d')}}" placeholder="{{__('page.date')}}" autocomplete="off" required>
                             @error('date')
                                 <span class="invalid-feedback d-block" role="alert">
@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group mg-b-10-force">
-                                <label class="form-control-label">{{__('page.due_date')}}: <span class="tx-danger">*</span></label>
+                                <label class="form-control-label">{{__('page.due_date')}}: <span class="text-danger">*</span></label>
                                 <input class="form-control datepicker" type="text" name="due_date" value="{{date('Y-m-d')}}" placeholder="{{__('page.due_date')}}" autocomplete="off" required>
                                 @error('due_date')
                                     <span class="invalid-feedback d-block" role="alert">
@@ -113,7 +113,7 @@
                         <div class="col-md-4">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.port_of_charge')}}</label>
-                                <input class="form-control" type="text" name="brand" value="{{ old('port_of_charge') }}" required placeholder="{{__('page.port_of_charge')}}">
+                                <input class="form-control" type="text" name="port_of_charge" value="{{ old('port_of_charge') }}" required placeholder="{{__('page.port_of_charge')}}">
                                 @error('port_of_charge')
                                     <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>

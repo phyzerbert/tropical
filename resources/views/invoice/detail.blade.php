@@ -75,7 +75,7 @@
                                         <td class="text-center">{{$loop->index + 1}}</td>
                                         <td>
                                             <p class="font-w600 mb-1">{{$item->product->code}}</p>
-                                            <div class="text-muted">{{$item->product->description}}</div>
+                                            <div class="text-muted">{{$item->product->name}}</div>
                                         </td>
                                         <td class="text-center">
                                             <span class="badge badge-pill badge-primary">{{number_format($item->quantity)}}</span>

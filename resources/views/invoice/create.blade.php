@@ -163,11 +163,11 @@
                             <a href="#" class="btn btn-sm btn-primary btn-icon mb-2 add-item" style="float:right" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add')}}</a>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-colored table-success" id="item_table">
-                                    <thead>
+                                <table class="table table-bordered" id="item_table">
+                                    <thead class="table-success">
                                         <tr>
                                             <th>{{__('page.product_code')}}</th>
-                                            <th>{{__('page.name')}}</th>
+                                            <th>{{__('page.product_name')}}</th>
                                             <th>{{__('page.quantity')}}</th>
                                             <th>{{__('page.price')}}</th>
                                             <th>{{__('page.amount')}}</th>

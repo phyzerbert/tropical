@@ -35,18 +35,21 @@
             <div class="block-content">
                 <div class="p-sm-4 p-xl-6">
                     <div class="row mb-5">
-                        <div class="col-md-6">
-                            <h4>{{__('page.issue_date')}} : {{$invoice->issue_date}}</h4>
-                            <h4>{{__('page.due_date')}} : {{$invoice->due_date}}</h4>
-                            <h4>{{__('page.customers_vat')}} : {{$invoice->customers_vat}}</h4>
-                            <h4>{{__('page.delivery_date')}} : {{$invoice->delivery_date}}</h4>
+                        <div class="col-md-5">
+                            <h4>{{__('page.issue_date')}} : <ins>{{$invoice->issue_date}}</ins></h4>
+                            <h4>{{__('page.due_date')}} : <ins>{{$invoice->due_date}}</ins></h4>
+                            <h4>{{__('page.customers_vat')}} : <ins>{{$invoice->customers_vat}}</ins></h4>
+                            <h4>{{__('page.delivery_date')}} : <ins>{{$invoice->delivery_date}}</ins></h4>
+                            <h4>{{__('page.concerning_week')}} : <ins>{{$invoice->concerning_week}}</ins></h4>
+                            <h4>{{__('page.shipment')}} : <ins>{{$invoice->shipment}}</ins></h4>
+                            <h4>{{__('page.vessel')}} : <ins>{{$invoice->vessel}}</ins></h4>
+                            <h4>{{__('page.port_of_discharge')}} : <ins>{{$invoice->port_of_discharge}}</ins></h4>
+                            <h4>{{__('page.origin')}} : <ins>{{$invoice->origin}}</ins></h4>
                         </div>
-                        <div class="col-md-6">
-                            <h4>{{__('page.concerning_week')}} : {{$invoice->concerning_week}}</h4>
-                            <h4>{{__('page.shipment')}} : {{$invoice->shipment}}</h4>
-                            <h4>{{__('page.vessel')}} : {{$invoice->vessel}}</h4>
-                            <h4>{{__('page.port_of_discharge')}} : {{$invoice->port_of_discharge}}</h4>
-                            <h4>{{__('page.origin')}} : {{$invoice->origin}}</h4>
+                        <div class="col-md-7">
+                            <div class="block block-content">
+                                <img src="@if($invoice->image){{asset($invoice->image)}}@else{{asset('images/no-image.jpg')}}@endif" width="100%" alt="">
+                            </div>
                         </div>
                     </div>
                     <div class="table-responsive push">

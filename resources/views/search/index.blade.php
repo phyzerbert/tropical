@@ -101,10 +101,10 @@
                                         <th>#</th>
                                         <th>PRO-FORMA INVOICE NE</th>
                                         @if($identification == 'yes')<th>IDENTIFICACION O NIT</th>@endif
-                                        <th>WEEK C</th>
-                                        <th>WEEK D</th>
-                                        @if($container == 'yes')<th>Container</th>@endif
-                                        @if($booking == 'yes')<th>Booking</th>@endif
+                                        <th>{{__('page.week_c')}}</th>
+                                        <th>{{__('page.week_d')}}</th>
+                                        @if($container == 'yes')<th>{{__('page.container')}}</th>@endif
+                                        @if($booking == 'yes')<th>{{__('page.booking')}}</th>@endif
                                         @if($bl == 'yes')<th>BL</th>@endif
                                         <th>{{__('page.shipping_company')}}</th>
                                         <th>{{__('page.fruit_loading_date')}}</th>
@@ -146,7 +146,14 @@
                                     <p>{{__('page.total')}} <strong style="color: red">{{ $data->total() }}</strong> {{__('page.items')}}</p>
                                 </div>
                                 <div class="float-right" style="margin: 0;">
-                                    {!! $data->appends(['week_c' => $week_c, 'week_d' => $week_d])->links() !!}
+                                    {!! $data->appends([
+                                        'week_c' => $week_c, 
+                                        'week_d' => $week_d, 
+                                        'identification' => $identification,
+                                        'container' => $container,
+                                        'booking' => $booking,
+                                        'bl' => $bl,
+                                    ])->links() !!}
                                 </div>
                             </div>
                         </div>

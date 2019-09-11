@@ -28,7 +28,7 @@ var app = new Vue({
                             .then(response1 => {
                                 this.items.push({
                                     product_id: item.product_id,
-                                    product_code: response1.data.code,
+                                    product_code: response1.data.name + "(" + response1.data.code + ")",
                                     product_name: response1.data.name,
                                     price: item.price,
                                     quantity: item.quantity,
@@ -110,8 +110,8 @@ var app = new Vue({
                         response(
                             $.map(resp.data, function(item) {
                                 return {
-                                    label: item.code,
-                                    value: item.code,
+                                    label: item.name + "(" + item.code + ")",
+                                    value: item.name + "(" + item.code + ")",
                                     name: item.name,
                                     id: item.id,
                                 }

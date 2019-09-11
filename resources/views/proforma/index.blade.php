@@ -21,15 +21,15 @@
     <div class="content">  
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
-                <form action="" class="form-inline float-left">
+                <form action="" class="col-md-12 form-inline">
                     @csrf
                     <input type="text" class="form-control form-control-sm col-md-2 mt-2" id="search_week_c" name="week_c" value="{{$week_c}}" placeholder="{{__('page.week_c')}}">
-                    <input type="text" class="form-control form-control-sm col-md-3 mt-2 ml-2" id="search_week_d" name="week_d" value="{{$week_d}}" placeholder="{{__('page.week_d')}}">
-                    <input type="text" class="form-control form-control-sm col-md-3 mt-2 ml-2" id="search_week_keyword" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
-                    <button type="submit" class="btn btn-sm btn-primary ml-2 mt-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
+                    <input type="text" class="form-control form-control-sm col-md-2 mt-2 ml-md-2" id="search_week_d" name="week_d" value="{{$week_d}}" placeholder="{{__('page.week_d')}}">
+                    <input type="text" class="form-control form-control-sm col-md-2 mt-2 ml-md-2" id="search_week_keyword" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
+                    <button type="submit" class="btn btn-sm btn-primary ml-md-2 mt-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
                     <a href="javascript:;" class="btn btn-danger btn-sm mt-2 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</a>
+                    <a href="{{route('proforma.create')}}" class="btn btn-success float-right btn-sm mt-2 ml-auto" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
                 </form>                
-                <a href="{{route('proforma.create')}}" class="btn btn-success float-right btn-sm mt-2" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
             </div>
             <div class="block-content block-content-full">
                 <div class="table-responsive pb-8">                    

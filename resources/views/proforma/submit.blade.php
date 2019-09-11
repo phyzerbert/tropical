@@ -22,12 +22,14 @@
     <div class="content">  
         <div class="block block-rounded block-bordered" id="app" style="opacity: 0">
             <form action="{{route('proforma.save_submit')}}" method="post">
-                <div class="block-header-default pb-3 px-3 clearfix">
-                    <a href="#" class="btn btn-sm btn-primary btn-icon mt-3 float-right add-item" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add_product')}}</a>
-                    <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="week_c" style="width:200px;" value="{{$invoice->week_c}}" placeholder="WEEK C" />
-                    <label for="" class="float-right mr-3" style="margin-top:18px;">{{__('page.week_c')}}</label>
-                    <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="invoice" style="width:200px;" value="{{$invoice->reference_no}}" placeholder="Invoice" />
-                    <label for="" class="float-right mr-3" style="margin-top:18px;">PRO-FORMA</label>
+                <div class="block-header block-header-default pb-3">
+                    <div class="form-inline col-md-12">
+                        <label for="" class="mr-3 ml-md-auto" style="margin-top:18px;">PRO-FORMA</label>
+                        <input type="text" class="form-control form-control-sm col-md-2 mt-sm-3 mr-3" name="invoice" style="width:200px;" value="{{$invoice->reference_no}}" placeholder="Invoice" />
+                        <label for="" class="mr-3" style="margin-top:18px;">{{__('page.week_c')}}</label>
+                        <input type="text" class="form-control form-control-sm col-md-2 mt-sm-3 mr-3" name="week_c" style="width:200px;" value="{{$invoice->week_c}}" placeholder="WEEK C" />
+                        <a href="#" class="btn btn-sm btn-primary btn-icon mt-3 add-item" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add_product')}}</a>
+                    </div>
                 </div>
                 <div class="block-content block-content-full">
                     @csrf

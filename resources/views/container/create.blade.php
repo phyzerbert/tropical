@@ -123,7 +123,7 @@
                         <div class="col-md-4 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.estimated_date_of_shipping_company')}}</label>
-                                <input class="form-control" type="number" name="estimated_date" placeholder="{{__('page.estimated_date_of_shipping_company')}}">
+                                <input class="form-control datepicker" type="text" name="estimated_date" autocomplete="off" placeholder="{{__('page.estimated_date_of_shipping_company')}}">
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">

@@ -25,7 +25,9 @@
                 <div class="block-header-default pb-3 px-3 clearfix">
                     <a href="#" class="btn btn-sm btn-primary btn-icon mt-3 float-right add-item" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add_product')}}</a>
                     <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="week_c" style="width:200px;" value="{{$invoice->week_c}}" placeholder="WEEK C" />
+                    <label for="" class="float-right mr-3" style="margin-top:18px;">{{__('page.week_c')}}</label>
                     <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="invoice" style="width:200px;" value="{{$invoice->reference_no}}" placeholder="Invoice" />
+                    <label for="" class="float-right mr-3" style="margin-top:18px;">{{__('page.invoice')}}</label>
                 </div>
                 <div class="block-content block-content-full">
                     @csrf

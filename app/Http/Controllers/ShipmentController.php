@@ -43,6 +43,7 @@ class ShipmentController extends Controller
     }
 
     public function detail(Request $request, $id){
+        config(['site.page' => 'shipment']);
         $shipment = Shipment::find($id);
         return view('shipment.detail', compact('shipment'));
     }

@@ -23,7 +23,7 @@
                     <div class="row mb-5">
                         <div class="col-md-12">                            
                             <h4>{{__('page.date')}} : @if($shipment->proforma){{ date('d/m/Y', strtotime($shipment->proforma->date)) }}@else <span class="text-muted">Deleted Pro-forma</span> @endif</h4>
-                            <h4>{{__('page.week_c')}} : {{$shipment->work_c}}</h4>
+                            <h4>{{__('page.week_c')}} : {{$shipment->week_c}}</h4>
                         </div>
                     </div>
 

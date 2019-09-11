@@ -163,7 +163,6 @@ class ProformaController extends Controller
         $item->origin = $data['origin'];
         $item->week_c = $data['week_c'];
         $item->week_d = $data['week_d'];
-        $item->brand = $data['brand'];
         $item->total_to_pay = $data['total_to_pay'];
         $item->note = $data['note'];
         if($request->has("image")){

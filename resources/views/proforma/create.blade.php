@@ -169,7 +169,7 @@
                         <div class="col-md-12">
                             <div>
                                 <h3 class="mb-2" style="float:left">{{__('page.items')}}</h3>
-                                <a href="#" class="btn btn-sm btn-primary btn-icon mb-2 add-item" style="float:right" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add')}}</a>
+                                <button type="button" class="btn btn-sm btn-primary btn-icon mb-2 add-item" style="float:right" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add')}}</button>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="item_table">
@@ -197,7 +197,7 @@
                                                 <input type="hidden" name="total_amount[]" :value="item.total_amount" />
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-sm btn-warning rounded-circle remove-product" @click="remove(i)"><i class="fa fa-times"></i></a>
+                                                <button type="button" class="btn btn-sm btn-warning remove-product" @click="remove(i)"><i class="fa fa-times"></i></button>
                                             </td>
                                         </tr>
                                     </tbody>

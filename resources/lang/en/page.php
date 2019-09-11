@@ -290,6 +290,6 @@ return [
     'estimated_date_of_shipping_company' => 'Estimated Date Of Shipping Company',
     'agency' => 'Agency',
     'dock' => 'Dock',
-    '' => '',
+    'shipment_detail' => 'Shipment Detail',
     
 ];

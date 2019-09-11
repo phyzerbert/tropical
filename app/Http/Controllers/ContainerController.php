@@ -173,7 +173,7 @@ class ContainerController extends Controller
         $bl = '';
         if ($request->get('bl') != ""){
             $bl = $request->get('bl');
-            $mod = $mod->where('bl', $bl);
+            $mod = $mod->where('bl', 'like', "%$bl%");
         }
 
         $data = $mod->orderBy('created_at', 'desc')->paginate(15);
@@ -188,7 +188,7 @@ class ContainerController extends Controller
         $booking = '';
         if ($request->get('booking') != ""){
             $booking = $request->get('booking');
-            $mod = $mod->where('booking', $booking);
+            $mod = $mod->where('booking', 'like', "%$booking%");
         }
 
         $data = $mod->orderBy('created_at', 'desc')->paginate(15);

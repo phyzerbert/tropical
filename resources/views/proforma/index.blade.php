@@ -32,7 +32,7 @@
                 <a href="{{route('proforma.create')}}" class="btn btn-success float-right btn-sm mt-2" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
             </div>
             <div class="block-content block-content-full">
-                <div class="table-responsive pb-7">                    
+                <div class="table-responsive pb-8">                    
                     <table class="table table-bordered table-hover">
                         <thead class="thead-colored thead-primary">
                             <tr class="bg-blue">

@@ -47,6 +47,7 @@
                                 <th>Estimated Date Of Shipping Company</th>
                                 <th>WEEK C</th>
                                 <th>WEEK D</th>
+                                <th>{{__('page.detail')}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -58,6 +59,9 @@
                                     <td>{{$item->estimated_date}}</td>
                                     <td>{{$item->week_c}}</td>
                                     <td>{{$item->week_d}}</td>
+                                    <td>
+                                        <a href="{{route('container.detail', $item->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> {{__('page.detail')}}</a>
+                                    </td>
                                 </tr>
                             @endforeach                            
                         </tbody>

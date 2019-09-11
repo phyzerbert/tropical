@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-md-7">
                             <div class="block block-content">
-                                <img src="@if($invoice->image){{asset($invoice->image)}}@else{{asset('images/no-image.jpg')}}@endif" width="100%" alt="">                                
+                                <img src="@if($invoice->image){{asset($invoice->image)}}@else{{asset('images/no-image.jpg')}}@endif" class="attachment" width="100%" alt="">                                
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                             <thead class="bg-body">
                                 <tr>
                                     <th class="text-center" style="width: 60px;"></th>
-                                    <th>{{__('page.product')}}</th>
+                                    <th>{{__('page.product_name_code')}}</th>
                                     <th class="text-right" style="width: 90px;">{{__('page.quantity')}}</th>
                                     <th class="text-right" style="width: 120px;">{{__('page.price')}}</th>
                                     <th class="text-right" style="width: 120px;">{{__('page.total_amount')}}</th>
@@ -75,8 +75,7 @@
                                     <tr>
                                         <td class="text-center">{{$loop->index + 1}}</td>
                                         <td>
-                                            <p class="font-w600 mb-1">{{$item->product->code}}</p>
-                                            <div class="text-muted">{{$item->product->description}}</div>
+                                            <p class="font-w600 mb-1">{{$item->product->name}} ( {{$item->product->code}} )</p>
                                         </td>
                                         <td class="text-center">
                                             <span class="badge badge-pill badge-primary">{{number_format($item->quantity)}}</span>
@@ -177,8 +176,7 @@
     <script>
         $(document).ready(function(){
             $(".attachment").click(function(e){
-                e.preventDefault();
-                let path = $(this).data('value');
+                let path = $(this).attr('src');
                 $("#image_preview").html('')
                 $("#image_preview").verySimpleImageViewer({
                     imageSource: path,

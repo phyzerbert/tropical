@@ -27,7 +27,7 @@
                     <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="week_c" style="width:200px;" value="{{$invoice->week_c}}" placeholder="WEEK C" />
                     <label for="" class="float-right mr-3" style="margin-top:18px;">{{__('page.week_c')}}</label>
                     <input type="text" class="form-control form-control-sm mt-3 mr-3 float-right" name="invoice" style="width:200px;" value="{{$invoice->reference_no}}" placeholder="Invoice" />
-                    <label for="" class="float-right mr-3" style="margin-top:18px;">{{__('page.invoice')}}</label>
+                    <label for="" class="float-right mr-3" style="margin-top:18px;">PRO-FORMA</label>
                 </div>
                 <div class="block-content block-content-full">
                     @csrf

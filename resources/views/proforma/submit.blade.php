@@ -28,7 +28,7 @@
                         <input type="text" class="form-control form-control-sm col-md-2 mt-sm-3 mr-3" name="invoice" style="width:200px;" value="{{$invoice->reference_no}}" placeholder="Invoice" />
                         <label for="" class="mr-3" style="margin-top:18px;">{{__('page.week_c')}}</label>
                         <input type="text" class="form-control form-control-sm col-md-2 mt-sm-3 mr-3" name="week_c" style="width:200px;" value="{{$invoice->week_c}}" placeholder="WEEK C" />
-                        <a href="#" class="btn btn-sm btn-primary btn-icon mt-3 add-item" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add_product')}}</a>
+                        <button type="button" class="btn btn-sm btn-primary btn-icon mt-3 add-item" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add_product')}}</button>
                     </div>
                 </div>
                 <div class="block-content block-content-full">

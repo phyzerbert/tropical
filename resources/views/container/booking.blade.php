@@ -28,6 +28,7 @@
     <div class="content">
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
+                @include('elements.pagesize')
                 <form action="" class="form-inline float-left">
                     @csrf
                     <input type="text" class="form-control form-control-sm col-md-5 mt-2" id="search_booking" name="booking" value="{{$booking}}" placeholder="BOOKING">
@@ -83,7 +84,11 @@
         $(document).ready(function(){
             $("#btn-reset").click(function(){
                 $("#search_booking").val('');
-            })
+            });
+
+            $("#pagesize").change(function(){
+                $("#pagesize_form").submit();
+            });
         })
     </script>
 @endsection

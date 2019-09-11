@@ -97,3 +97,5 @@ Route::post('get_shipment', 'VueController@get_shipment');
 Route::post('get_container', 'VueController@get_container');
 Route::post('get_received_quantity', 'VueController@get_received_quantity');
 Route::post('get_autocomplete_products', 'VueController@get_autocomplete_products');
+
+Route::post('/set_pagesize', 'HomeController@set_pagesize')->name('set_pagesize');

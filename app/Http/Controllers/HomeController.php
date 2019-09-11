@@ -25,4 +25,12 @@ class HomeController extends Controller
     {
         return redirect(route('invoice.index'));
     }
+
+    
+    public function set_pagesize(Request $request){
+        $pagesize = $request->get('pagesize');
+        if($pagesize == '') $pagesize = 100000;
+        $request->session()->put('pagesize', $pagesize);
+        return back();
+    }
 }

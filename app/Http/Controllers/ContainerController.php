@@ -70,7 +70,6 @@ class ContainerController extends Controller
     public function save(Request $request){
         $request->validate([
             'proforma'=>'required',
-            'estimated_date' => 'numeric',
         ]);
 
         $data = $request->all();
@@ -122,7 +121,6 @@ class ContainerController extends Controller
     public function update(Request $request){
         $request->validate([
             'proforma'=>'required',
-            'estimated_date' => 'numeric',
         ]);
 
         $data = $request->all();

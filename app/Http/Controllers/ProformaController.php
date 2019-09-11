@@ -28,7 +28,7 @@ class ProformaController extends Controller
         $suppliers = Supplier::all();
 
         $mod = new Proforma();
-        $reference_no = $supplier_id = $keyword = '';
+        $reference_no = $supplier_id = $week_c = $week_d = $keyword = '';
         $sort_by_date = 'desc';
         if ($request->get('reference_no') != ""){
             $reference_no = $request->get('reference_no');
@@ -37,6 +37,14 @@ class ProformaController extends Controller
         if ($request->get('supplier_id') != ""){
             $supplier_id = $request->get('supplier_id');
             $mod = $mod->where('supplier_id', $supplier_id);
+        }
+        if ($request->get('week_c') != ""){
+            $week_c = $request->get('week_c');
+            $mod = $mod->where('week_c', $week_c);
+        }
+        if ($request->get('week_d') != ""){
+            $week_d = $request->get('week_d');
+            $mod = $mod->where('week_d', $week_d);
         }
         if ($request->get('keyword') != ""){
             $keyword = $request->keyword;
@@ -55,7 +63,7 @@ class ProformaController extends Controller
         // dump($sort_by_date);
         $pagesize = session('pagesize');
         $data = $mod->orderBy('created_at', $sort_by_date)->paginate($pagesize);
-        return view('proforma.index', compact('data', 'suppliers', 'supplier_id', 'reference_no', 'keyword', 'sort_by_date'));
+        return view('proforma.index', compact('data', 'suppliers', 'supplier_id', 'reference_no', 'week_c', 'week_d', 'keyword', 'sort_by_date'));
     }
 
     public function create(Request $request){

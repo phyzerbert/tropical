@@ -50,84 +50,104 @@
                                 <input class="form-control" type="text" name="identification_or_nit" value="{{$container->identification_or_nit}}" placeholder="IDENTIFICATION O NIT">
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-3 mt-3">
                             <div class="form-group">
-                                <label class="form-control-label">SEMANA</label>
-                                <input class="form-control" type="text" name="semana" value="{{$container->semana}}" placeholder="SEMANA">
+                                <label class="form-control-label">WEEK C</label>
+                                <input class="form-control" type="text" name="week_c" v-model="week_c" placeholder="WEEK C" />
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-3 mt-3">
                             <div class="form-group">
-                                <label class="form-control-label">CONTENEDOR</label>
-                                <input class="form-control" type="text" name="contenedor" value="{{$container->contenedor}}" placeholder="CONTENEDOR">
+                                <label class="form-control-label">WEEK D</label>
+                                <input class="form-control" type="text" name="week_d" v-model="week_d" placeholder="WEEK D" />
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-3 mt-3">
                             <div class="form-group">
-                                <label class="form-control-label">PRECINTO</label>
-                                <input class="form-control" type="text" name="precinto" value="{{$container->precinto}}" placeholder="PRECINTO">
+                                <label class="form-control-label">{{__('page.container')}}</label>
+                                <input class="form-control" type="text" name="container" value="{{$container->container}}" placeholder="CONTENEDOR" />
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-3 mt-3">
+                            <div class="form-group">
+                                <label class="form-control-label">{{__('page.booking')}}</label>
+                                <input class="form-control" type="text" name="booking" value="{{$container->booking}}" placeholder="PRECINTO">
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-3">
+                            <div class="form-group">
+                                <label class="form-control-label">BL</label>
+                                <input class="form-control" type="text" name="bl" value="{{$container->bl}}" placeholder="BL">
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-3">
+                            <div class="form-group">
+                                <label class="form-control-label">{{__('page.shipping_company')}}</label>
+                                <input class="form-control" type="text" name="shipping_company" value="{{$container->shipping_company}}" placeholder="{{__('page.shipping_company')}}">
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">TEMPERATURA</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="text" name="temperatura" value="{{$container->temperatura}}" placeholder="TEMPERATURA" />
+                                    <input class="form-control" type="number" step="0.1" name="temperatura" value="{{$container->temperatura}}" placeholder="TEMPERATURA" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">°C</span>
                                     </div>
-                                </div>
+                                </div>        
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-3 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">DAMPER</label>
                                 <input class="form-control" type="text" name="damper" value="{{$container->damper}}" placeholder="DAMPER">
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-md-3 mt-3">
                             <div class="form-group">
-                                <label class="form-control-label">BOOKING</label>
-                                <input class="form-control" type="text" name="booking" value="{{$container->booking}}" placeholder="BOOKING">
+                                <label class="form-control-label">{{__('page.type_of_merchandise')}}</label>
+                                <input class="form-control" type="text" name="type_of_merchandise" value="{{$container->type_of_merchandise}}" placeholder="{{__('page.type_of_merchandise')}}">
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
                             <div class="form-group">
-                                <label class="form-control-label">PUERTO DE DESTINO</label>
-                                <input class="form-control" type="text" name="port_of_discharge" v-model="port_of_discharge" placeholder="PUERTO DE DESTINO">
-                            </div>
-                        </div>
-                        <div class="form-group col-md-4 mt-3">
-                            <label class="form-control-label">{{__('page.date')}} </label>
-                            <input class="datepicker form-control" type="text" name="fetcha" v-model="fetcha" placeholder="{{__('page.date')}}" autocomplete="off">
-                            @error('fetcha')
-                                <span class="invalid-feedback d-block" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="col-md-4 mt-3">
-                            <div class="form-group">
-                                <label class="form-control-label">EMBARCADERO</label>
-                                <input class="form-control" type="text" name="embarcadero" value="{{$container->embarcadero}}" placeholder="EMBARCADERO">
+                                <label class="form-control-label">{{__('page.fruit_loading_date')}}</label>
+                                <input class="form-control datepicker" type="text" name="fruit_loading_date" value="{{$container->fruit_loading_date}}" autocomplete="off" placeholder="{{__('page.fruit_loading_date')}}">
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
                             <div class="form-group">
-                                <label class="form-control-label">TIPO DE MERCANCIA</label>
-                                <input class="form-control" type="text" name="tipo_de_mercancia" value="{{$container->tipo_de_mercancia}}" placeholder="TIPO DE MERCANCIA">
+                                <label class="form-control-label">{{__('page.ship_departure_date')}}</label>
+                                <input class="form-control datepicker" type="text" name="ship_departure_date" value="{{$container->ship_departure_date}}" autocomplete="off" placeholder="{{__('page.ship_departure_date')}}">
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
                             <div class="form-group">
-                                <label class="form-control-label">AGENCIA ADUANERA</label>
-                                <input class="form-control" type="text" name="agencia_aduanera" value="{{$container->agencia_aduanera}}" placeholder="AGENCIA ADUANERA">
+                                <label class="form-control-label">{{__('page.estimated_date_of_shipping_company')}}</label>
+                                <input class="form-control" type="text" name="estimated_date" value="{{$container->estimated_date}}" placeholder="{{__('page.estimated_date_of_shipping_company')}}">
+                                @error('estimated_date')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-4 mt-3">
                             <div class="form-group">
-                                <label class="form-control-label">EMPRESA O PERSONA NATURA</label>
-                                <input class="form-control" type="text" name="company_or_person" value="{{$container->company_or_person}}" placeholder="EMPRESA O PERSONA NATURA">
+                                <label class="form-control-label">{{__('page.agency')}}</label>
+                                <input class="form-control" type="text" name="agency" value="{{$container->agency}}" placeholder="{{__('page.agency')}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <div class="form-group">
+                                <label class="form-control-label">{{__('page.company')}}</label>
+                                <input class="form-control" type="text" name="company" value="{{$container->company}}" placeholder="{{__('page.company')}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-3">
+                            <div class="form-group">
+                                <label class="form-control-label">{{__('page.dock')}}</label>
+                                <input class="form-control" type="text" name="dock" value="{{$container->dock}}" placeholder="{{__('page.dock')}}">
                             </div>
                         </div>
                     </div>

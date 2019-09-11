@@ -51,24 +51,48 @@
                         <div class="col-md-6 col-xl-4">
                             <div class="block block-rounded block-bordered block-link-pop">
                                 <div class="block-content block-content-default p-3 text-center">
-                                    <p class="font-size-h3 font-w300 mb-0">{{$container->semana}}</p>
-                                    <p class="text-muted font-weight-bold mb-0">SEMANA</p>
+                                    <p class="font-size-h3 font-w300 mb-0">{{$container->week_c}}</p>
+                                    <p class="text-muted font-weight-bold mb-0">{{__('page.week_c')}}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-4">
                             <div class="block block-rounded block-bordered block-link-pop">
                                 <div class="block-content block-content-default p-3 text-center">
-                                    <p class="font-size-h3 font-w300 mb-0">{{$container->contenedor}}</p>
-                                    <p class="text-muted font-weight-bold mb-0">CONTENEDOR</p>
+                                    <p class="font-size-h3 font-w300 mb-0">{{$container->week_d}}</p>
+                                    <p class="text-muted font-weight-bold mb-0">{{__('page.week_d')}}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-4">
                             <div class="block block-rounded block-bordered block-link-pop">
                                 <div class="block-content block-content-default p-3 text-center">
-                                    <p class="font-size-h3 font-w300 mb-0">{{$container->precinto}}</p>
-                                    <p class="text-muted font-weight-bold mb-0">PRECINTO</p>
+                                    <p class="font-size-h3 font-w300 mb-0">{{$container->container}}</p>
+                                    <p class="text-muted font-weight-bold mb-0">{{__('page.container')}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="block block-rounded block-bordered block-link-pop">
+                                <div class="block-content block-content-default p-3 text-center">
+                                    <p class="font-size-h3 font-w300 mb-0">{{$container->booking}}</p>
+                                    <p class="text-muted font-weight-bold mb-0">BOOKING</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="block block-rounded block-bordered block-link-pop">
+                                <div class="block-content block-content-default p-3 text-center">
+                                    <p class="font-size-h3 font-w300 mb-0">{{$container->bl}}</p>
+                                    <p class="text-muted font-weight-bold mb-0">BL</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4">
+                            <div class="block block-rounded block-bordered block-link-pop">
+                                <div class="block-content block-content-default p-3 text-center">
+                                    <p class="font-size-h3 font-w300 mb-0">{{$container->shipping_company}}</p>
+                                    <p class="text-muted font-weight-bold mb-0">{{__('page.shipping_company')}}</p>
                                 </div>
                             </div>
                         </div>
@@ -91,56 +115,56 @@
                         <div class="col-md-6 col-xl-4">
                             <div class="block block-rounded block-bordered block-link-pop">
                                 <div class="block-content block-content-default p-3 text-center">
-                                    <p class="font-size-h3 font-w300 mb-0">{{$container->booking}}</p>
-                                    <p class="text-muted font-weight-bold mb-0">BOOKING</p>
+                                    <p class="font-size-h3 font-w300 mb-0">{{$container->type_of_merchandise}}</p>
+                                    <p class="text-muted font-weight-bold mb-0">{{__('page.type_of_merchandise')}}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-4">
                             <div class="block block-rounded block-bordered block-link-pop">
                                 <div class="block-content block-content-default p-3 text-center">
-                                    <p class="font-size-h3 font-w300 mb-0">{{$container->port_of_discharge}}</p>
-                                    <p class="text-muted font-weight-bold mb-0">PUERTO DE DESTINO</p>
+                                    <p class="font-size-h3 font-w300 mb-0">{{$container->fruit_loading_date}}</p>
+                                    <p class="text-muted font-weight-bold mb-0">{{__('page.fruit_loading_date')}}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-4">
                             <div class="block block-rounded block-bordered block-link-pop">
                                 <div class="block-content block-content-default p-3 text-center">
-                                    <p class="font-size-h3 font-w300 mb-0">{{$container->fetcha}}</p>
-                                    <p class="text-muted font-weight-bold mb-0">FETCHA</p>
+                                    <p class="font-size-h3 font-w300 mb-0">{{$container->ship_departure_date}}</p>
+                                    <p class="text-muted font-weight-bold mb-0">{{__('page.ship_departure_date')}}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-4">
                             <div class="block block-rounded block-bordered block-link-pop">
                                 <div class="block-content block-content-default p-3 text-center">
-                                    <p class="font-size-h3 font-w300 mb-0">{{$container->embarcadero}}</p>
-                                    <p class="text-muted font-weight-bold mb-0">EMBARCADERO</p>
+                                    <p class="font-size-h3 font-w300 mb-0">{{$container->estimated_date}}</p>
+                                    <p class="text-muted font-weight-bold mb-0">Estimated Date</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-4">
                             <div class="block block-rounded block-bordered block-link-pop">
                                 <div class="block-content block-content-default p-3 text-center">
-                                    <p class="font-size-h3 font-w300 mb-0">{{$container->tipo_de_mercancia}}</p>
-                                    <p class="text-muted font-weight-bold mb-0">TIPO DE MERCANCIA</p>
+                                    <p class="font-size-h3 font-w300 mb-0">{{$container->agency}}</p>
+                                    <p class="text-muted font-weight-bold mb-0">{{__('page.agency')}}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-4">
                             <div class="block block-rounded block-bordered block-link-pop">
                                 <div class="block-content block-content-default p-3 text-center">
-                                    <p class="font-size-h3 font-w300 mb-0">{{$container->agencia_aduanera}}</p>
-                                    <p class="text-muted font-weight-bold mb-0">AGENCIA ADUANERA</p>
+                                    <p class="font-size-h3 font-w300 mb-0">{{$container->company}}</p>
+                                    <p class="text-muted font-weight-bold mb-0">{{__('page.company')}}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-4">
                             <div class="block block-rounded block-bordered block-link-pop">
                                 <div class="block-content block-content-default p-3 text-center">
-                                    <p class="font-size-h3 font-w300 mb-0">{{$container->company_or_person}}</p>
-                                    <p class="text-muted font-weight-bold mb-0">EMPRESA O PERSONA NATURAL</p>
+                                    <p class="font-size-h3 font-w300 mb-0">{{$container->dock}}</p>
+                                    <p class="text-muted font-weight-bold mb-0">{{__('page.dock')}}</p>
                                 </div>
                             </div>
                         </div>
@@ -152,7 +176,7 @@
                                     <tr>
                                         <th></th>
                                         <th>{{__('page.product_code')}}</th>
-                                        <th>{{__('page.description')}}</th>
+                                        <th>{{__('page.product_name')}}</th>
                                         <th>{{__('page.quantity')}}</th>
                                     </tr>
                                 </thead>
@@ -172,7 +196,7 @@
                                                 {{$product->code}}
                                             </td>
                                             <td>
-                                                {{$product->description}}
+                                                {{$product->name}}
                                             </td>
                                             <td>{{number_format($value)}}</td>
                                         </tr>

@@ -41,19 +41,19 @@
                             <tr>
                                 <th rowspan="2">#</th>
                                 <th rowspan="2">PRO-FORMA INVOICE NE</th>
-                                <th rowspan="2">SEMANA</th>
                                 <th rowspan="2">IDENTIFICACION O NIT</th>
-                                <th rowspan="2">CONTENEDOR</th>
-                                <th rowspan="2">PRECINTO</th>
-                                <th rowspan="2">TEMPERATURA</th>
-                                <th rowspan="2">DAMPER</th>
-                                <th rowspan="2">BOOKING</th>
-                                <th rowspan="2">PUERTO DE DESTINO</th>
-                                <th rowspan="2">FECHA</th>
-                                <th rowspan="2">EMBARCADERO</th>
-                                <th rowspan="2">TIPO DE MERCANCIA</th>
-                                <th rowspan="2">AGENCIA ADUANERA</th>
-                                <th rowspan="2">EMPRESA O PERSONA NATURAL</th>
+                                <th rowspan="2">WEEK C</th>
+                                <th rowspan="2">WEEK D</th>
+                                <th rowspan="2">Container</th>
+                                <th rowspan="2">Booking</th>
+                                <th rowspan="2">BL</th>
+                                <th rowspan="2">Shipping Company</th>
+                                <th rowspan="2">Fruit Loading Date</th>
+                                <th rowspan="2">Ship Departure Date</th>
+                                <th rowspan="2">Estimated Date Of Shipping Company</th>
+                                <th rowspan="2">Agency</th>
+                                <th rowspan="2">Company</th>
+                                <th rowspan="2">Dock</th>
                                 @foreach ($products as $id)
                                     <th>{{\App\Models\Product::find($id)->code}}</th>
                                 @endforeach                                
@@ -68,7 +68,7 @@
                                         $footer_product_total[$id] = 0;
                                         $footer_total_container = $footer_peso_carga = $footer_tara = $footer_vgm = 0;
                                     @endphp
-                                    <th>{{\App\Models\Product::find($id)->description}}</th>
+                                    <th>{{\App\Models\Product::find($id)->name}}</th>
                                 @endforeach
                             </tr>
                         </thead>
@@ -83,20 +83,20 @@
                                 @endphp
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{$item->proforma->reference_no}}</td>
-                                    <td>{{$item->semana}}</td>
+                                    <td>@isset($item->proforma->reference_no){{$item->proforma->reference_no}}@endisset</td>
                                     <td>{{$item->identification_or_nit}}</td>
-                                    <td>{{$item->contenedor}}</td>
-                                    <td>{{$item->precinto}}</td>
-                                    <td>{{$item->temperatura}} °C</td>
-                                    <td>{{$item->damper}}</td>
-                                    <td>{{$item->booking}}</td>
-                                    <td>{{$item->port_of_discharge}}</td>
-                                    <td>{{ date('d/m/Y', strtotime($item->fetcha)) }}</td>
-                                    <td>{{$item->embarcadero}}</td>
-                                    <td>{{$item->tipo_de_mercancia}}</td>
-                                    <td>{{$item->agencia_aduanera}}</td>
-                                    <td>{{$item->company_or_person}}</td>
+                                    <td>{{$item->week_c}}</td>
+                                    <td>{{$item->week_d}}</td>
+                                    <td>{{$item->container}}</td>
+                                    <td>{{$item->booking}} °C</td>
+                                    <td>{{$item->bl}}</td>
+                                    <td>{{$item->shipping_company}}</td>
+                                    <td>{{$item->fruit_loading_date}}</td>
+                                    <td>{{$item->ship_departure_date}}</td>
+                                    <td>{{$item->estimated_date}}</td>
+                                    <td>{{$item->agency}}</td>
+                                    <td>{{$item->company}}</td>
+                                    <td>{{$item->dock}}</td>
                                     @foreach ($products as $id)
                                         @php
                                             $footer_product_total[$id] += $container_products[$id];
@@ -112,7 +112,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="14" class="text-right">TOTAL </th>
+                                <th colspan="15" class="text-right">TOTAL </th>
                                 @foreach ($products as $id)
                                     <th>{{number_format($footer_product_total[$id])}}</th>
                                 @endforeach

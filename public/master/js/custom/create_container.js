@@ -16,8 +16,8 @@ var app = new Vue({
             quantity: 0
         },
         proforma_id: "",
-        port_of_discharge: '',
-        fetcha: '',
+        week_c: '',
+        week_d: '',
         total_container: '',
         peso_carga: '',
         tara: '',
@@ -30,11 +30,12 @@ var app = new Vue({
             
         },
         getItems() {
+            this.items = []
             axios.post('/get_proforma', {id : this.proforma_id})
                 .then(response => {
                     let proforma = response.data
-                    this.port_of_discharge = proforma.port_of_discharge
-                    this.fetcha = proforma.date
+                    this.week_c = proforma.week_c
+                    this.week_d = proforma.week_d
                     for (let i = 0; i < proforma.items.length; i++) {
                         const item = proforma.items[i];
                         axios.post('/get_product', {id:item.product_id})
@@ -55,6 +56,14 @@ var app = new Vue({
                     console.log(error);
                 }); 
         },
+        calc_total_container() {
+            let data = this.items
+            let total_quantity = 0;
+            for(let i = 0; i < data.length; i++) {
+                total_quantity += parseInt(data[i].quantity)
+            }
+            this.total_container = total_quantity
+        },
         formatPrice(value) {
             let val = value;
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -66,7 +75,7 @@ var app = new Vue({
         $("#app").css('opacity', 1);
     },
     updated: function() {
-        console.log(this.proforma_id)
+        this.calc_total_container()
     }
 });
 

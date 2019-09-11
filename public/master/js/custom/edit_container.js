@@ -8,8 +8,8 @@ var app = new Vue({
             quantity: 0
         },
         proforma_id: "",
-        port_of_discharge: '',
-        fetcha: '',
+        week_c: '',
+        week_d: '',
         total_container: '',
         peso_carga: '',
         tara: '',
@@ -23,8 +23,8 @@ var app = new Vue({
                 .then(response => {
                     let container = response.data
                     this.proforma_id = container.proforma_id
-                    this.port_of_discharge = container.port_of_discharge
-                    this.fetcha = container.fetcha
+                    this.week_c = container.week_c
+                    this.week_d = container.week_d
                     this.total_container = container.total_container
                     this.peso_carga = container.peso_carga
                     this.tara = container.tara

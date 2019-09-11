@@ -20,36 +20,45 @@ class ContainerController extends Controller
         config(['site.page' => 'container']);
         
         $mod = new Container();
-        $keyword = '';
+        $week_c = $week_d = $keyword = '';
+        if ($request->get('week_c') != ""){
+            $week_c = $request->get('week_c');
+            $mod = $mod->where('week_c', $week_c);
+        }
+        if ($request->get('week_d') != ""){
+            $week_d = $request->get('week_d');
+            $mod = $mod->where('week_d', $week_d);
+        }
         if ($request->get('keyword') != ""){
             $keyword = $request->keyword;
+
             $proforma_array = Proforma::where('reference_no', 'LIKE', "%$keyword%")->pluck('id');
 
             $mod = $mod->where(function($query) use($keyword, $proforma_array){
                 return $query->whereIn('proforma_id', $proforma_array)
-                        ->orWhere('contenedor', 'LIKE', "%$keyword%")
-                        ->orWhere('semana', 'LIKE', "%$keyword%")
                         ->orWhere('identification_or_nit', 'LIKE', "%$keyword%")
-                        ->orWhere('precinto', 'LIKE', "%$keyword%")
+                        ->orWhere('container', 'LIKE', "%$keyword%")
+                        ->orWhere('booking', 'LIKE', "%$keyword%")
+                        ->orWhere('bl', 'LIKE', "%$keyword%")
                         ->orWhere('temperatura', 'LIKE', "%$keyword%")
                         ->orWhere('damper', 'LIKE', "%$keyword%")
                         ->orWhere('booking', 'LIKE', "%$keyword%")
+                        ->orWhere('shipping_company', 'LIKE', "%$keyword%")
+                        ->orWhere('fruit_loading_date', 'LIKE', "%$keyword%")
+                        ->orWhere('ship_departure_date', 'LIKE', "%$keyword%")
+                        ->orWhere('type_of_merchandise', 'LIKE', "%$keyword%")
                         ->orWhere('port_of_discharge', 'LIKE', "%$keyword%")
-                        ->orWhere('fetcha', 'LIKE', "%$keyword%")
-                        ->orWhere('embarcadero', 'LIKE', "%$keyword%")
-                        ->orWhere('tipo_de_mercancia', 'LIKE', "%$keyword%")
-                        ->orWhere('agencia_aduanera', 'LIKE', "%$keyword%")
-                        ->orWhere('company_or_person', 'LIKE', "%$keyword%")
-                        ->orWhere('total_container', 'LIKE', "%$keyword%")
-                        ->orWhere('peso_carga', 'LIKE', "%$keyword%")
-                        ->orWhere('tara', 'LIKE', "%$keyword%")
+                        ->orWhere('estimated_date', 'LIKE', "%$keyword%")
+                        ->orWhere('agency', 'LIKE', "%$keyword%")
+                        ->orWhere('company', 'LIKE', "%$keyword%")
+                        ->orWhere('dock', 'LIKE', "%$keyword%")
                         ->orWhere('vgm', 'LIKE', "%$keyword%");
             });
         }
 
         $data = $mod->orderBy('created_at', 'desc')->paginate(15);
 
-        return view('container.index', compact('data', 'keyword'));
+        return view('container.index', compact('data', 'week_c', 'week_d', 'keyword'));
     }
 
     public function create(Request $request){
@@ -61,25 +70,29 @@ class ContainerController extends Controller
     public function save(Request $request){
         $request->validate([
             'proforma'=>'required',
+            'estimated_date' => 'numeric',
         ]);
 
         $data = $request->all();
-
         $item = new Container();
         $item->proforma_id = $data['proforma'];
         $item->identification_or_nit = $data['identification_or_nit'];
-        $item->semana = $data['semana'];
-        $item->contenedor = $data['contenedor'];
-        $item->precinto = $data['precinto'];
+        $item->week_c = $data['week_c'];
+        $item->week_d = $data['week_d'];
+        $item->container = $data['container'];
+        $item->booking = $data['booking'];
+        $item->bl = $data['bl'];
+        $item->shipping_company = $data['shipping_company'];
         $item->temperatura = $data['temperatura'];
         $item->damper = $data['damper'];
-        $item->booking = $data['booking'];
-        $item->port_of_discharge = $data['port_of_discharge'];
-        $item->fetcha = $data['fetcha'];
-        $item->embarcadero = $data['embarcadero'];
-        $item->tipo_de_mercancia = $data['tipo_de_mercancia'];
-        $item->agencia_aduanera = $data['agencia_aduanera'];
-        $item->company_or_person = $data['company_or_person'];
+        $item->type_of_merchandise = $data['type_of_merchandise'];
+        $item->fruit_loading_date = $data['fruit_loading_date'];
+        $item->ship_departure_date = $data['ship_departure_date'];
+        $item->estimated_date = $data['estimated_date'];
+        $item->agency = $data['agency'];
+        $item->company = $data['company'];
+        $item->dock = $data['dock'];
+
         $item->total_container = $data['total_container'];
         $item->peso_carga = $data['peso_carga'];
         $item->tara = $data['tara'];
@@ -109,6 +122,7 @@ class ContainerController extends Controller
     public function update(Request $request){
         $request->validate([
             'proforma'=>'required',
+            'estimated_date' => 'numeric',
         ]);
 
         $data = $request->all();
@@ -116,18 +130,22 @@ class ContainerController extends Controller
         $item = Container::find($request->id);
         $item->proforma_id = $data['proforma'];
         $item->identification_or_nit = $data['identification_or_nit'];
-        $item->semana = $data['semana'];
-        $item->contenedor = $data['contenedor'];
-        $item->precinto = $data['precinto'];
+        $item->week_c = $data['week_c'];
+        $item->week_d = $data['week_d'];
+        $item->container = $data['container'];
+        $item->booking = $data['booking'];
+        $item->bl = $data['bl'];
+        $item->shipping_company = $data['shipping_company'];
         $item->temperatura = $data['temperatura'];
         $item->damper = $data['damper'];
-        $item->booking = $data['booking'];
-        $item->port_of_discharge = $data['port_of_discharge'];
-        $item->fetcha = $data['fetcha'];
-        $item->embarcadero = $data['embarcadero'];
-        $item->tipo_de_mercancia = $data['tipo_de_mercancia'];
-        $item->agencia_aduanera = $data['agencia_aduanera'];
-        $item->company_or_person = $data['company_or_person'];
+        $item->type_of_merchandise = $data['type_of_merchandise'];
+        $item->fruit_loading_date = $data['fruit_loading_date'];
+        $item->ship_departure_date = $data['ship_departure_date'];
+        $item->estimated_date = $data['estimated_date'];
+        $item->agency = $data['agency'];
+        $item->company = $data['company'];
+        $item->dock = $data['dock'];
+
         $item->total_container = $data['total_container'];
         $item->peso_carga = $data['peso_carga'];
         $item->tara = $data['tara'];

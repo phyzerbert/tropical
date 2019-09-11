@@ -280,5 +280,16 @@ return [
     'submit' => 'Submit',
     'week_c' => 'WEEK C',
     'week_d' => 'WEEK D',
+    'embarked' => 'Embarked',
+
+    'booking' => 'Booking',
+    'shipping_company' => 'Shipping Company',
+    'type_of_merchandise' => 'Type Of Merchandise',
+    'fruit_loading_date' => 'Fruit Loading Date',
+    'ship_departure_date' => 'Ship Departure Date',
+    'estimated_date_of_shipping_company' => 'Estimated Date Of Shipping Company',
+    'agency' => 'Agency',
+    'dock' => 'Dock',
+    '' => '',
     
 ];

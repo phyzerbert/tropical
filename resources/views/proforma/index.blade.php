@@ -21,12 +21,15 @@
     <div class="content">  
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
-                <form action="" class="form-inline mr-auto">
+                <form action="" class="form-inline float-left">
                     @csrf
-                    <input type="text" class="form-control form-control-sm mt-2" style="width: 200px;" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
+                    <input type="text" class="form-control form-control-sm col-md-2 mt-2" id="search_week_c" name="week_c" value="{{$week_c}}" placeholder="{{__('page.week_c')}}">
+                    <input type="text" class="form-control form-control-sm col-md-3 mt-2 ml-2" id="search_week_d" name="week_d" value="{{$week_d}}" placeholder="{{__('page.week_d')}}">
+                    <input type="text" class="form-control form-control-sm col-md-3 mt-2 ml-2" id="search_week_keyword" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
                     <button type="submit" class="btn btn-sm btn-primary ml-2 mt-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
+                    <a href="javascript:;" class="btn btn-danger btn-sm mt-2 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</a>
                 </form>                
-                <a href="{{route('proforma.create')}}" class="btn btn-success btn-sm mt-2" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
+                <a href="{{route('proforma.create')}}" class="btn btn-success float-right btn-sm mt-2" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
             </div>
             <div class="block-content block-content-full">
                 <div class="table-responsive pb-7">                    
@@ -69,7 +72,7 @@
                                     <td class="port_of_discharge">{{ $item->port_of_discharge }}</td>
                                     <td class="status">
                                         @if($item->is_submitted == 1)
-                                            <span class="badge badge-success">{{__('page.received')}}</span>
+                                            <span class="badge badge-success">{{__('page.embarked')}}</span>
                                         @else
                                             <span class="badge badge-warning">{{__('page.pending')}}</span>
                                         @endif
@@ -174,6 +177,12 @@
                 $("#payment_form .amount").val(balance);
                 $("#paymentModal").modal();
             });
+
+            $("#btn-reset").click(function(){
+                $("#search_week_c").val('');
+                $("#search_week_d").val('');
+                $("#search_keyword").val('');
+            })
         })
     </script>
 @endsection

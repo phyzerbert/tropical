@@ -7,7 +7,6 @@ return [
     'username' => 'Username',
     'password' => 'Password',
     'remember_me' => 'Remember Me',
-    'enter_your_credentials_below' => 'Enter your credentials below',
     
     // ********  Header  ********
     'online' => 'Online',
@@ -45,6 +44,8 @@ return [
     'payments' => 'Payments',
     'payment_list' => 'Payment List',
     'view_reports' => 'View Reports',
+    'yes' => 'Yes',
+    'no' => 'No',
     'save' => 'Save',
     'close' => 'Close',
     'back' => 'Back',
@@ -293,7 +294,5 @@ return [
     'shipment_detail' => 'Shipment Detail',
     'search_menu' => 'Search Menu',
     'identification_or_not' => 'Identificatoin Or Not',
-    'yes' => 'Yes',
-    'no' => 'No',
     
 ];

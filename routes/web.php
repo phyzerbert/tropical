@@ -75,6 +75,8 @@ Route::get('/container/edit/{id}', 'ContainerController@edit')->name('container.
 Route::post('/container/update', 'ContainerController@update')->name('container.update');
 Route::get('/container/detail/{id}', 'ContainerController@detail')->name('container.detail');
 Route::get('/container/delete/{id}', 'ContainerController@delete')->name('container.delete');
+Route::any('/container/bl', 'ContainerController@search_by_bl')->name('container.bl');
+Route::any('/container/booking', 'ContainerController@search_by_booking')->name('container.booking');
 
 Route::get('/profile', 'UserController@profile')->name('profile');
 Route::post('/updateuser', 'UserController@updateuser')->name('updateuser');

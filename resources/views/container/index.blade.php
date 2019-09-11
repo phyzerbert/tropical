@@ -69,7 +69,7 @@
                                     <td>{{$item->week_c}}</td>
                                     <td>{{$item->week_d}}</td>
                                     <td>{{$item->container}}</td>
-                                    <td>{{$item->booking}} °C</td>
+                                    <td>{{$item->booking}}</td>
                                     <td>{{$item->bl}}</td>
                                     <td>{{$item->shipping_company}}</td>
                                     <td>{{$item->fruit_loading_date}}</td>

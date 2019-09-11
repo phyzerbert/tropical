@@ -86,7 +86,7 @@
                 </ul>
             </li>
             @php
-                $container_items = ['container', 'add_container'];
+                $container_items = ['container', 'add_container', 'container_bl', 'container_booking'];
             @endphp
             <li class="nav-main-item @if($page == in_array($page, $container_items)) open @endif">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
@@ -102,6 +102,16 @@
                     <li class="nav-main-item">
                         <a class="nav-main-link @if($page == 'add_container') active @endif" href="{{route('container.create')}}">
                             <span class="nav-main-link-name">Add Container Loads</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link @if($page == 'container_bl') active @endif" href="{{route('container.bl')}}">
+                            <span class="nav-main-link-name">BL</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link @if($page == 'container_booking') active @endif" href="{{route('container.booking')}}">
+                            <span class="nav-main-link-name">Booking</span>
                         </a>
                     </li>
                 </ul>

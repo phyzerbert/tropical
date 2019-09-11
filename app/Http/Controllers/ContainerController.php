@@ -165,4 +165,34 @@ class ContainerController extends Controller
         $item->delete();
         return back()->with("success", __('page.deleted_successfully'));
     }
+
+    public function search_by_bl(Request $request){
+        config(['site.page' => 'container_bl']);
+        
+        $mod = new Container();
+        $bl = '';
+        if ($request->get('bl') != ""){
+            $bl = $request->get('bl');
+            $mod = $mod->where('bl', $bl);
+        }
+
+        $data = $mod->orderBy('created_at', 'desc')->paginate(15);
+
+        return view('container.bl', compact('data', 'bl'));
+    }
+
+    public function search_by_booking(Request $request){
+        config(['site.page' => 'container_booking']);
+        
+        $mod = new Container();
+        $booking = '';
+        if ($request->get('booking') != ""){
+            $booking = $request->get('booking');
+            $mod = $mod->where('booking', $booking);
+        }
+
+        $data = $mod->orderBy('created_at', 'desc')->paginate(15);
+
+        return view('container.booking', compact('data', 'booking'));
+    }
 }

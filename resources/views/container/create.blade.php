@@ -178,7 +178,7 @@
                     <div class="row mt-3">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="form-control-label">TOTAL CONTENEDOR</label>
+                                <label class="form-control-label">TOTAL CAJAS EN CONTENEDOR</label>
                                 <input class="form-control" type="number" name="total_container" v-model="total_container" placeholder="TOTAL CONTENEDOR" >
                             </div>
                         </div>

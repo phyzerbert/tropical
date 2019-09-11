@@ -121,11 +121,17 @@
                     <i class="nav-main-link-icon si si-handbag"></i>
                     <span class="nav-main-link-name">{{__('page.supplier')}}</span>
                 </a>
-            </li>            
+            </li>
             <li class="nav-main-item">
-                <a class="nav-main-link" href="{{route('users.index')}}">
+                <a class="nav-main-link @if($page == 'user') active @endif" href="{{route('users.index')}}">
                     <i class="nav-main-link-icon si si-people"></i>
                     <span class="nav-main-link-name">{{__('page.user')}}</span>
+                </a>
+            </li>
+            <li class="nav-main-item">
+                <a class="nav-main-link @if($page == 'search') active @endif" href="{{route('search')}}">
+                    <i class="nav-main-link-icon si si-magnifier"></i>
+                    <span class="nav-main-link-name">{{__('page.search')}}</span>
                 </a>
             </li>
         </ul>

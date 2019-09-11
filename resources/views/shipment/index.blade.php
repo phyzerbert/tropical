@@ -36,7 +36,7 @@
                                 <th style="width:120px;">{{__('page.action')}}</th>
                             </tr>
                         </thead>
-                        <tbody>                              
+                        <tbody>
                             @foreach ($data as $item)
                                 <tr>
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>

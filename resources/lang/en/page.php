@@ -291,5 +291,9 @@ return [
     'agency' => 'Agency',
     'dock' => 'Dock',
     'shipment_detail' => 'Shipment Detail',
+    'search_menu' => 'Search Menu',
+    'identification_or_not' => 'Identificatoin Or Not',
+    'yes' => 'Yes',
+    'no' => 'No',
     
 ];

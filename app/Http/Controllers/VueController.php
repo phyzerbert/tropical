@@ -60,7 +60,7 @@ class VueController extends Controller
 
     public function get_autocomplete_products(Request $request){
         $keyword = $request->get('keyword');
-        $data = Product::where('code', 'LIKE', "%$keyword%")->orWhere('description', 'LIKE', "%$keyword%")->get();
+        $data = Product::where('code', 'LIKE', "%$keyword%")->orWhere('name', 'LIKE', "%$keyword%")->get();
         return response()->json($data);
     }
 

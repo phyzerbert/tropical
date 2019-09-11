@@ -139,7 +139,7 @@
                                     <thead class="table-success">
                                         <tr>
                                             <th>{{__('page.product_code')}}</th>
-                                            <th>{{__('page.description')}}</th>
+                                            <th>{{__('page.product_name')}}</th>
                                             <th>{{__('page.quantity')}}</th>
                                         </tr>
                                     </thead>
@@ -150,7 +150,7 @@
                                                 @{{item.product_code}}
                                             </td>
                                             <td>
-                                                @{{item.description}}
+                                                @{{item.product_name}}
                                             </td>
                                             <td class="quantity">
                                                 <input type="text" class="form-control form-control-sm" name="quantity[]" v-model="item.quantity" />

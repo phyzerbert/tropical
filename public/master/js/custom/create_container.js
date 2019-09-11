@@ -42,7 +42,7 @@ var app = new Vue({
                                 this.items.push({
                                     product_id: item.product_id,
                                     product_code: response1.data.code,
-                                    description: response1.data.description,
+                                    product_name: response1.data.name,
                                     quantity: item.quantity,
                                 })
                             })

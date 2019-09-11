@@ -45,19 +45,19 @@
                                 <th>#</th>
                                 <th>PRO-FORMA INVOICE NE</th>
                                 <th>IDENTIFICACION O NIT</th>
-                                <th>WEEK C</th>
-                                <th>WEEK D</th>
-                                <th>Container</th>
-                                <th>Booking</th>
+                                <th>{{__('page.week_c')}}</th>
+                                <th>{{__('page.week_d')}}</th>
+                                <th>{{__('page.container')}}</th>
+                                <th>{{__('page.booking')}}</th>
                                 <th>BL</th>
-                                <th>Shipping Company</th>
-                                <th>Fruit Loading Date</th>
-                                <th>Ship Departure Date</th>
-                                <th>Estimated Date Of Shipping Company</th>
-                                <th>Agency</th>
-                                <th>Company</th>
-                                <th>Dock</th>
-                                <th>ACTION</th>
+                                <th>{{__('page.shipping_company')}}</th>
+                                <th>{{__('page.fruit_loading_date')}}</th>
+                                <th>{{__('page.ship_departure_date')}}</th>
+                                <th>{{__('page.estimated_date_of_shipping_company')}}</th>
+                                <th>{{__('page.agency')}}</th>
+                                <th>{{__('page.company')}}</th>
+                                <th>{{__('page.dock')}}</th>
+                                <th>{{__('page.action')}}</th>
                             </tr>
                         </thead>
                         <tbody>

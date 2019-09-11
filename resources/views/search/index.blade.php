@@ -106,13 +106,13 @@
                                         @if($container == 'yes')<th>Container</th>@endif
                                         @if($booking == 'yes')<th>Booking</th>@endif
                                         @if($bl == 'yes')<th>BL</th>@endif
-                                        <th>Shipping Company</th>
-                                        <th>Fruit Loading Date</th>
-                                        <th>Ship Departure Date</th>
-                                        <th>Estimated Date Of Shipping Company</th>
-                                        <th>Agency</th>
-                                        <th>Company</th>
-                                        <th>Dock</th>
+                                        <th>{{__('page.shipping_company')}}</th>
+                                        <th>{{__('page.fruit_loading_date')}}</th>
+                                        <th>{{__('page.ship_departure_date')}}</th>
+                                        <th>{{__('page.estimated_date_of_shipping_company')}}</th>
+                                        <th>{{__('page.agency')}}</th>
+                                        <th>{{__('page.company')}}</th>
+                                        <th>{{__('page.dock')}}</th>
                                         <th>{{__('page.detail')}}</th>
                                     </tr>
                                 </thead>

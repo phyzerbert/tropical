@@ -55,7 +55,7 @@
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle" id="dropdown-align-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('page.action')}}&nbsp;</button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-align-primary">
-                                                {{-- <a class="dropdown-item" href="{{route('shipment.detail', $item->id)}}">{{__('page.detail')}}</a> --}}
+                                                <a class="dropdown-item" href="{{route('shipment.detail', $item->id)}}">{{__('page.detail')}}</a>
                                                 @if (!$item->is_received)                                                    
                                                     <a class="dropdown-item" href="{{route('shipment.receive', $item->id)}}" data-id="{{$item->id}}">{{__('page.receive')}}</a>
                                                 @endif

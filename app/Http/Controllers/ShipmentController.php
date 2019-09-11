@@ -42,6 +42,11 @@ class ShipmentController extends Controller
         return view('shipment.index', compact('data', 'keyword', 'sort_by_date'));
     }
 
+    public function detail(Request $request, $id){
+        $shipment = Shipment::find($id);
+        return view('shipment.detail', compact('shipment'));
+    }
+
     public function delete($id){
         $item = Shipment::find($id);
         if($item->proforma){
@@ -78,9 +83,7 @@ class ShipmentController extends Controller
         $item->issue_date = $proforma->date;
         $item->due_date = $proforma->due_date;
         $item->customers_vat = $proforma->customers_vat;
-        // $item->delivery_date = $proforma->supplier_id;
         $item->concerning_week = $proforma->concerning_week;
-        // $item->shipment = $proforma->supplier_id;
         $item->vessel = $proforma->vessel;
         $item->port_of_discharge = $proforma->port_of_discharge;
         $item->origin = $proforma->origin;

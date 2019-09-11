@@ -61,6 +61,7 @@ Route::get('/proforma/container/{id}', 'ProformaController@container')->name('pr
 Route::any('/shipment/index', 'ShipmentController@index')->name('shipment.index');
 Route::get('/shipment/delete/{id}', 'ShipmentController@delete')->name('shipment.delete');
 Route::get('/shipment/receive/{id}', 'ShipmentController@receive')->name('shipment.receive');
+Route::get('/shipment/detail/{id}', 'ShipmentController@detail')->name('shipment.detail');
 Route::post('/shipment/save_receive', 'ShipmentController@save_receive')->name('shipment.save_receive');
 
 Route::any('/payment/index/{type}/{id}', 'PaymentController@index')->name('payment.index');

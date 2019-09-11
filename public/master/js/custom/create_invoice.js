@@ -23,7 +23,7 @@ var app = new Vue({
                 .then(response => {
                     this.items.push({
                         product_id: response.data.id,
-                        product_code: response.data.code,
+                        product_code: response.data.name + "(" + response.data.code + ")",
                         product_name: response.data.name,
                         price: 0,
                         quantity: 1,
@@ -76,12 +76,11 @@ var app = new Vue({
             source : function( request, response ) {
                 axios.post('/get_autocomplete_products', { keyword : request.term })
                     .then(resp => {
-                        // response(resp.data);
                         response(
                             $.map(resp.data, function(item) {
                                 return {
-                                    label: item.code,
-                                    value: item.code,
+                                    label: item.name + "(" + item.code + ")",
+                                    value: item.name + "(" + item.code + ")",
                                     name: item.name,
                                     id: item.id,
                                 }

@@ -21,12 +21,13 @@
     <div class="content">  
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
-                <form action="" class="form-inline mr-auto">
+                <form action="" class="col-md-12 form-inline">
                     @csrf
-                    <input type="text" class="form-control form-control-sm mt-2" style="width: 200px;" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
-                    <button type="submit" class="btn btn-sm btn-primary ml-2 mt-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
-                </form>                
-                <a href="{{route('invoice.create')}}" class="btn btn-success btn-sm mt-2" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
+                    <input type="text" class="form-control form-control-sm col-md-3 mt-2" name="keyword" id="search_keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
+                    <button type="submit" class="btn btn-sm btn-primary ml-md-2 mt-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
+                    <button type="button" class="btn btn-danger btn-sm mt-2 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</button>
+                    <a href="{{route('invoice.create')}}" class="btn btn-success btn-sm mt-2 ml-auto" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
+            </form>                
             </div>
             <div class="block-content block-content-full">
                 <div class="table-responsive pb-7">                    
@@ -161,6 +162,11 @@
                 $("#payment_form .amount").val(balance);
                 $("#paymentModal").modal();
             });
+
+            
+            $("#btn-reset").click(function(){
+                $("#search_keyword").val('');
+            })
         })
     </script>
 @endsection

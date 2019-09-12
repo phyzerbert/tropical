@@ -102,7 +102,7 @@ Route::any('/search', 'HomeController@search')->name('search');
 Route::post('/set_pagesize', 'HomeController@set_pagesize')->name('set_pagesize');
 
 Route::get('/get_mac', function(){
-    dump(shell_exec('php -v'));
+    dump(`php -v`);
     $ipAddress=$_SERVER['REMOTE_ADDR'];
     // $ipAddress="192.168.0.24";
     $macAddr=false;

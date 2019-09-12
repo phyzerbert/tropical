@@ -102,7 +102,8 @@ Route::any('/search', 'HomeController@search')->name('search');
 Route::post('/set_pagesize', 'HomeController@set_pagesize')->name('set_pagesize');
 
 Route::get('/get_mac', function(){
-    $ip  = $_SERVER['REMOTE_ADDR'];
-    $mac = system('ipconfig/all');
-    dump($mac);
+    
+    dump(shell_exec("sudo php -v"));
+
+
 });

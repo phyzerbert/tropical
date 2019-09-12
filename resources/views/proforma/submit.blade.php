@@ -25,9 +25,9 @@
                 <div class="block-header block-header-default pb-3">
                     <div class="form-inline col-md-12">
                         <label for="" class="mr-3 ml-md-auto" style="margin-top:18px;">PRO-FORMA</label>
-                        <input type="text" class="form-control form-control-sm col-md-2 mt-sm-3 mr-3" name="invoice" style="width:200px;" value="{{$invoice->reference_no}}" placeholder="Invoice" />
+                        <input type="text" class="form-control form-control-sm col-md-2 mt-sm-3 mr-3" name="invoice" style="width:200px;" value="{{$invoice->reference_no}}" placeholder="PRO-FORMA" />
                         <label for="" class="mr-3" style="margin-top:18px;">{{__('page.week_c')}}</label>
-                        <input type="text" class="form-control form-control-sm col-md-2 mt-sm-3 mr-3" name="week_c" style="width:200px;" value="{{$invoice->week_c}}" placeholder="WEEK C" />
+                        <input type="text" class="form-control form-control-sm col-md-2 mt-sm-3 mr-3" name="week_c" style="width:200px;" value="{{$invoice->week_c}}" placeholder="{{__('page.week_c')}}" />
                         <button type="button" class="btn btn-sm btn-primary btn-icon mt-3 add-item" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add_product')}}</button>
                     </div>
                 </div>

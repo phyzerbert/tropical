@@ -40,7 +40,9 @@ class HomeController extends Controller
         config(['site.page' => 'search']);
         $mod = new Container();
         $week_c = $week_d = '';
-        $identification = $container = $booking = $bl = 'yes';
+        $identification = $container = $booking = $bl = $shipping_company = 'yes';
+        $temperature = $damper = $type_of_merchandise = $fruit_loading_date = $ship_departure_date = 'yes';
+        $estimated_date = $agency = $company = $dock = 'yes';
         if ($request->get('week_c') != ""){
             $week_c = $request->get('week_c');
             $mod = $mod->where('week_c', $week_c);
@@ -61,8 +63,39 @@ class HomeController extends Controller
         if ($request->get('bl') != ""){
             $bl = $request->get('bl');
         }
+        if ($request->get('shipping_company') != ""){
+            $shipping_company = $request->get('shipping_company');
+        }
+        if ($request->get('temperature') != ""){
+            $temperature = $request->get('temperature');
+        }
+        if ($request->get('damper') != ""){
+            $damper = $request->get('damper');
+        }
+        if ($request->get('type_of_merchandise') != ""){
+            $type_of_merchandise = $request->get('type_of_merchandise');
+        }
+        if ($request->get('fruit_loading_date') != ""){
+            $fruit_loading_date = $request->get('fruit_loading_date');
+        }
+        if ($request->get('ship_departure_date') != ""){
+            $ship_departure_date = $request->get('ship_departure_date');
+        }
+        if ($request->get('estimated_date') != ""){
+            $estimated_date = $request->get('estimated_date');
+        }
+        if ($request->get('agency') != ""){
+            $agency = $request->get('agency');
+        }
+        if ($request->get('company') != ""){
+            $company = $request->get('company');
+        }
+        if ($request->get('dock') != ""){
+            $dock = $request->get('dock');
+        }
 
         $data = $mod->orderBy('created_at', 'desc')->paginate(20);
-        return view('search.index', compact('data', 'week_c', 'week_d', 'identification', 'container', 'booking', 'bl'));
+        return view('search.index', compact('data', 'week_c', 'week_d', 'identification', 'container',
+         'booking', 'bl', 'shipping_company', 'temperature', 'damper', 'type_of_merchandise', 'fruit_loading_date', 'ship_departure_date', 'estimated_date', 'agency', 'company', 'dock'));
     }
 }

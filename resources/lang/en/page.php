@@ -285,9 +285,12 @@ return [
 
     'booking' => 'Booking',
     'shipping_company' => 'Shipping Company',
+    'temperature' => 'Temperature',
+    'damper' => 'Damper',
     'type_of_merchandise' => 'Type Of Merchandise',
     'fruit_loading_date' => 'Fruit Loading Date',
     'ship_departure_date' => 'Ship Departure Date',
+    'estimated_date_of_shipping_company' => 'Estimated Date Of Shipping Company',
     'estimated_date_of_shipping_company' => 'Estimated Date Of Shipping Company',
     'agency' => 'Agency',
     'dock' => 'Dock',

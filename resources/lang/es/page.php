@@ -7,7 +7,6 @@ return [
     'username' => 'Nombre de usuario',
     'password' => 'Contraseña',
     'remember_me' => 'Recuérdame',
-    'enter_your_credentials_below' => 'Introduzca sus credenciales a continuación',
     
     // ********  Header  ********
     'online' => 'Online',

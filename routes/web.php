@@ -103,22 +103,7 @@ Route::post('/set_pagesize', 'HomeController@set_pagesize')->name('set_pagesize'
 
 Route::get('/get_mac', function(){
     
-    $ipAddress=$_SERVER['REMOTE_ADDR'];
-    $macAddr=false;
+    dump(shell_exec('arp -a'));
 
-    #run the external command, break output into lines
-    $arp=`arp -a $ipAddress`;
-    $lines=explode("\n", $arp);
 
-    #look for the output line describing our IP address
-    foreach($lines as $line)
-    {
-        $cols=preg_split('/\s+/', trim($line));
-        if ($cols[0]==$ipAddress)
-        {
-            $macAddr=$cols[1];
-        }
-    }
-    dump($ipAddress);
-    dump($macAddr);
 });

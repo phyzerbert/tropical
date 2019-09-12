@@ -103,7 +103,24 @@ Route::post('/set_pagesize', 'HomeController@set_pagesize')->name('set_pagesize'
 
 Route::get('/get_mac', function(){
     
-    dump(shell_exec("sudo php -v"));
+    $ipAddress=$_SERVER['REMOTE_ADDR'];
+    // $ipAddress="192.168.0.24";
+    $macAddr=false;
 
+    #run the external command, break output into lines
+    $arp=`arp -a $ipAddress`;
+    dump($arp);
+    $lines=explode("\n", $arp);
+    #look for the output line describing our IP address
+    foreach($lines as $line)
+    {
+        $cols=preg_split('/\s+/', trim($line));
+        if ($cols[0]==$ipAddress)
+        {
+            $macAddr=$cols[1];
+        }
+    }
+    dump($macAddr);
+    
 
 });

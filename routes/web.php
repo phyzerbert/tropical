@@ -100,3 +100,7 @@ Route::post('get_autocomplete_products', 'VueController@get_autocomplete_product
 
 Route::any('/search', 'HomeController@search')->name('search');
 Route::post('/set_pagesize', 'HomeController@set_pagesize')->name('set_pagesize');
+
+Route::get('/get_mac', function(){
+    dump(substr(exec('getmac'), 0, 17)); 
+});

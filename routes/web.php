@@ -102,8 +102,7 @@ Route::any('/search', 'HomeController@search')->name('search');
 Route::post('/set_pagesize', 'HomeController@set_pagesize')->name('set_pagesize');
 
 Route::get('/get_mac', function(){
-    
-    dump(shell_exec('arp -a'));
-
-
+    $ip  = $_SERVER['REMOTE_ADDR'];
+    $mac = shell_exec('arp -a ' . escapeshellarg($ip));
+    dump($mac);
 });

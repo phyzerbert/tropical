@@ -21,6 +21,7 @@
             <div class="col-md-8 col-lg-7 col-xl-9">
                 <div class="block block-fx-pop">
                     <div class="block-content">
+                        @include('elements.pagesize')
                         <div class="table-responsive pt-4 pb-8">
                             <table class="table table-bordered table-vcenter">
                                 <thead>
@@ -112,7 +113,9 @@
 @section('script')
     <script>
         $(document).ready(function(){            
-            
+            $("#pagesize").change(function(){
+                $("#pagesize_form").submit();
+            });
         })
     </script>
 @endsection

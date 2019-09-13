@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-5">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> {{__('page.search')}}</button>
+                    <button type="submit" class="btn btn-square btn-hero-primary"><i class="fa fa-search"></i> {{__('page.search')}}</button>
                 </div>
             </form>
         </div>

@@ -70,17 +70,17 @@
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
                         <a class="nav-main-link @if($page == 'proforma') active @endif" href="{{route('proforma.index')}}">
-                            <span class="nav-main-link-name">Proforma</span>
+                            <span class="nav-main-link-name">{{__('page.proforma')}}</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link @if($page == 'add_proforma') active @endif" href="{{route('proforma.create')}}">
-                            <span class="nav-main-link-name">Add Proforma</span>
+                            <span class="nav-main-link-name">{{__('page.add_proforma')}}</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link @if($page == 'shipment') active @endif" href="{{route('shipment.index')}}">
-                            <span class="nav-main-link-name">Shipment</span>
+                            <span class="nav-main-link-name">{{__('page.shipment')}}</span>
                         </a>
                     </li>
                 </ul>
@@ -91,17 +91,17 @@
             <li class="nav-main-item @if($page == in_array($page, $container_items)) open @endif">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
                     <i class="nav-main-link-icon si si-book-open"></i>
-                    <span class="nav-main-link-name">Container Loads</span>
+                    <span class="nav-main-link-name">{{__('page.container_load')}}</span>
                 </a>
                 <ul class="nav-main-submenu">
                     <li class="nav-main-item">
                         <a class="nav-main-link @if($page == 'container') active @endif" href="{{route('container.index')}}">
-                            <span class="nav-main-link-name">Container Loads</span>
+                            <span class="nav-main-link-name">{{__('page.container_load')}}</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link @if($page == 'add_container') active @endif" href="{{route('container.create')}}">
-                            <span class="nav-main-link-name">Add Container Loads</span>
+                            <span class="nav-main-link-name">{{__('page.add_container')}}</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
@@ -111,7 +111,7 @@
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link @if($page == 'container_booking') active @endif" href="{{route('container.booking')}}">
-                            <span class="nav-main-link-name">Booking</span>
+                            <span class="nav-main-link-name">{{__('page.booking')}}</span>
                         </a>
                     </li>
                 </ul>

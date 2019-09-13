@@ -272,8 +272,8 @@ return [
     'file' => 'Archivos',
     'proforma_invoice' => 'PROFORMA NE FACTURA',
     'container' => 'Contenedor',
+    'add_container' => 'Añadir Container',
     'container_detail' => 'Detalles del contendor',
-    'container_load' => 'Carga del contenedor',
     'units_boxes' => 'Unidades (cajas)',
     
     'proforma' => 'Proforma',

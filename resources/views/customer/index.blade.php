@@ -7,11 +7,11 @@
     <div class="bg-body-light">
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2"><i class="nav-main-link-icon si si-handbag"></i> {{__('page.supplier_management')}}</h1>
+                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2"><i class="nav-main-link-icon si si-basket"></i> {{__('page.customer_management')}}</h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><i class="nav-main-link-icon si si-home"></i></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{__('page.supplier_management')}}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{__('page.customer_management')}}</li>
                     </ol>
                 </nav>
             </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="block-content block-content-full">
                 <div class="table-responsive">                    
-                    <table class="table table-striped table-bordered table-hover" id="suppliersTable">
+                    <table class="table table-striped table-bordered table-hover" id="customersTable">
                         <thead>
                             <tr>
                                 <th style="width:50px;">#</th>
@@ -40,15 +40,15 @@
                         </thead>
                         <tbody>
                             @php
-                                $footer_total_purchases = $footer_total_amount = $footer_paid = 0;
+                                $footer_total_sales = $footer_total_amount = $footer_paid = 0;
                             @endphp                               
                             @foreach ($data as $item)
                                 @php
-                                    $invoice_array = $item->invoices->pluck('id');
+                                    $sales_array = $item->sales->pluck('id');
                                     $mod_total_amount = 0;
-                                    $mod_paid = \App\Models\Payment::whereIn('invoice_id', $invoice_array);
+                                    $mod_paid = \App\Models\Payment::whereIn('sale_id', $sales_array);
 
-                                    $total_amount = $item->invoices->sum('total_to_pay');
+                                    $total_amount = $item->sales->sum('total_to_pay');
                                     $paid = $mod_paid->sum('amount');  
 
                                     $footer_total_amount += $total_amount;
@@ -68,13 +68,13 @@
                                     <td>{{number_format($total_amount - $paid)}}</td>
                                     <td class="text-center">
                                         <div class="btn-group">
-                                            <a href="{{route('supplier.report', $item->id)}}" class="btn btn-sm btn-primary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="{{__('page.delete')}}">
+                                            <a href="{{route('customer.report', $item->id)}}" class="btn btn-sm btn-primary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="{{__('page.delete')}}">
                                                 <i class="far fa-file-pdf"></i>
                                             </a>
                                             <button type="button" class="btn btn-sm btn-primary js-tooltip-enabled btn-edit" data-id="{{$item->id}}" data-toggle="tooltip" title="" data-original-title="{{__('page.edit')}}">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </button>
-                                            <a href="{{route('supplier.delete', $item->id)}}" class="btn btn-sm btn-primary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="{{__('page.delete')}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">
+                                            <a href="{{route('customer.delete', $item->id)}}" class="btn btn-sm btn-primary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="{{__('page.delete')}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">
                                                 <i class="fa fa-times"></i>
                                             </a>
                                         </div>
@@ -84,11 +84,11 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="5">{{__('page.total')}}</td>
-                                <td>{{number_format($footer_total_amount)}}</td>
-                                <td>{{number_format($footer_paid)}}</td>
-                                <td>{{number_format($footer_total_amount - $footer_paid)}}</td>
-                                <td></td>
+                                <th colspan="5">{{__('page.total')}}</th>
+                                <th>{{number_format($footer_total_amount)}}</th>
+                                <th>{{number_format($footer_paid)}}</th>
+                                <th>{{number_format($footer_total_amount - $footer_paid)}}</th>
+                                <th></th>
                             </tr>
                         </tfoot>
                     </table>
@@ -102,7 +102,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">{{__('page.add_supplier')}}</h4>
+                    <h4 class="modal-title">{{__('page.add_customer')}}</h4>
                     <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
                 <form action="" id="create_form" method="post">
@@ -170,7 +170,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">{{__('page.edit_supplier')}}</h4>
+                    <h4 class="modal-title">{{__('page.edit_customer')}}</h4>
                     <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
                 <form action="" id="edit_form" method="post">
@@ -246,7 +246,7 @@
     <script src="{{asset('master/js/plugins/datatables/buttons/dataTables.buttons.min.js')}}"></script>
     <script>
         $(document).ready(function(){
-            $("#suppliersTable").dataTable({
+            $("#customersTable").dataTable({
                 sWrapper: "dataTables_wrapper dt-bootstrap4",
                 sFilterInput: "form-control",
                 sLengthSelect: "form-control",
@@ -279,7 +279,7 @@
             $("#btn_create").click(function(){
                 $("#ajax-loading").show();
                 $.ajax({
-                    url: "{{route('supplier.create')}}",
+                    url: "{{route('customer.create')}}",
                     type: 'post',
                     dataType: 'json',
                     data: $('#create_form').serialize(),
@@ -364,7 +364,7 @@
             $("#btn_update").click(function(){
                 $("#ajax-loading").show();
                 $.ajax({
-                    url: "{{route('supplier.edit')}}",
+                    url: "{{route('customer.edit')}}",
                     type: 'post',
                     dataType: 'json',
                     data: $('#edit_form').serialize(),

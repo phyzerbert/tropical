@@ -76,6 +76,8 @@
                         @elseif($type == 'proforma')
                             <a href="{{route('proforma.create')}}" class="btn btn-oblong btn-primary mr-3"><i class="fa fa-plus"></i>  {{__('page.add_proforma')}}</a>                                       
                             <a href="{{route('proforma.index')}}" class="btn btn-oblong btn-success"><i class="fa fa-list"></i>  {{__('page.proforma')}}</a>
+                        @elseif($type == 'sale')                                     
+                            <a href="{{route('sale.index')}}" class="btn btn-oblong btn-success"><i class="fa fa-list"></i>  {{__('page.sales_list')}}</a>
                         @endif
                     </div>
                 </div>                               
@@ -132,7 +134,6 @@
         <div class="modal-dialog" style="margin-top:17vh">
             <div class="modal-content">
                 <div id="image_preview"></div>
-                {{-- <img src="" id="attachment" width="100%" height="600" alt=""> --}}
             </div>
         </div>
     </div>

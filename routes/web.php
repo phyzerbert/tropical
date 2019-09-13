@@ -32,13 +32,6 @@ Route::post('/product/edit', 'ProductController@edit')->name('product.edit');
 Route::get('/product/delete/{id}', 'ProductController@delete')->name('product.delete');
 Route::post('/product/produce_create', 'ProductController@produce_create')->name('product.produce_create');
 
-Route::any('/supplier/index', 'SupplierController@index')->name('supplier.index');
-Route::post('/supplier/create', 'SupplierController@create')->name('supplier.create');
-Route::post('/supplier/ajax_create', 'SupplierController@ajax_create')->name('supplier.ajax_create');
-Route::post('/supplier/edit', 'SupplierController@edit')->name('supplier.edit');
-Route::get('/supplier/report/{id}', 'SupplierController@report')->name('supplier.report');
-Route::get('/supplier/delete/{id}', 'SupplierController@delete')->name('supplier.delete');
-
 Route::any('/invoice/index', 'InvoiceController@index')->name('invoice.index');
 Route::get('/invoice/create', 'InvoiceController@create')->name('invoice.create');
 Route::post('/invoice/save', 'InvoiceController@save')->name('invoice.save');
@@ -79,6 +72,28 @@ Route::get('/container/delete/{id}', 'ContainerController@delete')->name('contai
 Route::any('/container/bl', 'ContainerController@search_by_bl')->name('container.bl');
 Route::any('/container/booking', 'ContainerController@search_by_booking')->name('container.booking');
 
+Route::any('/sale/index', 'SaleController@index')->name('sale.index');
+Route::get('/sale/create', 'SaleController@create')->name('sale.create');
+Route::post('/sale/save', 'SaleController@save')->name('sale.save');
+Route::get('/sale/edit/{id}', 'SaleController@edit')->name('sale.edit');
+Route::post('/sale/update', 'SaleController@update')->name('sale.update');
+Route::get('/sale/detail/{id}', 'SaleController@detail')->name('sale.detail');
+Route::get('/sale/delete/{id}', 'SaleController@delete')->name('sale.delete');
+
+Route::any('/supplier/index', 'SupplierController@index')->name('supplier.index');
+Route::post('/supplier/create', 'SupplierController@create')->name('supplier.create');
+Route::post('/supplier/ajax_create', 'SupplierController@ajax_create')->name('supplier.ajax_create');
+Route::post('/supplier/edit', 'SupplierController@edit')->name('supplier.edit');
+Route::get('/supplier/report/{id}', 'SupplierController@report')->name('supplier.report');
+Route::get('/supplier/delete/{id}', 'SupplierController@delete')->name('supplier.delete');
+
+Route::any('/customer/index', 'CustomerController@index')->name('customer.index');
+Route::post('/customer/create', 'CustomerController@create')->name('customer.create');
+Route::post('/customer/ajax_create', 'CustomerController@ajax_create')->name('customer.ajax_create');
+Route::post('/customer/edit', 'CustomerController@edit')->name('customer.edit');
+Route::get('/customer/report/{id}', 'CustomerController@report')->name('customer.report');
+Route::get('/customer/delete/{id}', 'CustomerController@delete')->name('customer.delete');
+
 Route::get('/profile', 'UserController@profile')->name('profile');
 Route::post('/updateuser', 'UserController@updateuser')->name('updateuser');
 Route::any('/users/index', 'UserController@index')->name('users.index');
@@ -91,6 +106,7 @@ Route::post('get_product', 'VueController@get_product')->name('get_product');
 Route::get('get_first_product', 'VueController@get_first_product');
 Route::post('get_data', 'VueController@get_data');
 Route::post('get_invoice', 'VueController@get_invoice');
+Route::post('get_sale', 'VueController@get_sale');
 Route::post('get_items', 'VueController@get_items');
 Route::post('get_proforma', 'VueController@get_proforma');
 Route::post('get_shipment', 'VueController@get_shipment');
@@ -100,27 +116,3 @@ Route::post('get_autocomplete_products', 'VueController@get_autocomplete_product
 
 Route::any('/search', 'HomeController@search')->name('search');
 Route::post('/set_pagesize', 'HomeController@set_pagesize')->name('set_pagesize');
-
-Route::get('/get_mac', function(){
-    dump(`php -v`);
-    $ipAddress=$_SERVER['REMOTE_ADDR'];
-    // $ipAddress="192.168.0.24";
-    $macAddr=false;
-
-    #run the external command, break output into lines
-    $arp=`arp -a $ipAddress`;
-    dump($arp);
-    $lines=explode("\n", $arp);
-    #look for the output line describing our IP address
-    foreach($lines as $line)
-    {
-        $cols=preg_split('/\s+/', trim($line));
-        if ($cols[0]==$ipAddress)
-        {
-            $macAddr=$cols[1];
-        }
-    }
-    dump($macAddr);
-    
-
-});

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Models\Invoice;
 use App\Models\Proforma;
+use App\Models\Sale;
 
 class PaymentController extends Controller
 {
@@ -22,6 +23,9 @@ class PaymentController extends Controller
         }else if($type == 'proforma'){
             config(['site.page' => 'proforma']);
             $paymentable = Proforma::find($id);
+        }else if($type == 'sale'){
+            config(['site.page' => 'sale']);
+            $paymentable = Sale::find($id);
         }        
         $data = $paymentable->payments;
         return view('payment.index', compact('data', 'type'));
@@ -49,6 +53,8 @@ class PaymentController extends Controller
             if($proforma->invoice) {
                 $item->invoice_id = $proforma->invoice->id;
             }
+        }else if($request->type == 'sale'){
+            $item->sale_id = $request->sale_id;
         }
         $item->note = $request->get('note');
         if($request->has("attachment")){
@@ -58,7 +64,7 @@ class PaymentController extends Controller
             $item->attachment = 'images/uploaded/payment_images/'.$imageName;
         }
         $item->save();
-        return back()->with('success', 'Added Successfully');
+        return back()->with('success', __('page.added_successfully'));
     }
 
     public function edit(Request $request){

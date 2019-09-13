@@ -116,10 +116,37 @@
                     </li>
                 </ul>
             </li>
+            @php
+                $sale_items = ['sale', 'add_sale'];
+            @endphp
+            <li class="nav-main-item @if($page == in_array($page, $sale_items)) open @endif">
+                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                    <i class="nav-main-link-icon si si-puzzle"></i>
+                    <span class="nav-main-link-name">{{__('page.product_sale')}}</span>
+                </a>
+                <ul class="nav-main-submenu">
+                    <li class="nav-main-item">
+                        <a class="nav-main-link @if($page == 'sale') active @endif" href="{{route('sale.index')}}">
+                            <span class="nav-main-link-name">{{__('page.sales_list')}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link @if($page == 'add_sale') active @endif" href="{{route('sale.create')}}">
+                            <span class="nav-main-link-name">{{__('page.add_sale')}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="nav-main-item">
                 <a class="nav-main-link @if($page == 'supplier') active @endif" href="{{route('supplier.index')}}">
                     <i class="nav-main-link-icon si si-handbag"></i>
                     <span class="nav-main-link-name">{{__('page.supplier')}}</span>
+                </a>
+            </li>
+            <li class="nav-main-item">
+                <a class="nav-main-link @if($page == 'customer') active @endif" href="{{route('customer.index')}}">
+                    <i class="nav-main-link-icon si si-basket"></i>
+                    <span class="nav-main-link-name">{{__('page.customer')}}</span>
                 </a>
             </li>
             <li class="nav-main-item">

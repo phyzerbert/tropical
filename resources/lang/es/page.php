@@ -160,6 +160,8 @@ return [
     'edit_payment' => 'Editar pago',
     'add_supplier' => 'Añadir proveedor',
     'edit_supplier' => 'Editar proveedor',
+    'add_customer' => 'Añadir clientes',
+    'edit_customer' => 'Editar clientes',
     'add_category' => 'añadir categoría',
     'edit_category' => 'Editar categoria',
     'add_product' => 'Añadir Producto',

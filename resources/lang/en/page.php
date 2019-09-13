@@ -160,6 +160,8 @@ return [
     'edit_payment' => 'Edit Payment',
     'add_supplier' => 'Add Supplier',
     'edit_supplier' => 'Edit Supplier',
+    'add_customer' => 'Add Customer',
+    'edit_customer' => 'Edit Customer',
     'add_category' => 'Add Category',
     'edit_category' => 'Edit Category',
     'add_product' => 'Add Product',
@@ -298,5 +300,12 @@ return [
     'search_menu' => 'Search Menu',
     'identification_or_not' => 'Identificatoin Or Not',
     'choose_file' => 'Choose File',
+
+    'product_sale' => 'Product Sale',
+    'sales_list' => 'Sales List',
+    'add_sale' => 'Add Sale',
+    'edit_sale' => 'Edit Sale',
+    'sale_status' => 'Sale Status',
+    'sale' => 'Sale',
     
 ];

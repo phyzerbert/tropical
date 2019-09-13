@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaymentsTable extends Migration
+class CreateSalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,21 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer("user_id")->nullable();
             $table->dateTime('timestamp')->nullable();
             $table->string('reference_no')->nullable();
-            $table->integer('amount')->nullable();
+            $table->integer('customer_id')->nullable();
+            $table->integer('discount')->default(0);
+            $table->string('discount_string')->nullable();
+            $table->integer('shipping')->default(0);
+            $table->string('shipping_string')->nullable();
+            $table->integer('returns')->default(0);
+            $table->integer('grand_total')->default(0);
             $table->string('attachment')->nullable();
             $table->text('note')->nullable();
-            $table->integer('invoice_id')->nullable();
-            $table->integer('proforma_id')->nullable();
-            $table->integer('sale_id')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +39,6 @@ class CreatePaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('sales');
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Invoice;
 use App\Models\Proforma;
 use App\Models\Shipment;
 use App\Models\Container;
+use App\Models\Sale;
 use App\Models\Item;
 
 use App;
@@ -93,6 +94,13 @@ class VueController extends Controller
         $item = PreOrderItem::find($id);
         $received_quantity = $item->purchased_items->sum('quantity');
         return response()->json($received_quantity);
+    }
+
+    public function get_sale(Request $request){
+        $id = $request->get('id');
+        $item = Sale::find($id)->load('items');
+        // dump($item->items);
+        return response()->json($item);
     }
     
 }

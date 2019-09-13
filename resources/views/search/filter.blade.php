@@ -9,7 +9,7 @@
             <div class="border border-primary rounded p-3">
             <form action="" method="post">
                 @csrf
-                <div class="form-group row">
+                <div class="form-group row mt-3">
                     <label class="col-lg-4 col-form-label" for="search_week_c">{{__('page.week_c')}}</label>
                     <div class="col-lg-8">
                         <input type="text" class="form-control form-control-sm" id="search_week_c" name="week_c" value="{{$week_c}}" placeholder="{{__('page.week_c')}}" />

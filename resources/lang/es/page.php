@@ -93,7 +93,7 @@ return [
     'status' => 'Estado',
     'product_name_code' => 'Nombre del producto (código)',
     'product_code' => 'Código de producto',
-    'product_name' => 'nombre del producto',
+    'product_name' => 'Nombre del producto',
     'unit' => 'Unidad',
     'color' => 'Color',
     'product_tax' => 'Impuesto de producto',

@@ -89,7 +89,7 @@
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.temperature')}}</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="number" step="0.1" name="temperatura" placeholder="TEMPERATURA" required>
+                                    <input class="form-control" type="number" step="0.1" name="temperatura" placeholder="{{__('page.temperature')}}" required>
                                     <div class="input-group-append">
                                         <span class="input-group-text">°C</span>
                                     </div>

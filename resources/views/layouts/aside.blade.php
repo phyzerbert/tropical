@@ -90,7 +90,7 @@
             @endphp
             <li class="nav-main-item @if($page == in_array($page, $container_items)) open @endif">
                 <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                    <i class="nav-main-link-icon si si-book-open"></i>
+                    <i class="nav-main-link-icon si si-grid"></i>
                     <span class="nav-main-link-name">{{__('page.container_load')}}</span>
                 </a>
                 <ul class="nav-main-submenu">

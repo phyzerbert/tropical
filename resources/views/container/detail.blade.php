@@ -76,7 +76,7 @@
                             <div class="block block-rounded block-bordered block-link-pop">
                                 <div class="block-content block-content-default p-3 text-center">
                                     <p class="font-size-h3 font-w300 mb-0">{{$container->booking}}</p>
-                                    <p class="text-muted font-weight-bold mb-0">BOOKING</p>
+                                    <p class="text-muted font-weight-bold mb-0">{{__('page.booking')}}</p>
                                 </div>
                             </div>
                         </div>

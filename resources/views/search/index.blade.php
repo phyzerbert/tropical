@@ -44,7 +44,7 @@
                                         @if(in_array('agency', $search_params))<th>{{__('page.agency')}}</th>@endif
                                         @if(in_array('company', $search_params))<th>{{__('page.company')}}</th>@endif
                                         @if(in_array('dock', $search_params))<th>{{__('page.dock')}}</th>@endif
-                                        <th>{{__('page.detail')}}</th>
+                                        <th width="100">{{__('page.detail')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

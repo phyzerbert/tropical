@@ -43,12 +43,12 @@
                             <tr>
                                 <th>#</th>
                                 <th>BL</th>
-                                <th>Container</th>
-                                <th>Ship Departure Date</th>
-                                <th>Estimated Date Of Shipping Company</th>
-                                <th>WEEK C</th>
-                                <th>WEEK D</th>
-                                <th>{{__('page.detail')}}</th>
+                                <th>{{__('page.container')}}</th>
+                                <th>{{__('page.ship_departure_date')}}</th>
+                                <th>{{__('page.estimated_date_of_shipping_company')}}</th>
+                                <th>{{__('page.week_c')}}</th>
+                                <th>{{__('page.week_d')}}</th>
+                                <th width="100">{{__('page.detail')}}</th>
                             </tr>
                         </thead>
                         <tbody>

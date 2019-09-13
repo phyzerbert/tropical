@@ -52,26 +52,26 @@
                         </div>
                         <div class="col-md-3 mt-3">
                             <div class="form-group">
-                                <label class="form-control-label">WEEK C</label>
-                                <input class="form-control" type="text" name="week_c" v-model="week_c" placeholder="WEEK C" />
+                                <label class="form-control-label">{{__('page.week_c')}}</label>
+                                <input class="form-control" type="text" name="week_c" v-model="week_c" placeholder="{{__('page.week_c')}}" />
                             </div>
                         </div>
                         <div class="col-md-3 mt-3">
                             <div class="form-group">
-                                <label class="form-control-label">WEEK D</label>
-                                <input class="form-control" type="text" name="week_d" v-model="week_d" placeholder="WEEK D" />
+                                <label class="form-control-label">{{__('page.week_d')}}</label>
+                                <input class="form-control" type="text" name="week_d" v-model="week_d" placeholder="{{__('page.week_d')}}" />
                             </div>
                         </div>
                         <div class="col-md-3 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.container')}}</label>
-                                <input class="form-control" type="text" name="container" value="{{$container->container}}" placeholder="CONTENEDOR" />
+                                <input class="form-control" type="text" name="container" value="{{$container->container}}" placeholder="{{__('page.container')}}" />
                             </div>
                         </div>
                         <div class="col-md-3 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.booking')}}</label>
-                                <input class="form-control" type="text" name="booking" value="{{$container->booking}}" placeholder="PRECINTO">
+                                <input class="form-control" type="text" name="booking" value="{{$container->booking}}" placeholder="{{__('page.booking')}}">
                             </div>
                         </div>
                         <div class="col-md-3 mt-3">
@@ -88,7 +88,7 @@
                         </div>
                         <div class="col-md-3 mt-3">
                             <div class="form-group">
-                                <label class="form-control-label">TEMPERATURA</label>
+                                <label class="form-control-label">{{__('page.temperature')}}</label>
                                 <div class="input-group">
                                     <input class="form-control" type="number" step="0.1" name="temperatura" value="{{$container->temperatura}}" placeholder="TEMPERATURA" required>
                                     <div class="input-group-append">
@@ -99,7 +99,7 @@
                         </div>
                         <div class="col-md-3 mt-3">
                             <div class="form-group">
-                                <label class="form-control-label">DAMPER</label>
+                                <label class="form-control-label">{{__('page.damper')}}</label>
                                 <input class="form-control" type="text" name="damper" value="{{$container->damper}}" placeholder="DAMPER">
                             </div>
                         </div>

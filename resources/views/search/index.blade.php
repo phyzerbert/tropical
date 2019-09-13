@@ -59,7 +59,7 @@
                                             @if(in_array('booking', $search_params))<td>{{$item->booking}}</td>@endif
                                             @if(in_array('bl', $search_params))<td>{{$item->bl}}</td>@endif
                                             @if(in_array('shipping_company', $search_params))<td>{{$item->shipping_company}}</td>@endif
-                                            @if(in_array('temperatura', $search_params))<td>{{$item->temperatura}} °C</td>@endif
+                                            @if(in_array('temperature', $search_params))<td>{{$item->temperatura}} °C</td>@endif
                                             @if(in_array('damper', $search_params))<td>{{$item->damper}}</td>@endif
                                             @if(in_array('type_of_merchandise', $search_params))<td>{{$item->type_of_merchandise}}</td>@endif
                                             @if(in_array('fruit_loading_date', $search_params))<td>@if($item->fruit_loading_date){{$item->fruit_loading_date}}@endif</td>@endif

@@ -50,7 +50,7 @@
                         </div>
                         <div class="col-md-7">
                             <div class="block block-content">
-                                <img src="@if($sale->image){{asset($sale->image)}}@else{{asset('images/no-image.jpg')}}@endif" class="attachment" data-value="@if($sale->image){{asset($sale->image)}}@else{{asset('images/no-image.jpg')}}@endif" width="100%" alt="">
+                                <img src="@if($sale->attachment){{asset($sale->attachment)}}@else{{asset('images/no-image.jpg')}}@endif" class="attachment" data-value="@if($sale->attachment){{asset($sale->attachment)}}@else{{asset('images/no-image.jpg')}}@endif" width="100%" alt="">
                             </div>
                         </div>
                     </div>

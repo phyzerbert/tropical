@@ -14,15 +14,15 @@
                             <img src="{{asset('images/lang/en.png')}}" width="30px">&nbsp;&nbsp;English
                             @break
                         @case('es')
-                            <img src="{{asset('images/lang/es.png')}}" width="30px">&nbsp;&nbsp;Espanol
+                            <img src="{{asset('images/lang/es.png')}}" width="30px">&nbsp;&nbsp;Español
                             @break
                         @default
-                            <img src="{{asset('images/lang/es.png')}}" width="30px">&nbsp;&nbsp;Espanol
+                            <img src="{{asset('images/lang/es.png')}}" width="30px">&nbsp;&nbsp;Español
                     @endswitch
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="{{route('lang', 'en')}}"><img src="{{asset('images/lang/en.png')}}" class="rounded-circle" width="30" height="28">  English</a>
-                    <a class="dropdown-item" href="{{route('lang', 'es')}}"><img src="{{asset('images/lang/es.png')}}" class="rounded-circle" width="30" height="28">  Espanol</a>
+                    <a class="dropdown-item" href="{{route('lang', 'es')}}"><img src="{{asset('images/lang/es.png')}}" class="rounded-circle" width="30" height="28">  Español</a>
                 </div>
             </div>
             <div class="dropdown d-inline-block">

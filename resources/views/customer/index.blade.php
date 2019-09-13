@@ -48,7 +48,7 @@
                                     $mod_total_amount = 0;
                                     $mod_paid = \App\Models\Payment::whereIn('sale_id', $sales_array);
 
-                                    $total_amount = $item->sales->sum('total_to_pay');
+                                    $total_amount = $item->sales->sum('grand_total');
                                     $paid = $mod_paid->sum('amount');  
 
                                     $footer_total_amount += $total_amount;

@@ -28,22 +28,22 @@
                                     <tr>
                                         <th>#</th>
                                         <th>PRO-FORMA INVOICE NE</th>
-                                        @if($identification == 'yes')<th>IDENTIFICACION O NIT</th>@endif
+                                        @if(in_array('identification', $search_params))<th>IDENTIFICACION O NIT</th>@endif
                                         <th>{{__('page.week_c')}}</th>
                                         <th>{{__('page.week_d')}}</th>
-                                        @if($container == 'yes')<th>{{__('page.container')}}</th>@endif
-                                        @if($booking == 'yes')<th>{{__('page.booking')}}</th>@endif
-                                        @if($bl == 'yes')<th>BL</th>@endif
-                                        @if($shipping_company == 'yes')<th>{{__('page.shipping_company')}}</th>@endif
-                                        @if($temperature == 'yes')<th>{{__('page.temperature')}}</th>@endif
-                                        @if($damper == 'yes')<th>{{__('page.damper')}}</th>@endif
-                                        @if($type_of_merchandise == 'yes')<th>{{__('page.type_of_merchandise')}}</th>@endif
-                                        @if($fruit_loading_date == 'yes')<th>{{__('page.fruit_loading_date')}}</th>@endif
-                                        @if($ship_departure_date == 'yes')<th>{{__('page.ship_departure_date')}}</th>@endif
-                                        @if($estimated_date == 'yes')<th>{{__('page.estimated_date_of_shipping_company')}}</th>@endif
-                                        @if($agency == 'yes')<th>{{__('page.agency')}}</th>@endif
-                                        @if($company == 'yes')<th>{{__('page.company')}}</th>@endif
-                                        @if($dock == 'yes')<th>{{__('page.dock')}}</th>@endif
+                                        @if(in_array('container', $search_params))<th>{{__('page.container')}}</th>@endif
+                                        @if(in_array('booking', $search_params))<th>{{__('page.booking')}}</th>@endif
+                                        @if(in_array('bl', $search_params))<th>BL</th>@endif
+                                        @if(in_array('shipping_company', $search_params))<th>{{__('page.shipping_company')}}</th>@endif
+                                        @if(in_array('temperature', $search_params))<th>{{__('page.temperature')}}</th>@endif
+                                        @if(in_array('damper', $search_params))<th>{{__('page.damper')}}</th>@endif
+                                        @if(in_array('type_of_merchandise', $search_params))<th>{{__('page.type_of_merchandise')}}</th>@endif
+                                        @if(in_array('fruit_loading_date', $search_params))<th>{{__('page.fruit_loading_date')}}</th>@endif
+                                        @if(in_array('ship_departure_date', $search_params))<th>{{__('page.ship_departure_date')}}</th>@endif
+                                        @if(in_array('estimated_date', $search_params))<th>{{__('page.estimated_date_of_shipping_company')}}</th>@endif
+                                        @if(in_array('agency', $search_params))<th>{{__('page.agency')}}</th>@endif
+                                        @if(in_array('company', $search_params))<th>{{__('page.company')}}</th>@endif
+                                        @if(in_array('dock', $search_params))<th>{{__('page.dock')}}</th>@endif
                                         <th>{{__('page.detail')}}</th>
                                     </tr>
                                 </thead>
@@ -52,22 +52,22 @@
                                         <tr>
                                             <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
                                             <td>@isset($item->proforma->reference_no){{$item->proforma->reference_no}}@endisset</td>
-                                            @if($identification == 'yes')<td>{{$item->identification_or_nit}}</td>@endif
+                                            @if(in_array('identification', $search_params))<td>{{$item->identification_or_nit}}</td>@endif
                                             <td>{{$item->week_c}}</td>
                                             <td>{{$item->week_d}}</td>
-                                            @if($container == 'yes')<td>{{$item->container}}</td>@endif
-                                            @if($booking == 'yes')<td>{{$item->booking}}</td>@endif
-                                            @if($bl == 'yes')<td>{{$item->bl}}</td>@endif
-                                            @if($shipping_company == 'yes')<td>{{$item->shipping_company}}</td>@endif
-                                            @if($temperature == 'yes')<td>{{$item->temperatura}} °C</td>@endif
-                                            @if($damper == 'yes')<td>{{$item->damper}}</td>@endif
-                                            @if($type_of_merchandise == 'yes')<td>{{$item->type_of_merchandise}}</td>@endif
-                                            @if($fruit_loading_date == 'yes')<td>@if($item->fruit_loading_date){{$item->fruit_loading_date}}@endif</td>@endif
-                                            @if($ship_departure_date == 'yes')<td>@if($item->ship_departure_date){{$item->ship_departure_date}}@endif</td>@endif
-                                            @if($estimated_date == 'yes')<td>@if($item->estimated_date){{$item->estimated_date}}@endif</td>@endif
-                                            @if($agency == 'yes')<td>{{$item->agency}}</td>@endif
-                                            @if($company == 'yes')<td>{{$item->company}}</td>@endif
-                                            @if($dock == 'yes')<td>{{$item->dock}}</td>@endif
+                                            @if(in_array('container', $search_params))<td>{{$item->container}}</td>@endif
+                                            @if(in_array('booking', $search_params))<td>{{$item->booking}}</td>@endif
+                                            @if(in_array('bl', $search_params))<td>{{$item->bl}}</td>@endif
+                                            @if(in_array('shipping_company', $search_params))<td>{{$item->shipping_company}}</td>@endif
+                                            @if(in_array('temperatura', $search_params))<td>{{$item->temperatura}} °C</td>@endif
+                                            @if(in_array('damper', $search_params))<td>{{$item->damper}}</td>@endif
+                                            @if(in_array('type_of_merchandise', $search_params))<td>{{$item->type_of_merchandise}}</td>@endif
+                                            @if(in_array('fruit_loading_date', $search_params))<td>@if($item->fruit_loading_date){{$item->fruit_loading_date}}@endif</td>@endif
+                                            @if(in_array('ship_departure_date', $search_params))<td>@if($item->ship_departure_date){{$item->ship_departure_date}}@endif</td>@endif
+                                            @if(in_array('estimated_date', $search_params))<td>@if($item->estimated_date){{$item->estimated_date}}@endif</td>@endif
+                                            @if(in_array('agency', $search_params))<td>{{$item->agency}}</td>@endif
+                                            @if(in_array('company', $search_params))<td>{{$item->company}}</td>@endif
+                                            @if(in_array('dock', $search_params))<td>{{$item->dock}}</td>@endif
                                             <td>                                                
                                                 <a href="{{route('container.detail', $item->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> {{__('page.detail')}}</a>
                                             </td>
@@ -83,20 +83,7 @@
                                     {!! $data->appends([
                                         'week_c' => $week_c, 
                                         'week_d' => $week_d, 
-                                        'identification' => $identification,
-                                        'container' => $container,
-                                        'booking' => $booking,
-                                        'bl' => $bl,
-                                        'shipping_company' => $shipping_company,
-                                        'temperature' => $temperature,
-                                        'damper' => $damper,
-                                        'type_of_merchandise' => $type_of_merchandise,
-                                        'fruit_loading_date' => $fruit_loading_date,
-                                        'ship_departure_date' => $ship_departure_date,
-                                        'estimated_date' => $estimated_date,
-                                        'agency' => $agency,
-                                        'company' => $company,
-                                        'dock' => $dock,
+                                        'search_params' => $search_params,
                                     ])->links() !!}
                                 </div>
                             </div>

@@ -297,5 +297,6 @@ return [
     'shipment_detail' => 'Shipment Detail',
     'search_menu' => 'Search Menu',
     'identification_or_not' => 'Identificatoin Or Not',
+    'choose_file' => 'Choose File',
     
 ];

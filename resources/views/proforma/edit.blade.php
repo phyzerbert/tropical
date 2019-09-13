@@ -161,7 +161,7 @@
                                 <label class="form-control-label">{{__('page.image')}}</label>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" data-toggle="custom-file-input" name="image" accept="image/*">
-                                    <label class="custom-file-label" for="example-file-input-custom">Choose file</label>
+                                    <label class="custom-file-label" for="example-file-input-custom">{{__('page.choose_file')}}</label>
                                 </div>                               
                             </div>
                         </div>

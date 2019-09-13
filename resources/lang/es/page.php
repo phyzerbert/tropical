@@ -294,5 +294,6 @@ return [
     'shipment_detail' => 'Detalle de envío',
     'search_menu' => 'Menú de búsqueda',
     'identification_or_not' => 'Identificación o NIT',
+    'choose_file' => 'Elija Archivo',
     
 ];

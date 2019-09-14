@@ -21,8 +21,9 @@
     <div class="content">  
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
-                <form action="" class="col-md-12 form-inline">
+                <form action="" method="POST" class="col-md-12 form-inline" id="searchForm">
                     @csrf
+                    <input type="hidden" name="sort_by_date" value="{{$sort_by_date}}" id="search_sort_date" />
                     <input type="text" class="form-control form-control-sm col-md-3 mt-2" name="keyword" id="search_keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
                     <button type="submit" class="btn btn-sm btn-primary ml-md-2 mt-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
                     <button type="button" class="btn btn-danger btn-sm mt-2 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</button>
@@ -198,6 +199,15 @@
                 $("#paymentModal").modal();
             });
 
+            $(".sort-date").click(function(){
+                let status = $("#search_sort_date").val();
+                if (status == 'asc') {
+                    $("#search_sort_date").val('desc');
+                } else {
+                    $("#search_sort_date").val('asc');
+                }
+                $("#searchForm").submit();
+            })
             
             $("#btn-reset").click(function(){
                 $("#search_keyword").val('');

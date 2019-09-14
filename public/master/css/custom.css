@@ -12,3 +12,6 @@ td, th {
 .modal-body {
     overflow: auto;
 }
+.sort-date {
+    cursor: pointer;
+}

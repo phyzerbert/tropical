@@ -34,7 +34,7 @@
                 <div class="table-responsive px-1">
                     @php
                         $products = $invoice->items->pluck('product_id')->toArray();
-                        dump($products);
+                        dd($products);
                         $footer_product_total = array();
                     @endphp
                     <table class="table table-bordered table-vcenter">

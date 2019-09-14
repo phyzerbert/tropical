@@ -17,11 +17,11 @@
             margin-top: 30px;
             text-align:center;
             font-size:30px;
-            font-weight: 800;
+            font-weight: 700;
             text-decoration:underline;
         }
         .value {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 500;
             text-decoration: underline;
         }
@@ -32,9 +32,21 @@
             border-bottom: 2px solid #2d2d2d;
         }
         #table-customer {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
-            color: black;
+            color: #584747;
+        }
+        #table-item {
+            font-size: 14px;
+            color: #584747;
+        }
+        .footer {
+            position: absolute;
+            bottom: 25px;;
+        }
+        .footer p {
+            font-size: 11px;
+            color: #584747;
         }
     </style>
 </head>
@@ -50,7 +62,7 @@
                 <tr>
                     <td class="w-50">
                         <h5 class="mb-0">{{__('page.proforma')}}</h5>
-                        <p class="my-0" style="font-size:32px">{{$sale_proforma->reference_no}}</p>
+                        <p class="my-0 text-center" style="font-size:30px">{{$sale_proforma->reference_no}}</p>
                         <p class="mt-3">{{__('page.date')}} : <span class="value">{{date('d/m/Y', strtotime($sale_proforma->timestamp))}}</span></p>
                     </td>
                     <td class="w-50">
@@ -64,13 +76,14 @@
                 </tr>
             </tbody>
         </table>
-        <h3 class="mt-4" style="font-size: 24px; font-weight: 500;">{{__('page.items')}}</h3>
-        <table class="table">
+        <h3 class="mt-4" style="font-size: 22px; font-weight: 600;">{{__('page.items')}}</h3>
+        <table class="table" id="table-item">
             <thead class="table-primary">
                 <tr class="bg-blue">
                     <th style="width:25px;">#</th>
                     <th>{{__('page.product_name_code')}}</th>
                     <th>{{__('page.quantity')}}</th>
+                    <th>{{__('page.price')}}</th>
                     <th>{{__('page.amount')}}</th>
                 </tr>
             </thead>
@@ -88,6 +101,7 @@
                         <td>{{ $loop->index + 1 }}</td>
                         <td class="product_name_code">{{$item->product->name}} ( {{$item->product->code}} )</td>
                         <td class="quantity"> {{number_format($item->quantity)}} </td>
+                        <td class="price"> {{number_format($item->price, 2)}} </td>
                         <td class="amount"> {{ number_format($item->total_amount, 2) }} </td>
                     </tr>
                 @endforeach
@@ -96,16 +110,24 @@
                 <tr>
                     <th colspan="2">{{__('page.total')}}</th>
                     <th>{{number_format($footer_quantity)}}</th>
+                    <th></th>
                     <th>{{number_format($footer_amount, 2)}}</th>  
                 </tr>
             </tfoot>
         </table>
         <div class="mt-4">
-            <h4 class="text-right">
+            <h4 class="text-right pr-3">
                 {{__('page.grand_total')}} : <span class="text-primary">{{number_format($grand_total, 2)}}</span> 
-                {{__('page.paid')}} : <span class="text-primary">{{number_format($paid, 2)}}</span>
-                {{__('page.balance')}} : <span class="text-primary">{{number_format($grand_total - $paid, 2)}}</span>
             </h4>
+        </div>
+        <div class="footer text-center w-100">
+            <p class="my-0">TROPICAL GIDA VE GENEL TIC LTD.</p>
+            <p class="my-0">DIRECCIÓN / ADDRESS: MERKEZ MAHALLESI,SECKIN SOKAK NO:3 BUMERANG OFIS DAIRE NO, 73,74</p>
+            <p class="my-0">CODIGO POSTAL / POSTAL CODE 34406</p>
+            <p class="my-0">CIUDAD / CITY KAGITHANE / ISTAMBUL</p>
+            <p class="my-0">PAIS / COUNTRY TURKEY</p>
+            <p class="my-0">N.I.F / V.A.T NUM. 8590988403</p>
+            <p class="my-0">TELÉFONO / PHONE NUMBER +90(212 2940 331) +90(212 2490 332)</p>
         </div>
     </div>
 </body>

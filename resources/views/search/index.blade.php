@@ -44,6 +44,11 @@
                                         @if(in_array('agency', $search_params))<th>{{__('page.agency')}}</th>@endif
                                         @if(in_array('company', $search_params))<th>{{__('page.company')}}</th>@endif
                                         @if(in_array('dock', $search_params))<th>{{__('page.dock')}}</th>@endif
+                                        <th>{{__('page.products')}}</th>                               
+                                        <th>TOTAL CONTENEDOR</th>
+                                        <th>PESO CARGA</th>
+                                        <th>TARA</th>
+                                        <th>VGM</th>
                                         <th width="100">{{__('page.detail')}}</th>
                                     </tr>
                                 </thead>
@@ -68,6 +73,29 @@
                                             @if(in_array('agency', $search_params))<td>{{$item->agency}}</td>@endif
                                             @if(in_array('company', $search_params))<td>{{$item->company}}</td>@endif
                                             @if(in_array('dock', $search_params))<td>{{$item->dock}}</td>@endif
+                                            <td>
+                                                @php
+                                                    $item_products = json_decode($item->product_list, true);
+                                                    $product_count = count($item_products);
+                                                @endphp
+                                                <button type="button" class="btn btn-sm btn-block btn-secondary" data-toggle="popover" data-html="true" data-placement="bottom" title="{{__('page.product_list')}}" 
+                                                    data-content="
+                                                        <ul>
+                                                            @foreach ($item_products as $key => $value)
+                                                                @php
+                                                                    $product = \App\Models\Product::find($key);
+                                                                @endphp
+                                                                <li>{{$product->name}} ({{$product->code}}) : {{number_format($value, 2)}}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    ">
+                                                    {{$product_count}} {{__('page.products')}}
+                                                </button>
+                                            </td>                                     
+                                            <td>{{number_format($item->total_container, 2)}}</td>
+                                            <td>{{number_format($item->peso_carga, 2)}}</td>
+                                            <td>{{number_format($item->tara, 2)}}</td>
+                                            <td>{{number_format($item->vgm, 2)}}</td>
                                             <td>                                                
                                                 <a href="{{route('container.detail', $item->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> {{__('page.detail')}}</a>
                                             </td>

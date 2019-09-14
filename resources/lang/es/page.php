@@ -16,6 +16,7 @@ return [
     // ********  Sidebar  ********
     'dashboard' => 'Dashboard',
     'product' => 'Producto',  
+    'products' => 'Productos',  
     'report' => 'Informe',
     'reports' => 'Informes',
     'user' => 'Usario',

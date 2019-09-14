@@ -282,7 +282,7 @@ class SaleProformaController extends Controller
 
     public function delete($id){
         $item = SaleProforma::find($id);
-        if($item->status == 1 || $item->sale){
+        if($item->sale){
             return back()->withErrors(['submitted' => 'This proforma has been already submitted.']);
         }
         $item->items()->delete();

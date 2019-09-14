@@ -2,7 +2,7 @@ var app = new Vue({
     el: '#app',
 
     data: {
-        order_items: [],
+        items: [],
         products: [],
         selected_product: '',
         total: {
@@ -15,47 +15,70 @@ var app = new Vue({
         shipping_string: '0',
         returns: 0,
         grand_total: 0,
+        params: {
+            id: $('#sale_proforma_id').val()
+        }
     },
 
     methods:{
         init() {
-            // axios.get('/get_products')
-            //     .then(response => {
-            //         this.products = response.data;
-            //     })
-            //     .catch(error => {
-            //         console.log(error);
-            //     });
+            axios.post('/get_sale_proforma', this.params)
+                .then(response => {
+                    let data = response.data;
+                    this.shipping_string = data.shipping_string
+                    this.discount_string = data.discount_string
+                    this.returns = data.returns
+                    this.note = data.note
+
+                    let items = response.data.items
+                    for (let i = 0; i < items.length; i++) {
+                        const item = items[i];
+                        axios.post('/get_product', {id:item.product_id})
+                            .then(response1 => {
+                                this.items.push({
+                                    product_id: item.product_id,
+                                    product_name_code: response1.data.name + "(" + response1.data.code + ")",
+                                    price: item.price,
+                                    quantity: item.quantity,
+                                    amount: item.amount,
+                                    item_id: item.id,
+                                })
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });                    
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });                
         },
         add_item() {
             axios.get('/get_first_product')
                 .then(response => {
-                    this.order_items.push({
+                    this.items.push({
                         product_id: response.data.id,
                         product_name_code: response.data.name + "(" + response.data.code + ")",
                         price: 0,
                         quantity: 0,
                         amount: 0,
                     })
-                    Vue.nextTick(function() {
-                        app.$refs['product'][app.$refs['product'].length - 1].select()
-                    });
                 })
                 .catch(error => {
                     console.log(error);
                 });            
         },
         calc_amount() {
-            data = this.order_items
+            data = this.items
             let total_quantity = 0;
             let total_price = 0;
             for(let i = 0; i < data.length; i++) {
-                this.order_items[i].amount = parseFloat(data[i].price) * data[i].quantity
-                total_quantity += parseFloat(data[i].quantity)
+                this.items[i].amount = parseFloat(data[i].price) * data[i].quantity
+                total_quantity += parseInt(data[i].quantity)
                 total_price += data[i].amount
             }
-            this.total.quantity = total_quantity.toFixed(2)
-            this.total.price = total_price
+            this.total.quantity = total_quantity
+            this.total.price = total_price.toFixed(2)
         },
         calc_grand_total() {
             this.grand_total = this.total.price - this.discount - this.shipping - this.returns
@@ -65,6 +88,7 @@ var app = new Vue({
             let reg_patt2 = /^\d+$/
             if(reg_patt1.test(this.discount_string)){
                 this.discount = this.total.price*parseFloat(this.discount_string)/100
+                // console.log(this.discount)
             }else if(reg_patt2.test(this.discount_string)){
                 this.discount = this.discount_string
             }else if(this.discount_string == ''){
@@ -75,6 +99,7 @@ var app = new Vue({
 
             if(reg_patt1.test(this.shipping_string)){
                 this.shipping = this.total.price*parseFloat(this.shipping_string)/100
+                // console.log("percent")
             }else if(reg_patt2.test(this.shipping_string)){
                 this.shipping = this.shipping_string
             }else if(this.shipping_string == ''){
@@ -85,7 +110,7 @@ var app = new Vue({
 
         },
         remove(i) {
-            this.order_items.splice(i, 1)
+            this.items.splice(i, 1)
         }
     },
     filters:{
@@ -105,7 +130,7 @@ var app = new Vue({
               _int.slice(i).replace(digitsRE, '$1,') +
               _float
         },
-        formatPrice(value) {
+        number(value) {
             let val = value;
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
@@ -113,7 +138,6 @@ var app = new Vue({
 
     mounted:function() {
         this.init();
-        this.add_item()
         $("#app").css('opacity', 1);
     },
     created: function() {
@@ -132,7 +156,6 @@ var app = new Vue({
             source : function( request, response ) {
                 axios.post('/get_autocomplete_products', { keyword : request.term })
                     .then(resp => {
-                        // response(resp.data);
                         response(
                             $.map(resp.data, function(item) {
                                 return {
@@ -151,11 +174,11 @@ var app = new Vue({
             minLength: 1,
             select: function( event, ui ) {
                 let index = $(".product").index($(this));
-                app.order_items[index].product_id = ui.item.id
-                app.order_items[index].product_name_code = ui.item.label
-                app.order_items[index].price = 0
-                app.order_items[index].quantity = 0
-                app.order_items[index].amount = 0
+                app.items[index].product_id = ui.item.id
+                app.items[index].product_code = ui.item.label
+                app.items[index].price = 0
+                app.items[index].quantity = 0
+                app.items[index].amount = 0
             }
         });
     }    

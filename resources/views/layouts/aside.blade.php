@@ -117,6 +117,27 @@
                 </ul>
             </li>
             @php
+                $sale_proforma_items = ['sale_proforma', 'add_sale_proforma'];
+            @endphp
+            <li class="nav-main-item @if($page == in_array($page, $sale_proforma_items)) open @endif">
+                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="be_tables_datatables.html#">
+                    <i class="nav-main-link-icon si si-star"></i>
+                    <span class="nav-main-link-name">{{__('page.customer_proforma')}}</span>
+                </a>
+                <ul class="nav-main-submenu">
+                    <li class="nav-main-item">
+                        <a class="nav-main-link @if($page == 'sale_proforma') active @endif" href="{{route('sale_proforma.index')}}">
+                            <span class="nav-main-link-name">{{__('page.proforma')}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link @if($page == 'add_sale_proforma') active @endif" href="{{route('sale_proforma.create')}}">
+                            <span class="nav-main-link-name">{{__('page.add_proforma')}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @php
                 $sale_items = ['sale', 'add_sale'];
             @endphp
             <li class="nav-main-item @if($page == in_array($page, $sale_items)) open @endif">

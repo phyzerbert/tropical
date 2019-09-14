@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\Invoice;
 use App\Models\Proforma;
 use App\Models\Sale;
+use App\Models\SaleProforma;
 
 class PaymentController extends Controller
 {
@@ -26,7 +27,10 @@ class PaymentController extends Controller
         }else if($type == 'sale'){
             config(['site.page' => 'sale']);
             $paymentable = Sale::find($id);
-        }        
+        }else if($type == 'sale_proforma'){
+            config(['site.page' => 'sale_proforma']);
+            $paymentable = SaleProforma::find($id);
+        } 
         $data = $paymentable->payments;
         return view('payment.index', compact('data', 'type'));
     }
@@ -55,6 +59,16 @@ class PaymentController extends Controller
             }
         }else if($request->type == 'sale'){
             $item->sale_id = $request->sale_id;
+            $sale = Sale::find($request->sale_id);
+            if($sale->sale_proforma_id) {
+                $item->sale_proforma_id = $sale->sale_proforma_id;
+            }
+        }else if($request->type == 'sale_proforma'){
+            $item->sale_proforma_id = $request->sale_proforma_id;
+            $proforma = SaleProforma::find($request->sale_proforma_id);
+            if($proforma->sale) {
+                $item->sale_id = $proforma->sale->id;
+            }
         }
         $item->note = $request->get('note');
         if($request->has("attachment")){

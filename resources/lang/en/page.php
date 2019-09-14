@@ -307,5 +307,10 @@ return [
     'edit_sale' => 'Edit Sale',
     'sale_status' => 'Sale Status',
     'sale' => 'Sale',
+    'customer_proforma' => 'Customer Proforma',
+    'sale_proforma' => 'Sale Proforma',
+    'submit_customer_proforma' => 'Submit Customer Proforma',
+    'edit_proforma' => 'Edit Proforma',
+    
     
 ];

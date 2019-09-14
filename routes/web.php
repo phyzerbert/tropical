@@ -72,6 +72,17 @@ Route::get('/container/delete/{id}', 'ContainerController@delete')->name('contai
 Route::any('/container/bl', 'ContainerController@search_by_bl')->name('container.bl');
 Route::any('/container/booking', 'ContainerController@search_by_booking')->name('container.booking');
 
+Route::any('/sale_proforma/index', 'SaleProformaController@index')->name('sale_proforma.index');
+Route::get('/sale_proforma/create', 'SaleProformaController@create')->name('sale_proforma.create');
+Route::post('/sale_proforma/save', 'SaleProformaController@save')->name('sale_proforma.save');
+Route::get('/sale_proforma/edit/{id}', 'SaleProformaController@edit')->name('sale_proforma.edit');
+Route::post('/sale_proforma/update', 'SaleProformaController@update')->name('sale_proforma.update');
+Route::get('/sale_proforma/detail/{id}', 'SaleProformaController@detail')->name('sale_proforma.detail');
+Route::get('/sale_proforma/delete/{id}', 'SaleProformaController@delete')->name('sale_proforma.delete');
+Route::get('/sale_proforma/submit/{id}', 'SaleProformaController@submit')->name('sale_proforma.submit');
+Route::post('/sale_proforma/save_submit', 'SaleProformaController@save_submit')->name('sale_proforma.save_submit');
+Route::get('/sale_proforma/container/{id}', 'SaleProformaController@container')->name('sale_proforma.container');
+
 Route::any('/sale/index', 'SaleController@index')->name('sale.index');
 Route::get('/sale/create', 'SaleController@create')->name('sale.create');
 Route::post('/sale/save', 'SaleController@save')->name('sale.save');
@@ -106,9 +117,10 @@ Route::post('get_product', 'VueController@get_product')->name('get_product');
 Route::get('get_first_product', 'VueController@get_first_product');
 Route::post('get_data', 'VueController@get_data');
 Route::post('get_invoice', 'VueController@get_invoice');
-Route::post('get_sale', 'VueController@get_sale');
-Route::post('get_items', 'VueController@get_items');
 Route::post('get_proforma', 'VueController@get_proforma');
+Route::post('get_sale', 'VueController@get_sale');
+Route::post('get_sale_proforma', 'VueController@get_sale_proforma');
+Route::post('get_items', 'VueController@get_items');
 Route::post('get_shipment', 'VueController@get_shipment');
 Route::post('get_container', 'VueController@get_container');
 Route::post('get_received_quantity', 'VueController@get_received_quantity');

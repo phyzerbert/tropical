@@ -23,6 +23,7 @@ class CreatePaymentsTable extends Migration
             $table->integer('invoice_id')->nullable();
             $table->integer('proforma_id')->nullable();
             $table->integer('sale_id')->nullable();
+            $table->integer('sale_proforma_id')->nullable();
             $table->timestamps();
         });
     }

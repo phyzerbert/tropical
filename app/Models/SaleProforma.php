@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sale extends Model
+class SaleProforma extends Model
 {
     protected $guarded = [];
     
@@ -12,8 +12,8 @@ class Sale extends Model
         return $this->morphMany(Item::class, 'itemable');
     }
 
-    public function proforma(){
-        return $this->belongsTo(SaleProforma::class);
+    public function sale(){
+        return $this->hasOne(Sale::class);
     }
 
     public function customer(){

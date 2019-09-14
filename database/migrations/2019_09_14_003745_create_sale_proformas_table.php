@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSalesTable extends Migration
+class CreateSaleProformasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateSalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sales', function (Blueprint $table) {
+        Schema::create('sale_proformas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer("sale_proforma_id")->nullable();
             $table->integer("user_id")->nullable();
             $table->dateTime('timestamp')->nullable();
             $table->string('reference_no')->nullable();
@@ -40,6 +39,6 @@ class CreateSalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('sale_proformas');
     }
 }

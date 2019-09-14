@@ -55,8 +55,15 @@
                                 <tbody>
                                     @php
                                         $footer_product_array = array();
+                                        $footer_total_container = $footer_peso_carga = $footer_tara = $footer_vgm = 0;
                                     @endphp
                                     @foreach ($data as $item)
+                                        @php
+                                            $footer_total_container += $item->total_container;
+                                            $footer_peso_carga += $item->peso_carga;
+                                            $footer_tara += $item->tara;
+                                            $footer_vgm += $item->vgm;
+                                        @endphp
                                         <tr>
                                             <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
                                             <td>@isset($item->proforma->reference_no){{$item->proforma->reference_no}}@endisset</td>
@@ -89,8 +96,6 @@
                                                                     if(isset($footer_product_array[$key])){
                                                                         $footer_product_array[$key]+=$value;
                                                                     }else{
-                                                                        // echo $key;
-                                                                        // array_merge($footer_product_array, array($key => $value));
                                                                         $footer_product_array[$key] =$value;
                                                                     }
                                                                 @endphp
@@ -109,7 +114,36 @@
                                             </td>
                                         </tr>
                                     @endforeach                            
-                                </tbody>
+                                </tbody>                                
+                                <tfoot>
+                                    @php
+                                        $footer_merge = 4 + count($search_params);
+                                    @endphp
+                                    <tr>
+                                        <th colspan="{{$footer_merge}}" class="text-right">{{__('page.total')}} </th>
+                                        <th>
+                                            @php
+                                                $product_count = count($footer_product_array);
+                                            @endphp
+                                            <button type="button" class="btn btn-sm btn-block btn-secondary" data-toggle="popover" data-html="true" data-placement="bottom" title="{{__('page.product_list')}}" 
+                                                data-content="<ul class='font-weight-bold'>
+                                                        @foreach ($footer_product_array as $key => $value)
+                                                            @php
+                                                                $product = \App\Models\Product::find($key);
+                                                            @endphp
+                                                            <li>{{$product->name}} ({{$product->code}}) : {{number_format($value, 2)}}</li>
+                                                        @endforeach
+                                                    </ul>">
+                                                {{$product_count}} {{__('page.products')}}
+                                            </button>
+                                        </th>
+                                        <th>{{number_format($footer_total_container)}}</th>
+                                        <th>{{number_format($footer_peso_carga)}}</th>
+                                        <th>{{number_format($footer_tara)}}</th>
+                                        <th>{{number_format($footer_vgm)}}</th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
                             </table>                    
                             <div class="clearfix mt-2">
                                 <div class="float-left" style="margin: 0;">
@@ -123,7 +157,6 @@
                                     ])->links() !!}
                                 </div>
                             </div>
-                            @dump($footer_product_array)
                         </div>
                     </div>
                 </div>

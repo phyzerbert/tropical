@@ -7,8 +7,9 @@
     <div class="block block-fx-pop">
         <div class="block-content py-5">
             <div class="border border-primary rounded p-3">
-                <form action="" method="post">
+                <form action="" method="post" id="filter_form">
                     @csrf
+                    <input type="hidden" name="keyword" id="filter-keyword" value="{{$keyword}}" />
                     <div class="form-group row mt-3">
                         <label class="col-lg-4 col-form-label" for="search_week_c">{{__('page.week_c')}}</label>
                         <div class="col-lg-8">

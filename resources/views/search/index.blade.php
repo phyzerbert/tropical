@@ -20,9 +20,14 @@
             </div>
             <div class="col-md-8 col-lg-7 col-xl-9">
                 <div class="block block-fx-pop">
+                    <div class="block-header block-header-default">
+                        <div class="col-md-12">
+                            @include('elements.pagesize')
+                            <input type="text" class="col-md-2 form-control form-control-sm ml-auto" id="top-keyword" value="{{$keyword}}" placeholder="{{__('page.keyword')}}" />
+                        </div>
+                    </div>
                     <div class="block-content">
-                        @include('elements.pagesize')
-                        <div class="table-responsive pt-4 pb-8">
+                        <div class="table-responsive pb-8">
                             <table class="table table-bordered table-vcenter">
                                 <thead>
                                     <tr>
@@ -171,6 +176,14 @@
         $(document).ready(function(){            
             $("#pagesize").change(function(){
                 $("#pagesize_form").submit();
+            });
+
+            $("#top-keyword").keyup(function(e){
+                if(e.keyCode != 13){
+                    $("#filter-keyword").val($(this).val());
+                }else{
+                    $("#filter_form").submit();
+                }                
             });
         })
     </script>

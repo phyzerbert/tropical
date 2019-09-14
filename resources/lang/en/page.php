@@ -312,6 +312,6 @@ return [
     'sale_proforma' => 'Sale Proforma',
     'submit_customer_proforma' => 'Submit Customer Proforma',
     'edit_proforma' => 'Edit Proforma',
-    
+    'keyword' => 'Keyword', 
     
 ];

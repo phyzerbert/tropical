@@ -78,6 +78,8 @@
                             <a href="{{route('proforma.index')}}" class="btn btn-oblong btn-success"><i class="fa fa-list"></i>  {{__('page.proforma')}}</a>
                         @elseif($type == 'sale')                                     
                             <a href="{{route('sale.index')}}" class="btn btn-oblong btn-success"><i class="fa fa-list"></i>  {{__('page.sales_list')}}</a>
+                        @elseif($type == 'sale_proforma')                                     
+                            <a href="{{route('sale_proforma.index')}}" class="btn btn-oblong btn-success"><i class="fa fa-list"></i>  {{__('page.customer_proforma')}}</a>
                         @endif
                     </div>
                 </div>                               

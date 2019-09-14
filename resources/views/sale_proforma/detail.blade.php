@@ -173,7 +173,7 @@
                         </div>
                     </div>
                     <div class="clearfix">
-                        <a href="{{route('sale.index')}}" class="btn btn-primary float-right"><i class="far fa-file-alt"></i> {{__('page.sales_list')}}</a>
+                        <a href="{{route('sale_proforma.index')}}" class="btn btn-primary float-right"><i class="far fa-file-alt"></i> {{__('page.customer_proforma')}}</a>
                     </div>
                 </div>
             </div>

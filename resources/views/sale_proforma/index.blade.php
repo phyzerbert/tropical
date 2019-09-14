@@ -74,7 +74,7 @@
                                         @if ($item->status == 1)
                                             <span class="badge badge-success">{{__('page.received')}}</span>
                                         @elseif($item->status == 0)
-                                            <span class="badge badge-primary">{{__('page.pending')}}</span>
+                                            <span class="badge badge-danger">{{__('page.pending')}}</span>
                                         @endif
                                     </td>
                                     <td class="grand_total"> {{number_format($grand_total, 2)}} </td>

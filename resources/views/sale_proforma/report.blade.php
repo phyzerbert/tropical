@@ -21,7 +21,7 @@
             text-decoration:underline;
         }
         .value {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
             text-decoration: underline;
         }
@@ -32,17 +32,9 @@
             border-bottom: 2px solid #2d2d2d;
         }
         #table-customer {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             color: black;
-        }
-        #table-customer tbody td {
-            height: 50px;
-        }
-        .footer-link {
-            position: absolute;
-            right:20px;
-            bottom: 10px;
         }
     </style>
 </head>
@@ -56,29 +48,23 @@
         <table class="w-100 mt-5" id="table-customer">
             <tbody>
                 <tr>
-                    <td class="w-50">{{__('page.date')}} : <span class="value">{{$sale_proforma->timestamp}}</span></td>
-                    <td class="w-50">{{__('page.reference_no')}} : <span class="value">{{$sale_proforma->reference_no}}</span></td>
+                    <td class="w-50">
+                        <h5 class="mb-0">{{__('page.proforma')}}</h5>
+                        <p class="my-0" style="font-size:32px">{{$sale_proforma->reference_no}}</p>
+                        <p class="mt-3">{{__('page.date')}} : <span class="value">{{date('d/m/Y', strtotime($sale_proforma->timestamp))}}</span></p>
+                    </td>
+                    <td class="w-50">
+                        <p class="my-0">{{__('page.name')}} : <span class="value">{{$sale_proforma->customer->name}}</p>
+                        <p class="my-0">{{__('page.company')}} : <span class="value">{{$sale_proforma->customer->company}}</span></p>
+                        <p class="my-0">{{__('page.email')}} : <span class="value">{{$sale_proforma->customer->email}}</span></p>
+                        <p class="my-0">{{__('page.phone_number')}} : <span class="value">{{$sale_proforma->customer->phone_number}}</span></p>
+                        <p class="my-0">{{__('page.city')}} : <span class="value">{{$sale_proforma->customer->city}}</span></p>
+                        <p class="my-0">{{__('page.address')}} : <span class="value">{{$sale_proforma->customer->address}}</span></p>
+                    </td>
                 </tr>
             </tbody>
         </table>
-        <h3 class="mt-2 mb-1" style="font-size: 24px; font-weight: 500;">• {{__('page.customer')}}</h3>
-        <table class="w-100" id="table-customer">
-            <tbody>
-                <tr>
-                    <td class="w-50">{{__('page.company')}} : <span class="value">{{$sale_proforma->customer->company}}</span></td>
-                    <td class="w-50">{{__('page.name')}} : <span class="value">{{$sale_proforma->customer->name}}</span></td>
-                </tr>
-                <tr>
-                    <td class="w-50">{{__('page.email')}} : <span class="value">{{$sale_proforma->customer->email}}</span></td>
-                    <td class="w-50">{{__('page.phone_number')}} : <span class="value">{{$sale_proforma->customer->phone_number}}</span></td>
-                </tr>
-                <tr>
-                    <td class="w-50">{{__('page.city')}} : <span class="value">{{$sale_proforma->customer->city}}</span></td>
-                    <td class="w-50">{{__('page.address')}} : <span class="value">{{$sale_proforma->customer->address}}</span></td>
-                </tr>
-            </tbody>
-        </table>
-        <h3 class="mt-3" style="font-size: 24px; font-weight: 500;">• {{__('page.items')}}</h3>
+        <h3 class="mt-4" style="font-size: 24px; font-weight: 500;">{{__('page.items')}}</h3>
         <table class="table">
             <thead class="table-primary">
                 <tr class="bg-blue">

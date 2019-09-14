@@ -79,16 +79,14 @@
                                                     $product_count = count($item_products);
                                                 @endphp
                                                 <button type="button" class="btn btn-sm btn-block btn-secondary" data-toggle="popover" data-html="true" data-placement="bottom" title="{{__('page.product_list')}}" 
-                                                    data-content="
-                                                        <ul>
+                                                    data-content="<ul class='font-weight-bold'>
                                                             @foreach ($item_products as $key => $value)
                                                                 @php
                                                                     $product = \App\Models\Product::find($key);
                                                                 @endphp
                                                                 <li>{{$product->name}} ({{$product->code}}) : {{number_format($value, 2)}}</li>
                                                             @endforeach
-                                                        </ul>
-                                                    ">
+                                                        </ul>">
                                                     {{$product_count}} {{__('page.products')}}
                                                 </button>
                                             </td>                                     

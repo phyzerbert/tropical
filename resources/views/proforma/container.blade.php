@@ -34,6 +34,7 @@
                 <div class="table-responsive px-1">
                     @php
                         $products = $invoice->items->pluck('product_id')->toArray();
+                        dump($products);
                         $footer_product_total = array();
                     @endphp
                     <table class="table table-bordered table-vcenter">
@@ -42,18 +43,18 @@
                                 <th rowspan="2">#</th>
                                 <th rowspan="2">PRO-FORMA INVOICE NE</th>
                                 <th rowspan="2">IDENTIFICACION O NIT</th>
-                                <th rowspan="2">WEEK C</th>
-                                <th rowspan="2">WEEK D</th>
-                                <th rowspan="2">Container</th>
-                                <th rowspan="2">Booking</th>
+                                <th rowspan="2">{{__('page.week_c')}}</th>
+                                <th rowspan="2">{{__('page.week_d')}}</th>
+                                <th rowspan="2">{{__('page.container')}}</th>
+                                <th rowspan="2">{{__('page.booking')}}</th>
                                 <th rowspan="2">BL</th>
-                                <th rowspan="2">Shipping Company</th>
-                                <th rowspan="2">Fruit Loading Date</th>
-                                <th rowspan="2">Ship Departure Date</th>
-                                <th rowspan="2">Estimated Date Of Shipping Company</th>
-                                <th rowspan="2">Agency</th>
-                                <th rowspan="2">Company</th>
-                                <th rowspan="2">Dock</th>
+                                <th rowspan="2">{{__('page.shipping_company')}}</th>
+                                <th rowspan="2">{{__('page.fruit_loading_date')}}</th>
+                                <th rowspan="2">{{__('page.ship_departure_date')}}</th>
+                                <th rowspan="2">{{__('page.estimated_date_of_shipping_company')}}</th>
+                                <th rowspan="2">{{__('page.agency')}}</th>
+                                <th rowspan="2">{{__('page.company')}}</th>
+                                <th rowspan="2">{{__('page.dock')}}</th>
                                 @foreach ($products as $id)
                                     <th>{{\App\Models\Product::find($id)->code}}</th>
                                 @endforeach                                

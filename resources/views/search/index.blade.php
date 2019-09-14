@@ -158,6 +158,7 @@
                                     {!! $data->appends([
                                         'week_c' => $week_c, 
                                         'week_d' => $week_d, 
+                                        'keyword' => $keyword, 
                                         'search_params' => $search_params,
                                     ])->links() !!}
                                 </div>

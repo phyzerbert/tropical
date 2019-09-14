@@ -86,6 +86,13 @@
                                                             @foreach ($item_products as $key => $value)
                                                                 @php
                                                                     $product = \App\Models\Product::find($key);
+                                                                    if(isset($footer_product_array[$key])){
+                                                                        $footer_product_array[$key]+=$value;
+                                                                    }else{
+                                                                        // echo $key;
+                                                                        // array_merge($footer_product_array, array($key => $value));
+                                                                        $footer_product_array[$key] =$value;
+                                                                    }
                                                                 @endphp
                                                                 <li>{{$product->name}} ({{$product->code}}) : {{number_format($value, 2)}}</li>
                                                             @endforeach
@@ -116,13 +123,13 @@
                                     ])->links() !!}
                                 </div>
                             </div>
+                            @dump($footer_product_array)
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 @endsection
 

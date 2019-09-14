@@ -130,7 +130,7 @@
                                             @php
                                                 $product_count = count($footer_product_array);
                                             @endphp
-                                            <button type="button" class="btn btn-sm btn-block btn-secondary" data-toggle="popover" data-html="true" data-placement="bottom" title="{{__('page.product_list')}}" 
+                                            <button type="button" class="btn btn-sm btn-block btn-info" data-toggle="popover" data-html="true" data-placement="bottom" title="{{__('page.product_list')}}" 
                                                 data-content="<ul class='font-weight-bold'>
                                                         @foreach ($footer_product_array as $key => $value)
                                                             @php

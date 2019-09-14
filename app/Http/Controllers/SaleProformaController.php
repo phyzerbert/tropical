@@ -217,9 +217,9 @@ class SaleProformaController extends Controller
     }
     public function report_view($id){
         $sale_proforma = SaleProforma::find($id);
-        $pdf = PDF::loadView('sale.report', compact('sale_proforma'));  
+        $pdf = PDF::loadView('sale_proforma.report', compact('sale_proforma'));  
         // return $pdf->download('sale_report_'.$sale->reference_no.'.pdf');
-        return view('sale_proforma.report', compact('sale'));
+        return view('sale_proforma.report', compact('sale_proforma'));
     }
 
     public function submit(Request $request, $id){

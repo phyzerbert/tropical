@@ -94,15 +94,15 @@
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-paper-plane"></i> {{__('page.action')}}</button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item px-3" href="{{route('sale_proforma.detail', $item->id)}}"><i class="align-middle" data-feather="eye"></i> {{__('page.details')}}</a>
-                                                {{-- <a class="dropdown-item px-3" href="{{route('sale_proforma.report', $item->id)}}"><i class="align-middle mr-2 far fa-file-pdf"></i> {{__('page.report')}}</a> --}}
+                                                <a class="dropdown-item px-3" href="{{route('sale_proforma.detail', $item->id)}}">{{__('page.details')}}</a>
+                                                <a class="dropdown-item px-3" href="{{route('sale_proforma.report', $item->id)}}">{{__('page.report')}}</a>
                                                 @if (!$item->status)                                                    
                                                     <a class="dropdown-item" href="{{route('sale_proforma.submit', $item->id)}}" data-id="{{$item->id}}">{{__('page.submit')}}</a>
                                                 @endif
-                                                <a class="dropdown-item px-3" href="{{route('payment.index', ['sale_proforma', $item->id])}}"><i class="align-middle" data-feather="dollar-sign"></i> {{__('page.payment_list')}}</a>
-                                                <a class="dropdown-item px-3 btn-add-payment" href="#" data-id="{{$item->id}}"><i class="align-middle" data-feather="credit-card"></i> {{__('page.add_payment')}}</a>
-                                                <a class="dropdown-item px-3" href="{{route('sale_proforma.edit', $item->id)}}"><i class="align-middle" data-feather="edit"></i> {{__('page.edit')}}</a>
-                                                <a class="dropdown-item px-3" href="{{route('sale_proforma.delete', $item->id)}}"><i class="align-middle" data-feather="trash-2"></i> {{__('page.delete')}}</a>
+                                                <a class="dropdown-item px-3" href="{{route('payment.index', ['sale_proforma', $item->id])}}">{{__('page.payment_list')}}</a>
+                                                <a class="dropdown-item px-3 btn-add-payment" href="#" data-id="{{$item->id}}">{{__('page.add_payment')}}</a>
+                                                <a class="dropdown-item px-3" href="{{route('sale_proforma.edit', $item->id)}}">{{__('page.edit')}}</a>
+                                                <a class="dropdown-item px-3" href="{{route('sale_proforma.delete', $item->id)}}">{{__('page.delete')}}</a>
                                             </div>
                                         </div>
                                     </td>

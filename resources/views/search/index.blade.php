@@ -53,6 +53,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $footer_product_array = array();
+                                    @endphp
                                     @foreach ($data as $item)
                                         <tr>
                                             <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>

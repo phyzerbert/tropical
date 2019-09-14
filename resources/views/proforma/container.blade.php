@@ -101,7 +101,9 @@
                                         @php
                                             $footer_product_total[$id] += $container_products[$id];
                                         @endphp
-                                        <td>{{number_format($container_products[$id])}}</td>
+                                        <td>
+                                            @isset($container_products[$id]){{number_format($container_products[$id])}}@endisset
+                                        </td>
                                     @endforeach                                    
                                     <td>{{number_format($item->total_container)}}</td>
                                     <td>{{number_format($item->peso_carga)}}</td>

@@ -10,6 +10,10 @@ use App\Models\Payment;
 use App\Models\Item;
 
 use Auth;
+use PDF;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\InvoiceMail;
 
 class SaleController extends Controller
 {
@@ -210,12 +214,17 @@ class SaleController extends Controller
     }
 
     public function report($id){
-        $sale = ProductSale::find($id);
-        $pdf = PDF::loadView('sale.report', compact('sale'));  
+        $sale = Sale::find($id);
+        $pdf = PDF::loadView('sale.report', compact('sale'));
+        if($sale->customer->email){
+            $to_email = $sale->customer->email;
+            Mail::to($to_email)->send(new InvoiceMail($pdf, 'ProductSaleInvoice')); 
+        }
+        
         return $pdf->download('sale_report_'.$sale->reference_no.'.pdf');
     }
     public function report_view($id){
-        $sale = ProductSale::find($id);
+        $sale = Sale::find($id);
         $pdf = PDF::loadView('sale.report', compact('sale'));  
         // return $pdf->download('sale_report_'.$sale->reference_no.'.pdf');
         return view('sale.report', compact('sale'));

@@ -84,6 +84,7 @@
                                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle" id="dropdown-align-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('page.action')}}&nbsp;</button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-align-primary">
                                                 <a class="dropdown-item" href="{{route('sale.detail', $item->id)}}">{{__('page.detail')}}</a>
+                                                <a class="dropdown-item" href="{{route('sale.report', $item->id)}}">{{__('page.report')}}</a>
                                                 <a class="dropdown-item btn-add-payment" data-id="{{$item->id}}" href="javascript:void(0)">{{__('page.add_payment')}}</a>
                                                 <a class="dropdown-item" href="{{route('payment.index', ['sale', $item->id])}}">{{__('page.payment_list')}}</a>
                                                 <a class="dropdown-item" href="{{route('sale.edit', $item->id)}}">{{__('page.edit')}}</a>

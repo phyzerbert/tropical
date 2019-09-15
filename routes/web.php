@@ -80,7 +80,7 @@ Route::post('/sale_proforma/update', 'SaleProformaController@update')->name('sal
 Route::get('/sale_proforma/detail/{id}', 'SaleProformaController@detail')->name('sale_proforma.detail');
 Route::get('/sale_proforma/delete/{id}', 'SaleProformaController@delete')->name('sale_proforma.delete');
 Route::get('/sale_proforma/submit/{id}', 'SaleProformaController@submit')->name('sale_proforma.submit');
-Route::get('/sale_proforma/report/{id}', 'SaleProformaController@report')->name('sale_proforma.submit');
+Route::get('/sale_proforma/report/{id}', 'SaleProformaController@report')->name('sale_proforma.report');
 Route::post('/sale_proforma/save_submit', 'SaleProformaController@save_submit')->name('sale_proforma.save_submit');
 Route::get('/sale_proforma/container/{id}', 'SaleProformaController@container')->name('sale_proforma.container');
 
@@ -90,6 +90,7 @@ Route::post('/sale/save', 'SaleController@save')->name('sale.save');
 Route::get('/sale/edit/{id}', 'SaleController@edit')->name('sale.edit');
 Route::post('/sale/update', 'SaleController@update')->name('sale.update');
 Route::get('/sale/detail/{id}', 'SaleController@detail')->name('sale.detail');
+Route::get('/sale/report/{id}', 'SaleController@report')->name('sale.report');
 Route::get('/sale/delete/{id}', 'SaleController@delete')->name('sale.delete');
 
 Route::any('/supplier/index', 'SupplierController@index')->name('supplier.index');

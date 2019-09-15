@@ -14,6 +14,9 @@ use App\Models\Payment;
 use Auth;
 use PDF;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\InvoiceMail;
+
 class SaleProformaController extends Controller
 {
     public function __construct() {
@@ -215,6 +218,10 @@ class SaleProformaController extends Controller
     public function report($id){
         $sale_proforma = SaleProforma::find($id);
         $pdf = PDF::loadView('sale_proforma.report', compact('sale_proforma'));  
+        if($sale_proforma->customer->email){
+            $to_email = $sale_proforma->customer->email;
+            Mail::to($to_email)->send(new InvoiceMail($pdf, 'CustomerProformaInvoice')); 
+        }
         return $pdf->download('customer_proforma_report_'.$sale_proforma->reference_no.'.pdf');
     }
     public function report_view($id){

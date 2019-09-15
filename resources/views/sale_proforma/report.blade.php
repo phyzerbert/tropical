@@ -118,7 +118,7 @@
         </table>
         <div class="mt-4">
             <h4 class="text-right pr-3">
-                {{__('page.grand_total')}} : <span class="text-primary">{{number_format($grand_total, 2)}}</span> 
+                {{__('page.grand_total')}} : <span class="text-primary">{{number_format($sale_proforma->total_to_pay, 2)}}</span> 
             </h4>
         </div>
         <div class="footer text-center w-100">

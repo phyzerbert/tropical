@@ -29,6 +29,10 @@
             font-weight: 500;
             text-decoration: underline;
         }
+        .field {
+            text-transform: uppercase;
+            font-size: 12px;
+        }
         td.value {
             line-height: 1;
         }
@@ -48,17 +52,15 @@
         }
         .footer {
             position: absolute;
-            bottom: 15px;;
+            bottom: 10px;;
         }
-        .footer p {
+        .footer tr td {
             font-size: 11px;
             color: #584747;
+            text-align: center;
+            line-height: 1;
         }
 
-        .field {
-            text-transform: uppercase;
-            font-size: 12px;
-        }
     </style>
 </head>
 <body>
@@ -147,14 +149,16 @@
                 {{__('page.grand_total')}} : <span class="text-primary">{{number_format($sale_proforma->total_to_pay, 2)}}</span> 
             </h4>
         </div>
-        <div class="footer text-center w-100">
-            <p class="my-0">TROPICAL GIDA VE GENEL TIC LTD.</p>
-            <p class="my-0">DIRECCIÓN / ADDRESS: MERKEZ MAHALLESI,SECKIN SOKAK NO:3 BUMERANG OFIS DAIRE NO, 73,74</p>
-            <p class="my-0">CODIGO POSTAL / POSTAL CODE 34406</p>
-            <p class="my-0">CIUDAD / CITY KAGITHANE / ISTAMBUL</p>
-            <p class="my-0">PAIS / COUNTRY TURKEY</p>
-            <p class="my-0">N.I.F / V.A.T NUM. 8590988403</p>
-            <p class="my-0">TELÉFONO / PHONE NUMBER +90(212 2940 331) +90(212 2490 332)</p>
+        <div class="footer text-center">
+            <table class="w-100">
+                <tr><td>TROPICAL GIDA VE GENEL TIC LTD.</td></tr>
+                <tr><td>DIRECCIÓN / ADDRESS: MERKEZ MAHALLESI,SECKIN SOKAK NO:3 BUMERANG OFIS DAIRE NO, 73,74</td></tr>
+                <tr><td>CODIGO POSTAL / POSTAL CODE 34406</td></tr>
+                <tr><td>CIUDAD / CITY KAGITHANE / ISTAMBUL</td></tr>
+                <tr><td>PAIS / COUNTRY TURKEY</td></tr>
+                <tr><td>N.I.F / V.A.T NUM. 8590988403</td></tr>
+                <tr><td>TELÉFONO / PHONE NUMBER +90(212 2940 331) +90(212 2490 332)</td></tr>
+            </table>
         </div>
     </div>
 </body>

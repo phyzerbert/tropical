@@ -29,6 +29,9 @@
             font-weight: 500;
             text-decoration: underline;
         }
+        td.value {
+            line-height: 1;
+        }
         .table-bordered, .table-bordered td, .table-bordered th {
             border: 1px solid #2d2d2d;
         }
@@ -45,11 +48,16 @@
         }
         .footer {
             position: absolute;
-            bottom: 15px;
+            bottom: 10px;;
         }
         .footer p {
             font-size: 11px;
             color: #584747;
+        }
+
+        .field {
+            text-transform: uppercase;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -64,18 +72,33 @@
             <tbody>
                 <tr>
                     <td class="w-50" valign="top">
-                        <h5 class="mb-0">{{__('page.proforma')}}</h5>
+                        <h5 class="mb-0 text-uppercase">{{__('page.proforma')}}</h5>
                         <p class="my-0 text-center" style="font-size:24px">{{$sale->reference_no}}</p>
-                        <p class="mt-2 mb-0">{{__('page.date')}} : <span class="value">{{date('d/m/Y', strtotime($sale->date))}}</span></p>
-                        <p class="my-0">{{__('page.concerning_week')}} : <span class="value">{{ $sale->concerning_week }}</span></p>
+                        
                     </td>
-                    <td class="w-50" valign="top">
-                        <p class="my-0">{{__('page.name')}} : <span class="value">{{$sale->customer->name}}</p>
-                        <p class="my-0">{{__('page.company')}} : <span class="value">{{$sale->customer->company}}</span></p>
-                        <p class="my-0">{{__('page.email')}} : <span class="value">{{$sale->customer->email}}</span></p>
-                        <p class="my-0">{{__('page.phone_number')}} : <span class="value">{{$sale->customer->phone_number}}</span></p>
-                        <p class="my-0">{{__('page.city')}} : <span class="value">{{$sale->customer->city}}</span></p>
-                        <p class="my-0">{{__('page.address')}} : <span class="value">{{$sale->customer->address}}</span></p>
+                    <td class="w-50 pt-3 text-right" rowspan="2" valign="top">
+                        <table class="w-100">
+                            <tr><td class="value">{{$sale->customer->name}}</td></tr>
+                            <tr><td class="value">{{$sale->customer->company}}</td></tr>
+                            <tr><td class="value">{{$sale->customer->email}}</td></tr>
+                            <tr><td class="value">{{$sale->customer->phone_number}}</td></tr>
+                            <tr><td class="value">{{$sale->customer->city}}</td></tr>
+                            <tr><td class="value">{{$sale->customer->address}}</td></tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pt-1">
+                        <table class="w-100">
+                            <tr>
+                                <td class="field">{{__('page.date')}} : </td>    
+                                <td class="value">{{date('d/m/Y', strtotime($sale->date))}}</td>
+                            </tr>
+                            <tr>
+                                <td class="field">{{__('page.concerning_week')}} : </td>
+                                <td class="value">{{ $sale->concerning_week }}</td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
             </tbody>

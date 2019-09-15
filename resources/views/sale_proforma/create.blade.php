@@ -27,7 +27,7 @@
                     <div class="row mb-3">
                         <div class="col-md-3">
                             <div class="form-group mg-b-10-force">
-                                <label class="form-control-label">PRO-FORMA INVOICE NR</label>
+                                <label class="form-control-label">PRO-FORMA</label>
                                 <input class="form-control" type="text" name="reference_no" placeholder="{{__('page.reference_no')}}" required>
                                 @error('reference_no')
                                     <span class="invalid-feedback d-block" role="alert">

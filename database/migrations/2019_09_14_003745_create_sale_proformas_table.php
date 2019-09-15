@@ -15,19 +15,23 @@ class CreateSaleProformasTable extends Migration
     {
         Schema::create('sale_proformas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer("user_id")->nullable();
-            $table->dateTime('timestamp')->nullable();
             $table->string('reference_no')->nullable();
             $table->integer('customer_id')->nullable();
-            $table->integer('discount')->default(0);
-            $table->string('discount_string')->nullable();
-            $table->integer('shipping')->default(0);
-            $table->string('shipping_string')->nullable();
-            $table->integer('returns')->default(0);
-            $table->integer('grand_total')->default(0);
-            $table->string('attachment')->nullable();
+            $table->date('date')->nullable();
+            $table->date('due_date')->nullable();
+            $table->string('customers_vat')->nullable();
+            $table->string('concerning_week')->nullable();
+            $table->string('vessel')->nullable();
+            $table->string('port_of_discharge')->nullable();
+            $table->string('port_of_charge')->nullable();
+            $table->string('origin')->nullable();
+            $table->string('week_c')->nullable();
+            $table->string('week_d')->nullable();
+            $table->string('image')->nullable();
+            $table->integer('vat_amount')->default(0);
+            $table->decimal('total_to_pay', 14, 2)->nullable();
+            $table->integer('is_submitted')->default(0);
             $table->text('note')->nullable();
-            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

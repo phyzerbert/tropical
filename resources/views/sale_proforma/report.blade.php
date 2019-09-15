@@ -6,6 +6,7 @@
     <link rel="stylesheet" id="css-main" href="{{asset('master/css/dashmix.min-2.0.css')}}">
     <style>
         body {
+            color: #584747;
             border: solid 1px black;
             padding: 10px;
             background: url('{{asset("images/bg_pdf.jpg")}}') no-repeat;
@@ -34,7 +35,6 @@
         #table-customer {
             font-size: 14px;
             font-weight: 600;
-            color: #584747;
         }
         #table-item {
             font-size: 14px;
@@ -63,7 +63,8 @@
                     <td class="w-50">
                         <h5 class="mb-0">{{__('page.proforma')}}</h5>
                         <p class="my-0 text-center" style="font-size:30px">{{$sale_proforma->reference_no}}</p>
-                        <p class="mt-3">{{__('page.date')}} : <span class="value">{{date('d/m/Y', strtotime($sale_proforma->timestamp))}}</span></p>
+                        <p class="mt-3">{{__('page.date')}} : <span class="value">{{date('d/m/Y', strtotime($sale_proforma->date))}}</span></p>
+                        <p class="mt-0">{{__('page.concerning_week')}} : <span class="value">{{ $sale_proforma->concerning_week }}</span></p>
                     </td>
                     <td class="w-50">
                         <p class="my-0">{{__('page.name')}} : <span class="value">{{$sale_proforma->customer->name}}</p>

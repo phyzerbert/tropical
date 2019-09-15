@@ -28,7 +28,7 @@
                         <label for="" class="mr-3 ml-md-auto" style="margin-top:18px;">PRO-FORMA</label>
                         <input type="text" class="form-control form-control-sm col-md-2 mt-sm-3 mr-3" name="proforma" style="width:200px;" value="{{$sale_proforma->reference_no}}" placeholder="PRO-FORMA" />
                         <label for="" class="mr-3" style="margin-top:18px;">{{__('page.date')}}</label>
-                        <input type="text" class="form-control form-control-sm col-md-2 mt-sm-3 mr-3 datepicker" name="date" style="width:200px;" value="{{date('Y-m-d H:i', strtotime($sale_proforma->timestamp))}}" required placeholder="{{__('page.date')}}" />
+                        <input type="text" class="form-control form-control-sm col-md-2 mt-sm-3 mr-3 datepicker" name="date" style="width:200px;" value="{{date('Y-m-d', strtotime($sale_proforma->date))}}" required placeholder="{{__('page.date')}}" />
                         <button type="button" class="btn btn-sm btn-primary btn-icon mt-3 add-item" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add_product')}}</button>
                     </div>
                 </div>
@@ -67,100 +67,18 @@
                             <tfoot>
                                 <tr>
                                     <th colspan="3" class="text-right">{{__('page.total')}}</th>
-                                    <th colspan="2" class="total_excluding_vat">@{{formatPrice(total.amount)}}</th>
+                                    <th colspan="2" class="total_excluding_vat">@{{total.amount | currency}}</th>
                                 </tr>
                                 <tr>
                                     <th colspan="3" class="text-right">Total To Pay</th>
                                     <th colspan="2">
-                                        @{{formatPrice(grand_total)}}
-                                        <input type="hidden" name="grand_total" :value="grand_total" />
+                                        @{{total_to_pay | currency}}
+                                        <input type="hidden" name="grand_total" :value="total_to_pay" />
                                     </th>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
-                    <div class="row my-3">                        
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group row">
-                                    <label class="form-control-label col-md-5 text-sm-right mt-1">{{__('page.discount')}} :</label>
-                                    <div class="col-md-7">
-                                        <input type="text" name="discount_string" class="form-control" v-model="discount_string" placeholder="{{__('page.discount')}}">
-                                        <input type="hidden" name="discount" :value="discount">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group row">
-                                    <label class="form-control-label col-md-5 text-sm-right mt-1">{{__('page.shipping')}} :</label>
-                                    <div class="col-md-7">
-                                        <input type="text" name="shipping_string" class="form-control" v-model="shipping_string" placeholder="{{__('page.shipping')}}">
-                                        <input type="hidden" name="shipping" :value="shipping">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group row">
-                                    <label class="form-control-label col-md-5 text-sm-right mt-1">{{__('page.returns')}} :</label>
-                                    <div class="col-md-7">
-                                        <input type="number" name="returns" class="form-control" min="0" v-model="returns" placeholder="{{__('page.returns')}}">
-                                        <input type="hidden" name="grand_total" :value="grand_total">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row row-deck">
-                            <div class="col-md-4 col-lg">
-                                <a class="block block-rounded block-link-shadow border rounded" href="javascript:void(0)">
-                                    <div class="block-content block-content-full">
-                                        <div class="ml-3">
-                                            <p class="font-size-h3 font-w200 text-black mb-0">@{{total.amount | currency}}</p>
-                                            <p class="font-w600 mt-2 text-uppercase text-muted mb-0">{{__('page.sale')}}</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-4 col-lg">
-                                <a class="block block-rounded block-link-shadow border rounded" href="javascript:void(0)">
-                                    <div class="block-content block-content-full">
-                                        <div class="ml-3">
-                                            <p class="font-size-h3 font-w200 text-black mb-0">@{{discount | currency}}</p>
-                                            <p class="font-w600 mt-2 text-uppercase text-muted mb-0">{{__('page.discount')}}</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-4 col-lg">
-                                <a class="block block-rounded block-link-shadow border rounded" href="javascript:void(0)">
-                                    <div class="block-content block-content-full">
-                                        <div class="ml-3">
-                                            <p class="font-size-h3 font-w200 text-black mb-0">@{{shipping | currency}}</p>
-                                            <p class="font-w600 mt-2 text-uppercase text-muted mb-0">{{__('page.shipping')}}</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-4 col-lg">
-                                <a class="block block-rounded block-link-shadow border rounded" href="javascript:void(0)">
-                                    <div class="block-content block-content-full">
-                                        <div class="ml-3">
-                                            <p class="font-size-h3 font-w200 text-black mb-0">@{{returns | currency}}</p>
-                                            <p class="font-w600 mt-2 text-uppercase text-muted mb-0">{{__('page.returns')}}</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-4 col-lg">
-                                <a class="block block-rounded block-link-shadow border rounded" href="javascript:void(0)">
-                                    <div class="block-content block-content-full">
-                                        <div class="ml-3">
-                                            <p class="font-size-h3 font-w200 text-black mb-0">@{{grand_total | currency}}</p>
-                                            <p class="font-w600 mt-2 text-uppercase text-muted mb-0">{{__('page.total')}}</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane mr-2"></i> {{__('page.submit')}}</button>
                     </div>                
@@ -178,7 +96,7 @@
     <script src="{{asset('master/js/plugins/select2/js/select2.full.min.js')}}"></script>
     <script>
         $(document).ready(function(){
-            $('.datepicker').datetimepicker({
+            $('.datepicker').datepicker({
                 dateFormat: 'yy-mm-dd',
             });
         })

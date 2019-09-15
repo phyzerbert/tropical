@@ -30,20 +30,28 @@
     <div class="content content-boxed">
         <div class="block block-fx-shadow">
             <div class="block-header block-header-default">
-                <h3 class="block-title py-3" style="font-size:35px">{{__('page.sale')}} : {{$sale->reference_no}}</h3>
+                <h3 class="block-title py-3">{{__('page.proforma')}} : {{$sale->reference_no}}</h3>
             </div>
             <div class="block-content">
                 <div class="p-sm-4 p-xl-6">
                     <div class="row mb-5">
                         <div class="col-md-5">
-                            <h4>{{__('page.reference_no')}} : <ins>{{$sale->reference_no}}</ins></h4>
-                            <h4>{{__('page.date')}} : <ins>{{date('Y-m-d H:i', strtotime($sale->timestamp))}}</ins></h4>
-                            <h4>{{__('page.customer')}} : @if($sale->customer)<ins>{{$sale->customer->company}}</ins>@endif</h4>
+                            <h4>{{__('page.customer')}} : @isset($sale->customer->company){{ $sale->customer->company }}@endif</h4>
+                            <h4>{{__('page.date')}} : {{ date('d/m/Y', strtotime($sale->date)) }}</h4>
+                            <h4>{{__('page.due_date')}} : {{ date('d/m/Y', strtotime($sale->due_date)) }}</h4>
+                            <h4>{{__('page.customers_vat')}} : {{$sale->customers_vat}}</h4>
+                            <h4>{{__('page.concerning_week')}} : {{$sale->concerning_week}}</h4>
+                            <h4>{{__('page.vessel')}} : {{$sale->vessel}}</h4>
+                            <h4>{{__('page.port_of_charge')}} : {{$sale->port_of_charge}}</h4>
+                            <h4>{{__('page.port_of_discharge')}} : {{$sale->port_of_discharge}}</h4>
+                            <h4>{{__('page.origin')}} : {{$sale->origin}}</h4>
+                            <h4>{{__('page.week_c')}} : {{$sale->week_c}}</h4>
+                            <h4>{{__('page.week_d')}} : {{$sale->week_d}}</h4>
                             <h4>
                                 {{__('page.status')}} :   
-                                @if($sale->status == 0)
-                                    <span class="badge badge-info">{{__('page.pending')}}</span>
-                                @elseif($sale->status == 1)
+                                @if($sale->is_submitted == 0)
+                                    <span class="badge badge-danger">{{__('page.pending')}}</span>
+                                @elseif($sale->is_submitted == 1)
                                     <span class="badge badge-success">{{__('page.received')}}</span>
                                 @endif
                             </h4>
@@ -99,24 +107,6 @@
                                     <th colspan="2" class="text-right">{{__('page.total')}}</th>
                                     <th colspan="2" class="total_excluding_vat">{{ number_format($footer_amount, 2) }}</th>
                                 </tr>
-                                <tr>
-                                    <th colspan="5" class="text-right">{{__('page.discount')}}</th>
-                                    <th colspan="2">{{ number_format($sale->discount, 2) }}</th>
-                                </tr>
-                                <tr>
-                                    <th colspan="5" class="text-right">{{__('page.shipping')}}</th>
-                                    <th colspan="2">{{ number_format($sale->shipping, 2) }}</th>
-                                </tr>
-                                <tr>
-                                    <th colspan="5" class="text-right">{{__('page.returns')}}</th>
-                                    <th colspan="2">{{ number_format($sale->returns, 2) }}</th>
-                                </tr>
-                                <tr>
-                                    <th colspan="5" class="text-right">{{__('page.grand_total')}}</th>
-                                    <th colspan="2">
-                                        {{ number_format($sale->grand_total, 2) }}
-                                    </th>
-                                </tr>
                             </tfoot>
                         </table>
                     </div>
@@ -126,9 +116,9 @@
                                 $paid = $sale->payments->sum('amount');
                             @endphp
                             <h4 class="text-right">
-                                {{__('page.sale')}} : <span class="text-primary">{{number_format($sale->grand_total, 2)}}</span> 
+                                {{__('page.sale')}} : <span class="text-primary">{{number_format($sale->total_to_pay, 2)}}</span> 
                                 {{__('page.payment')}} : <span class="text-primary">{{number_format($paid, 2)}}</span>
-                                {{__('page.balance')}} : <span class="text-primary">{{number_format($sale->grand_total - $paid, 2)}}</span>
+                                {{__('page.balance')}} : <span class="text-primary">{{number_format($sale->total_to_pay - $paid, 2)}}</span>
                             </h4>
                         </div>
                         <div class="col-12">

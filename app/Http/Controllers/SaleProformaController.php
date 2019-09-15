@@ -25,39 +25,41 @@ class SaleProformaController extends Controller
         $customers = Customer::all();
 
         $mod = new SaleProforma();
-        $reference_no = $customer_id = $period = $keyword = '';
+        $reference_no = $supplier_id = $week_c = $week_d = $keyword = '';
         $sort_by_date = 'desc';
         if ($request->get('reference_no') != ""){
             $reference_no = $request->get('reference_no');
             $mod = $mod->where('reference_no', 'LIKE', "%$reference_no%");
         }
-        if ($request->get('customer_id') != ""){
-            $customer_id = $request->get('customer_id');
-            $mod = $mod->where('customer_id', $customer_id);
+        if ($request->get('supplier_id') != ""){
+            $supplier_id = $request->get('supplier_id');
+            $mod = $mod->where('supplier_id', $supplier_id);
         }
-        if ($request->get('period') != ""){   
-            $period = $request->get('period');
-            $from = substr($period, 0, 10);
-            $to = substr($period, 14, 10);
-            $mod = $mod->whereBetween('timestamp', [$from, $to]);
+        if ($request->get('week_c') != ""){
+            $week_c = $request->get('week_c');
+            $mod = $mod->where('week_c', $week_c);
+        }
+        if ($request->get('week_d') != ""){
+            $week_d = $request->get('week_d');
+            $mod = $mod->where('week_d', $week_d);
         }
         if ($request->get('keyword') != ""){
             $keyword = $request->keyword;
-            $customer_array = Customer::where('company', 'LIKE', "%$keyword%")->pluck('id');
+            $supplier_array = Supplier::where('company', 'LIKE', "%$keyword%")->pluck('id');
 
-            $mod = $mod->where(function($query) use($keyword, $customer_array){
+            $mod = $mod->where(function($query) use($keyword, $supplier_array){
                 return $query->where('reference_no', 'LIKE', "%$keyword%")
-                        ->orWhereIn('customer_id', $customer_array)
-                        ->orWhere('timestamp', 'LIKE', "%$keyword%")
-                        ->orWhere('grand_total', 'LIKE', "%$keyword%");
+                        ->orWhereIn('supplier_id', $supplier_array)
+                        ->orWhere('date', 'LIKE', "%$keyword%")
+                        ->orWhere('due_date', 'LIKE', "%$keyword%");
             });
         }
         if($request->sort_by_date != ''){
             $sort_by_date = $request->sort_by_date;
         }
         $pagesize = session('pagesize');
-        $data = $mod->orderBy('timestamp', $sort_by_date)->paginate($pagesize);
-        return view('sale_proforma.index', compact('data', 'customers', 'customer_id', 'reference_no', 'period', 'keyword', 'sort_by_date'));
+        $data = $mod->orderBy('date', $sort_by_date)->paginate($pagesize);
+        return view('sale_proforma.index', compact('data', 'suppliers', 'supplier_id', 'reference_no', 'week_c', 'week_d', 'keyword', 'sort_by_date'));
     }
     
     public function create(Request $request){
@@ -70,7 +72,7 @@ class SaleProformaController extends Controller
     public function save(Request $request){
         $request->validate([
             'date'=>'required|string',
-            'reference_number'=>'required|string',
+            'reference_no'=>'required|string',
             'customer'=>'required',
         ]);
 
@@ -81,10 +83,19 @@ class SaleProformaController extends Controller
 
         // dd($data);
         $item = new SaleProforma();
-        $item->user_id = Auth::user()->id;
-        $item->timestamp = $data['date'].":00";
-        $item->reference_no = $data['reference_number'];
+        $item->reference_no = $data['reference_no'];
+        $item->date = $data['date'];
         $item->customer_id = $data['customer'];
+        $item->due_date = $data['due_date'];
+        $item->customers_vat = $data['customers_vat'];
+        $item->concerning_week = $data['concerning_week'];
+        $item->vessel = $data['vessel'];
+        $item->port_of_charge = $data['port_of_charge'];
+        $item->port_of_discharge = $data['port_of_discharge'];
+        $item->origin = $data['origin'];
+        $item->week_c = $data['week_c'];
+        $item->week_d = $data['week_d'];
+        $item->total_to_pay = $data['total_to_pay'];
         $item->note = $data['note'];
 
         if($request->has("attachment")){
@@ -93,15 +104,6 @@ class SaleProformaController extends Controller
             $picture->move(public_path('images/uploaded/sale_images/'), $imageName);
             $item->attachment = 'images/uploaded/sale_images/'.$imageName;
         }
-
-        $item->discount_string = $data['discount_string'];
-        $item->discount = $data['discount'];
-
-        $item->shipping_string = $data['shipping_string'];
-        $item->shipping = $data['shipping'];
-        $item->returns = $data['returns'];
-        
-        $item->grand_total = $data['grand_total'];
         
         $item->save();
 
@@ -112,8 +114,8 @@ class SaleProformaController extends Controller
                     'product_id' => $data['product_id'][$i],
                     'price' => $data['price'][$i],
                     'quantity' => $data['quantity'][$i],
-                    'amount' => $data['amount'][$i],
-                    'total_amount' => $data['amount'][$i],
+                    'amount' => $data['total_amount'][$i],
+                    'total_amount' => $data['total_amount'][$i],
                     'itemable_id' => $item->id,
                     'itemable_type' => SaleProforma::class,
                 ]);
@@ -128,7 +130,6 @@ class SaleProformaController extends Controller
         $sale_proforma = SaleProforma::find($id);        
         $customers = Customer::all();
         $products = Product::all();
-
         return view('sale_proforma.edit', compact('sale_proforma', 'customers', 'products'));
     }
 
@@ -204,7 +205,7 @@ class SaleProformaController extends Controller
     }
 
     public function detail(Request $request, $id){    
-        config(['site.page' => 'sale']);
+        config(['site.page' => 'sale_proforma']);
         $sale = SaleProforma::find($id);
 
         return view('sale_proforma.detail', compact('sale'));

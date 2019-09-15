@@ -25,28 +25,21 @@
                 <form action="{{route('sale_proforma.update')}}" method="POST" enctype="multipart/form-data" id="app" style="opacity: 0">
                     @csrf
                     <input type="hidden" name="id" id="sale_proforma_id" value="{{$sale_proforma->id}}">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="col-form-label">{{__('page.date')}} <span class="text-danger">*</span></label>
-                            <input class="form-control datepicker" type="text" name="date" id="sale_date" value="{{date('Y-m-d H:i', strtotime($sale_proforma->timestamp))}}" placeholder="{{__('page.date')}}" autocomplete="off" required>
-                                @error('date')
+                    <div class="row mb-3">
+                        <div class="col-md-3">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">PRO-FORMA</label>
+                                <input class="form-control" type="text" name="reference_no" value="{{$sale_proforma->reference_no}}" placeholder="{{__('page.reference_no')}}" required>
+                                @error('reference_no')
                                     <span class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label class="col-form-label">{{__('page.reference_number')}} <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" name="reference_number" value="{{$sale_proforma->reference_no}}" required placeholder="{{__('page.reference_number')}}">
-                                @error('reference_number')
-                                    <span class="invalid-feedback d-block" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label class="col-form-label">{{__('page.customer')}} <span class="text-danger">*</span></label>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.customer')}}:</label>
                                 <div class="input-group">                                  
                                     <select class="form-control select2" name="customer" id="search_customer" required data-placeholder="{{__('page.select_customer')}}">
                                         <option label="{{__('page.select_customer')}}"></option>
@@ -54,9 +47,9 @@
                                             <option value="{{$item->id}}" @if($sale_proforma->customer_id == $item->id) selected @endif>{{$item->company}}</option>
                                         @endforeach
                                     </select>
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-primary rounded-circle tx-white ml-1" id="btn-add-customer"><i class="fa fa-plus"></i></button>
-                                    </div>  
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn bd bg-info rounded-circle text-white ml-1" id="btn-add-customer"><i class="fa fa-plus"></i></button>
+                                    </span>  
                                 </div>
                                 @error('customer')
                                     <span class="invalid-feedback d-block" role="alert">
@@ -64,31 +57,129 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label class="col-form-label">{{__('page.attachment')}}</label>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" data-toggle="custom-file-input" name="attachment" accept="image/*">
-                                    <label class="custom-file-label" for="example-file-input-custom">{{__('page.choose_file')}}</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-form-label">{{__('page.note')}}:</label>
-                                <textarea class="form-control" name="note" rows="3" placeholder="{{__('page.note')}}">{{$sale_proforma->note}}</textarea>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="form-control-label">{{__('page.date')}}: <span class="text-danger">*</span></label>
+                            <input class="datepicker form-control" type="text" name="date" value="{{$sale_proforma->date}}" placeholder="{{__('page.date')}}" autocomplete="off" required>
+                            @error('date')
+                                <span class="invalid-feedback d-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.due_date')}}: <span class="text-danger">*</span></label>
+                                <input class="form-control datepicker" type="text" name="due_date" value="{{$sale_proforma->due_date}}" placeholder="{{__('page.due_date')}}" autocomplete="off" required>
+                                @error('due_date')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
-                        <div class="col-lg-8">
+                        <div class="col-md-4">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.customers_vat')}}</label>
+                                <input class="form-control" type="text" name="customers_vat" value="{{$sale_proforma->customers_vat}}" required placeholder="{{__('page.customers_vat')}}">
+                                @error('customers_vat')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.concerning_week')}}</label>
+                                <input class="form-control" type="text" name="concerning_week" value="{{ $sale_proforma->concerning_week }}" required placeholder="{{__('page.concerning_week')}}">
+                                @error('concerning_week')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.vessel')}}</label>
+                                <input class="form-control" type="text" name="vessel" value="{{ $sale_proforma->vessel }}" required placeholder="{{__('page.vessel')}}">
+                                @error('vessel')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.port_of_charge')}}</label>
+                                <input class="form-control" type="text" name="port_of_charge" value="{{ $sale_proforma->port_of_charge }}" required placeholder="{{__('page.port_of_charge')}}">
+                                @error('port_of_charge')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.port_of_discharge')}}</label>
+                                <input class="form-control" type="text" name="port_of_discharge" value="{{ $sale_proforma->port_of_discharge }}" required placeholder="{{__('page.port_of_discharge')}}">
+                                @error('port_of_discharge')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.origin')}}</label>
+                                <input class="form-control" type="text" name="origin" value="{{ $sale_proforma->origin }}" required placeholder="{{__('page.origin')}}">
+                                @error('origin')
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.week_c')}}</label>
+                                <input class="form-control" type="text" name="week_c" value="{{ $sale_proforma->week_c }}" required placeholder="{{__('page.week_c')}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.week_d')}}</label>
+                                <input class="form-control" type="text" name="week_d" value="{{ $sale_proforma->week_d }}" required placeholder="{{__('page.week_d')}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label">{{__('page.image')}}</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" data-toggle="custom-file-input" name="image" accept="image/*">
+                                    <label class="custom-file-label" for="example-file-input-custom">{{__('page.choose_file')}}</label>
+                                </div>                               
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row mg-b-25">
+                        <div class="col-md-12">
                             <div>
-                                <h5 class="my-1" style="float:left">{{__('page.items')}}</h5>
-                                <a href="#" class="btn btn-sm btn-primary mb-2 add-product" style="float:right" @click="add_item()" title="{{__('page.right_ctrl_key')}}"><div><i class="fa fa-plus"></i>{{__('page.add')}}</div></a>
+                                <h3 class="mb-2" style="float:left">{{__('page.items')}}</h3>
+                                <button type="button" class="btn btn-sm btn-primary btn-icon mb-2 add-item" style="float:right" @click="add_item()"><i class="fa fa-plus"></i> {{__('page.add')}}</button>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="product_order_table">
+                                <table class="table table-bordered" id="item_table">
                                     <thead class="table-success">
                                         <tr>
-                                            <th>{{__('page.name')}}</th>
-                                            <th>{{__('page.price')}}</th>
+                                            <th>{{__('page.product_name_code')}}</th>
                                             <th>{{__('page.quantity')}}</th>
-                                            <th>{{__('page.subtotal')}}</th>
+                                            <th>{{__('page.price')}}</th>
+                                            <th>{{__('page.total_amount')}}</th>
                                             <th style="width:30px"></th>
                                         </tr>
                                     </thead>
@@ -98,115 +189,47 @@
                                                 <input type="hidden" name="product_id[]" class="product_id" :value="item.product_id" />
                                                 <input type="text" name="product_name[]" class="form-control form-control-sm product" ref="product" v-model="item.product_name_code" required />
                                             </td>
-                                            <td><input type="number" class="form-control form-control-sm price" name="price[]" min="0" step="0.01" v-model="item.price" required placeholder="{{__('page.price')}}" /></td>
                                             <td><input type="number" class="form-control form-control-sm quantity" name="quantity[]" v-model="item.quantity" required placeholder="{{__('page.quantity')}}" /></td>
-                                            <td class="subtotal">
-                                                @{{item.amount | currency}}
-                                                <input type="hidden" name="amount[]" :value="item.amount" />
+                                            <td><input type="number" class="form-control form-control-sm price" name="price[]" step="0.01" v-model="item.price" required placeholder="{{__('page.price')}}" /></td>
+                                            <td class="total_amount">
+                                                @{{item.total_amount | currency}}
+                                                <input type="hidden" name="total_amount[]" :value="item.total_amount" />
                                                 <input type="hidden" name="item_id[]" :value="item.item_id" />
                                             </td>
-                                            <td align="center">
-                                                <a href="#" class="btn btn-sm btn-success remove-product" @click="remove(i)"><i class="fa fa-times"></i></a>
+                                            <td>
+                                                <button type="button" href="#" class="btn btn-sm btn-warning remove-product" @click="remove(i)"><i class="fa fa-times"></i></button>
                                             </td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th colspan="2">{{__('page.total')}}</th>
-                                            <th class="total_quantity">@{{total.quantity | number}}</th>
-                                            <th class="total" colspan="2">@{{total.price | currency}}</th>
+                                            <td colspan="4" align="right">{{__('page.total')}}</td>
+                                            <td colspan="2" class="total_excluding_vat">@{{total.amount !currency}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" align="right">Total To Pay</td>
+                                            <td colspan="2">
+                                            <td>@{{item.product_name}}</td>
+                                                @{{total_to_pay | currency)}}
+                                                <input type="hidden" name="total_to_pay" :value="total_to_pay" />
+                                            </td>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
-                            <div class="row my-3">                        
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-md-5 text-sm-right">{{__('page.discount')}} :</label>
-                                        <div class="col-md-7">
-                                            <input type="text" name="discount_string" class="form-control" v-model="discount_string" placeholder="{{__('page.discount')}}">
-                                            <input type="hidden" name="discount" :value="discount">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-md-5 text-sm-right">{{__('page.shipping')}} :</label>
-                                        <div class="col-md-7">
-                                            <input type="text" name="shipping_string" class="form-control" v-model="shipping_string" placeholder="{{__('page.shipping')}}">
-                                            <input type="hidden" name="shipping" :value="shipping">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-md-5 text-sm-right">{{__('page.returns')}} :</label>
-                                        <div class="col-md-7">
-                                            <input type="number" name="returns" class="form-control" min="0" v-model="returns" placeholder="{{__('page.returns')}}">
-                                            <input type="hidden" name="grand_total" :value="grand_total">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row row-deck">
-                                <div class="col-md-4 col-lg">
-                                    <a class="block block-rounded block-link-shadow border rounded" href="javascript:void(0)">
-                                        <div class="block-content block-content-full">
-                                            <div class="ml-3">
-                                                <p class="font-size-h3 font-w200 text-black mb-0">@{{total.price | currency}}</p>
-                                                <p class="font-w600 mt-2 text-uppercase text-muted mb-0">{{__('page.sale')}}</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4 col-lg">
-                                    <a class="block block-rounded block-link-shadow border rounded" href="javascript:void(0)">
-                                        <div class="block-content block-content-full">
-                                            <div class="ml-3">
-                                                <p class="font-size-h3 font-w200 text-black mb-0">@{{discount | currency}}</p>
-                                                <p class="font-w600 mt-2 text-uppercase text-muted mb-0">{{__('page.discount')}}</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4 col-lg">
-                                    <a class="block block-rounded block-link-shadow border rounded" href="javascript:void(0)">
-                                        <div class="block-content block-content-full">
-                                            <div class="ml-3">
-                                                <p class="font-size-h3 font-w200 text-black mb-0">@{{shipping | currency}}</p>
-                                                <p class="font-w600 mt-2 text-uppercase text-muted mb-0">{{__('page.shipping')}}</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4 col-lg">
-                                    <a class="block block-rounded block-link-shadow border rounded" href="javascript:void(0)">
-                                        <div class="block-content block-content-full">
-                                            <div class="ml-3">
-                                                <p class="font-size-h3 font-w200 text-black mb-0">@{{returns | currency}}</p>
-                                                <p class="font-w600 mt-2 text-uppercase text-muted mb-0">{{__('page.returns')}}</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-4 col-lg">
-                                    <a class="block block-rounded block-link-shadow border rounded" href="javascript:void(0)">
-                                        <div class="block-content block-content-full">
-                                            <div class="ml-3">
-                                                <p class="font-size-h3 font-w200 text-black mb-0">@{{grand_total | currency}}</p>
-                                                <p class="font-w600 mt-2 text-uppercase text-muted mb-0">{{__('page.total')}}</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <div class="form-layout-footer mt-5 text-right">
-                                <button type="submit" class="btn btn-primary mr-2"><i class="fa fa-check"></i>  {{__('page.save')}}</button>
-                                <a href="{{route('sale_proforma.index')}}" class="btn btn-warning"><i class="fa fa-times"></i>  {{__('page.cancel')}}</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">{{__('page.note')}}:</label>
+                                <textarea class="form-control" name="note" rows="3" placeholder="{{__('page.note')}}">{{ $sale_proforma->note }}</textarea>
                             </div>
                         </div>
+                    </div>
+                    <div class="form-layout-footer text-right">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-check mg-r-2"></i> {{__('page.save')}}</button>
+                        <a href="{{route('proforma.index')}}" class="btn btn-warning"><i class="fa fa-times mg-r-2"></i> {{__('page.cancel')}}</a>
                     </div>
                 </form>                
             </div>

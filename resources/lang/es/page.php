@@ -298,5 +298,17 @@ return [
     'search_menu' => 'Menú de búsqueda',
     'identification_or_not' => 'Identificación o NIT',
     'choose_file' => 'Elija Archivo',
+
+    'product_sale' => 'Venta de producto',
+    'sales_list' => 'Lista de ventas',
+    'add_sale' => 'Agregar venta',
+    'edit_sale' => 'Editar venta',
+    'sale_status' => 'Estado de venta',
+    'sale' => 'Venta',
+    'customer_proforma' => 'Customer Proforma',
+    'sale_proforma' => 'Formulario de venta',
+    'submit_customer_proforma' => 'Enviar formulario de cliente',
+    'edit_proforma' => 'Editar Proforma',
+    'keyword' => 'Keyword', 
     
 ];

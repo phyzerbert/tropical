@@ -28,8 +28,7 @@ var app = new Vue({
                             .then(response1 => {
                                 this.items.push({
                                     product_id: item.product_id,
-                                    product_code: response1.data.name + "(" + response1.data.code + ")",
-                                    product_name: response1.data.name,
+                                    product_name_code: response1.data.name + "(" + response1.data.code + ")",
                                     price: item.price,
                                     quantity: item.quantity,
                                     amount: item.amount,
@@ -53,8 +52,7 @@ var app = new Vue({
                 .then(response => {
                     this.items.push({
                         product_id: response.data.id,
-                        product_code: response.data.code,
-                        product_name: response.data.name,
+                        product_name_code: response.data.code,
                         price: 0,
                         quantity: 1,
                         total_amount: 0,
@@ -85,13 +83,28 @@ var app = new Vue({
         },
         remove(i) {
             this.items.splice(i, 1)
+        }
+    },
+    filters:{
+        currency: function (value) {
+            var digitsRE = /(\d{3})(?=\d)/g
+            value = parseFloat(value)
+            if (!isFinite(value) || (!value && value !== 0)) return ''
+            var stringified = Math.abs(value).toFixed(2)
+            var _int = stringified.slice(0, -3)
+            var i = _int.length % 3
+            var head = i > 0
+              ? (_int.slice(0, i) + (_int.length > 3 ? ',' : ''))
+              : ''
+            var _float = stringified.slice(-3)
+            var sign = value < 0 ? '-' : ''
+            return sign + head +
+              _int.slice(i).replace(digitsRE, '$1,') +
+              _float
         },
-        formatPrice(value) {
+        number(value) {
             let val = value;
             return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        },
-        searchProduct() {
-            
         }
     },
 
@@ -127,8 +140,7 @@ var app = new Vue({
             select: function( event, ui ) {
                 let index = $(".product").index($(this));
                 app.items[index].product_id = ui.item.id
-                app.items[index].product_code = ui.item.label
-                app.items[index].product_name = ui.item.name
+                app.items[index].product_name_code = ui.item.label
                 app.items[index].price = 0
                 app.items[index].quantity = 1
                 app.items[index].total_amount = 0

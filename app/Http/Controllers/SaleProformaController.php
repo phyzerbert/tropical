@@ -136,7 +136,7 @@ class SaleProformaController extends Controller
     public function update(Request $request){
         $request->validate([
             'date'=>'required|string',
-            'reference_number'=>'required|string',
+            'reference_no'=>'required|string',
             'customer'=>'required',
         ]);
         $data = $request->all();
@@ -144,12 +144,22 @@ class SaleProformaController extends Controller
         if(!isset($data['product_id']) ||  count($data['product_id']) == 0 || in_array(null, $data['product_id'])){
             return back()->withErrors(['product' => __('page.select_product')]);
         }
-        // dd($data);
+        dd($data);
         $item = SaleProforma::find($request->get("id"));
  
-        $item->timestamp = $data['date'].":00";
-        $item->reference_no = $data['reference_number'];
+        $item->reference_no = $data['reference_no'];
+        $item->date = $data['date'];
         $item->customer_id = $data['customer'];
+        $item->due_date = $data['due_date'];
+        $item->customers_vat = $data['customers_vat'];
+        $item->concerning_week = $data['concerning_week'];
+        $item->vessel = $data['vessel'];
+        $item->port_of_charge = $data['port_of_charge'];
+        $item->port_of_discharge = $data['port_of_discharge'];
+        $item->origin = $data['origin'];
+        $item->week_c = $data['week_c'];
+        $item->week_d = $data['week_d'];
+        $item->total_to_pay = $data['total_to_pay'];
         $item->note = $data['note'];
 
         if($request->has("attachment")){
@@ -158,15 +168,6 @@ class SaleProformaController extends Controller
             $picture->move(public_path('images/uploaded/sale_images/'), $imageName);
             $item->attachment = 'images/uploaded/sale_images/'.$imageName;
         }
-
-        $item->discount_string = $data['discount_string'];
-        $item->discount = $data['discount'];
-
-        $item->shipping_string = $data['shipping_string'];
-        $item->shipping = $data['shipping'];
-        $item->returns = $data['returns'];
-        
-        $item->grand_total = $data['grand_total'];
         
         $item->save();
 
@@ -183,8 +184,8 @@ class SaleProformaController extends Controller
                         'product_id' => $data['product_id'][$i],
                         'price' => $data['price'][$i],
                         'quantity' => $data['quantity'][$i],
-                        'amount' => $data['amount'][$i],
-                        'total_amount' => $data['amount'][$i],
+                        'amount' => $data['total_amount'][$i],
+                        'total_amount' => $data['total_amount'][$i],
                         'itemable_id' => $item->id,
                         'itemable_type' => SaleProforma::class,
                     ]);
@@ -194,8 +195,8 @@ class SaleProformaController extends Controller
                         'product_id' => $data['product_id'][$i],
                         'price' => $data['price'][$i],
                         'quantity' => $data['quantity'][$i],
-                        'amount' => $data['amount'][$i],
-                        'total_amount' => $data['amount'][$i],
+                        'amount' => $data['total_amount'][$i],
+                        'total_amount' => $data['total_amount'][$i],
                     ]);
                 }
             }
@@ -246,18 +247,20 @@ class SaleProformaController extends Controller
         $item = new Sale();
         $item->reference_no = $data['proforma'];
         $item->customer_id = $proforma->customer_id;
-        $item->attachment = $proforma->attachment;
-        $item->timestamp = $data['date'].":00";
-        $item->discount_string = $data['discount_string'];
-        $item->discount = $data['discount'];
-        $item->shipping_string = $data['shipping_string'];
-        $item->shipping = $data['shipping'];
-        $item->returns = $data['returns'];        
-        $item->grand_total = $data['grand_total'];
-
+        $item->date = $proforma->date;
+        $item->due_date = $proforma->due_date;
+        $item->customers_vat = $proforma->customers_vat;
+        $item->concerning_week = $proforma->concerning_week;
+        $item->vessel = $proforma->vessel;
+        $item->port_of_discharge = $proforma->port_of_discharge;
+        $item->port_of_charge = $proforma->port_of_charge;
+        $item->origin = $proforma->origin;
+        $item->week_c = $proforma->week_c;
+        $item->week_d = $proforma->week_d;
+        $item->total_to_pay = $data['grand_total'];
         $item->sale_proforma_id = $proforma->id;
         $item->save();
-        $proforma->update(['status' => 1]);
+        $proforma->update(['is_submitted' => 1]);
 
         if(isset($data['product_id']) && count($data['product_id']) > 0){
 

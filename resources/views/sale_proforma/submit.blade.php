@@ -55,7 +55,7 @@
                                     <td><input type="number" class="form-control form-control-sm quantity" name="quantity[]" v-model="item.quantity" required placeholder="{{__('page.quantity')}}" /></td>
                                     <td><input type="number" class="form-control form-control-sm price" name="price[]" step="0.01" v-model="item.price" required placeholder="{{__('page.price')}}" /></td>
                                     <td class="total_amount">
-                                        @{{formatPrice(item.total_amount)}}
+                                        @{{item.total_amount | currency}}
                                         <input type="hidden" name="total_amount[]" :value="item.total_amount" />
                                         <input type="hidden" name="item_id[]" :value="item.item_id" />
                                     </td>
@@ -65,12 +65,12 @@
                                 </tr>
                             </tbody>
                             <tfoot>
-                                <tr>
+                                {{-- <tr>
                                     <th colspan="3" class="text-right">{{__('page.total')}}</th>
                                     <th colspan="2" class="total_excluding_vat">@{{total.amount | currency}}</th>
-                                </tr>
+                                </tr> --}}
                                 <tr>
-                                    <th colspan="3" class="text-right">Total To Pay</th>
+                                    <th colspan="3" class="text-right">{{__('page.grand_total')}}</th>
                                     <th colspan="2">
                                         @{{total_to_pay | currency}}
                                         <input type="hidden" name="grand_total" :value="total_to_pay" />

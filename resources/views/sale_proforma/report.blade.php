@@ -51,6 +51,11 @@
             font-size: 11px;
             color: #584747;
         }
+
+        .field {
+            text-transform: uppercase;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -64,18 +69,31 @@
             <tbody>
                 <tr>
                     <td class="w-50" valign="top">
-                        <h5 class="mb-0">{{__('page.proforma')}}</h5>
+                        <h5 class="mb-0 text-uppercase">{{__('page.proforma')}}</h5>
                         <p class="my-0 text-center" style="font-size:24px">{{$sale_proforma->reference_no}}</p>
-                        <p class="mt-2 mb-0">{{__('page.date')}} : <span class="value">{{date('d/m/Y', strtotime($sale_proforma->date))}}</span></p>
-                        <p class="my-0">{{__('page.concerning_week')}} : <span class="value">{{ $sale_proforma->concerning_week }}</span></p>
+                        
                     </td>
-                    <td class="w-50" valign="top">
-                        <p class="my-0">{{__('page.name')}} : <span class="value">{{$sale_proforma->customer->name}}</p>
-                        <p class="my-0">{{__('page.company')}} : <span class="value">{{$sale_proforma->customer->company}}</span></p>
-                        <p class="my-0">{{__('page.email')}} : <span class="value">{{$sale_proforma->customer->email}}</span></p>
-                        <p class="my-0">{{__('page.phone_number')}} : <span class="value">{{$sale_proforma->customer->phone_number}}</span></p>
-                        <p class="my-0">{{__('page.city')}} : <span class="value">{{$sale_proforma->customer->city}}</span></p>
-                        <p class="my-0">{{__('page.address')}} : <span class="value">{{$sale_proforma->customer->address}}</span></p>
+                    <td class="w-50 text-right" rowspan="2" valign="top">
+                        <p class="my-0 mt-3 value">{{$sale_proforma->customer->name}}<br />
+                        {{$sale_proforma->customer->company}}<br />
+                        {{$sale_proforma->customer->email}}<br />
+                        {{$sale_proforma->customer->phone_number}}<br />
+                        {{$sale_proforma->customer->city}}<br />
+                        {{$sale_proforma->customer->address}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="w-100">
+                            <tr>
+                                <td class="field">{{__('page.date')}} : </td>    
+                                <td class="value">{{date('d/m/Y', strtotime($sale_proforma->date))}}</td>
+                            </tr>
+                            <tr>
+                                <td class="field">{{__('page.concerning_week')}} : </td>
+                                <td class="value">{{ $sale_proforma->concerning_week }}</td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
             </tbody>

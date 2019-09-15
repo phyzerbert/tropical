@@ -223,6 +223,18 @@ class SaleController extends Controller
         
         return $pdf->download('sale_report_'.$sale->reference_no.'.pdf');
     }
+    
+    public function email($id){
+        $sale = Sale::find($id);
+        $pdf = PDF::loadView('sale.report', compact('sale'));
+        if($sale->customer->email){
+            $to_email = $sale->customer->email;
+            Mail::to($to_email)->send(new InvoiceMail($pdf, 'ProductSaleInvoice')); 
+        }
+        
+        return back()->with('success', 'Email is sent successfully');
+    }
+
     public function report_view($id){
         $sale = Sale::find($id);
         $pdf = PDF::loadView('sale.report', compact('sale'));  

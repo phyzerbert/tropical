@@ -84,6 +84,7 @@
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-align-primary">
                                                 <a class="dropdown-item" href="{{route('sale_proforma.detail', $item->id)}}">{{__('page.detail')}}</a>
                                                 <a class="dropdown-item" href="{{route('sale_proforma.report', $item->id)}}">{{__('page.report')}}</a>
+                                                <a class="dropdown-item" href="{{route('sale_proforma.email', $item->id)}}">{{__('page.email')}}</a>
                                                 @if (!$item->is_submitted)                                                    
                                                     <a class="dropdown-item" href="{{route('sale_proforma.submit', $item->id)}}" data-id="{{$item->id}}">{{__('page.submit')}}</a>
                                                 @endif

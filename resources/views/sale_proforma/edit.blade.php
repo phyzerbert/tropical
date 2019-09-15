@@ -202,17 +202,16 @@
                                         </tr>
                                     </tbody>
                                     <tfoot>
+                                        {{-- <tr>
+                                            <th colspan="3" class="text-right">{{__('page.total')}}</th>
+                                            <th colspan="2" class="total_excluding_vat">@{{total.amount | currency}}</th>
+                                        </tr> --}}
                                         <tr>
-                                            <td colspan="4" align="right">{{__('page.total')}}</td>
-                                            <td colspan="2" class="total_excluding_vat">@{{total.amount !currency}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4" align="right">Total To Pay</td>
-                                            <td colspan="2">
-                                            <td>@{{item.product_name}}</td>
-                                                @{{total_to_pay | currency)}}
+                                            <th colspan="3" class="text-right">{{__('page.grand_total')}}</th>
+                                            <th colspan="2">
+                                                @{{total_to_pay | currency}}
                                                 <input type="hidden" name="total_to_pay" :value="total_to_pay" />
-                                            </td>
+                                            </th>
                                         </tr>
                                     </tfoot>
                                 </table>

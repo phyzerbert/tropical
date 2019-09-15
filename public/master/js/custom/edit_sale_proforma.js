@@ -12,7 +12,7 @@ var app = new Vue({
         vat: 0,
         total_to_pay: 0,
         params: {
-            id: $('#proforma_id').val()
+            id: $('#sale_proforma_id').val()
         }
     },
 

@@ -45,7 +45,7 @@
         }
         .footer {
             position: absolute;
-            bottom: 25px;;
+            bottom: 15px;
         }
         .footer p {
             font-size: 11px;

@@ -224,11 +224,13 @@ class SaleProformaController extends Controller
     public function email($id){
         $sale_proforma = SaleProforma::find($id);
         $pdf = PDF::loadView('sale_proforma.report', compact('sale_proforma'));  
-        if($sale_proforma->customer->email){
+        if(filter_var($sale_proforma->customer->email, FILTER_VALIDATE_EMAIL)){
             $to_email = $sale_proforma->customer->email;
-            Mail::to($to_email)->send(new InvoiceMail($pdf, 'CustomerProformaInvoice')); 
+            Mail::to($to_email)->send(new InvoiceMail($pdf, 'Customer Proforma Invoice')); 
+            return back()->with('success', 'Email is sent successfully');
+        }else{
+            return back()->withErrors('email', 'Customer email address is invalid.');
         }
-        return back()->with('success', 'Email is sent successfully');
     }
 
     public function report_view($id){

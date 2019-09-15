@@ -227,9 +227,12 @@ class SaleController extends Controller
     public function email($id){
         $sale = Sale::find($id);
         $pdf = PDF::loadView('sale.report', compact('sale'));
-        if($sale->customer->email){
+        if(filter_var($sale->customer->email, FILTER_VALIDATE_EMAIL)){
             $to_email = $sale->customer->email;
-            Mail::to($to_email)->send(new InvoiceMail($pdf, 'ProductSaleInvoice')); 
+            Mail::to($to_email)->send(new InvoiceMail($pdf, 'Customer Sale Invoice')); 
+            return back()->with('success', 'Email is sent successfully');
+        }else{
+            return back()->withErrors('email', 'Customer email address is invalid.');
         }
         
         return back()->with('success', 'Email is sent successfully');

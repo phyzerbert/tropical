@@ -29,6 +29,9 @@
             font-weight: 500;
             text-decoration: underline;
         }
+        td.value {
+            line-height: 1;
+        }
         .table-bordered, .table-bordered td, .table-bordered th {
             border: 1px solid #2d2d2d;
         }
@@ -45,7 +48,7 @@
         }
         .footer {
             position: absolute;
-            bottom: 25px;;
+            bottom: 15px;;
         }
         .footer p {
             font-size: 11px;
@@ -73,17 +76,19 @@
                         <p class="my-0 text-center" style="font-size:24px">{{$sale_proforma->reference_no}}</p>
                         
                     </td>
-                    <td class="w-50 text-right" rowspan="2" valign="top">
-                        <p class="my-0 mt-3 value">{{$sale_proforma->customer->name}}<br />
-                        {{$sale_proforma->customer->company}}<br />
-                        {{$sale_proforma->customer->email}}<br />
-                        {{$sale_proforma->customer->phone_number}}<br />
-                        {{$sale_proforma->customer->city}}<br />
-                        {{$sale_proforma->customer->address}}</p>
+                    <td class="w-50 pt-3 text-right" rowspan="2" valign="top">
+                        <table class="w-100">
+                            <tr><td class="value">{{$sale_proforma->customer->name}}</td></tr>
+                            <tr><td class="value">{{$sale_proforma->customer->company}}</td></tr>
+                            <tr><td class="value">{{$sale_proforma->customer->email}}</td></tr>
+                            <tr><td class="value">{{$sale_proforma->customer->phone_number}}</td></tr>
+                            <tr><td class="value">{{$sale_proforma->customer->city}}</td></tr>
+                            <tr><td class="value">{{$sale_proforma->customer->address}}</td></tr>
+                        </table>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="pt-1">
                         <table class="w-100">
                             <tr>
                                 <td class="field">{{__('page.date')}} : </td>    

@@ -88,7 +88,7 @@
                                                     <a class="dropdown-item" href="{{route('sale_proforma.submit', $item->id)}}" data-id="{{$item->id}}">{{__('page.submit')}}</a>
                                                 @endif
                                                 <a class="dropdown-item btn-add-payment" data-id="{{$item->id}}" href="javascript:void(0)">{{__('page.add_payment')}}</a>
-                                                <a class="dropdown-item" href="{{route('payment.index', ['proforma', $item->id])}}">{{__('page.payment_list')}}</a>
+                                                <a class="dropdown-item" href="{{route('payment.index', ['sale_proforma', $item->id])}}">{{__('page.payment_list')}}</a>
                                                 <a class="dropdown-item" href="{{route('sale_proforma.edit', $item->id)}}">{{__('page.edit')}}</a>
                                                 <a class="dropdown-item" href="{{route('sale_proforma.delete', $item->id)}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">{{__('page.delete')}}</a>
                                             </div>

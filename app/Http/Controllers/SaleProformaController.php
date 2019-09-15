@@ -98,11 +98,11 @@ class SaleProformaController extends Controller
         $item->total_to_pay = $data['total_to_pay'];
         $item->note = $data['note'];
 
-        if($request->has("attachment")){
-            $picture = request()->file('attachment');
+        if($request->has("image")){
+            $picture = request()->file('image');
             $imageName = "sale_".time().'.'.$picture->getClientOriginalExtension();
             $picture->move(public_path('images/uploaded/sale_images/'), $imageName);
-            $item->attachment = 'images/uploaded/sale_images/'.$imageName;
+            $item->image = 'images/uploaded/sale_images/'.$imageName;
         }
         
         $item->save();
@@ -144,7 +144,7 @@ class SaleProformaController extends Controller
         if(!isset($data['product_id']) ||  count($data['product_id']) == 0 || in_array(null, $data['product_id'])){
             return back()->withErrors(['product' => __('page.select_product')]);
         }
-        dd($data);
+        // dd($data);
         $item = SaleProforma::find($request->get("id"));
  
         $item->reference_no = $data['reference_no'];
@@ -162,11 +162,11 @@ class SaleProformaController extends Controller
         $item->total_to_pay = $data['total_to_pay'];
         $item->note = $data['note'];
 
-        if($request->has("attachment")){
-            $picture = request()->file('attachment');
+        if($request->has("image")){
+            $picture = request()->file('image');
             $imageName = "sale_".time().'.'.$picture->getClientOriginalExtension();
             $picture->move(public_path('images/uploaded/sale_images/'), $imageName);
-            $item->attachment = 'images/uploaded/sale_images/'.$imageName;
+            $item->image = 'images/uploaded/sale_images/'.$imageName;
         }
         
         $item->save();

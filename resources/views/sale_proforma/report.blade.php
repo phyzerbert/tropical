@@ -12,6 +12,9 @@
             background: url('{{asset("images/bg_pdf.jpg")}}') no-repeat;
             background-size: 100% 100%;
         }
+        .table td, .table th {
+            padding: .4rem;
+        }
         .main {
         }
         .title {
@@ -60,13 +63,13 @@
         <table class="w-100 mt-5" id="table-customer">
             <tbody>
                 <tr>
-                    <td class="w-50">
+                    <td class="w-50" valign="top">
                         <h5 class="mb-0">{{__('page.proforma')}}</h5>
-                        <p class="my-0 text-center" style="font-size:30px">{{$sale_proforma->reference_no}}</p>
-                        <p class="mt-3">{{__('page.date')}} : <span class="value">{{date('d/m/Y', strtotime($sale_proforma->date))}}</span></p>
-                        <p class="mt-0">{{__('page.concerning_week')}} : <span class="value">{{ $sale_proforma->concerning_week }}</span></p>
+                        <p class="my-0 text-center" style="font-size:24px">{{$sale_proforma->reference_no}}</p>
+                        <p class="mt-2 mb-0">{{__('page.date')}} : <span class="value">{{date('d/m/Y', strtotime($sale_proforma->date))}}</span></p>
+                        <p class="my-0">{{__('page.concerning_week')}} : <span class="value">{{ $sale_proforma->concerning_week }}</span></p>
                     </td>
-                    <td class="w-50">
+                    <td class="w-50" valign="top">
                         <p class="my-0">{{__('page.name')}} : <span class="value">{{$sale_proforma->customer->name}}</p>
                         <p class="my-0">{{__('page.company')}} : <span class="value">{{$sale_proforma->customer->company}}</span></p>
                         <p class="my-0">{{__('page.email')}} : <span class="value">{{$sale_proforma->customer->email}}</span></p>
@@ -77,7 +80,7 @@
                 </tr>
             </tbody>
         </table>
-        <h3 class="mt-4" style="font-size: 22px; font-weight: 600;">{{__('page.items')}}</h3>
+        <h3 class="mt-2" style="font-size: 22px; font-weight: 600;">{{__('page.items')}}</h3>
         <table class="table" id="table-item">
             <thead class="table-primary">
                 <tr class="bg-blue">

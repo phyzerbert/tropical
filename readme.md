@@ -1,0 +1,26 @@
+## Installation Instructions
+
+- Run git clone https://github.com/phyzerbert/tropical.git
+- Create a MySQL database for the project
+    - mysql -u root -p
+    - create database tropical_gida;
+    - \q
+- Copy .env.example to .env
+- Configure your .env file
+    - APP_NAME="TROPICAL GIDA"
+    - DB_DATABASE=tropical_gida
+    - DB_USERNAME=root
+    - DB_PASSWORD=
+    - MAIL_DRIVER=smtp
+    - MAIL_HOST=smtp.gmail.com
+    - MAIL_PORT=465
+    - MAIL_USERNAME="Your smtp account username"
+    - MAIL_PASSWORD="Your smtp account password"
+    - MAIL_ENCRYPTION=ssl
+    - MAIL_FROM_ADDRESS="admin@tropicalgida.hol.es"
+- Run 'composer update' from the projects root folder.
+- From the projects root folder run 'php artisan key:generate'
+- Run 'composer dump-autoload'
+- From the projects root folder run 'php artisan migrate --seed'
+- Run 'php artisan serve'
+- Start server at http://localhost:8000

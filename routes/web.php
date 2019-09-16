@@ -49,7 +49,7 @@ Route::get('/proforma/detail/{id}', 'ProformaController@detail')->name('proforma
 Route::get('/proforma/delete/{id}', 'ProformaController@delete')->name('proforma.delete');
 Route::get('/proforma/submit/{id}', 'ProformaController@submit')->name('proforma.submit');
 Route::post('/proforma/save_submit', 'ProformaController@save_submit')->name('proforma.save_submit');
-Route::get('/proforma/container/{id}', 'ProformaController@container')->name('proforma.container');
+Route::any('/proforma/container/{id}', 'ProformaController@container')->name('proforma.container');
 
 Route::any('/shipment/index', 'ShipmentController@index')->name('shipment.index');
 Route::get('/shipment/delete/{id}', 'ShipmentController@delete')->name('shipment.delete');

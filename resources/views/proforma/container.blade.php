@@ -27,14 +27,19 @@
     <div class="content">
         <div class="block block-rounded block-bordered">
             <div class="clearfix block-header-default p-3">
-                <h3 class="float-left mb-0 mr-auto">PRO-FORMA NE INVOICE : <ins class="text-primary">{{$invoice->reference_no}}</ins></h3>
-                <a href="{{route('container.create')}}" class="btn btn-success btn-sm float-right" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
+                <h3 class="float-left mb-0 mr-auto">PRO-FORMA NE INVOICE : <ins class="text-primary">{{$invoice->reference_no}}</ins></h3>                
+                <form action="" class="form-inline float-right" method="post" id="keyword_filter_form">
+                    @csrf    
+                    <input type="text" name="keyword" id="keyword_filter" value="{{$keyword}}" class="form-control form-control-sm" placeholder="Keyword" />
+                    <a href="{{route('container.create')}}" class="btn btn-success btn-sm float-right ml-2" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
+                </form>
             </div>
             <div class="block-content block-content-full">
                 <div class="table-responsive px-1">
                     @php
                         $products = $invoice->items->pluck('product_id')->toArray();
                         $footer_product_total = array();
+                        $footer_total_container = $footer_peso_carga = $footer_tara = $footer_vgm = 0;
                     @endphp
                     <table class="table table-bordered table-vcenter">
                         <thead>
@@ -66,7 +71,7 @@
                                 @foreach ($products as $id)
                                     @php
                                         $footer_product_total[$id] = 0;
-                                        $footer_total_container = $footer_peso_carga = $footer_tara = $footer_vgm = 0;
+                                        
                                     @endphp
                                     <th>{{\App\Models\Product::find($id)->name}}</th>
                                 @endforeach

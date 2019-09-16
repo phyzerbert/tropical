@@ -265,7 +265,36 @@ class ProformaController extends Controller
     public function container(Request $request, $id){
         config(['site.page' => 'proforma']); 
         $invoice = Proforma::find($id);
-        $data = $invoice->containers;
-        return view('proforma.container', compact('data', 'invoice'));
+        $mod = $invoice->containers();
+        $keyword = '';
+        if ($request->get('keyword') != ""){
+            $keyword = $request->keyword;
+
+            $proforma_array = Proforma::where('reference_no', 'LIKE', "%$keyword%")->pluck('id');
+
+            $mod = $mod->where(function($query) use($keyword, $proforma_array){
+                return $query->whereIn('proforma_id', $proforma_array)
+                        ->orWhere('identification_or_nit', 'LIKE', "%$keyword%")
+                        ->orWhere('container', 'LIKE', "%$keyword%")
+                        ->orWhere('booking', 'LIKE', "%$keyword%")
+                        ->orWhere('bl', 'LIKE', "%$keyword%")
+                        ->orWhere('temperatura', 'LIKE', "%$keyword%")
+                        ->orWhere('damper', 'LIKE', "%$keyword%")
+                        ->orWhere('booking', 'LIKE', "%$keyword%")
+                        ->orWhere('shipping_company', 'LIKE', "%$keyword%")
+                        ->orWhere('fruit_loading_date', 'LIKE', "%$keyword%")
+                        ->orWhere('ship_departure_date', 'LIKE', "%$keyword%")
+                        ->orWhere('type_of_merchandise', 'LIKE', "%$keyword%")
+                        ->orWhere('port_of_discharge', 'LIKE', "%$keyword%")
+                        ->orWhere('estimated_date', 'LIKE', "%$keyword%")
+                        ->orWhere('agency', 'LIKE', "%$keyword%")
+                        ->orWhere('company', 'LIKE', "%$keyword%")
+                        ->orWhere('dock', 'LIKE', "%$keyword%")
+                        ->orWhere('vgm', 'LIKE', "%$keyword%");
+            });
+        }
+
+        $data = $mod->get();
+        return view('proforma.container', compact('data', 'invoice', 'keyword'));
     }
 }

@@ -23,7 +23,7 @@
                     <div class="block-header block-header-default">
                         <div class="col-md-12">
                             @include('elements.pagesize')
-                            <input type="text" class="col-md-2 form-control form-control-sm ml-auto" id="top-keyword" value="{{$keyword}}" placeholder="{{__('page.keyword')}}" />
+                            <input type="text" class="col-lg-2 col-md-4 form-control form-control-sm ml-auto" id="top-keyword" value="{{$keyword}}" placeholder="{{__('page.keyword')}}" />
                         </div>
                     </div>
                     <div class="block-content">

@@ -26,7 +26,7 @@ var app = new Vue({
                         product_code: response.data.name + "(" + response.data.code + ")",
                         product_name: response.data.name,
                         price: 0,
-                        quantity: 1,
+                        quantity: 0,
                         amount: 0,
                         surcharge_reduction: 0,
                         total_amount: 0,
@@ -99,7 +99,7 @@ var app = new Vue({
                 app.items[index].product_code = ui.item.label
                 app.items[index].product_name = ui.item.name
                 app.items[index].price = 0
-                app.items[index].quantity = 1
+                app.items[index].quantity = 0
                 app.items[index].amount = 0
                 app.items[index].surcharge_reduction = 0
                 app.items[index].total_amount = 0

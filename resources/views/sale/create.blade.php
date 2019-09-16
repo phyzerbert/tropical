@@ -25,7 +25,7 @@
                 <form action="{{route('sale.save')}}" method="POST" enctype="multipart/form-data" id="app" style="opacity: 0">
                     @csrf
                     <div class="row mb-3">
-                        <div class="col-md-3">
+                        <div class="col-lg-3 col-md-6">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.reference_no')}}</label>
                                 <input class="form-control" type="text" name="reference_no" placeholder="{{__('page.reference_no')}}" required>
@@ -36,7 +36,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-lg-3 col-md-6">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.customer')}}:</label>
                                 <div class="input-group">                                  
@@ -57,7 +57,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-lg-3 col-md-6">
                             <label class="form-control-label">{{__('page.date')}}: <span class="text-danger">*</span></label>
                             <input class="datepicker form-control" type="text" name="date" value="{{date('Y-m-d')}}" placeholder="{{__('page.date')}}" autocomplete="off" required>
                             @error('date')
@@ -66,7 +66,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-lg-3 col-md-6">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.due_date')}}: <span class="text-danger">*</span></label>
                                 <input class="form-control datepicker" type="text" name="due_date" value="{{date('Y-m-d')}}" placeholder="{{__('page.due_date')}}" autocomplete="off" required>
@@ -77,7 +77,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.customers_vat')}}</label>
                                 <input class="form-control" type="text" name="customers_vat" value="{{ old('customers_vat') }}" required placeholder="{{__('page.customers_vat')}}">
@@ -88,7 +88,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.concerning_week')}}</label>
                                 <input class="form-control" type="text" name="concerning_week" value="{{ old('concerning_week') }}" required placeholder="{{__('page.concerning_week')}}">
@@ -99,7 +99,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.vessel')}}</label>
                                 <input class="form-control" type="text" name="vessel" value="{{ old('vessel') }}" required placeholder="{{__('page.vessel')}}">
@@ -110,7 +110,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.port_of_charge')}}</label>
                                 <input class="form-control" type="text" name="port_of_charge" value="{{ old('port_of_charge') }}" required placeholder="{{__('page.port_of_charge')}}">
@@ -121,7 +121,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.port_of_discharge')}}</label>
                                 <input class="form-control" type="text" name="port_of_discharge" value="{{ old('port_of_discharge') }}" required placeholder="{{__('page.port_of_discharge')}}">
@@ -132,7 +132,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.origin')}}</label>
                                 <input class="form-control" type="text" name="origin" value="{{ old('origin') }}" required placeholder="{{__('page.origin')}}">
@@ -143,19 +143,19 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.week_c')}}</label>
                                 <input class="form-control" type="text" name="week_c" value="{{ old('week_c') }}" placeholder="{{__('page.week_c')}}">
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group mg-b-10-force">
                                 <label class="form-control-label">{{__('page.week_d')}}</label>
                                 <input class="form-control" type="text" name="week_d" value="{{ old('week_d') }}" placeholder="{{__('page.week_d')}}">
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.image')}}</label>
                                 <div class="custom-file">
@@ -226,7 +226,7 @@
                     </div>
                     <div class="form-layout-footer text-right">
                         <button type="submit" class="btn btn-primary mr-2"><i class="fa fa-check mr-1"></i> {{__('page.save')}}</button>
-                        <a href="{{route('sale_proforma.index')}}" class="btn btn-warning"><i class="fa fa-times mr-1"></i> {{__('page.cancel')}}</a>
+                        <a href="{{route('sale.index')}}" class="btn btn-warning"><i class="fa fa-times mr-1"></i> {{__('page.cancel')}}</a>
                     </div>
                 </form>                
             </div>

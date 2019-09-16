@@ -28,9 +28,9 @@ var app = new Vue({
                         quantity: 1,
                         total_amount: 0,
                     })
-                    // Vue.nextTick(function() {
-                    //     app.$refs['product'][app.$refs['product'].length - 1].select()
-                    // });
+                    Vue.nextTick(function() {
+                        app.$refs['product'][app.$refs['product'].length - 1].select()
+                    });
                 })
                 .catch(error => {
                     console.log(error);

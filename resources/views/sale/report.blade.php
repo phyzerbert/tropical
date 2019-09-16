@@ -74,7 +74,7 @@
             <tbody>
                 <tr>
                     <td class="w-50" valign="top">
-                        <h5 class="mb-0 text-uppercase">{{__('page.proforma')}}</h5>
+                        <h5 class="mb-0 text-uppercase">{{__('page.invoice')}}</h5>
                         <p class="my-0 text-center" style="font-size:24px">{{$sale->reference_no}}</p>
                         
                     </td>

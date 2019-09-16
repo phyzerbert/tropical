@@ -23,17 +23,17 @@
                 <input type="text" class="form-control form-control-sm mt-2" style="width: 200px;" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
                 <button type="submit" class="btn btn-sm btn-primary mt-2 ml-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
             </form>            
-            <button type="button" class="btn btn-success btn-sm mt-2 float-md-right" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</button>
+            <button type="button" class="btn btn-success btn-sm mt-2 float-md-right ml-sm-2" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</button>
         </div>
         <hr />    
         <div class="row">
             @foreach ($data as $item)
                 <div class="col-lg-3">
                     <div class="block block-rounded block-link-pop">
-                        <div class="p-3">                                
-                            <img class="img-fluid" height="300" src="@if($item->image){{asset($item->image)}}@else{{asset('images/no-image.jpg')}}@endif" alt="">
+                        <div class="p-3 text-center">                                
+                            <img class="img-fluid bordered rounded" height="300" src="@if($item->image){{asset($item->image)}}@else{{asset('images/no-image.jpg')}}@endif" alt="">
                         </div>
-                        <div class="block-content">
+                        <div class="block-content text-center">
                             <h4 class="mb-1">{{ $item->code }}</h4>
                             <p class="font-size-sm name" title="{{ $item->name }}">
                                 {{ $item->name }}

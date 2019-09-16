@@ -25,7 +25,7 @@
                 <form action="{{route('container.save')}}" method="POST" enctype="multipart/form-data" id="app">
                     @csrf
                     <div class="row mb-3">
-                        <div class="col-md-3 mt-3">
+                        <div class="col-lg-3 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.proforma_invoice')}}</label>
                                 <div class="input-group">                                  
@@ -43,49 +43,49 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-3 mt-3">
+                        <div class="col-lg-3 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">IDENTIFICATION O NIT</label>
                                 <input class="form-control" type="text" name="identification_or_nit" placeholder="IDENTIFICATION O NIT">
                             </div>
                         </div>
-                        <div class="col-md-3 mt-3">
+                        <div class="col-lg-3 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.week_c')}}</label>
                                 <input class="form-control" type="text" name="week_c" v-model="week_c" placeholder="{{__('page.week_c')}}" />
                             </div>
                         </div>
-                        <div class="col-md-3 mt-3">
+                        <div class="col-lg-3 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.week_d')}}</label>
                                 <input class="form-control" type="text" name="week_d" v-model="week_d" placeholder="{{__('page.week_d')}}" />
                             </div>
                         </div>
-                        <div class="col-md-3 mt-3">
+                        <div class="col-lg-3 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.container')}}</label>
                                 <input class="form-control" type="text" name="container" placeholder="{{__('page.container')}}" />
                             </div>
                         </div>
-                        <div class="col-md-3 mt-3">
+                        <div class="col-lg-3 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.booking')}}</label>
                                 <input class="form-control" type="text" name="booking" placeholder="{{__('page.booking')}}">
                             </div>
                         </div>
-                        <div class="col-md-3 mt-3">
+                        <div class="col-lg-3 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">BL</label>
                                 <input class="form-control" type="text" name="bl" placeholder="BL">
                             </div>
                         </div>
-                        <div class="col-md-3 mt-3">
+                        <div class="col-lg-3 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.shipping_company')}}</label>
                                 <input class="form-control" type="text" name="shipping_company" placeholder="{{__('page.shipping_company')}}">
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-lg-4 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.temperature')}}</label>
                                 <div class="input-group">
@@ -96,49 +96,49 @@
                                 </div>        
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-lg-4 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.damper')}}</label>
                                 <input class="form-control" type="text" name="damper" placeholder="{{__('page.damper')}}">
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-lg-4 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.type_of_merchandise')}}</label>
                                 <input class="form-control" type="text" name="type_of_merchandise" placeholder="{{__('page.type_of_merchandise')}}">
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-lg-4 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.fruit_loading_date')}}</label>
                                 <input class="form-control datepicker" type="text" name="fruit_loading_date" autocomplete="off" placeholder="{{__('page.fruit_loading_date')}}">
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-lg-4 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.ship_departure_date')}}</label>
                                 <input class="form-control datepicker" type="text" name="ship_departure_date" autocomplete="off" placeholder="{{__('page.ship_departure_date')}}">
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-lg-4 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.estimated_date_of_shipping_company')}}</label>
                                 <input class="form-control datepicker" type="text" name="estimated_date" autocomplete="off" placeholder="{{__('page.estimated_date_of_shipping_company')}}">
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-lg-4 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.agency')}}</label>
                                 <input class="form-control" type="text" name="agency" placeholder="{{__('page.agency')}}">
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-lg-4 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.company')}}</label>
                                 <input class="form-control" type="text" name="company" placeholder="{{__('page.company')}}">
                             </div>
                         </div>
-                        <div class="col-md-4 mt-3">
+                        <div class="col-lg-4 col-md-6 mt-3">
                             <div class="form-group">
                                 <label class="form-control-label">{{__('page.dock')}}</label>
                                 <input class="form-control" type="text" name="dock" placeholder="{{__('page.dock')}}">
@@ -176,25 +176,25 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-3">
+                        <div class="col-lg-3 col-md-6">
                             <div class="form-group">
                                 <label class="form-control-label">TOTAL CAJAS EN CONTENEDOR</label>
                                 <input class="form-control" type="number" name="total_container" v-model="total_container" placeholder="TOTAL CONTENEDOR" >
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group">
                                 <label class="form-control-label">PESO CARGA</label>
                                 <input class="form-control" type="number" name="peso_carga" step="0.01" v-model="peso_carga" placeholder="PESO CARGA" >
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group">
                                 <label class="form-control-label">TARA</label>
                                 <input class="form-control" type="number" name="tara" step="0.01" v-model="tara" placeholder="TARA" >
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-lg-4 col-md-6">
                             <div class="form-group">
                                 <label class="form-control-label">VGM</label>
                                 <input class="form-control" type="number" name="vgm" step="0.01" v-model="vgm" placeholder="VGM" >

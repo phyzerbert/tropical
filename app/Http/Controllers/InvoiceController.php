@@ -26,7 +26,7 @@ class InvoiceController extends Controller
         $suppliers = Supplier::all();
 
         $mod = new Invoice();
-        $company_id = $reference_no = $supplier_id = $store_id = $period = $expiry_period = $keyword = '';
+        $reference_no = $supplier_id = $store_id = $period = $expiry_period = $keyword = '';
         $sort_by_date = 'desc';
         if ($request->get('reference_no') != ""){
             $reference_no = $request->get('reference_no');
@@ -54,7 +54,7 @@ class InvoiceController extends Controller
         // dump($sort_by_date);
         $pagesize = session('pagesize');
         $data = $mod->orderBy('created_at', $sort_by_date)->paginate($pagesize);
-        return view('invoice.index', compact('data', 'companies', 'stores', 'suppliers', 'company_id', 'store_id', 'supplier_id', 'reference_no', 'period', 'expiry_period', 'keyword', 'sort_by_date'));
+        return view('invoice.index', compact('data', 'suppliers', 'supplier_id', 'reference_no', 'period', 'expiry_period', 'keyword', 'sort_by_date'));
     }
 
     public function create(Request $request){

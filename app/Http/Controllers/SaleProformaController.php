@@ -62,7 +62,7 @@ class SaleProformaController extends Controller
         }
         $pagesize = session('pagesize');
         $data = $mod->orderBy('date', $sort_by_date)->paginate($pagesize);
-        return view('sale_proforma.index', compact('data', 'suppliers', 'supplier_id', 'reference_no', 'week_c', 'week_d', 'keyword', 'sort_by_date'));
+        return view('sale_proforma.index', compact('data', 'supplier_id', 'reference_no', 'week_c', 'week_d', 'keyword', 'sort_by_date'));
     }
     
     public function create(Request $request){

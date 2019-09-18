@@ -23,6 +23,7 @@ class CreateItemsTable extends Migration
             $table->decimal('total_amount', 14, 2)->nullable();
             $table->integer('itemable_id')->nullable();
             $table->string('itemable_type')->nullable();
+            $table->timestamps();
         });
     }
 

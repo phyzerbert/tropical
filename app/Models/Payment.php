@@ -18,4 +18,14 @@ class Payment extends Model
         return $this->belongsTo(Proforma::class);
     }
 
+    public function sale()
+    {
+        return $this->belongsTo(Sale::class);
+    }
+
+    public function sale_proforma()
+    {
+        return $this->belongsTo(SaleProforma::class);
+    }
+
 }

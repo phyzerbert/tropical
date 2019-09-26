@@ -57,6 +57,11 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group">
+                                            @if($item->sale_id || $item->sale_proforma_id)
+                                                <a href="{{route('payment.report', $item->id)}}" class="btn btn-sm btn-primary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="{{__('page.report')}}">
+                                                    <i class="far fa-file-pdf"></i>
+                                                </a>
+                                            @endif
                                             <button type="button" class="btn btn-sm btn-primary js-tooltip-enabled btn-edit" data-id="{{$item->id}}" data-toggle="tooltip" title="" data-original-title="{{__('page.edit')}}">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </button>

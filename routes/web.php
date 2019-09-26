@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::any('/payment/index/{type}/{id}', 'PaymentController@index')->name('payment.index');
 Route::post('/payment/create', 'PaymentController@create')->name('payment.create');
 Route::post('/payment/edit', 'PaymentController@edit')->name('payment.edit');
+Route::get('/payment/report/{id}', 'PaymentController@report')->name('payment.report');
 Route::get('/payment/delete/{id}', 'PaymentController@delete')->name('payment.delete');
 
 Route::any('/product/index', 'ProductController@index')->name('product.index');

@@ -8,6 +8,7 @@ use App\Models\Invoice;
 use App\Models\Proforma;
 use App\Models\Sale;
 use App\Models\SaleProforma;
+use PDF;
 
 class PaymentController extends Controller
 {
@@ -99,6 +100,14 @@ class PaymentController extends Controller
         }
         $item->save();
         return back()->with('success', __('page.updated_successfully'));
+    }
+
+    public function report($id) {
+        $payment = Payment::find($id);
+        $pdf = PDF::loadView('payment.report', compact('payment'));
+  
+        // return $pdf->download('payment_report_'.$payment->reference_no.'.pdf');    
+        return view('payment.report', compact('payment'));
     }
 
 

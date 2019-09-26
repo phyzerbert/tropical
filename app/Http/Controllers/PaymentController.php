@@ -106,8 +106,8 @@ class PaymentController extends Controller
         $payment = Payment::find($id);
         $pdf = PDF::loadView('payment.report', compact('payment'));
   
-        // return $pdf->download('payment_report_'.$payment->reference_no.'.pdf');    
-        return view('payment.report', compact('payment'));
+        return $pdf->download('payment_report_'.$payment->reference_no.'.pdf');    
+        // return view('payment.report', compact('payment'));
     }
 
 

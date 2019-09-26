@@ -114,7 +114,7 @@
                             <div class="form-group">
                                 <label class="control-label">{{__('page.attachment')}}</label>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" data-toggle="custom-file-input" name="attachment" accept="image/*">
+                                    <input type="file" class="custom-file-input" data-toggle="custom-file-input" name="attachment" accept="image/*,application/pdf">
                                     <label class="custom-file-label" for="example-file-input-custom">{{__('page.choose_file')}}</label>
                                 </div>
                             </div>

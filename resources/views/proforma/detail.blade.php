@@ -47,8 +47,20 @@
                             <h4>{{__('page.week_d')}} : {{$invoice->week_d}}</h4>
                         </div>
                         <div class="col-md-7">
-                            <div class="block block-content">
-                                <img src="@if($invoice->image){{asset($invoice->image)}}@else{{asset('images/no-image.jpg')}}@endif" class="attachment" data-value="@if($invoice->image){{asset($invoice->image)}}@else{{asset('images/no-image.jpg')}}@endif" width="100%" alt="">                                
+                            <div class="block block-content text-center">
+                                @if($invoice->image)
+                                    @php
+                                        $path_info = pathinfo($invoice->image);
+                                        $attach_ext = $path_info['extension']; 
+                                    @endphp
+                                    @if($attach_ext == 'pdf')
+                                        <img src="{{asset('images/pdf.png')}}" class="ez_attach" width="50%" href="{{asset($invoice->image)}}" width="100%" alt="">                                
+                                    @else
+                                        <img src="{{asset($invoice->image)}}" class="ez_attach" width="100%" alt="">                                
+                                    @endif
+                                @else
+                                    <img src="{{asset('images/no-image.jpg')}}" class="ez_attach" width="100%" alt="">
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -143,7 +155,15 @@
                                                 <td class="" data-path="{{$item->attachment}}">
                                                     <span class="tx-info note">{{$item->note}}</span>&nbsp;
                                                     @if($item->attachment != "")
-                                                        <a href="#" class="attachment" data-value="{{asset($item->attachment)}}"><i class="fa fa-paperclip"></i></a>
+                                                        @php
+                                                            $path_info = pathinfo($item->attachment);
+                                                            $attach_ext = $path_info['extension'];
+                                                        @endphp
+                                                        @if($attach_ext == 'pdf')
+                                                            <img class="ez_attach1 text-primary" src="{{asset('images/attachment.png')}}" height="25" href="{{asset($item->attachment)}}" />
+                                                        @else
+                                                            <img class="ez_attach1 text-primary" src="{{asset($item->attachment)}}" height="30" />
+                                                        @endif
                                                     @endif
                                                 </td>
                                             </tr>
@@ -173,6 +193,7 @@
 
 @section('script')
     <script src="{{asset('master/js/plugins/imageviewer/js/jquery.verySimpleImageViewer.min.js')}}"></script>
+    <script src="{{asset('master/js/plugins/ezview/EZView.js')}}"></script>
     <script>
         $(document).ready(function(){
             $(".attachment").click(function(e){
@@ -189,6 +210,8 @@
                 });
                 $("#attachModal").modal();
             });
+            $(".ez_attach").EZView();
+            $(".ez_attach1").EZView();
         })
     </script>
 @endsection

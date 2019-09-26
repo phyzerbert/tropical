@@ -84,6 +84,15 @@
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="5">{{__('page.total')}}</th>
+                                <th>{{number_format($footer_total_to_pay, 2)}}</th>
+                                <th>{{number_format($footer_paid, 2)}}</th>
+                                <th>{{number_format($footer_balance, 2)}}</th>
+                                <th colspan="2"></th>
+                            </tr>
+                        </tfoot>
                     </table>
                     <div class="clearfix mt-2">
                         <div class="float-left" style="margin: 0;">
@@ -125,7 +134,7 @@
                         <div class="form-group">
                             <label class="control-label">{{__('page.attachment')}}</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" data-toggle="custom-file-input" name="attachment" accept="image/*">
+                                <input type="file" class="custom-file-input" data-toggle="custom-file-input" name="attachment" accept="image/*,application/pdf">
                                 <label class="custom-file-label" for="example-file-input-custom">{{__('page.choose_file')}}</label>
                             </div>
                         </div>

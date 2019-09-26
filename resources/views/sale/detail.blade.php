@@ -194,6 +194,7 @@
 
 
 @section('script')
+<script src="{{asset('master/js/plugins/jquery-ui/jquery-ui.js')}}"></script>
 <script src="{{asset('master/js/plugins/imageviewer/js/jquery.verySimpleImageViewer.min.js')}}"></script>
 <script src="{{asset('master/js/plugins/ezview/EZView.js')}}"></script>
 <script>

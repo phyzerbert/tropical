@@ -50,9 +50,17 @@
                                     <td class="reference_no">{{$item->reference_no}}</td>
                                     <td class="amount" data-value="{{$item->amount}}">{{number_format($item->amount)}}</td>
                                     <td class="" data-path="{{$item->attachment}}">
-                                        <span class="tx-info note">{{$item->note}}</span>&nbsp;
+                                        <span class="tx-info note">{{$item->note}}</span>&nbsp;&nbsp;
                                         @if($item->attachment != "")
-                                            <a href="#" class="attachment" data-value="{{asset($item->attachment)}}"><i class="fa fa-paperclip"></i></a>
+                                            @php
+                                                $path_info = pathinfo($item->attachment);
+                                                $attach_ext = $path_info['extension'];
+                                            @endphp
+                                            @if($attach_ext == 'pdf')
+                                                <img class="ez_attach1 text-primary" src="{{asset('images/attachment.png')}}" height="25" href="{{asset($item->attachment)}}" />
+                                            @else
+                                                <img class="ez_attach1 text-primary" src="{{asset($item->attachment)}}" height="30" />
+                                            @endif
                                         @endif
                                     </td>
                                     <td class="text-center">
@@ -151,6 +159,7 @@
     <script src="{{asset('master/js/plugins/jquery-ui/jquery-ui.js')}}"></script>
     <script src="{{asset('master/js/plugins/jquery-ui/timepicker/jquery-ui-timepicker-addon.min.js')}}"></script>
     <script src="{{asset('master/js/plugins/imageviewer/js/jquery.verySimpleImageViewer.min.js')}}"></script>
+    <script src="{{asset('master/js/plugins/ezview/EZView.js')}}"></script>
     <script>
         $(document).ready(function(){
             $("#edit_form input.date").datetimepicker({
@@ -187,6 +196,8 @@
                 });
                 $("#attachModal").modal();
             });
+            // $(".ez_attach").EZView();
+            $(".ez_attach1").EZView();
         })
     </script>
 @endsection

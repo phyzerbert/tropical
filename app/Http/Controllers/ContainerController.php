@@ -70,6 +70,9 @@ class ContainerController extends Controller
     public function save(Request $request){
         $request->validate([
             'proforma'=>'required',
+            'ship_departure_date' => 'nullable|date_format:Y-m-d',
+            'estimated_date' => 'nullable|date_format:Y-m-d',
+            'fruit_loading_date' => 'nullable|date_format:Y-m-d',
         ]);
 
         $data = $request->all();

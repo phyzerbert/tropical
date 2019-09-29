@@ -182,19 +182,19 @@
                                 <input class="form-control" type="number" name="total_container" v-model="total_container" placeholder="TOTAL CONTENEDOR" >
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-3 col-md-6">
                             <div class="form-group">
                                 <label class="form-control-label">PESO CARGA</label>
                                 <input class="form-control" type="number" name="peso_carga" step="0.01" v-model="peso_carga" placeholder="PESO CARGA" >
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-3 col-md-6">
                             <div class="form-group">
                                 <label class="form-control-label">TARA</label>
                                 <input class="form-control" type="number" name="tara" step="0.01" v-model="tara" placeholder="TARA" >
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-3 col-md-6">
                             <div class="form-group">
                                 <label class="form-control-label">VGM</label>
                                 <input class="form-control" type="number" name="vgm" step="0.01" v-model="vgm" placeholder="VGM" >

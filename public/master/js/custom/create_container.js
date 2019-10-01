@@ -36,20 +36,24 @@ var app = new Vue({
                     let proforma = response.data
                     this.week_c = proforma.week_c
                     this.week_d = proforma.week_d
-                    for (let i = 0; i < proforma.items.length; i++) {
-                        const item = proforma.items[i];
-                        axios.post('/get_product', {id:item.product_id})
-                            .then(response1 => {
-                                this.items.push({
-                                    product_id: item.product_id,
-                                    product_code: response1.data.code,
-                                    product_name: response1.data.name,
-                                    quantity: item.quantity,
+                    console.log(response.data)
+                    if(response.data.shipment){
+                        let shipment_items = response.data.shipment.items
+                        for (let i = 0; i < shipment_items.length; i++) {
+                            const item = shipment_items[i];
+                            axios.post('/get_product', {id:item.product_id})
+                                .then(response1 => {
+                                    this.items.push({
+                                        product_id: item.product_id,
+                                        product_code: response1.data.code,
+                                        product_name: response1.data.name,
+                                        quantity: item.quantity,
+                                    })
                                 })
-                            })
-                            .catch(error => {
-                                console.log(error);
-                            });                
+                                .catch(error => {
+                                    console.log(error);
+                                });                
+                        }
                     }
                 })
                 .catch(error => {

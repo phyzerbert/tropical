@@ -74,7 +74,7 @@ class VueController extends Controller
 
     public function get_proforma(Request $request){
         $id = $request->get('id');
-        $item = Proforma::find($id)->load('items');
+        $item = Proforma::with('items', 'shipment')->find($id);
         return response()->json($item);
     }
 

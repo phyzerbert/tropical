@@ -8,6 +8,8 @@ class Shipment extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['items'];
+
     public function proforma(){
         return $this->belongsTo(Proforma::class);
     }

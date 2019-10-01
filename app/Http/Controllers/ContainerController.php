@@ -63,7 +63,7 @@ class ContainerController extends Controller
 
     public function create(Request $request){
         config(['site.page' => 'add_container']);
-        $proformas = Proforma::all();
+        $proformas = Proforma::where('is_submitted', 1)->get();
         return view('container.create', compact('proformas'));
     }
 

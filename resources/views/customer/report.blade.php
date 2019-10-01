@@ -48,7 +48,7 @@
     @php
         $sales_array = $customer->sales()->pluck('id');
         $total_sales = $customer->sales()->count();
-        $grand_total = $customer->sales()->sum('grand_total');
+        $total_to_pay = $customer->sales()->sum('total_to_pay');
         $paid = \App\Models\Payment::whereIn('sale_id', $sales_array)->sum('amount');
     @endphp
 
@@ -67,11 +67,11 @@
             </tr>
             <tr>
                 <td class="w-50">{{__('page.city')}} : <span class="value">{{$customer->city}}</span></td>
-                <td class="w-50">{{__('page.total_amount')}} : <span class="value">{{number_format($grand_total, 2)}}</span></td>
+                <td class="w-50">{{__('page.total_amount')}} : <span class="value">{{number_format($total_to_pay, 2)}}</span></td>
             </tr>
             <tr>
                 <td class="w-50">{{__('page.paid')}} : <span class="value">{{number_format($paid, 2)}}</span></td>
-                <td class="w-50">{{__('page.balance')}} : <span class="value">{{number_format($grand_total - $paid, 2)}}</span></td>
+                <td class="w-50">{{__('page.balance')}} : <span class="value">{{number_format($total_to_pay - $paid, 2)}}</span></td>
             </tr>
         </tbody>
     </table>
@@ -81,38 +81,38 @@
             <tr class="bg-blue">
                 <th style="width:25px;">#</th>
                 <th>{{__('page.sale')}}</th>
-                <th>{{__('page.grand_total')}}</th>
+                <th>{{__('page.total_to_pay')}}</th>
                 <th>{{__('page.paid')}}</th>
                 <th>{{__('page.balance')}}</th>
             </tr>
         </thead>
         <tbody>
             @php
-                $footer_grand_total = $footer_paid = 0;
+                $footer_total_to_pay = $footer_paid = 0;
                 $data = $customer->sales;
             @endphp
             @foreach ($data as $item)
                 @php
                     $paid = $item->payments()->sum('amount');
-                    $grand_total = $item->grand_total;
-                    $footer_grand_total += $grand_total;
+                    $total_to_pay = $item->total_to_pay;
+                    $footer_total_to_pay += $total_to_pay;
                     $footer_paid += $paid;
                 @endphp
                 <tr>
                     <td>{{ $loop->index + 1 }}</td>
                     <td class="reference_no">{{$item->reference_no}}</td>
-                    <td class="grand_total"> {{number_format($grand_total, 2)}} </td>
+                    <td class="total_to_pay"> {{number_format($total_to_pay, 2)}} </td>
                     <td class="paid"> {{ number_format($paid, 2) }} </td>
-                    <td class="balance" data-value="{{$grand_total - $paid, 2}}"> {{number_format($grand_total - $paid, 2)}} </td>
+                    <td class="balance" data-value="{{$total_to_pay - $paid, 2}}"> {{number_format($total_to_pay - $paid, 2)}} </td>
                 </tr>
             @endforeach
         </tbody>
         <tfoot>
             <tr>
                 <th colspan="2">{{__('page.total')}}</th>
-                <th>{{number_format($footer_grand_total, 2)}}</th>
+                <th>{{number_format($footer_total_to_pay, 2)}}</th>
                 <th>{{number_format($footer_paid, 2)}}</th>
-                <th>{{number_format($footer_grand_total - $footer_paid, 2)}}</th>  
+                <th>{{number_format($footer_total_to_pay - $footer_paid, 2)}}</th>  
             </tr>
         </tfoot>
     </table>

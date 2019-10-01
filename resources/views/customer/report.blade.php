@@ -34,6 +34,9 @@
         }
         #table-customer tbody td {
             height: 50px;
+        }        
+        #table-sale tbody>tr>td {
+            padding: .4rem;
         }
         .footer-link {
             position: absolute;
@@ -76,7 +79,7 @@
         </tbody>
     </table>
     <h3 class="mt-5" style="font-size: 24px; font-weight: 500;">{{__('page.sales')}}</h3>
-    <table class="table">
+    <table class="table" id="table-sale">
         <thead class="table-primary">
             <tr class="bg-blue">
                 <th style="width:25px;">#</th>
@@ -116,6 +119,5 @@
             </tr>
         </tfoot>
     </table>
-    <h3 class="footer-link"><a href="http://tropicalgida.com" target="_blank">{{config('app.name')}}</a></h3>
 </body>
 </html>

@@ -49,7 +49,7 @@
                                         @if(in_array('agency', $search_params))<th>{{__('page.agency')}}</th>@endif
                                         @if(in_array('company', $search_params))<th>{{__('page.company')}}</th>@endif
                                         @if(in_array('dock', $search_params))<th>{{__('page.dock')}}</th>@endif
-                                        <th>{{__('page.products')}}</th>                               
+                                        <th>{{__('page.products')}}</th>
                                         <th>TOTAL CONTENEDOR</th>
                                         <th>PESO CARGA</th>
                                         <th>TARA</th>

@@ -57,6 +57,7 @@
                                 <th>{{__('page.agency')}}</th>
                                 <th>{{__('page.company')}}</th>
                                 <th>{{__('page.dock')}}</th>
+                                <th>{{__('page.products')}}</th>
                                 <th>{{__('page.action')}}</th>
                             </tr>
                         </thead>
@@ -78,6 +79,28 @@
                                     <td>{{$item->agency}}</td>
                                     <td>{{$item->company}}</td>
                                     <td>{{$item->dock}}</td>
+                                    <td>
+                                        @php
+                                            $item_products = json_decode($item->product_list, true);
+                                            $product_count = count($item_products);
+                                        @endphp
+                                        <button type="button" class="btn btn-sm btn-block btn-secondary" data-toggle="popover" data-html="true" data-placement="bottom" title="{{__('page.product_list')}}" 
+                                            data-content="<ul class='font-weight-bold'>
+                                                    @foreach ($item_products as $key => $value)
+                                                        @php
+                                                            $product = \App\Models\Product::find($key);
+                                                            if(isset($footer_product_array[$key])){
+                                                                $footer_product_array[$key]+=$value;
+                                                            }else{
+                                                                $footer_product_array[$key] =$value;
+                                                            }
+                                                        @endphp
+                                                        <li>{{$product->name}} ({{$product->code}}) : {{number_format($value, 2)}}</li>
+                                                    @endforeach
+                                                </ul>">
+                                            {{$product_count}} {{__('page.products')}}
+                                        </button>
+                                    </td> 
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle" id="dropdown-align-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('page.action')}}&nbsp;</button>

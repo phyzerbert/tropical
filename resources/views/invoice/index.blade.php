@@ -41,6 +41,7 @@
                                 <th>{{__('page.supplier')}}</th>
                                 <th>{{__('page.issue_date')}}</th>
                                 <th>{{__('page.due_date')}}</th>
+                                <th>{{__('page.concerning_week')}}</th>
                                 <th>{{__('page.total_to_pay')}}</th>
                                 <th>{{__('page.paid')}}</th>
                                 <th>{{__('page.balance')}}</th>
@@ -65,6 +66,7 @@
                                     <td class="supplier">@isset($item->supplier->company){{$item->supplier->company}}@endisset</td>
                                     <td class="issue_date">{{ date('d/m/Y', strtotime($item->issue_date)) }}</td>
                                     <td class="due_date">{{ date('d/m/Y', strtotime($item->due_date)) }}</td>
+                                    <td class="concerning_week">{{$item->concerning_week}}</td>
                                     <td class="total_to_pay">{{number_format($item->total_to_pay, 2)}}</td>
                                     <td class="paid">{{number_format($paid, 2)}}</td>
                                     <td class="balance" data-value="{{$balance}}">{{number_format($balance, 2)}}</td>
@@ -88,7 +90,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="5">{{__('page.total')}}</th>
+                                <th colspan="6">{{__('page.total')}}</th>
                                 <th>{{number_format($footer_total_to_pay, 2)}}</th>
                                 <th>{{number_format($footer_paid, 2)}}</th>
                                 <th>{{number_format($footer_balance, 2)}}</th>

@@ -23,11 +23,13 @@
             <div class="block-header block-header-default">
                 <form action="" class="col-md-12 form-inline">
                     @csrf
-                    <input type="text" class="form-control form-control-sm col-md-3 mt-2" name="keyword" id="search_keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
+                    <input type="text" class="form-control form-control-sm col-md-2 mt-2" name="keyword" id="search_keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
+                    <input type="text" class="form-control form-control-sm col-md-1 mt-2 ml-2" name="week_c" id="search_week_c" value="{{$week_c}}" placeholder="{{__('page.week_c')}}">
+                    <input type="text" class="form-control form-control-sm col-md-1 mt-2 ml-2" name="week_d" id="search_week_d" value="{{$week_d}}" placeholder="{{__('page.week_d')}}">
                     <button type="submit" class="btn btn-sm btn-primary ml-md-2 mt-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
                     <button type="button" class="btn btn-danger btn-sm mt-2 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</button>
                     <a href="{{route('invoice.create')}}" class="btn btn-success btn-sm mt-2 ml-auto" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
-            </form>                
+                </form>                
             </div>
             <div class="block-content block-content-full">
                 <div class="table-responsive pb-7">                    
@@ -99,7 +101,11 @@
                             <p>{{__('page.total')}} <strong style="color: red">{{ $data->total() }}</strong> {{__('page.items')}}</p>
                         </div>
                         <div class="float-right" style="margin: 0;">
-                            {!! $data->appends(['keyword' => $keyword])->links() !!}
+                            {!! $data->appends([
+                                'keyword' => $keyword,
+                                'week_c' => $week_c,
+                                'week_d' => $week_d,
+                            ])->links() !!}
                         </div>
                     </div> 
                 </div>               
@@ -175,6 +181,8 @@
             
             $("#btn-reset").click(function(){
                 $("#search_keyword").val('');
+                $("#search_week_c").val('');
+                $("#search_week_d").val('');
             })
         })
     </script>

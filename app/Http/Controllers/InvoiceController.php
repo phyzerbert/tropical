@@ -26,11 +26,17 @@ class InvoiceController extends Controller
         $suppliers = Supplier::all();
 
         $mod = new Invoice();
-        $reference_no = $supplier_id = $store_id = $period = $expiry_period = $keyword = '';
+        $week_c = $week_d = $supplier_id = $period = $keyword = '';
         $sort_by_date = 'desc';
-        if ($request->get('reference_no') != ""){
-            $reference_no = $request->get('reference_no');
-            $mod = $mod->where('reference_no', 'LIKE', "%$reference_no%");
+        if ($request->get('week_c') != ""){
+            $week_c = $request->get('week_c');
+            $proforma_array = Proforma::where('week_c', $week_c)->pluck('id');
+            $mod = $mod->whereIn('proforma_id', $proforma_array);
+        }
+        if ($request->get('week_d') != ""){
+            $week_d = $request->get('week_d');
+            $proforma_array = Proforma::where('week_d', $week_d)->pluck('id');
+            $mod = $mod->whereIn('proforma_id', $proforma_array);
         }
         if ($request->get('supplier_id') != ""){
             $supplier_id = $request->get('supplier_id');
@@ -54,7 +60,7 @@ class InvoiceController extends Controller
         // dump($sort_by_date);
         $pagesize = session('pagesize');
         $data = $mod->orderBy('created_at', $sort_by_date)->paginate($pagesize);
-        return view('invoice.index', compact('data', 'suppliers', 'supplier_id', 'reference_no', 'period', 'expiry_period', 'keyword', 'sort_by_date'));
+        return view('invoice.index', compact('data', 'suppliers', 'supplier_id', 'week_c', 'week_d', 'period', 'keyword', 'sort_by_date'));
     }
 
     public function create(Request $request){

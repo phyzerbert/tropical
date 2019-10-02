@@ -37,7 +37,11 @@
             <div class="block-content block-content-full">
                 <div class="table-responsive px-1">
                     @php
-                        $products = $invoice->items->pluck('product_id')->toArray();
+                        if($invoice->shipment){
+                            $products = $invoice->shipment->items->pluck('product_id')->toArray();
+                        }else{                            
+                            $products = $invoice->items->pluck('product_id')->toArray();
+                        }
                         $footer_product_total = array();
                         $footer_total_container = $footer_peso_carga = $footer_tara = $footer_vgm = 0;
                     @endphp
@@ -93,7 +97,7 @@
                                     <td>{{$item->week_c}}</td>
                                     <td>{{$item->week_d}}</td>
                                     <td>{{$item->container}}</td>
-                                    <td>{{$item->booking}} °C</td>
+                                    <td>{{$item->booking}}</td>
                                     <td>{{$item->bl}}</td>
                                     <td>{{$item->shipping_company}}</td>
                                     <td>{{$item->fruit_loading_date}}</td>

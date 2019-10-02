@@ -37,7 +37,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $footer_total_to_pay = 0;
+                            @endphp
                             @foreach ($data as $item)
+                                @php
+                                    $footer_total_to_pay += $item->total_to_pay;
+                                @endphp
                                 <tr>
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
                                     <td class="reference_no">{{$item->reference_no}}</td>
@@ -66,6 +72,13 @@
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="5"></th>
+                                <th>{{number_format($footer_total_to_pay, 2)}}</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
                     </table>                
                     <div class="clearfix mt-2">
                         <div class="float-left" style="margin: 0;">

@@ -108,6 +108,9 @@
                                     <td>{{$item->dock}}</td>
                                     @foreach ($products as $id)
                                         @php
+                                            if(!isset($container_products[$id])){
+                                                $container_products[$id] = 0;
+                                            }
                                             $footer_product_total[$id] += $container_products[$id];
                                         @endphp
                                         <td>

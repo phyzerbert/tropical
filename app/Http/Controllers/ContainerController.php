@@ -56,9 +56,14 @@ class ContainerController extends Controller
             });
         }
 
-        $data = $mod->orderBy('created_at', 'desc')->paginate(15);
+        $pagesize = 15;
+        if($request->get('pagesize') != ''){
+            $pagesize = $request->get('pagesize');
+        }
 
-        return view('container.index', compact('data', 'week_c', 'week_d', 'keyword'));
+        $data = $mod->orderBy('created_at', 'desc')->paginate($pagesize);
+
+        return view('container.index', compact('data', 'week_c', 'week_d', 'keyword', 'pagesize'));
     }
 
     public function create(Request $request){

@@ -36,10 +36,14 @@ class ShipmentController extends Controller
         if($request->sort_by_date != ''){
             $sort_by_date = $request->sort_by_date;
         }
-        // dump($sort_by_date);
+        
+        $pagesize = 15;
+        if($request->get('pagesize') != ''){
+            $pagesize = $request->get('pagesize');
+        }
         $pagesize = session('pagesize');
         $data = $mod->orderBy('created_at', $sort_by_date)->paginate($pagesize);
-        return view('shipment.index', compact('data', 'keyword', 'sort_by_date'));
+        return view('shipment.index', compact('data', 'keyword', 'sort_by_date', 'pagesize'));
     }
 
     public function detail(Request $request, $id){

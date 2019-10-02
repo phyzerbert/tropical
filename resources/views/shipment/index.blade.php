@@ -16,11 +16,20 @@
     <div class="content">  
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
-                <form action="" class="form-inline mr-auto">
+                <form action="" class="form-inline mr-auto" id="searchForm">
                     @csrf
-                    <input type="text" class="form-control form-control-sm mt-2" style="width: 200px;" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
-                    <button type="submit" class="btn btn-sm btn-primary ml-2 mt-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
-                </form>                
+                    <label for="pagesize" class="control-label">{{__('page.show')}} :</label>
+                    <select class="form-control form-control-sm mx-md-2" name="pagesize" id="pagesize">
+                        <option value="15" @if($pagesize == '15') selected @endif>15</option>
+                        <option value="50" @if($pagesize == '50') selected @endif>50</option>
+                        <option value="100" @if($pagesize == '100') selected @endif>100</option>
+                        <option value="200" @if($pagesize == '200') selected @endif>200</option>
+                        <option value="100" @if($pagesize == '500') selected @endif>500</option>
+                        <option value="" @if($pagesize == '100000') selected @endif>All</option>
+                    </select>
+                    <input type="text" class="form-control form-control-sm mt-2 mt-md-0" style="width: 200px;" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
+                    <button type="submit" class="btn btn-sm btn-primary ml-2 mt-2 mt-md-0"><i class="fa fa-search"></i> {{__('page.search')}}</button>
+                </form>
             </div>
             <div class="block-content block-content-full">
                 <div class="table-responsive pb-7">                    
@@ -85,7 +94,10 @@
                             <p>{{__('page.total')}} <strong style="color: red">{{ $data->total() }}</strong> {{__('page.items')}}</p>
                         </div>
                         <div class="float-right" style="margin: 0;">
-                            {!! $data->appends(['keyword' => $keyword])->links() !!}
+                            {!! $data->appends([
+                                'keyword' => $keyword,
+                                'pagesize' => $pagesize,
+                            ])->links() !!}
                         </div>
                     </div>
                 </div>                
@@ -106,6 +118,10 @@
             //     $("#payment_form .amount").val(balance);
             //     $("#paymentModal").modal();
             // });
+
+            $("#pagesize").change(function(){
+                $("#searchForm").submit();
+            });
         })
     </script>
 @endsection

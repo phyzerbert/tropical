@@ -60,9 +60,12 @@ class SaleProformaController extends Controller
         if($request->sort_by_date != ''){
             $sort_by_date = $request->sort_by_date;
         }
-        $pagesize = session('pagesize');
+        $pagesize = 15;
+        if($request->get('pagesize') != ''){
+            $pagesize = $request->get('pagesize');
+        }
         $data = $mod->orderBy('date', $sort_by_date)->paginate($pagesize);
-        return view('sale_proforma.index', compact('data', 'supplier_id', 'reference_no', 'week_c', 'week_d', 'keyword', 'sort_by_date'));
+        return view('sale_proforma.index', compact('data', 'supplier_id', 'reference_no', 'week_c', 'week_d', 'keyword', 'sort_by_date', 'pagesize'));
     }
     
     public function create(Request $request){

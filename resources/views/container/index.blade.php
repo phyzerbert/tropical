@@ -27,14 +27,23 @@
     <div class="content">
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
-                <form action="" class="col-md-12 form-inline">
+                <form action="" class="col-md-12 form-inline" id="searchForm">
                     @csrf
-                    <input type="text" class="form-control form-control-sm col-md-2 mt-2" id="search_week_c" name="week_c" value="{{$week_c}}" placeholder="{{__('page.week_c')}}">
-                    <input type="text" class="form-control form-control-sm col-md-2 mt-2 ml-md-2" id="search_week_d" name="week_d" value="{{$week_d}}" placeholder="{{__('page.week_d')}}">
-                    <input type="text" class="form-control form-control-sm col-md-2 mt-2 ml-md-2" id="search_week_keyword" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
-                    <button type="submit" class="btn btn-sm btn-primary ml-md-2 mt-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
-                    <button type="button" class="btn btn-danger btn-sm mt-2 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</button>
-                    <a href="{{route('container.create')}}" class="btn btn-sm btn-success mt-2 ml-auto" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
+                    <label for="pagesize" class="control-label">{{__('page.show')}} :</label>
+                    <select class="form-control form-control-sm mx-md-2" name="pagesize" id="pagesize">
+                        <option value="15" @if($pagesize == '15') selected @endif>15</option>
+                        <option value="50" @if($pagesize == '50') selected @endif>50</option>
+                        <option value="100" @if($pagesize == '100') selected @endif>100</option>
+                        <option value="200" @if($pagesize == '200') selected @endif>200</option>
+                        <option value="100" @if($pagesize == '500') selected @endif>500</option>
+                        <option value="" @if($pagesize == '100000') selected @endif>All</option>
+                    </select>
+                    <input type="text" class="form-control form-control-sm col-md-2 mt-2 mt-md-0" id="search_week_c" name="week_c" value="{{$week_c}}" placeholder="{{__('page.week_c')}}">
+                    <input type="text" class="form-control form-control-sm col-md-2 mt-2 mt-md-0 ml-md-2" id="search_week_d" name="week_d" value="{{$week_d}}" placeholder="{{__('page.week_d')}}">
+                    <input type="text" class="form-control form-control-sm col-md-2 mt-2 mt-md-0 ml-md-2" id="search_week_keyword" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
+                    <button type="submit" class="btn btn-sm btn-primary ml-md-2 mt-2 mt-md-0"><i class="fa fa-search"></i> {{__('page.search')}}</button>
+                    <button type="button" class="btn btn-danger btn-sm mt-2 mt-md-0 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</button>
+                    <a href="{{route('container.create')}}" class="btn btn-sm btn-success mt-2 mt-md-0 ml-auto" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
                 </form>
             </div>
             <div class="block-content block-content-full">
@@ -193,6 +202,10 @@
                 $("#search_week_d").val('');
                 $("#search_keyword").val('');
             })
+
+            $("#pagesize").change(function(){
+                $("#searchForm").submit();
+            });
         })
     </script>
 @endsection

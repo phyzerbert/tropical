@@ -24,10 +24,19 @@
                 <form action="" method="POST" class="col-md-12 form-inline" id="searchForm">
                     @csrf
                     <input type="hidden" name="sort_by_date" value="{{$sort_by_date}}" id="search_sort_date" />
-                    <input type="text" class="form-control form-control-sm col-md-3 mt-2" name="keyword" id="search_keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
-                    <button type="submit" class="btn btn-sm btn-primary ml-md-2 mt-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
-                    <button type="button" class="btn btn-danger btn-sm mt-2 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</button>
-                    <a href="{{route('sale.create')}}" class="btn btn-success btn-sm mt-2 ml-auto" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
+                    <label for="pagesize" class="control-label">{{__('page.show')}} :</label>
+                    <select class="form-control form-control-sm mx-md-2" name="pagesize" id="pagesize">
+                        <option value="15" @if($pagesize == '15') selected @endif>15</option>
+                        <option value="50" @if($pagesize == '50') selected @endif>50</option>
+                        <option value="100" @if($pagesize == '100') selected @endif>100</option>
+                        <option value="200" @if($pagesize == '200') selected @endif>200</option>
+                        <option value="100" @if($pagesize == '500') selected @endif>500</option>
+                        <option value="" @if($pagesize == '100000') selected @endif>All</option>
+                    </select>
+                    <input type="text" class="form-control form-control-sm col-md-3 mt-2 mt-md-0" name="keyword" id="search_keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
+                    <button type="submit" class="btn btn-sm btn-primary ml-md-2 mt-2 mt-md-0"><i class="fa fa-search"></i> {{__('page.search')}}</button>
+                    <button type="button" class="btn btn-danger btn-sm mt-2 mt-md-0 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</button>
+                    <a href="{{route('sale.create')}}" class="btn btn-success btn-sm mt-2 mt-md-0 ml-auto" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
                 </form>
             </div>
             <div class="block-content block-content-full">
@@ -111,7 +120,10 @@
                             <p>{{__('page.total')}} <strong style="color: red">{{ $data->total() }}</strong> {{__('page.items')}}</p>
                         </div>
                         <div class="float-right" style="margin: 0;">
-                            {!! $data->appends(['keyword' => $keyword])->links() !!}
+                            {!! $data->appends([
+                                'keyword' => $keyword,  
+                                'pagesize' => $pagesize,                              
+                            ])->links() !!}
                         </div>
                     </div>
                 </div>               
@@ -196,7 +208,11 @@
             
             $("#btn-reset").click(function(){
                 $("#search_keyword").val('');
-            })
+            });
+
+            $("#pagesize").change(function(){
+                $("#searchForm").submit();
+            });
         })
     </script>
 @endsection

@@ -110,12 +110,18 @@ Route::post('/customer/edit', 'CustomerController@edit')->name('customer.edit');
 Route::get('/customer/report/{id}', 'CustomerController@report')->name('customer.report');
 Route::get('/customer/delete/{id}', 'CustomerController@delete')->name('customer.delete');
 
+Route::any('/transaction/index', 'TransactionController@index')->name('transaction.index');
+Route::post('/transaction/create', 'TransactionController@create')->name('transaction.create');
+Route::post('/transaction/edit', 'TransactionController@edit')->name('transaction.edit');
+Route::get('/transaction/delete/{id}', 'TransactionController@delete')->name('transaction.delete');
+
 Route::get('/profile', 'UserController@profile')->name('profile');
 Route::post('/updateuser', 'UserController@updateuser')->name('updateuser');
 Route::any('/users/index', 'UserController@index')->name('users.index');
 Route::post('/user/create', 'UserController@create')->name('user.create');
 Route::post('/user/edit', 'UserController@edituser')->name('user.edit');
 Route::get('/user/delete/{id}', 'UserController@delete')->name('user.delete');
+
 
 Route::get('get_products', 'VueController@get_products');
 Route::post('get_product', 'VueController@get_product')->name('get_product');

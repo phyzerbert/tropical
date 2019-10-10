@@ -36,6 +36,7 @@
     </div>
     <script src="{{asset('master/js/dashmix.core.min-2.0.js')}}"></script>
     <script src="{{asset('master/js/dashmix.app.min-2.0.js')}}"></script>
+    <script src="{{asset('master/js/plugins/moment/moment.min.js')}}"></script>
     <script src="{{asset('master/js/plugins/toastr/toastr.min.js')}}"></script>
     @yield('script')
         <script>

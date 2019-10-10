@@ -159,6 +159,12 @@
                 </ul>
             </li>
             <li class="nav-main-item">
+                <a class="nav-main-link @if($page == 'transaction') active @endif" href="{{route('transaction.index')}}">
+                    <i class="nav-main-link-icon si si-handbag"></i>
+                    <span class="nav-main-link-name">{{__('page.transaction')}}</span>
+                </a>
+            </li>
+            <li class="nav-main-item">
                 <a class="nav-main-link @if($page == 'supplier') active @endif" href="{{route('supplier.index')}}">
                     <i class="nav-main-link-icon si si-handbag"></i>
                     <span class="nav-main-link-name">{{__('page.supplier')}}</span>

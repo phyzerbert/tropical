@@ -311,5 +311,7 @@ return [
     'edit_proforma' => 'Editar Proforma',
     'keyword' => 'Palabra Clave', 
     'no_payment' => 'No Pago',
+    'expense' => 'Gasto',
+    'incoming' => 'Ingreso',
     
 ];

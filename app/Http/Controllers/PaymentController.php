@@ -8,6 +8,7 @@ use App\Models\Invoice;
 use App\Models\Proforma;
 use App\Models\Sale;
 use App\Models\SaleProforma;
+use App\Models\Transaction;
 use PDF;
 
 class PaymentController extends Controller
@@ -41,7 +42,7 @@ class PaymentController extends Controller
             'date'=>'required|string',
             'reference_no'=>'required|string',
         ]);        
-        
+        $transaction_type = 1;
         $item = new Payment();
         $item->timestamp = $request->get('date').":00";
         $item->reference_no = $request->get('reference_no');
@@ -52,24 +53,28 @@ class PaymentController extends Controller
             if($invoice->proforma_id) {
                 $item->proforma_id = $invoice->proforma_id;
             }
+            $transaction_type = 1;
         }else if($request->type == 'proforma'){
             $item->proforma_id = $request->proforma_id;
             $proforma = Proforma::find($request->proforma_id);
             if($proforma->invoice) {
                 $item->invoice_id = $proforma->invoice->id;
             }
+            $transaction_type = 1;
         }else if($request->type == 'sale'){
             $item->sale_id = $request->sale_id;
             $sale = Sale::find($request->sale_id);
             if($sale->sale_proforma_id) {
                 $item->sale_proforma_id = $sale->sale_proforma_id;
             }
+            $transaction_type = 2;
         }else if($request->type == 'sale_proforma'){
             $item->sale_proforma_id = $request->sale_proforma_id;
             $proforma = SaleProforma::find($request->sale_proforma_id);
             if($proforma->sale) {
                 $item->sale_id = $proforma->sale->id;
             }
+            $transaction_type = 2;
         }
         $item->note = $request->get('note');
         if($request->has("attachment")){
@@ -79,6 +84,15 @@ class PaymentController extends Controller
             $item->attachment = 'images/uploaded/payment_images/'.$imageName;
         }
         $item->save();
+        Transaction::create([
+            'reference_no' => $item->reference_no,
+            'timestamp' => $item->timestamp,
+            'amount' => $item->amount,
+            'payment_id' => $item->id,
+            'type' => $transaction_type,
+            'note' => $item->note,
+            'attachment' => $item->attachment,
+        ]);
         return back()->with('success', __('page.added_successfully'));
     }
 

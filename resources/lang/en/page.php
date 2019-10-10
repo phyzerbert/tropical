@@ -314,5 +314,14 @@ return [
     'edit_proforma' => 'Edit Proforma',
     'keyword' => 'Keyword', 
     'no_payment' => 'No Payment', 
+    'transaction' => 'Transaction', 
+    'transaction_management' => 'Transaction Management', 
+    'add_transaction' => 'Add Transaction', 
+    'edit_transaction' => 'Edit Transaction', 
+    'incoming' => 'Incoming',
+    'expense' => 'Expense',
+    'total_incoming' => 'Total Incoming',
+    'total_expense' => 'Total Expense',
+    'total_balance' => 'Total Balance',
     
 ];

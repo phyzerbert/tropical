@@ -310,6 +310,6 @@ return [
     'submit_customer_proforma' => 'Enviar formulario de cliente',
     'edit_proforma' => 'Editar Proforma',
     'keyword' => 'Palabra Clave', 
-    'no_payment' => 'No Payment',
+    'no_payment' => 'No Pago',
     
 ];

@@ -99,9 +99,9 @@
                         <tfoot>
                             <tr>
                                 <th colspan="10" class="text-center">
-                                    {{__('page.total_incoming')}} : {{number_format($total['incoming'], 2)}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    {{__('page.total_expense')}} : {{number_format($total['expense'], 2)}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    {{__('page.total_balance')}} : {{number_format($total['incoming'] - $total['expense'], 2)}}
+                                    <span class="mr-5">{{__('page.total_incoming')}} : {{number_format($total['incoming'], 2)}}</span>
+                                    <span class="mr-5">{{__('page.total_expense')}} : {{number_format($total['expense'], 2)}}</span>
+                                    <span class="">{{__('page.total_balance')}} : {{number_format($total['incoming'] - $total['expense'], 2)}}</span>
                                 </th>
                             </tr>
                         </tfoot>

@@ -3,7 +3,7 @@
 return [
 
     // ********  Login Page  ********
-    'sign_in' => 'Iniciar Sesión',
+    'sign_in' => 'Iniciar',
     'username' => 'Nombre de usuario',
     'password' => 'Contraseña',
     'remember_me' => 'Recuérdame',
@@ -110,7 +110,7 @@ return [
     'email' => 'Email',
     'phone' => 'Teléfono',
     'city' => 'Ciudad',
-    'address' => 'Habla a',
+    'address' => 'Dirección',
     'reference' => 'Referencia',
     'number' => 'Número',
     'total_amount' => 'Cantidad total',
@@ -287,11 +287,11 @@ return [
     'embarked' => 'Embarcado',
 
     'booking' => 'Reserva',
-    'shipping_company' => 'Compañía de envios',
+    'shipping_company' => 'Naviera',
     'type_of_merchandise' => 'Tipo de mercancia',
     'fruit_loading_date' => 'Fecha de carga de frutas',
     'ship_departure_date' => 'Fecha de salida del barco',
-    'estimated_date_of_shipping_company' => 'Fecha estimada de la compañía de envío',
+    'estimated_date_of_shipping_company' => 'Fecha estimada de la Naviera',
     'agency' => 'Agencia',
     'dock' => 'Muelle',
     'shipment_detail' => 'Detalle de envío',
@@ -305,11 +305,11 @@ return [
     'edit_sale' => 'Editar venta',
     'sale_status' => 'Estado de venta',
     'sale' => 'Venta',
-    'customer_proforma' => 'Customer Proforma',
+    'customer_proforma' => 'Proforma Clientes',
     'sale_proforma' => 'Formulario de venta',
     'submit_customer_proforma' => 'Enviar formulario de cliente',
     'edit_proforma' => 'Editar Proforma',
-    'keyword' => 'Keyword',  
-    'no_payment' => 'No Pago', 
+    'keyword' => 'Palabra Clave', 
+    'no_payment' => 'No Payment',
     
 ];

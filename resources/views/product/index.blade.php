@@ -30,8 +30,14 @@
             @foreach ($data as $item)
                 <div class="col-lg-3">
                     <div class="block block-rounded block-link-pop">
+                        @php
+                            $image_url = asset('images/no-image.jpg');
+                            if(file_exists($item->image)){
+                                $image_url = asset($item->image);
+                            }
+                        @endphp
                         <div class="p-3 text-center">                                
-                            <img class="img-fluid bordered rounded" height="300" src="@if($item->image){{asset($item->image)}}@else{{asset('images/no-image.jpg')}}@endif" alt="">
+                            <img class="img-fluid bordered rounded" height="300" src="{{$image_url}}" alt="">
                         </div>
                         <div class="block-content text-center">
                             <h4 class="mb-1">{{ $item->code }}</h4>

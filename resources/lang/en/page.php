@@ -313,5 +313,6 @@ return [
     'submit_customer_proforma' => 'Submit Customer Proforma',
     'edit_proforma' => 'Edit Proforma',
     'keyword' => 'Keyword', 
+    'no_payment' => 'No Payment', 
     
 ];

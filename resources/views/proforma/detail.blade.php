@@ -100,7 +100,7 @@
                             <tfoot>
                                 <tr>
                                     <th colspan="2" class="text-right">{{__('page.total')}} : </th>
-                                    <th class="total_quantity">{{ $footer_quantity }}</th>
+                                    <th class="total_quantity">{{ number_format($footer_quantity) }}</th>
                                     <th></th>
                                     <th colspan="2" class="total">{{ number_format($footer_amount, 2) }}</th>
                                 </tr>
@@ -146,7 +146,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>                                
-                                        @foreach ($invoice->payments as $item)
+                                        @forelse ($invoice->payments as $item)
                                             <tr>
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td class="date">{{date('Y-m-d H:i', strtotime($item->timestamp))}}</td>
@@ -167,14 +167,18 @@
                                                     @endif
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center font-weight-bold">{{__('page.no_payment')}}</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div> 
                         </div>
                     </div>
                     <div class="clearfix">
-                        <a href="{{route('proforma.index')}}" class="btn btn-primary float-right"><i class="far fa-file-alt"></i> {{__('page.proforma')}}</a>
+                        <a href="{{route('proforma.index')}}" class="btn btn-primary float-right"><i class="far fa-file-alt mr-2"></i>{{__('page.proforma')}}</a>
                     </div>
                 </div>
             </div>

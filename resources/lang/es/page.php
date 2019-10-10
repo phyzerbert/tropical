@@ -3,7 +3,7 @@
 return [
 
     // ********  Login Page  ********
-    'sign_in' => 'Registrarse',
+    'sign_in' => 'Iniciar Sesión',
     'username' => 'Nombre de usuario',
     'password' => 'Contraseña',
     'remember_me' => 'Recuérdame',
@@ -309,6 +309,7 @@ return [
     'sale_proforma' => 'Formulario de venta',
     'submit_customer_proforma' => 'Enviar formulario de cliente',
     'edit_proforma' => 'Editar Proforma',
-    'keyword' => 'Keyword', 
+    'keyword' => 'Keyword',  
+    'no_payment' => 'No Pago', 
     
 ];

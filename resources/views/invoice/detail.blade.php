@@ -161,7 +161,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>                                
-                                        @foreach ($invoice->payments as $item)
+                                        @forelse ($invoice->payments as $item)
                                             <tr>
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td class="date">{{date('Y-m-d H:i', strtotime($item->timestamp))}}</td>
@@ -181,8 +181,12 @@
                                                         @endif
                                                     @endif
                                                 </td>
+                                            </tr>                                        
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center font-weight-bold">{{__('page.no_payment')}}</td>
                                             </tr>
-                                        @endforeach
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div> 

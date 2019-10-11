@@ -145,8 +145,8 @@
                         <div class="form-group">
                             <label class="control-label">{{__('page.type')}}</label>
                             <select class="form-control type" name="type" required>
-                                <option value="1">{{__('page.incoming')}}</option>
                                 <option value="1">{{__('page.expense')}}</option>
+                                <option value="2">{{__('page.incoming')}}</option>
                             </select>
                         </div>                                             
                         <div class="form-group">

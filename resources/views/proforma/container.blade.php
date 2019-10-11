@@ -30,8 +30,8 @@
                 <h3 class="float-left mb-0 mr-auto">PRO-FORMA NE INVOICE : <ins class="text-primary">{{$invoice->reference_no}}</ins></h3>                
                 <form action="" class="form-inline float-right" method="post" id="keyword_filter_form">
                     @csrf    
-                    <input type="text" name="keyword" id="keyword_filter" value="{{$keyword}}" class="form-control form-control-sm" placeholder="Keyword" />
-                    <a href="{{route('container.create')}}" class="btn btn-success btn-sm float-right ml-2" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
+                    <input type="text" name="keyword" id="keyword_filter" value="{{$keyword}}" class="form-control form-control-sm mt-2 mt-md-0" placeholder="Keyword" />
+                    <a href="{{route('container.create')}}" class="btn btn-success btn-sm float-right ml-2 mt-2 mt-md-0" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
                 </form>
             </div>
             <div class="block-content block-content-full">

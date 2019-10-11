@@ -24,22 +24,16 @@ var app = new Vue({
                     this.vat = invoice.vat_amount
                     for (let i = 0; i < invoice.items.length; i++) {
                         const item = invoice.items[i];
-                        axios.post('/get_product', {id:item.product_id})
-                            .then(response1 => {
-                                this.items.push({
-                                    product_id: item.product_id,
-                                    product_name_code: response1.data.name + "(" + response1.data.code + ")",
-                                    price: item.price,
-                                    quantity: item.quantity,
-                                    amount: item.amount,
-                                    surcharge_reduction: item.surcharge_reduction,
-                                    total_amount: item.total_amount,
-                                    item_id: item.id
-                                })
-                            })
-                            .catch(error => {
-                                console.log(error);
-                            });                
+                        this.items.push({
+                            product_id: item.product_id,
+                            product_name_code: item.product.name + "(" + item.product.code + ")",
+                            price: item.price,
+                            quantity: item.quantity,
+                            amount: item.amount,
+                            surcharge_reduction: item.surcharge_reduction,
+                            total_amount: item.total_amount,
+                            item_id: item.id
+                        })                
                     }
                 })
                 .catch(error => {

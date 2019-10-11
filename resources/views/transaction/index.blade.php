@@ -65,9 +65,9 @@
                                     <td class="amount" data-value="{{$item->amount}}">{{number_format($item->amount, 2)}}</td>
                                     <td class="type">
                                         @if($item->type == 1)
-                                            <span class="badge badge-primary">{{__('page.incoming')}}</span>
+                                            <span class="badge badge-primary">{{__('page.expense')}}</span>
                                         @elseif($item->type == 2)
-                                            <span class="badge badge-info">{{__('page.expense')}}</span>
+                                            <span class="badge badge-info">{{__('page.incoming')}}</span>
                                         @endif
                                     </td>
                                     <td class="note" data-value="{{$item->note}}">

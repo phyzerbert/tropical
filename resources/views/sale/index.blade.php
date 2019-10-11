@@ -21,7 +21,7 @@
     <div class="content">  
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
-                <form action="" method="POST" class="col-md-12 form-inline" id="searchForm">
+                <form action="" method="POST" class="col-md-12 form-inline px-0" id="searchForm">
                     @csrf
                     <input type="hidden" name="sort_by_date" value="{{$sort_by_date}}" id="search_sort_date" />
                     <label for="pagesize" class="control-label">{{__('page.show')}} :</label>

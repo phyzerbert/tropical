@@ -21,7 +21,7 @@
     <div class="content">  
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
-                <form action="" class="col-md-12 form-inline" id="searchForm">
+                <form action="" class="col-md-12 form-inline px-0" id="searchForm">
                     @csrf
                     <label for="pagesize" class="control-label">{{__('page.show')}} :</label>
                     <select class="form-control form-control-sm mx-md-2" name="pagesize" id="pagesize">

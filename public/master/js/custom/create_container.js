@@ -39,7 +39,6 @@ var app = new Vue({
                     this.week_d = proforma.week_d
                     if(response.data.shipment){
                         let shipment_items = response.data.shipment.items
-                        console.log(shipment_items)
                         for (let i = 0; i < shipment_items.length; i++) {
                             const item = shipment_items[i];
                             this.items.push({

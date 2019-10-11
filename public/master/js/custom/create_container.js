@@ -31,6 +31,7 @@ var app = new Vue({
         },
         getItems() {
             this.items = []
+            Dashmix.loader('show');
             axios.post('/get_proforma', {id : this.proforma_id})
                 .then(response => {
                     let proforma = response.data
@@ -53,6 +54,7 @@ var app = new Vue({
                                     console.log(error);
                                 });                
                         }
+                        Dashmix.loader('hide');
                     }
                 })
                 .catch(error => {

@@ -245,7 +245,7 @@
                 let note = $(this).parents('tr').find('.note').data('value');
                 $("#edit_form .id").val(id);
                 $("#edit_form .reference_no").val(reference_no);
-                $("#edit_form .timestamp").val(timestamp);
+                $("#edit_form .date").val(timestamp);
                 $("#edit_form .amount").val(amount);
                 $("#edit_form .note").val(note);
                 $("#editModal").modal();

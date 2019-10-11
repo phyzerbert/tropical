@@ -39,20 +39,15 @@ var app = new Vue({
                     this.week_d = proforma.week_d
                     if(response.data.shipment){
                         let shipment_items = response.data.shipment.items
+                        console.log(shipment_items)
                         for (let i = 0; i < shipment_items.length; i++) {
                             const item = shipment_items[i];
-                            axios.post('/get_product', {id:item.product_id})
-                                .then(response1 => {
-                                    this.items.push({
-                                        product_id: item.product_id,
-                                        product_code: response1.data.code,
-                                        product_name: response1.data.name,
-                                        quantity: item.quantity,
-                                    })
-                                })
-                                .catch(error => {
-                                    console.log(error);
-                                });                
+                            this.items.push({
+                                product_id: item.product_id,
+                                product_code: item.product.code,
+                                product_name: item.product.name,
+                                quantity: item.quantity,
+                            })               
                         }
                         Dashmix.loader('hide');
                     }

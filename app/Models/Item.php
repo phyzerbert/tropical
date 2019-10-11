@@ -8,6 +8,8 @@ class Item extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['product'];
+
     public function itemable()
     {
         return $this->morphTo();

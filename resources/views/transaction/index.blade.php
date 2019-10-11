@@ -61,7 +61,7 @@
                                 <tr>
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
                                     <td class="reference_no">{{$item->reference_no}}</td>
-                                    <td class="timestamp">{{date('Y-m-d H:i'), strtotime($item->timestamp)}}</td>
+                                    <td class="timestamp">{{date('Y-m-d H:i', strtotime($item->timestamp))}}</td>
                                     <td class="amount" data-value="{{$item->amount}}">{{number_format($item->amount, 2)}}</td>
                                     <td class="type">
                                         @if($item->type == 1)

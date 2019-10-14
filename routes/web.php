@@ -58,6 +58,12 @@ Route::get('/shipment/receive/{id}', 'ShipmentController@receive')->name('shipme
 Route::get('/shipment/detail/{id}', 'ShipmentController@detail')->name('shipment.detail');
 Route::post('/shipment/save_receive', 'ShipmentController@save_receive')->name('shipment.save_receive');
 
+Route::any('/sale_shipment/index', 'SaleShipmentController@index')->name('sale_shipment.index');
+Route::get('/sale_shipment/delete/{id}', 'SaleShipmentController@delete')->name('sale_shipment.delete');
+Route::get('/sale_shipment/receive/{id}', 'SaleShipmentController@receive')->name('sale_shipment.receive');
+Route::get('/sale_shipment/detail/{id}', 'SaleShipmentController@detail')->name('sale_shipment.detail');
+Route::post('/sale_shipment/save_receive', 'SaleShipmentController@save_receive')->name('sale_shipment.save_receive');
+
 Route::any('/payment/index/{type}/{id}', 'PaymentController@index')->name('payment.index');
 Route::post('/payment/create', 'PaymentController@create')->name('payment.create');
 Route::post('/payment/edit', 'PaymentController@edit')->name('payment.edit');
@@ -133,6 +139,7 @@ Route::post('get_sale', 'VueController@get_sale');
 Route::post('get_sale_proforma', 'VueController@get_sale_proforma');
 Route::post('get_items', 'VueController@get_items');
 Route::post('get_shipment', 'VueController@get_shipment');
+Route::post('get_sale_shipment', 'VueController@get_sale_shipment');
 Route::post('get_container', 'VueController@get_container');
 Route::post('get_received_quantity', 'VueController@get_received_quantity');
 Route::post('get_autocomplete_products', 'VueController@get_autocomplete_products');

@@ -323,5 +323,6 @@ return [
     'total_incoming' => 'Total Incoming',
     'total_expense' => 'Total Expense',
     'total_balance' => 'Total Balance',
+    'balance_of_proforma' => 'Balance Of Proforma',
     
 ];

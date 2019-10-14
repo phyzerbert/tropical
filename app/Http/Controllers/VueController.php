@@ -8,6 +8,7 @@ use App\Models\Invoice;
 use App\Models\Proforma;
 use App\Models\SaleProforma;
 use App\Models\Shipment;
+use App\Models\SaleShipment;
 use App\Models\Container;
 use App\Models\Sale;
 use App\Models\Item;
@@ -87,6 +88,12 @@ class VueController extends Controller
     public function get_shipment(Request $request){
         $id = $request->get('id');
         $item = Shipment::find($id)->load('items');
+        return response()->json($item);
+    }
+
+    public function get_sale_shipment(Request $request){
+        $id = $request->get('id');
+        $item = SaleShipment::find($id)->load('items');
         return response()->json($item);
     }
 

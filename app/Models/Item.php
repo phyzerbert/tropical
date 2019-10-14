@@ -30,6 +30,11 @@ class Item extends Model
         return $this->morphedByMany(Shipment::class, 'itemable');
     }
 
+    public function sale_shipment()
+    {
+        return $this->morphedByMany(SaleShipment::class, 'itemable');
+    }
+
     public function product() {
         return $this->belongsTo(Product::class);
     }

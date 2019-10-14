@@ -57,7 +57,7 @@
                                 <tr>
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
                                     <td class="reference_no">{{$item->reference_no}}</td>
-                                    <td class="date">@if($item->proforma){{ date('d/m/Y', strtotime($item->proforma->date)) }}@endif</td>
+                                    <td class="date">@if($item->sale_proforma){{ date('d/m/Y', strtotime($item->sale_proforma->date)) }}@endif</td>
                                     <td class="week_c">{{ $item->week_c }}</td>
                                     <td class="status">
                                         @if($item->is_received == 1)
@@ -68,10 +68,10 @@
                                     </td>
                                     <td class="total_to_pay">{{number_format($item->total_to_pay, 2)}}</td>
                                     <td class="balance_of_proforma">
-                                        @if($item->proforma)
+                                        @if($item->sale_proforma)
                                             @php
-                                                $proforma_total_to_pay = $item->proforma->total_to_pay;
-                                                $proforma_paid = $item->proforma->payments()->sum('amount');
+                                                $proforma_total_to_pay = $item->sale_proforma->total_to_pay;
+                                                $proforma_paid = $item->sale_proforma->payments()->sum('amount');
                                                 $proforma_balance = $proforma_total_to_pay - $proforma_paid;
                                             @endphp
                                             {{number_format($proforma_balance, 2)}}
@@ -81,11 +81,11 @@
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle" id="dropdown-align-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('page.action')}}&nbsp;</button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-align-primary">
-                                                <a class="dropdown-item" href="{{route('shipment.detail', $item->id)}}">{{__('page.detail')}}</a>
+                                                <a class="dropdown-item" href="{{route('sale_shipment.detail', $item->id)}}">{{__('page.detail')}}</a>
                                                 @if (!$item->is_received)                                                    
-                                                    <a class="dropdown-item" href="{{route('shipment.receive', $item->id)}}" data-id="{{$item->id}}">{{__('page.receive')}}</a>
+                                                    <a class="dropdown-item" href="{{route('sale_shipment.receive', $item->id)}}" data-id="{{$item->id}}">{{__('page.receive')}}</a>
                                                 @endif
-                                                <a class="dropdown-item" href="{{route('shipment.delete', $item->id)}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">{{__('page.delete')}}</a>
+                                                <a class="dropdown-item" href="{{route('sale_shipment.delete', $item->id)}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">{{__('page.delete')}}</a>
                                             </div>
                                         </div>
                                     </td>

@@ -10,6 +10,7 @@ use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Item;
 use App\Models\Payment;
+use App\Models\SaleShipment;
 
 use Auth;
 use PDF;
@@ -252,7 +253,7 @@ class SaleProformaController extends Controller
         return view('sale_proforma.submit', compact('sale_proforma'));
     }
 
-    public function save_submit(Request $request){
+    public function save_receive(Request $request){
         $request->validate([
             'proforma'=>'required|string',
             'date'=>'required',
@@ -299,6 +300,39 @@ class SaleProformaController extends Controller
         foreach ($proforma->payments as $payment) {
             $payment->sale_id = $item->id;
             $payment->save();
+        }
+        return redirect(route('sale_proforma.index'))->with("success", __('page.submitted_successfully'));
+    }
+
+    public function save_submit(Request $request){
+        $request->validate([
+            'proforma'=>'required|string',
+            'week_c'=>'required',
+        ]);
+        $data = $request->all();
+        $proforma = SaleProforma::find($request->get('id'));
+        if($proforma->is_submitted == 1){
+            return back()->withErrors(['submitted' => 'This proforma has been already submitted.']);
+        }
+        $item = new SaleShipment();
+        $item->reference_no = $data['proforma'];
+        $item->week_c = $data['week_c'];
+        $item->sale_proforma_id = $proforma->id;
+        $item->total_to_pay = $data['total_to_pay'];
+        $item->save();
+        $proforma->update(['is_submitted' => 1]);
+
+        if(isset($data['product_id']) && count($data['product_id']) > 0){
+            for ($i=0; $i < count($data['product_id']); $i++) {
+                Item::create([
+                    'product_id' => $data['product_id'][$i],
+                    'price' => $data['price'][$i],
+                    'quantity' => $data['quantity'][$i],
+                    'total_amount' => $data['total_amount'][$i],
+                    'itemable_id' => $item->id,
+                    'itemable_type' => SaleShipment::class,
+                ]);
+            }
         }
         return redirect(route('sale_proforma.index'))->with("success", __('page.submitted_successfully'));
     }

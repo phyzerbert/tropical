@@ -39,8 +39,10 @@
                     @php
                         if($invoice->shipment){
                             $products = $invoice->shipment->items->pluck('product_id')->toArray();
+                            $products = array_unique($products);
                         }else{                            
                             $products = $invoice->items->pluck('product_id')->toArray();
+                            $products = array_unique($products);
                         }
                         $footer_product_total = array();
                         $footer_total_container = $footer_peso_carga = $footer_tara = $footer_vgm = 0;

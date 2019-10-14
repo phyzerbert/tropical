@@ -106,7 +106,8 @@ class ContainerController extends Controller
         $item->vgm = $data['vgm'];
         $product_list = array();
         for ($i=0; $i < count($data['product_id']); $i++) { 
-            $product_list[$data['product_id'][$i]] = $data['quantity'][$i];
+            if(!isset($product_list[$data['product_id'][$i]])) $product_list[$data['product_id'][$i]] = 0;
+            $product_list[$data['product_id'][$i]] += $data['quantity'][$i];
         }
         $item->product_list = json_encode($product_list);
         $item->save();

@@ -30,12 +30,22 @@ class InvoiceController extends Controller
         $sort_by_date = 'desc';
         if ($request->get('week_c') != ""){
             $week_c = $request->get('week_c');
-            $proforma_array = Proforma::where('week_c', $week_c)->pluck('id');
+            if(strpos($week_c, ",") !== false) {
+                $week_c_array = explode(',', $week_c);
+                $proforma_array = Proforma::whereIn('week_c', $week_c_array)->pluck('id');
+            } else {
+                $proforma_array = Proforma::where('week_c', $week_c)->pluck('id');
+            }            
             $mod = $mod->whereIn('proforma_id', $proforma_array);
         }
         if ($request->get('week_d') != ""){
             $week_d = $request->get('week_d');
-            $proforma_array = Proforma::where('week_d', $week_d)->pluck('id');
+            if(strpos($week_d, ",") !== false) {
+                $week_d_array = explode(',', $week_d);
+                $proforma_array = Proforma::whereIn('week_d', $week_d_array)->pluck('id');
+            } else {
+                $proforma_array = Proforma::where('week_d', $week_d)->pluck('id');
+            } 
             $mod = $mod->whereIn('proforma_id', $proforma_array);
         }
         if ($request->get('supplier_id') != ""){

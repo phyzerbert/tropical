@@ -23,11 +23,21 @@ class ContainerController extends Controller
         $week_c = $week_d = $keyword = '';
         if ($request->get('week_c') != ""){
             $week_c = $request->get('week_c');
-            $mod = $mod->where('week_c', $week_c);
+            if(strpos($week_c, ",") !== false) {
+                $week_c_array = explode(',', $week_c);
+                $mod = $mod->whereIn('week_c', $week_c_array);
+            } else {
+                $mod = $mod->where('week_c', $week_c);
+            }            
         }
         if ($request->get('week_d') != ""){
             $week_d = $request->get('week_d');
-            $mod = $mod->where('week_d', $week_d);
+            if(strpos($week_d, ",") !== false) {
+                $week_d_array = explode(',', $week_d);
+                $mod = $mod->whereIn('week_d', $week_d_array);
+            } else {
+                $mod = $mod->where('week_d', $week_d);
+            } 
         }
         if ($request->get('keyword') != ""){
             $keyword = $request->keyword;

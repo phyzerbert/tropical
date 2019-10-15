@@ -40,7 +40,7 @@
                             <img class="img-fluid bordered rounded" height="300" src="{{$image_url}}" alt="">
                         </div>
                         <div class="block-content text-center">
-                            <h4 class="mb-1">{{ $item->code }}</h4>
+                            <h4 class="mb-1">{{ $item->code }} <span class="text-primary">({{$item->quantity()}})</span></h4>
                             <p class="font-size-sm name" title="{{ $item->name }}">
                                 {{ $item->name }}
                             </p>

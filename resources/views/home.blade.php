@@ -19,7 +19,13 @@
     <div class="content">
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
-                <h3 class="block-title">{{__('page.expense')}} & {{__('page.income')}}</h3>
+                <h3 class="block-title float-left">{{__('page.expense')}} & {{__('page.income')}}</h3>                
+                <form action="" class="form-inline px-0 float-right" method="post" id="searchForm">
+                    @csrf
+                    <input type="text" class="form-control form-control-sm col-md-2 mt-2 mt-md-0" name="period" id="search_period" value="{{$period}}" style="min-width:200px" autocomplete="off" placeholder="{{__('page.timestamp')}}">
+                    <button type="submit" class="btn btn-sm btn-primary ml-md-2 mt-2 mt-md-0"><i class="fa fa-search"></i> {{__('page.search')}}</button>
+                    <button type="button" class="btn btn-danger btn-sm mt-2 mt-md-0 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</button>
+                </form>  
             </div>
             <div class="block-content block-content-full">
                 <div id="transaction_chart" style="height: 400px;"></div>                
@@ -207,7 +213,10 @@
 </script>
 <script>
     $(document).ready(function () {
-        $("#period").dateRangePicker();
+        $("#search_period").dateRangePicker();
+        $("#btn-reset").click(function(){
+            $("#search_period").val('');
+        })
     });
 </script>
 @endsection

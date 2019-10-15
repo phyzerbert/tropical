@@ -54,7 +54,7 @@ class HomeController extends Controller
             array_push($income_array, $daily_incoming);
         }
 
-        return view('home', compact('key_array', 'expense_array', 'income_array'));
+        return view('home', compact('key_array', 'expense_array', 'income_array', 'period'));
     }
 
     

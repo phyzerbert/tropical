@@ -17,7 +17,7 @@ Route::get('/', function () {
 Route::get('lang/{locale}', 'IndexController@lang')->name('lang');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::any('/home', 'HomeController@index')->name('home');
 
 
 Route::any('/payment/index/{type}/{id}', 'PaymentController@index')->name('payment.index');

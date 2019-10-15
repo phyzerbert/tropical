@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Supplier;
+use App\Models\Proforma;
+use App\Models\Invoice;
+use App\Models\Payment;
+use App\Models\Item;
 
 use PDF;
 
@@ -88,5 +92,76 @@ class SupplierController extends Controller {
   
         return $pdf->download('supplier_report_'.$supplier->name.'.pdf');
         // return view('supplier.report', compact('supplier'));
+    }
+
+    public function invoices(Request $request, $id) {
+        config(['site.page' => 'supplier']);
+        $supplier = Supplier::find($id);
+
+        $mod = $supplier->invoices();
+        $keyword = $week_c = $week_d = '';
+        $pagesize = 15;
+        if ($request->get('keyword') != ""){
+            $keyword = $request->keyword;
+            $mod = $mod->where(function($query) use($keyword){
+                return $query->where('reference_no', 'LIKE', "%$keyword%")
+                        ->orWhere('issue_date', 'LIKE', "%$keyword%")
+                        ->orWhere('due_date', 'LIKE', "%$keyword%")
+                        ->orWhere('delivery_date', 'LIKE', "%$keyword%");
+            });
+        }
+        if ($request->get('week_c') != ""){
+            $week_c = $request->get('week_c');
+            if(strpos($week_c, ",") !== false) {
+                $week_c_array = explode(',', $week_c);
+                $proforma_array = Proforma::whereIn('week_c', $week_c_array)->pluck('id');
+            } else {
+                $proforma_array = Proforma::where('week_c', $week_c)->pluck('id');
+            }            
+            $mod = $mod->whereIn('proforma_id', $proforma_array);
+        }
+        if ($request->get('week_d') != ""){
+            $week_d = $request->get('week_d');
+            if(strpos($week_d, ",") !== false) {
+                $week_d_array = explode(',', $week_d);
+                $proforma_array = Proforma::whereIn('week_d', $week_d_array)->pluck('id');
+            } else {
+                $proforma_array = Proforma::where('week_d', $week_d)->pluck('id');
+            } 
+            $mod = $mod->whereIn('proforma_id', $proforma_array);
+        }
+        
+        
+        $data = $mod->orderBy('created_at', 'desc')->paginate($pagesize);
+        return view('supplier.invoice', compact('data', 'supplier', 'keyword', 'week_c', 'week_d', 'pagesize'));
+    }
+
+    public function payments(Request $request, $id) {
+        config(['site.page' => 'supplier']);
+        $supplier = Supplier::find($id);
+        $mod = new Payment();
+        $invoices_array = $supplier->invoices()->pluck('id');
+        
+        $reference_no = $period = '';
+        $pagesize = 15;
+
+        $mod = $mod->whereIn('invoice_id', $invoices_array);
+
+        if ($request->get('reference_no') != ""){
+            $reference_no = $request->get('reference_no');
+            $mod = $mod->where('reference_no', 'LIKE', "%$reference_no%");
+        }
+
+        if ($request->get('period') != ""){   
+            $period = $request->get('period');
+            $from = substr($period, 0, 10);
+            $to = substr($period, 14, 10);
+            $mod = $mod->whereBetween('timestamp', [$from, $to]);
+        }
+        if($request->pagesize != '') {
+            $pagesize = $request->pagesize;
+        }
+        $data = $mod->orderBy('created_at', 'desc')->paginate($pagesize);
+        return view('supplier.payment', compact('data', 'supplier', 'reference_no', 'period', 'pagesize'));
     }
 }

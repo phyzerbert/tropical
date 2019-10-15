@@ -324,5 +324,7 @@ return [
     'total_expense' => 'Total Expense',
     'total_balance' => 'Total Balance',
     'balance_of_proforma' => 'Balance Of Proforma',
+    'supplier_invoices' => 'Supplier Invoices',
+    'supplier_payments' => 'Supplier Payments',
     
 ];

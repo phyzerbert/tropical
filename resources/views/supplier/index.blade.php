@@ -66,17 +66,15 @@
                                     <td class="total_amount">{{number_format($total_amount)}}</td>                                        
                                     <td>{{number_format($paid)}}</td>
                                     <td>{{number_format($total_amount - $paid)}}</td>
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            <a href="{{route('supplier.report', $item->id)}}" class="btn btn-sm btn-primary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="{{__('page.delete')}}">
-                                                <i class="far fa-file-pdf"></i>
-                                            </a>
-                                            <button type="button" class="btn btn-sm btn-primary js-tooltip-enabled btn-edit" data-id="{{$item->id}}" data-toggle="tooltip" title="" data-original-title="{{__('page.edit')}}">
-                                                <i class="fa fa-pencil-alt"></i>
-                                            </button>
-                                            <a href="{{route('supplier.delete', $item->id)}}" class="btn btn-sm btn-primary js-tooltip-enabled" data-toggle="tooltip" title="" data-original-title="{{__('page.delete')}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">
-                                                <i class="fa fa-times"></i>
-                                            </a>
+                                    <td class="text-center">                                        
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-sm btn-primary dropdown-toggle" id="dropdown-align-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('page.action')}}&nbsp;</button>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-align-primary">
+                                                <a class="dropdown-item" href="{{route('supplier.invoices', $item->id)}}">{{__('page.view_reports')}}</a>
+                                                <a class="dropdown-item" href="{{route('supplier.report', $item->id)}}">{{__('page.report')}}</a>
+                                                <a class="dropdown-item btn-edit" href="javascript:;" data-id="{{$item->id}}">{{__('page.edit')}}</a>
+                                                <a class="dropdown-item" href="{{route('supplier.delete', $item->id)}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">{{__('page.delete')}}</a>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>

@@ -107,6 +107,8 @@ Route::post('/supplier/create', 'SupplierController@create')->name('supplier.cre
 Route::post('/supplier/ajax_create', 'SupplierController@ajax_create')->name('supplier.ajax_create');
 Route::post('/supplier/edit', 'SupplierController@edit')->name('supplier.edit');
 Route::get('/supplier/report/{id}', 'SupplierController@report')->name('supplier.report');
+Route::any('/supplier/invoices/{id}', 'SupplierController@invoices')->name('supplier.invoices');
+Route::any('/supplier/payments/{id}', 'SupplierController@payments')->name('supplier.payments');
 Route::get('/supplier/delete/{id}', 'SupplierController@delete')->name('supplier.delete');
 
 Route::any('/customer/index', 'CustomerController@index')->name('customer.index');

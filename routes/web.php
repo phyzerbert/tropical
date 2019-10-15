@@ -30,8 +30,9 @@ Route::any('/product/index', 'ProductController@index')->name('product.index');
 Route::post('/get_products', 'ProductController@getProducts')->name('product.get');
 Route::post('/product/create', 'ProductController@create')->name('product.create');
 Route::post('/product/edit', 'ProductController@edit')->name('product.edit');
-Route::get('/product/delete/{id}', 'ProductController@delete')->name('product.delete');
 Route::post('/product/produce_create', 'ProductController@produce_create')->name('product.produce_create');
+Route::get('/product/stock/{id}', 'ProductController@stock')->name('product.stock');
+Route::get('/product/delete/{id}', 'ProductController@delete')->name('product.delete');
 
 Route::any('/invoice/index', 'InvoiceController@index')->name('invoice.index');
 Route::get('/invoice/create', 'InvoiceController@create')->name('invoice.create');

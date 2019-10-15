@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Container;
 
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -104,5 +105,22 @@ class ProductController extends Controller
         }
         $item->save();
         return response()->json($item);
+    }
+
+    public function stock($id) {
+        $product = Product::find($id);
+        $income = 0;
+        $expense = $product->items()->where('itemable_type', 'App\Models\Sale')->sum('quantity');
+
+        $containers = Container::all();
+        foreach ($containers as $container) {
+            $income += $container->product_quantity($id);
+        }
+
+        $quantity = $income - $expense;
+
+        dump($expense);
+        dump($income);
+        dump($quantity);
     }
 }

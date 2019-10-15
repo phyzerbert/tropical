@@ -40,8 +40,8 @@ class TransactionController extends Controller
         }
         $data = $mod->orderBy('timestamp', 'desc')->paginate($pagesize);
         $collection = $mod->get();
-        $total['incoming'] = $collection->where('type', 1)->sum('amount');
-        $total['expense'] = $collection->where('type', 2)->sum('amount');
+        $total['expense'] = $collection->where('type', 1)->sum('amount');
+        $total['incoming'] = $collection->where('type', 2)->sum('amount');
         return view('transaction.index', compact('data', 'total', 'keyword', 'period', 'pagesize'));
     }
 

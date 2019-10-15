@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Sale;
+use App\Models\Payment;
 
 use PDF;
 
@@ -89,5 +91,76 @@ class CustomerController extends Controller
   
         return $pdf->download('customer_report_'.$customer->name.'.pdf');    
         // return view('customer.report', compact('customer'));
+    }
+
+    public function sales(Request $request, $id) {
+        config(['site.page' => 'customer']);
+        $customer = Customer::find($id);
+
+        $mod = $customer->sales();
+        $keyword = $week_c = $week_d = '';
+        $pagesize = 15;
+        if ($request->get('keyword') != ""){
+            $keyword = $request->keyword;
+            $mod = $mod->where(function($query) use($keyword){
+                return $query->where('reference_no', 'LIKE', "%$keyword%")
+                        ->orWhere('issue_date', 'LIKE', "%$keyword%")
+                        ->orWhere('due_date', 'LIKE', "%$keyword%")
+                        ->orWhere('delivery_date', 'LIKE', "%$keyword%");
+            });
+        }
+        if ($request->get('week_c') != ""){
+            $week_c = $request->get('week_c');
+            if(strpos($week_c, ",") !== false) {
+                $week_c_array = explode(',', $week_c);
+                $proforma_array = SaleProforma::whereIn('week_c', $week_c_array)->pluck('id');
+            } else {
+                $proforma_array = SaleProforma::where('week_c', $week_c)->pluck('id');
+            }            
+            $mod = $mod->whereIn('proforma_id', $proforma_array);
+        }
+        if ($request->get('week_d') != ""){
+            $week_d = $request->get('week_d');
+            if(strpos($week_d, ",") !== false) {
+                $week_d_array = explode(',', $week_d);
+                $proforma_array = SaleProforma::whereIn('week_d', $week_d_array)->pluck('id');
+            } else {
+                $proforma_array = SaleProforma::where('week_d', $week_d)->pluck('id');
+            } 
+            $mod = $mod->whereIn('proforma_id', $proforma_array);
+        }
+        
+        
+        $data = $mod->orderBy('created_at', 'desc')->paginate($pagesize);
+        return view('customer.sale', compact('data', 'customer', 'keyword', 'week_c', 'week_d', 'pagesize'));
+    }
+
+    public function payments(Request $request, $id) {
+        config(['site.page' => 'customer']);
+        $customer = Customer::find($id);
+        $mod = new Payment();
+        $invoices_array = $customer->sales()->pluck('id');
+        
+        $reference_no = $period = '';
+        $pagesize = 15;
+
+        $mod = $mod->whereIn('invoice_id', $invoices_array);
+
+        if ($request->get('reference_no') != ""){
+            $reference_no = $request->get('reference_no');
+            $mod = $mod->where('reference_no', 'LIKE', "%$reference_no%");
+        }
+
+        if ($request->get('period') != ""){   
+            $period = $request->get('period');
+            $from = substr($period, 0, 10);
+            $to = substr($period, 14, 10);
+            $mod = $mod->whereBetween('timestamp', [$from, $to]);
+        }
+        if($request->pagesize != '') {
+            $pagesize = $request->pagesize;
+        }
+        $data = $mod->orderBy('created_at', 'desc')->paginate($pagesize);
+        return view('customer.payment', compact('data', 'customer', 'reference_no', 'period', 'pagesize'));
     }
 }

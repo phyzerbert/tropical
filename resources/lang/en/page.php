@@ -326,5 +326,6 @@ return [
     'balance_of_proforma' => 'Balance Of Proforma',
     'supplier_invoices' => 'Supplier Invoices',
     'supplier_payments' => 'Supplier Payments',
+    'sales' => 'Sales',
     
 ];

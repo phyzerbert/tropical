@@ -116,6 +116,8 @@ Route::post('/customer/create', 'CustomerController@create')->name('customer.cre
 Route::post('/customer/ajax_create', 'CustomerController@ajax_create')->name('customer.ajax_create');
 Route::post('/customer/edit', 'CustomerController@edit')->name('customer.edit');
 Route::get('/customer/report/{id}', 'CustomerController@report')->name('customer.report');
+Route::any('/customer/sales/{id}', 'CustomerController@sales')->name('customer.sales');
+Route::any('/customer/payments/{id}', 'CustomerController@payments')->name('customer.payments');
 Route::get('/customer/delete/{id}', 'CustomerController@delete')->name('customer.delete');
 
 Route::any('/transaction/index', 'TransactionController@index')->name('transaction.index');

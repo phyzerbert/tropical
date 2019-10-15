@@ -66,7 +66,7 @@
                                     <td class="total_amount">{{number_format($total_amount)}}</td>                                        
                                     <td>{{number_format($paid)}}</td>
                                     <td>{{number_format($total_amount - $paid)}}</td>
-                                    <td class="text-center">                                        
+                                    <td class="text-center">
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-sm btn-primary dropdown-toggle" id="dropdown-align-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('page.action')}}&nbsp;</button>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-align-primary">

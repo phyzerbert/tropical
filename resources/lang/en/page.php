@@ -327,5 +327,6 @@ return [
     'supplier_invoices' => 'Supplier Invoices',
     'supplier_payments' => 'Supplier Payments',
     'sales' => 'Sales',
+    'income' => 'Income',
     
 ];

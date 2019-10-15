@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Container;
 use App\Models\Proforma;
+use App\Models\Transaction;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -24,9 +26,35 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return redirect(route('invoice.index'));
+    public function index(Request $request) {        
+        config(['site.page' => 'home']);$now = Carbon::now();
+        $period = '';
+        if ($request->get('period') != ""){   
+            $period = $request->get('period');
+            $from = substr($period, 0, 10);
+            $to = substr($period, 14, 10);
+        
+            $chart_start = Carbon::createFromFormat('Y-m-d', $from);
+            $chart_end = Carbon::createFromFormat('Y-m-d', $to);
+        }else{
+            $chart_start = Carbon::now()->startOfMonth();
+            $chart_end = Carbon::now()->endOfMonth();
+        }
+        
+        $key_array = $expense_array = $income_array = array();
+
+        for ($dt=$chart_start; $dt < $chart_end; $dt->addDay()) {
+            $key = $dt->format('Y-m-d');
+            $key1 = $dt->format('M/d');
+            array_push($key_array, $key1);
+            $daily_expense = Transaction::where('type', 1)->whereDate('timestamp', $key)->sum('amount');
+            $daily_incoming = Transaction::where('type', 2)->whereDate('timestamp', $key)->sum('amount');
+            
+            array_push($expense_array, $daily_expense);
+            array_push($income_array, $daily_incoming);
+        }
+
+        return view('home', compact('key_array', 'expense_array', 'income_array'));
     }
 
     

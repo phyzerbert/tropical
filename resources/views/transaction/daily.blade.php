@@ -42,8 +42,8 @@
                             <option value="{{$item->id}}" @if($category == $item->id) selected @endif>{{$item->name}}</option>
                         @endforeach                        
                     </select>
-                    <input type="text" class="form-control form-control-sm col-md-2 mt-2 mt-md-0" name="keyword" id="search_keyword" value="{{$keyword}}" placeholder="{{__('page.keyword')}}...">
-                    <div class="input-group mt-2 mt-md-0 ml-md-2">
+                    <input type="text" class="form-control form-control-sm col-md-2 mt-2 mt-lg-0" name="keyword" id="search_keyword" value="{{$keyword}}" placeholder="{{__('page.keyword')}}...">
+                    <div class="input-group mt-2 mt-lg-0 ml-md-2">
                         <div class="input-group-prepend">
                             <button type="button" id="prev_date" class="input-group-text input-group-text-alt" style="padding:0.2rem .5rem;"> << </button>
                         </div>

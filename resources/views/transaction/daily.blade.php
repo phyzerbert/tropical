@@ -64,6 +64,7 @@
                             <tr class="bg-blue">
                                 <th style="width:50px;">#</th>
                                 <th>{{__('page.reference_no')}}</th>
+                                <th>{{__('page.supplier')}} / {{__('page.customer')}}</th>
                                 <th>{{__('page.date')}}</th>
                                 <th>{{__('page.category')}}</th>
                                 <th>{{__('page.amount')}}</th>
@@ -84,10 +85,23 @@
                                     $current_incoming = \App\Models\Transaction::where('type', 2)->where('timestamp', '<', $timestamp)->sum('amount');
 
                                     $current_balance = $current_incoming - $current_expenses;
+                                    
+                                    $payer_name = '';
+                                    if($item->payment){
+                                        $payment = $item->payment;
+                                        if($item->type == 1){
+                                            $proforma = $payment->proforma;
+                                            $payer_name = $proforma->supplier->company ?? '';
+                                        }else if($item->type == 2){
+                                            $sale_proforma = $payment->sale_proforma;
+                                            $payer_name = $sale_proforma->customer->company ?? '';
+                                        }
+                                    }
                                 @endphp
                                 <tr>
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
                                     <td class="reference_no">{{$item->reference_no}}</td>
+                                    <td class="payer">{{$payer_name}}</td>
                                     <td class="timestamp">{{date('Y-m-d H:i', strtotime($item->timestamp))}}</td>
                                     <td class="category" data-id="{{$item->category_id}}">{{$item->category->name ?? ''}}</td>
                                     <td class="amount" data-value="{{$item->amount}}">{{number_format($item->amount, 2)}}</td>

@@ -57,7 +57,7 @@
                             <tr class="bg-blue">
                                 <th style="width:50px;">#</th>
                                 <th>{{__('page.reference_no')}}</th>
-                                <th></th>
+                                <th>{{__('page.supplier')}} / {{__('page.customer')}}</th>
                                 <th>{{__('page.date')}}</th>
                                 <th>{{__('page.category')}}</th>
                                 <th>{{__('page.amount')}}</th>

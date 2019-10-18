@@ -154,7 +154,7 @@
                         <div class="form-group">
                             <label class="control-label">{{__('page.category')}}</label>
                             <select class="form-control category" name="category" required>
-                                <option value="">{{__('page.select_category')}}</option>
+                                <option value="" hidden>{{__('page.select_category')}}</option>
                                 @foreach ($categories as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
@@ -214,7 +214,7 @@
                         <div class="form-group">
                             <label class="control-label">{{__('page.category')}}</label>
                             <select class="form-control category" name="category" required>
-                                <option value="">{{__('page.select_category')}}</option>
+                                <option value="" hidden>{{__('page.select_category')}}</option>
                                 @foreach ($categories as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach

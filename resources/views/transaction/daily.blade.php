@@ -81,8 +81,8 @@
                             @foreach ($data as $item)
                                 @php
                                     $timestamp = $item->timestamp;
-                                    $current_expenses = \App\Models\Transaction::where('type', 1)->where('timestamp', '<', $timestamp)->sum('amount');                                   
-                                    $current_incoming = \App\Models\Transaction::where('type', 2)->where('timestamp', '<', $timestamp)->sum('amount');
+                                    $current_expenses = \App\Models\Transaction::where('type', 1)->where('timestamp', '<=', $timestamp)->sum('amount');                                   
+                                    $current_incoming = \App\Models\Transaction::where('type', 2)->where('timestamp', '<=', $timestamp)->sum('amount');
 
                                     $current_balance = $current_incoming - $current_expenses;
                                     

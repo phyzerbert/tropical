@@ -122,6 +122,7 @@ Route::any('/customer/payments/{id}', 'CustomerController@payments')->name('cust
 Route::get('/customer/delete/{id}', 'CustomerController@delete')->name('customer.delete');
 
 Route::any('/transaction/index', 'TransactionController@index')->name('transaction.index');
+Route::any('/transaction/daily', 'TransactionController@daily')->name('transaction.daily');
 Route::post('/transaction/create', 'TransactionController@create')->name('transaction.create');
 Route::post('/transaction/edit', 'TransactionController@edit')->name('transaction.edit');
 Route::get('/transaction/delete/{id}', 'TransactionController@delete')->name('transaction.delete');

@@ -315,6 +315,7 @@ return [
     'keyword' => 'Keyword', 
     'no_payment' => 'No Payment', 
     'transaction' => 'Transaction', 
+    'daily_transaction' => 'Daily Transaction', 
     'transaction_management' => 'Transaction Management', 
     'add_transaction' => 'Add Transaction', 
     'edit_transaction' => 'Edit Transaction', 

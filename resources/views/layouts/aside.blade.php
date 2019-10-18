@@ -170,6 +170,12 @@
                 </a>
             </li>
             <li class="nav-main-item">
+                <a class="nav-main-link @if($page == 'daily_transaction') active @endif" href="{{route('transaction.daily')}}">
+                    <i class="nav-main-link-icon si si-wallet"></i>
+                    <span class="nav-main-link-name">{{__('page.daily_transaction')}}</span>
+                </a>
+            </li>
+            <li class="nav-main-item">
                 <a class="nav-main-link @if($page == 'supplier') active @endif" href="{{route('supplier.index')}}">
                     <i class="nav-main-link-icon si si-handbag"></i>
                     <span class="nav-main-link-name">{{__('page.supplier')}}</span>

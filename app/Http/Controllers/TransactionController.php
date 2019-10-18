@@ -13,8 +13,7 @@ class TransactionController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
-    {
+    public function index(Request $request){
         config(['site.page' => 'transaction']);
         $categories = Category::all();
         $mod = new Transaction();
@@ -22,9 +21,11 @@ class TransactionController extends Controller
         $category = $keyword = $period = '';
         if($request->keyword != ''){
             $keyword = $request->keyword;
-            $mod = $mod->where('reference_no', 'like', "%$keyword%")
-                ->orWhere('note', 'like', "%$keyword%")
-                ->orWhere('timestamp', 'like', "%$keyword%");
+            $mod = $mod->where(function($query) use($keyword){
+                return $query->where('reference_no', 'like', "%$keyword%")
+                            ->orWhere('note', 'like', "%$keyword%")
+                            ->orWhere('timestamp', 'like', "%$keyword%");
+            });
         }
         if($request->category != ''){
             $category = $request->category;
@@ -49,6 +50,55 @@ class TransactionController extends Controller
         $total['expense'] = $collection->where('type', 1)->sum('amount');
         $total['incoming'] = $collection->where('type', 2)->sum('amount');
         return view('transaction.index', compact('data', 'categories', 'total', 'category', 'keyword', 'period', 'pagesize'));
+    }
+
+    public function daily(Request $request) {
+        config(['site.page' => 'daily_transaction']);
+        $categories = Category::all();
+        $last_transaction = Transaction::orderBy('timestamp', 'desc')->first();
+        if(isset($last_transaction)){
+            $period = date('Y-m-d', strtotime($last_transaction->timestamp));
+        }else{
+            $period = date('Y-m-d');
+        }
+
+        $mod = new Transaction();
+        $total = array();
+        $category = $keyword = '';
+        if($request->keyword != ''){
+            $keyword = $request->keyword;
+            $mod = $mod->where(function($query) use($keyword){
+                return $query->where('reference_no', 'like', "%$keyword%")
+                            ->orWhere('note', 'like', "%$keyword%")
+                            ->orWhere('timestamp', 'like', "%$keyword%");
+            });            
+        }
+        if($request->category != ''){
+            $category = $request->category;
+            $mod = $mod->where('category_id', $category);
+        }
+        if ($request->get('period') != ""){   
+            $period = $request->get('period');
+        }
+        if($request->get('change_date') != ""){
+            $change_date = $request->get('change_date');
+            if($change_date == "1"){
+                $period = date('Y-m-d', strtotime($period .' -1 day'));
+            }else if($change_date == "2"){
+                $period = date('Y-m-d', strtotime($period .' +1 day'));
+            }
+        }
+        dump($period);
+        $mod = $mod->whereDate('timestamp', $period);
+        $pagesize = 15;
+        if($request->get('pagesize') != ''){
+            $pagesize = $request->get('pagesize');
+        }
+        $data = $mod->orderBy('created_at', 'desc')->paginate($pagesize);
+        $collection = $mod->get();
+        $total['expense'] = $collection->where('type', 1)->sum('amount');
+        $total['incoming'] = $collection->where('type', 2)->sum('amount');
+        return view('transaction.daily', compact('data', 'categories', 'total', 'category', 'keyword', 'period', 'pagesize'));
     }
 
     public function create(Request $request){

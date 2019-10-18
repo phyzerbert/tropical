@@ -88,7 +88,6 @@ class TransactionController extends Controller
                 $period = date('Y-m-d', strtotime($period .' +1 day'));
             }
         }
-        dump($period);
         $mod = $mod->whereDate('timestamp', $period);
         $pagesize = 15;
         if($request->get('pagesize') != ''){

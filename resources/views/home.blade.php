@@ -60,7 +60,7 @@
 
                 area_basic.setOption({
 
-                    color: ['#2ec7c9','#5ab1ef','#ff0000','#d87a80','#b6a2de'],
+                    color: ['#00ff00','#5ab1ef','#ff0000','#d87a80','#b6a2de'],
 
                     textStyle: {
                         fontFamily: 'Roboto, Arial, Verdana, sans-serif',

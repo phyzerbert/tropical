@@ -283,6 +283,7 @@
             
             $("#btn-reset").click(function(){
                 $("#search_keyword").val('');
+                $("#search_category").val('');
                 $("#search_period").val('');
             });
 

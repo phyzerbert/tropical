@@ -123,8 +123,10 @@ Route::get('/customer/delete/{id}', 'CustomerController@delete')->name('customer
 
 Route::any('/transaction/index', 'TransactionController@index')->name('transaction.index');
 Route::any('/transaction/daily', 'TransactionController@daily')->name('transaction.daily');
-Route::post('/transaction/create', 'TransactionController@create')->name('transaction.create');
-Route::post('/transaction/edit', 'TransactionController@edit')->name('transaction.edit');
+Route::get('/transaction/create', 'TransactionController@create')->name('transaction.create');
+Route::post('/transaction/save', 'TransactionController@save')->name('transaction.save');
+Route::get('/transaction/edit', 'TransactionController@edit')->name('transaction.edit');
+Route::post('/transaction/update', 'TransactionController@update')->name('transaction.update');
 Route::get('/transaction/delete/{id}', 'TransactionController@delete')->name('transaction.delete');
 
 Route::get('/profile', 'UserController@profile')->name('profile');

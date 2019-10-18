@@ -108,7 +108,13 @@ class TransactionController extends Controller
         return view('transaction.daily', compact('data', 'categories', 'total', 'type', 'category', 'keyword', 'period', 'pagesize'));
     }
 
-    public function create(Request $request){
+    public function create(Request $request) {
+        config(['site.page' => 'transaction']);
+        $categories = Category::all();
+        return view('transaction.create', compact('categories'));
+    }
+
+    public function save(Request $request){
         $request->validate([
             'reference_no' => 'required',
             'date' => 'required',
@@ -118,6 +124,7 @@ class TransactionController extends Controller
         $item->reference_no = $request->get("reference_no");
         $item->timestamp = $request->get("date") . ":00";
         $item->type = $request->get("type");
+        $item->supplier_customer = $request->supplier_customer;
         $item->amount = $request->get("amount");
         $item->category_id = $request->get("category");
         $item->note = $request->get("note");
@@ -131,7 +138,12 @@ class TransactionController extends Controller
         return back()->with('success', __('page.created_successfully'));
     }
 
-    public function edit(Request $request){
+    public function edit (Request $request, $id){
+        config(['site.page' => 'transaction']);
+
+    }
+
+    public function update(Request $request){
         $request->validate([
             'date'=>'required',
             'amount'=>'required',
@@ -141,6 +153,7 @@ class TransactionController extends Controller
         $item->reference_no = $request->get("reference_no");
         $item->timestamp = $request->get("date") . ":00";
         $item->amount = $request->get("amount");
+        $item->supplier_customer = $request->supplier_customer;
         $item->category_id = $request->get("category");
         $item->note = $request->get("note");
         if($request->has("attachment")){

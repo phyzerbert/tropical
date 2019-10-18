@@ -47,7 +47,7 @@
                     <input type="text" class="form-control form-control-sm col-md-2 mt-2 mt-md-0 ml-md-2" style="min-width:200px" name="period" id="search_period" value="{{$period}}" autocomplete="off" placeholder="{{__('page.date')}}">
                     <button type="submit" class="btn btn-sm btn-primary ml-md-2 mt-2 mt-md-0"><i class="fa fa-search"></i> {{__('page.search')}}</button>
                     <button type="button" class="btn btn-danger btn-sm mt-2 mt-md-0 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</button>
-                    <a href="#" class="btn btn-success btn-sm mt-2 mt-md-0 ml-auto" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
+                    <a href="{{route('transaction.create')}}" class="btn btn-success btn-sm mt-2 mt-md-0 ml-auto"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
                 </form>                
             </div>
             <div class="block-content block-content-full">
@@ -56,12 +56,12 @@
                         <thead class="thead-colored thead-primary">
                             <tr class="bg-blue">
                                 <th style="width:50px;">#</th>
-                                <th>{{__('page.reference_no')}}</th>
-                                <th>{{__('page.supplier')}} / {{__('page.customer')}}</th>
                                 <th>{{__('page.date')}}</th>
                                 <th>{{__('page.category')}}</th>
+                                <th>{{__('page.supplier')}} / {{__('page.customer')}}</th>
                                 <th>{{__('page.amount')}}</th>
                                 <th>{{__('page.type')}}</th>
+                                <th>{{__('page.reference_no')}}</th>
                                 <th>{{__('page.note')}}</th>
                                 <th style="width:120px;">{{__('page.action')}}</th>
                             </tr>
@@ -72,23 +72,22 @@
                             @endphp                               
                             @foreach ($data as $item)
                                 @php
-                                    $payer_name = '';
+                                    $supplier_customer = $item->supplier_customer;
                                     if($item->payment){
                                         $payment = $item->payment;
                                         if($item->type == 1){
                                             $proforma = $payment->proforma;
-                                            $payer_name = $proforma->supplier->company ?? '';
+                                            $supplier_customer = $proforma->supplier->company ?? '';
                                         }else if($item->type == 2){
                                             $sale_proforma = $payment->sale_proforma;
-                                            $payer_name = $sale_proforma->customer->company ?? '';
+                                            $supplier_customer = $sale_proforma->customer->company ?? '';
                                         }
                                     }
                                 @endphp
                                 <tr>
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
-                                    <td class="reference_no">{{$item->reference_no}}</td>
-                                    <td class="payer">{{$payer_name}}</td>
                                     <td class="timestamp">{{date('Y-m-d H:i', strtotime($item->timestamp))}}</td>
+                                    <td class="supplier_customer">{{$supplier_customer}}</td>
                                     <td class="category" data-id="{{$item->category_id}}">{{$item->category->name ?? ''}}</td>
                                     <td class="amount" data-value="{{$item->amount}}">
                                         @if ($item->type == 1)
@@ -106,6 +105,7 @@
                                             <span class="badge badge-info">{{__('page.incoming')}}</span>
                                         @endif
                                     </td>
+                                    <td class="reference_no">{{$item->reference_no}}</td>
                                     <td class="note" data-value="{{$item->note}}">
                                         {{$item->note}}
                                         @if(file_exists($item->attachment))
@@ -161,65 +161,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="addModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">{{__('page.add_transaction')}}</h4>
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                </div>
-                <form action="{{route('transaction.create')}}" id="create_form" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-body">                       
-                        <div class="form-group">
-                            <label class="control-label">{{__('page.reference_no')}}</label>
-                            <input class="form-control reference_no" type="text" name="reference_no" required placeholder="{{__('page.reference_no')}}" required>
-                        </div>   
-                        <div class="form-group">
-                            <label class="control-label">{{__('page.date')}}</label>
-                            <input class="form-control date datetimepicker" type="text" name="date" value="{{date('Y-m-d H:i')}}" autocomplete="off" value="{{date('Y-m-d H:i')}}" placeholder="{{__('page.date')}}" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">{{__('page.category')}}</label>
-                            <select class="form-control category" name="category" required>
-                                <option value="" hidden>{{__('page.select_category')}}</option>
-                                @foreach ($categories as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>                                           
-                        <div class="form-group">
-                            <label class="control-label">{{__('page.type')}}</label>
-                            <select class="form-control type" name="type" required>
-                                <option value="1">{{__('page.expense')}}</option>
-                                <option value="2">{{__('page.incoming')}}</option>
-                            </select>
-                        </div>                                             
-                        <div class="form-group">
-                            <label class="control-label">{{__('page.amount')}}</label>
-                            <input class="form-control amount" type="number" name="amount" min="0" step="0.01" placeholder="{{__('page.amount')}}" required>
-                        </div>                                               
-                        <div class="form-group">
-                            <label class="control-label">{{__('page.attachment')}}</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" data-toggle="custom-file-input" name="attachment" accept="image/*,application/pdf">
-                                <label class="custom-file-label" for="example-file-input-custom">{{__('page.choose_file')}}</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">{{__('page.note')}}</label>
-                            <textarea class="form-control note" type="text" name="note" placeholder="{{__('page.note')}}"></textarea>
-                        </div> 
-                    </div>    
-                    <div class="modal-footer">
-                        <button type="submit" id="btn_create" class="btn btn-primary btn-submit"><i class="fa fa-check mg-r-10"></i>&nbsp;{{__('page.save')}}</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times mg-r-10"></i>&nbsp;{{__('page.close')}}</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <div class="modal fade" id="editModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -227,7 +168,7 @@
                     <h4 class="modal-title">{{__('page.edit_transaction')}}</h4>
                     <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
-                <form action="{{route('transaction.edit')}}" id="edit_form" method="post" enctype="multipart/form-data">
+                <form action="{{route('transaction.update')}}" id="edit_form" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="id" class="id">
                     <div class="modal-body">                       
@@ -238,7 +179,7 @@
                         <div class="form-group">
                             <label class="control-label">{{__('page.date')}}</label>
                             <input class="form-control date datetimepicker" type="text" name="date" value="{{date('Y-m-d H:i')}}" autocomplete="off" value="{{date('Y-m-d H:i')}}" placeholder="{{__('page.date')}}" required>
-                        </div>  
+                        </div>
                         <div class="form-group">
                             <label class="control-label">{{__('page.category')}}</label>
                             <select class="form-control category" name="category" required>
@@ -247,7 +188,11 @@
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
-                        </div>                                                 
+                        </div>                        
+                        <div class="form-group">
+                            <label class="control-label">{{__('page.supplier')}} / {{__('page.customer')}}</label>
+                            <input class="form-control supplier_customer" type="text" name="supplier_customer" required placeholder="{{__('page.supplier')}} / {{__('page.customer')}}">
+                        </div>                                                
                         <div class="form-group">
                             <label class="control-label">{{__('page.amount')}}</label>
                             <input class="form-control amount" type="number" name="amount" min="0" step="0.01" placeholder="{{__('page.amount')}}" required>
@@ -296,11 +241,13 @@
                 let id = $(this).data('id');
                 let reference_no = $(this).parents('tr').find('.reference_no').text().trim();
                 let timestamp = $(this).parents('tr').find('.timestamp').text().trim();
+                let supplier_customer = $(this).parents('tr').find('.supplier_customer').text().trim();
                 let amount = $(this).parents('tr').find('.amount').data('value');
                 let note = $(this).parents('tr').find('.note').data('value');
                 let category = $(this).parents('tr').find('.category').data('id');
                 $("#edit_form .id").val(id);
                 $("#edit_form .reference_no").val(reference_no);
+                $("#edit_form .supplier_customer").val(supplier_customer);
                 $("#edit_form .date").val(timestamp);
                 $("#edit_form .amount").val(amount);
                 $("#edit_form .category").val(category);

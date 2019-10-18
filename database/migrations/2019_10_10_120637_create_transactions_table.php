@@ -19,6 +19,7 @@ class CreateTransactionsTable extends Migration
             $table->dateTime('timestamp')->useCurrent();
             $table->integer('type')->nullable();
             $table->integer('category_id')->nullable();
+            $table->string('supplier_customer')->nullable();
             $table->integer('payment_id')->nullable();
             $table->decimal('amount', 11, 2)->nullable();
             $table->text('note')->nullable();

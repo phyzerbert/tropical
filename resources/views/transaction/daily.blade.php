@@ -24,26 +24,26 @@
                 <form action="" class="col-md-12 form-inline" method="POST" id="searchForm">
                     @csrf
                     <input type="hidden" name="change_date" id="change_date">
-                    <label for="pagesize" class="control-label">{{__('page.show')}} :</label>
-                    <select class="form-control form-control-sm mx-md-2" name="pagesize" id="pagesize">
+                    <label for="pagesize" class="control-label mt-2">{{__('page.show')}} :</label>
+                    <select class="form-control form-control-sm mx-md-2 mt-2" name="pagesize" id="pagesize">
                         <option value="15" @if($pagesize == '15') selected @endif>15</option>
                         <option value="50" @if($pagesize == '50') selected @endif>50</option>
                         <option value="200" @if($pagesize == '200') selected @endif>200</option>
                         <option value="" @if($pagesize == '1000000') selected @endif>All</option>
                     </select>
-                    <select class="form-control form-control-sm mr-md-2" name="type" id="search_type">
+                    <select class="form-control form-control-sm mr-md-2 mt-2" name="type" id="search_type">
                         <option value="" hidden>{{__('page.select_type')}}</option>
                         <option value="1" @if($type == 1) selected @endif>{{__('page.expense')}}</option>
                         <option value="2" @if($type == 2) selected @endif>{{__('page.incoming')}}</option>
                     </select>                    
-                    <select class="form-control form-control-sm mr-md-2" name="category" id="search_category">
+                    <select class="form-control form-control-sm mr-md-2 mt-2" name="category" id="search_category">
                         <option value="" hidden>{{__('page.select_category')}}</option>
                         @foreach ($categories as $item)
                             <option value="{{$item->id}}" @if($category == $item->id) selected @endif>{{$item->name}}</option>
                         @endforeach                        
                     </select>
-                    <input type="text" class="form-control form-control-sm col-md-2 mt-2 mt-lg-0" name="keyword" id="search_keyword" value="{{$keyword}}" placeholder="{{__('page.keyword')}}...">
-                    <div class="input-group mt-2 mt-lg-0 ml-md-2">
+                    <input type="text" class="form-control form-control-sm col-md-2 mt-2" name="keyword" id="search_keyword" value="{{$keyword}}" placeholder="{{__('page.keyword')}}...">
+                    <div class="input-group mt-2 ml-md-2">
                         <div class="input-group-prepend">
                             <button type="button" id="prev_date" class="input-group-text input-group-text-alt" style="padding:0.2rem .5rem;"> << </button>
                         </div>
@@ -52,9 +52,9 @@
                             <button type="button" id="next_date" class="input-group-text input-group-text-alt" style="padding:0.2rem .5rem;"> >> </button>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-sm btn-primary ml-md-2 mt-2 mt-md-0"><i class="fa fa-search"></i> {{__('page.search')}}</button>
-                    <button type="button" class="btn btn-danger btn-sm mt-2 mt-md-0 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</button>
-                    <a href="{{route('transaction.create')}}" class="btn btn-success btn-sm mt-2 mt-md-0 ml-auto" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
+                    <button type="submit" class="btn btn-sm btn-primary ml-md-2 mt-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
+                    <button type="button" class="btn btn-danger btn-sm mt-2 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</button>
+                    <a href="{{route('transaction.create')}}" class="btn btn-success btn-sm mt-2 ml-auto" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
                 </form>                
             </div>
             <div class="block-content block-content-full">

@@ -103,7 +103,15 @@
                                     <td class="timestamp">{{date('Y-m-d H:i', strtotime($item->timestamp))}}</td>
                                     <td class="category" data-id="{{$item->category_id}}">{{$item->category->name ?? ''}}</td>
                                     <td class="supplier_customer">{{$supplier_customer}}</td>
-                                    <td class="amount" data-value="{{$item->amount}}">{{number_format($item->amount, 2)}}</td>
+                                    <td class="amount" data-value="{{$item->amount}}">
+                                            @if ($item->type == 1)
+                                                <span style="color:red">-{{ number_format($item->amount, 2) }}</span>
+                                            @elseif($item->type == 2)
+                                                <span style="color:green">{{ number_format($item->amount, 2) }}</span>
+                                            @else
+                                                {{ number_format($item->amount) }}
+                                            @endif
+                                        </td>
                                     <td class="type">
                                         @if($item->type == 1)
                                             <span class="badge badge-primary">{{__('page.expense')}}</span>

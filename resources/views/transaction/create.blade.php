@@ -2,6 +2,7 @@
 @section('style')
     <link rel="stylesheet" href="{{asset('master/js/plugins/jquery-ui/jquery-ui.css')}}">
     <link href="{{asset('master/js/plugins/jquery-ui/timepicker/jquery-ui-timepicker-addon.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('master/js/plugins/select2/css/select2.min.css')}}">
 @endsection
 @section('content')
     <div class="bg-body-light">
@@ -56,7 +57,7 @@
                         </div>
                         <div class="col-lg-3 col-md-6 mt-md-3">
                             <label class="form-control-label">{{__('page.category')}}: <span class="text-danger">*</span></label>
-                            <select class="form-control category" name="category" required>
+                            <select class="form-control category select2" name="category" id="category_search" required>
                                 <option value="" hidden>{{__('page.select_category')}}</option>
                                 @foreach ($categories as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
@@ -174,10 +175,18 @@
 @section('script')
     <script src="{{asset('master/js/plugins/jquery-ui/jquery-ui.js')}}"></script>
     <script src="{{asset('master/js/plugins/jquery-ui/timepicker/jquery-ui-timepicker-addon.min.js')}}"></script>
+    <script src="{{asset('master/js/plugins/select2/js/select2.full.min.js')}}"></script>
     <script>
         $(document).ready(function(){
             $('.datetimepicker').datetimepicker({
                 dateFormat: 'yy-mm-dd',
+            });
+            $('.select2').each(function() {
+                $(this)
+                    .select2({
+                        width: 'resolve',
+                        placeholder: "{!! __('page.category') !!}"
+                    });                    
             });
         });
     </script>

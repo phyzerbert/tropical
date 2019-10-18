@@ -6,6 +6,17 @@
             </button>
         </div>
         <div>
+            @php
+                $header_expense = \App\Models\Transaction::where('type', 1)->sum('amount');
+                $header_income = \App\Models\Transaction::where('type', 2)->sum('amount');
+                $header_balance = $header_income - $header_expense;
+            @endphp
+            <div class="dropdown d-inline-block">
+                <button type="button" class="btn btn-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{__('page.balance')}}</button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <h4 class="font-weight-bold text-center mb-0">{{number_format($header_balance, 2)}}</h4>
+                </div>
+            </div>
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     @php $locale = session()->get('locale'); @endphp

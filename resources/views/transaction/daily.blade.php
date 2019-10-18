@@ -30,6 +30,11 @@
                         <option value="50" @if($pagesize == '50') selected @endif>50</option>
                         <option value="200" @if($pagesize == '200') selected @endif>200</option>
                         <option value="" @if($pagesize == '1000000') selected @endif>All</option>
+                    </select>
+                    <select class="form-control form-control-sm mr-md-2" name="type" id="search_type">
+                        <option value="" hidden>{{__('page.select_type')}}</option>
+                        <option value="1" @if($type == 1) selected @endif>{{__('page.expense')}}</option>
+                        <option value="2" @if($type == 2) selected @endif>{{__('page.incoming')}}</option>
                     </select>                    
                     <select class="form-control form-control-sm mr-md-2" name="category" id="search_category">
                         <option value="" hidden>{{__('page.select_category')}}</option>
@@ -62,22 +67,37 @@
                                 <th>{{__('page.date')}}</th>
                                 <th>{{__('page.category')}}</th>
                                 <th>{{__('page.amount')}}</th>
+                                <th>{{__('page.balance')}}</th>
                                 <th>{{__('page.type')}}</th>
                                 <th>{{__('page.note')}}</th>
                                 <th style="width:120px;">{{__('page.action')}}</th>
                             </tr>
                         </thead>
                         <tbody> 
-                            @php
+                            @php                                
                                 $footer_total_to_pay = $footer_paid = $footer_balance = 0;
                             @endphp                               
                             @foreach ($data as $item)
+                                @php
+                                    $timestamp = $item->timestamp;
+                                    $current_expenses = \App\Models\Transaction::where('type', 1)->where('timestamp', '<', $timestamp)->sum('amount');                                   
+                                    $current_incoming = \App\Models\Transaction::where('type', 2)->where('timestamp', '<', $timestamp)->sum('amount');
+
+                                    $current_balance = $current_incoming - $current_expenses;
+                                @endphp
                                 <tr>
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
                                     <td class="reference_no">{{$item->reference_no}}</td>
                                     <td class="timestamp">{{date('Y-m-d H:i', strtotime($item->timestamp))}}</td>
                                     <td class="category" data-id="{{$item->category_id}}">{{$item->category->name ?? ''}}</td>
                                     <td class="amount" data-value="{{$item->amount}}">{{number_format($item->amount, 2)}}</td>
+                                    <td class="balance">                                    
+                                        @if ($current_balance < 0)
+                                            <span style="color:red">{{ number_format($current_balance, 2) }}</span>
+                                        @else
+                                            <span style="color:green">{{ number_format($current_balance, 2) }}</span>
+                                        @endif    
+                                    </td>
                                     <td class="type">
                                         @if($item->type == 1)
                                             <span class="badge badge-primary">{{__('page.expense')}}</span>
@@ -292,6 +312,7 @@
             
             $("#btn-reset").click(function(){
                 $("#search_keyword").val('');
+                $("#search_type").val('');
                 $("#search_category").val('');
                 $("#search_period").val('');
             });

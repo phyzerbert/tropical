@@ -31,6 +31,11 @@
                         <option value="200" @if($pagesize == '200') selected @endif>200</option>
                         <option value="500" @if($pagesize == '500') selected @endif>500</option>
                         <option value="" @if($pagesize == '1000000') selected @endif>All</option>
+                    </select> 
+                    <select class="form-control form-control-sm mr-md-2" name="type" id="search_type">
+                        <option value="" hidden>{{__('page.select_type')}}</option>
+                        <option value="1" @if($type == 1) selected @endif>{{__('page.expense')}}</option>
+                        <option value="2" @if($type == 2) selected @endif>{{__('page.incoming')}}</option>
                     </select>                    
                     <select class="form-control form-control-sm mr-md-2" name="category" id="search_category">
                         <option value="" hidden>{{__('page.select_category')}}</option>
@@ -70,7 +75,15 @@
                                     <td class="reference_no">{{$item->reference_no}}</td>
                                     <td class="timestamp">{{date('Y-m-d H:i', strtotime($item->timestamp))}}</td>
                                     <td class="category" data-id="{{$item->category_id}}">{{$item->category->name ?? ''}}</td>
-                                    <td class="amount" data-value="{{$item->amount}}">{{number_format($item->amount, 2)}}</td>
+                                    <td class="amount" data-value="{{$item->amount}}">
+                                        @if ($item->type == 1)
+                                            <span style="color:red">-{{ number_format($item->amount, 2) }}</span>
+                                        @elseif($item->type == 2)
+                                            <span style="color:green">{{ number_format($item->amount, 2) }}</span>
+                                        @else
+                                            {{ number_format($item->amount) }}
+                                        @endif
+                                    </td>
                                     <td class="type">
                                         @if($item->type == 1)
                                             <span class="badge badge-primary">{{__('page.expense')}}</span>
@@ -283,6 +296,7 @@
             
             $("#btn-reset").click(function(){
                 $("#search_keyword").val('');
+                $("#search_type").val('');
                 $("#search_category").val('');
                 $("#search_period").val('');
             });

@@ -43,6 +43,7 @@ class PaymentController extends Controller
             'reference_no'=>'required|string',
         ]);        
         $transaction_type = 1;
+        $category_id = 1;
         $item = new Payment();
         $item->timestamp = $request->get('date').":00";
         $item->reference_no = $request->get('reference_no');
@@ -88,6 +89,7 @@ class PaymentController extends Controller
             'reference_no' => $item->reference_no,
             'timestamp' => $item->timestamp,
             'amount' => $item->amount,
+            'category_id' => $transaction_type,
             'payment_id' => $item->id,
             'type' => $transaction_type,
             'note' => $item->note,

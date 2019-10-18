@@ -18,7 +18,7 @@ class TransactionController extends Controller
         $categories = Category::all();
         $mod = new Transaction();
         $total = array();
-        $category = $keyword = $period = '';
+        $category = $keyword = $period = $type = '';
         if($request->keyword != ''){
             $keyword = $request->keyword;
             $mod = $mod->where(function($query) use($keyword){
@@ -30,6 +30,10 @@ class TransactionController extends Controller
         if($request->category != ''){
             $category = $request->category;
             $mod = $mod->where('category_id', $category);
+        }      
+        if($request->type != ''){
+            $type = $request->type;
+            $mod = $mod->where('type', $type);
         }
         if ($request->get('period') != ""){   
             $period = $request->get('period');
@@ -49,7 +53,7 @@ class TransactionController extends Controller
         $collection = $mod->get();
         $total['expense'] = $collection->where('type', 1)->sum('amount');
         $total['incoming'] = $collection->where('type', 2)->sum('amount');
-        return view('transaction.index', compact('data', 'categories', 'total', 'category', 'keyword', 'period', 'pagesize'));
+        return view('transaction.index', compact('data', 'categories', 'total', 'type', 'category', 'keyword', 'period', 'pagesize'));
     }
 
     public function daily(Request $request) {
@@ -64,7 +68,7 @@ class TransactionController extends Controller
 
         $mod = new Transaction();
         $total = array();
-        $category = $keyword = '';
+        $category = $keyword = $type = '';
         if($request->keyword != ''){
             $keyword = $request->keyword;
             $mod = $mod->where(function($query) use($keyword){
@@ -76,6 +80,10 @@ class TransactionController extends Controller
         if($request->category != ''){
             $category = $request->category;
             $mod = $mod->where('category_id', $category);
+        }        
+        if($request->type != ''){
+            $type = $request->type;
+            $mod = $mod->where('type', $type);
         }
         if ($request->get('period') != ""){   
             $period = $request->get('period');
@@ -97,7 +105,7 @@ class TransactionController extends Controller
         $collection = $mod->get();
         $total['expense'] = $collection->where('type', 1)->sum('amount');
         $total['incoming'] = $collection->where('type', 2)->sum('amount');
-        return view('transaction.daily', compact('data', 'categories', 'total', 'category', 'keyword', 'period', 'pagesize'));
+        return view('transaction.daily', compact('data', 'categories', 'total', 'type', 'category', 'keyword', 'period', 'pagesize'));
     }
 
     public function create(Request $request){

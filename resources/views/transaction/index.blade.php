@@ -31,6 +31,12 @@
                         <option value="200" @if($pagesize == '200') selected @endif>200</option>
                         <option value="500" @if($pagesize == '500') selected @endif>500</option>
                         <option value="" @if($pagesize == '1000000') selected @endif>All</option>
+                    </select>                    
+                    <select class="form-control form-control-sm mr-md-2" name="category" id="search_category">
+                        <option value="" hidden>{{__('page.select_category')}}</option>
+                        @foreach ($categories as $item)
+                            <option value="{{$item->id}}" @if($category == $item->id) selected @endif>{{$item->name}}</option>
+                        @endforeach                        
                     </select>
                     <input type="text" class="form-control form-control-sm col-md-2 mt-2 mt-md-0" name="keyword" id="search_keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
                     <input type="text" class="form-control form-control-sm col-md-2 mt-2 mt-md-0 ml-md-2" style="min-width:200px" name="period" id="search_period" value="{{$period}}" autocomplete="off" placeholder="{{__('page.date')}}">
@@ -47,6 +53,7 @@
                                 <th style="width:50px;">#</th>
                                 <th>{{__('page.reference_no')}}</th>
                                 <th>{{__('page.date')}}</th>
+                                <th>{{__('page.category')}}</th>
                                 <th>{{__('page.amount')}}</th>
                                 <th>{{__('page.type')}}</th>
                                 <th>{{__('page.note')}}</th>
@@ -62,6 +69,7 @@
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
                                     <td class="reference_no">{{$item->reference_no}}</td>
                                     <td class="timestamp">{{date('Y-m-d H:i', strtotime($item->timestamp))}}</td>
+                                    <td class="category" data-id="{{$item->category_id}}">{{$item->category->name ?? ''}}</td>
                                     <td class="amount" data-value="{{$item->amount}}">{{number_format($item->amount, 2)}}</td>
                                     <td class="type">
                                         @if($item->type == 1)
@@ -113,6 +121,7 @@
                         <div class="float-right" style="margin: 0;">
                             {!! $data->appends([
                                 'keyword' => $keyword,
+                                'category' => $category,
                                 'period' => $period,
                                 'total' => $total,
                                 'pagesize' => $pagesize,
@@ -141,7 +150,16 @@
                         <div class="form-group">
                             <label class="control-label">{{__('page.date')}}</label>
                             <input class="form-control date datetimepicker" type="text" name="date" value="{{date('Y-m-d H:i')}}" autocomplete="off" value="{{date('Y-m-d H:i')}}" placeholder="{{__('page.date')}}" required>
-                        </div>                                              
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">{{__('page.category')}}</label>
+                            <select class="form-control category" name="category" required>
+                                <option value="">{{__('page.select_category')}}</option>
+                                @foreach ($categories as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>                                           
                         <div class="form-group">
                             <label class="control-label">{{__('page.type')}}</label>
                             <select class="form-control type" name="type" required>
@@ -192,6 +210,15 @@
                         <div class="form-group">
                             <label class="control-label">{{__('page.date')}}</label>
                             <input class="form-control date datetimepicker" type="text" name="date" value="{{date('Y-m-d H:i')}}" autocomplete="off" value="{{date('Y-m-d H:i')}}" placeholder="{{__('page.date')}}" required>
+                        </div>  
+                        <div class="form-group">
+                            <label class="control-label">{{__('page.category')}}</label>
+                            <select class="form-control category" name="category" required>
+                                <option value="">{{__('page.select_category')}}</option>
+                                @foreach ($categories as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                            </select>
                         </div>                                                 
                         <div class="form-group">
                             <label class="control-label">{{__('page.amount')}}</label>
@@ -243,10 +270,12 @@
                 let timestamp = $(this).parents('tr').find('.timestamp').text().trim();
                 let amount = $(this).parents('tr').find('.amount').data('value');
                 let note = $(this).parents('tr').find('.note').data('value');
+                let category = $(this).parents('tr').find('.category').data('id');
                 $("#edit_form .id").val(id);
                 $("#edit_form .reference_no").val(reference_no);
                 $("#edit_form .date").val(timestamp);
                 $("#edit_form .amount").val(amount);
+                $("#edit_form .category").val(category);
                 $("#edit_form .note").val(note);
                 $("#editModal").modal();
             });

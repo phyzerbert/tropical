@@ -11,4 +11,8 @@ class Transaction extends Model
     public function payment(){
         return $this->belongsTo(Payment::class);
     }
+
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
 }

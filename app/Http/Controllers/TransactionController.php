@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Transaction;
+use App\Models\Category;
 
 class TransactionController extends Controller
 {
@@ -15,14 +16,19 @@ class TransactionController extends Controller
     public function index(Request $request)
     {
         config(['site.page' => 'transaction']);
+        $categories = Category::all();
         $mod = new Transaction();
         $total = array();
-        $keyword = $period = '';
+        $category = $keyword = $period = '';
         if($request->keyword != ''){
             $keyword = $request->keyword;
             $mod = $mod->where('reference_no', 'like', "%$keyword%")
                 ->orWhere('note', 'like', "%$keyword%")
                 ->orWhere('timestamp', 'like', "%$keyword%");
+        }
+        if($request->category != ''){
+            $category = $request->category;
+            $mod = $mod->where('category_id', $category);
         }
         if ($request->get('period') != ""){   
             $period = $request->get('period');
@@ -42,7 +48,7 @@ class TransactionController extends Controller
         $collection = $mod->get();
         $total['expense'] = $collection->where('type', 1)->sum('amount');
         $total['incoming'] = $collection->where('type', 2)->sum('amount');
-        return view('transaction.index', compact('data', 'total', 'keyword', 'period', 'pagesize'));
+        return view('transaction.index', compact('data', 'categories', 'total', 'category', 'keyword', 'period', 'pagesize'));
     }
 
     public function create(Request $request){
@@ -56,6 +62,7 @@ class TransactionController extends Controller
         $item->timestamp = $request->get("date") . ":00";
         $item->type = $request->get("type");
         $item->amount = $request->get("amount");
+        $item->category_id = $request->get("category");
         $item->note = $request->get("note");
         if($request->has("attachment")){
             $picture = request()->file('attachment');
@@ -77,6 +84,7 @@ class TransactionController extends Controller
         $item->reference_no = $request->get("reference_no");
         $item->timestamp = $request->get("date") . ":00";
         $item->amount = $request->get("amount");
+        $item->category_id = $request->get("category");
         $item->note = $request->get("note");
         if($request->has("attachment")){
             $picture = request()->file('attachment');

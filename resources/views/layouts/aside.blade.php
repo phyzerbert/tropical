@@ -188,6 +188,12 @@
                 </a>
             </li>
             <li class="nav-main-item">
+                <a class="nav-main-link @if($page == 'category') active @endif" href="{{route('category.index')}}">
+                    <i class="nav-main-link-icon si si-people"></i>
+                    <span class="nav-main-link-name">{{__('page.category')}}</span>
+                </a>
+            </li>
+            <li class="nav-main-item">
                 <a class="nav-main-link @if($page == 'search') active @endif" href="{{route('search')}}">
                     <i class="nav-main-link-icon si si-magnifier"></i>
                     <span class="nav-main-link-name">{{__('page.search')}}</span>

@@ -328,5 +328,7 @@ return [
     'supplier_payments' => 'Supplier Payments',
     'sales' => 'Sales',
     'income' => 'Income',
+    'category' => 'Category',
+    'category_management' => 'Category Management',
     
 ];

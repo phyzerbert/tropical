@@ -18,6 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->string('reference_no')->nullable();
             $table->dateTime('timestamp')->useCurrent();
             $table->integer('type')->nullable();
+            $table->integer('category_id')->nullable();
             $table->integer('payment_id')->nullable();
             $table->decimal('amount', 11, 2)->nullable();
             $table->text('note')->nullable();

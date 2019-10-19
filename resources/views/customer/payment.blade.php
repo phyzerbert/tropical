@@ -61,8 +61,14 @@
                                 <th>{{__('page.note')}}</th>
                             </tr>
                         </thead>
-                        <tbody>                                
+                        <tbody>
+                            @php
+                                $footer_amount = 0;
+                            @endphp
                             @foreach ($data as $item)
+                                @php
+                                    $footer_amount += $item->amount;
+                                @endphp
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td class="date">{{date('Y-m-d', strtotime($item->timestamp))}}</td>
@@ -84,6 +90,13 @@
                                     </td>
                                 </tr>
                             @endforeach
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th colspan="3"></th>
+                                <th>{{number_format($footer_amount, 2)}}</th>
+                                <th colspan="2"></th>
+                            </tr>
                         </tbody>
                     </table>
                     <div class="clearfix mt-2">

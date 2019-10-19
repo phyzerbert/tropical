@@ -161,7 +161,7 @@ class SupplierController extends Controller {
         if($request->pagesize != '') {
             $pagesize = $request->pagesize;
         }
-        $data = $mod->orderBy('created_at', 'desc')->paginate($pagesize);
+        $data = $mod->orderBy('timestamp', 'desc')->paginate($pagesize);
         return view('supplier.payment', compact('data', 'supplier', 'reference_no', 'period', 'pagesize'));
     }
 }

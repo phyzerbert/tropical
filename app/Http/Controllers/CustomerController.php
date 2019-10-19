@@ -160,7 +160,7 @@ class CustomerController extends Controller
         if($request->pagesize != '') {
             $pagesize = $request->pagesize;
         }
-        $data = $mod->orderBy('created_at', 'desc')->paginate($pagesize);
+        $data = $mod->orderBy('timestamp', 'desc')->paginate($pagesize);
         return view('customer.payment', compact('data', 'customer', 'reference_no', 'period', 'pagesize'));
     }
 }

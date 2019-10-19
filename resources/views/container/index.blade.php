@@ -48,7 +48,7 @@
             </div>
             <div class="block-content block-content-full">
                 <div class="table-responsive pb-5">
-                    <table class="table table-bordered table-vcenter">
+                    <table class="table table-bordered table-vcenter table-hover">
                         <thead>
                             <tr>
                                 <th>#</th>

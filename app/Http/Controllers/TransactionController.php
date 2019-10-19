@@ -21,9 +21,12 @@ class TransactionController extends Controller
         $category = $keyword = $period = $type = '';
         if($request->keyword != ''){
             $keyword = $request->keyword;
-            $mod = $mod->where(function($query) use($keyword){
+            $category_array = Category::where('name', 'like', "%$keyword%")->pluck('id');
+            $mod = $mod->where(function($query) use($keyword, $category_array){
                 return $query->where('reference_no', 'like', "%$keyword%")
                             ->orWhere('note', 'like', "%$keyword%")
+                            ->orWhere('supplier_customer', 'like', "%$keyword%")
+                            ->orWhereIn('category_id', $category_array)
                             ->orWhere('timestamp', 'like', "%$keyword%");
             });
         }

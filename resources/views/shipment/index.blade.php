@@ -49,17 +49,19 @@
                         </thead>
                         <tbody>
                             @php
-                                $footer_total_to_pay = 0;
+                                $footer_total_to_pay = $footer_paid = $footer_balance = 0;
                             @endphp
                             @foreach ($data as $item)
                                 @php
-                                    $footer_total_to_pay += $item->total_to_pay;
                                     $proforma_paid = $proforma_balance = 0;
-                                    if($item->sale_proforma){
-                                        $proforma_total_to_pay = $item->sale_proforma->total_to_pay;
-                                        $proforma_paid = $item->sale_proforma->payments()->sum('amount');
+                                    if($item->proforma){
+                                        $proforma_total_to_pay = $item->proforma->total_to_pay;
+                                        $proforma_paid = $item->proforma->payments()->sum('amount');
                                         $proforma_balance = $proforma_total_to_pay - $proforma_paid;
                                     }
+                                    $footer_total_to_pay += $item->total_to_pay;
+                                    $footer_paid += $proforma_paid;
+                                    $footer_balance += $proforma_balance;
                                 @endphp
                                 <tr>
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
@@ -76,14 +78,7 @@
                                     <td class="total_to_pay">{{number_format($item->total_to_pay, 2)}}</td>
                                     <td class="paid">{{number_format($proforma_paid, 2)}}</td>
                                     <td class="balance_of_proforma">
-                                        @if($item->proforma)
-                                            @php
-                                                $proforma_total_to_pay = $item->proforma->total_to_pay;
-                                                $proforma_paid = $item->proforma->payments()->sum('amount');
-                                                $proforma_balance = $proforma_total_to_pay - $proforma_paid;
-                                            @endphp
-                                            {{number_format($proforma_balance, 2)}}
-                                        @endif
+                                        {{number_format($proforma_balance, 2)}}
                                     </td>
                                     <td class="text-center">
                                         <div class="dropdown">
@@ -104,6 +99,8 @@
                             <tr>
                                 <th colspan="5"></th>
                                 <th>{{number_format($footer_total_to_pay, 2)}}</th>
+                                <th>{{number_format($footer_paid, 2)}}</th>
+                                <th>{{number_format($footer_balance, 2)}}</th>                                
                                 <th colspan="2"></th>
                             </tr>
                         </tfoot>

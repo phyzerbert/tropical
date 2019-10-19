@@ -82,11 +82,11 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="5">{{__('page.total')}}</td>
-                                <td>{{number_format($footer_total_amount)}}</td>
-                                <td>{{number_format($footer_paid)}}</td>
-                                <td>{{number_format($footer_total_amount - $footer_paid)}}</td>
-                                <td></td>
+                                <th colspan="5">{{__('page.total')}}</th>
+                                <th>{{number_format($footer_total_amount)}}</th>
+                                <th>{{number_format($footer_paid)}}</th>
+                                <th>{{number_format($footer_total_amount - $footer_paid)}}</th>
+                                <th></th>
                             </tr>
                         </tfoot>
                     </table>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{__('page.supplier')}} {{__('page.report')}}</title>
+    <title>{{__('page.suppliers_report')}}</title>
     <link rel="stylesheet" id="css-main" href="{{asset('master/css/dashmix.min-2.0.css')}}">
     <style>
         body {
@@ -61,7 +61,7 @@
 <body>
     <img src="{{asset('images/logo.png')}}" class="logo" alt="">
     <h5 class="float-right main-color">{{__('page.date')}} : {{date('d/m/Y')}}</h5>
-    <h1 class="header-title main-color">{{__('page.supplier_report')}}</h1>
+    <h1 class="header-title main-color">{{__('page.suppliers_report')}}</h1>
 
     @php
         $invoices_array = $supplier->invoices()->pluck('id');

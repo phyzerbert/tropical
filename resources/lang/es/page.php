@@ -322,4 +322,6 @@ return [
     'total_balance' => 'Balance Totales',
     'supplier_report' => 'Reporte de Proveedore',
     'suppliers_report' => 'Reporte de Proveedores',
+    'customer_report' => 'Reporte de Cliente',
+    'customers_report' => 'Reporte de Clientes',
 ];

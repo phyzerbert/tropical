@@ -51,9 +51,15 @@
         .main-color {
             color: #495057;
         }
+        .logo {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
     </style>
 </head>
 <body>
+    <img src="{{asset('images/logo.png')}}" class="logo" alt="">
     <h5 class="float-right main-color">{{__('page.date')}} : {{date('d/m/Y')}}</h5>
     <h1 class="header-title main-color">{{__('page.supplier_report')}}</h1>
 

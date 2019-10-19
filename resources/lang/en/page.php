@@ -331,5 +331,6 @@ return [
     'income' => 'Income',
     'category' => 'Category',
     'category_management' => 'Category Management',
-    
+    'supplier_report' => 'Supplier Report',
+    'customer_report' => 'Customer Report',    
 ];

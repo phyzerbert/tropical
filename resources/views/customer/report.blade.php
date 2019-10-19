@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{__('page.customer')}} {{__('page.report')}}</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans">
     <link rel="stylesheet" id="css-main" href="{{asset('master/css/dashmix.min-2.0.css')}}">
     <style>
         body {
             border: solid 1px black;
             padding: 10px;
+            background-color: #FFF;
         }
-        .title {
-            margin-top: 30px;
+        .header-title {
+            margin-top: 25px;
             text-align:center;
             font-size:30px;
             font-weight: 800;
             text-decoration:underline;
+            clear: both;
         }
         .value {
-            font-size: 18px;
-            font-weight: 500;
             text-decoration: underline;
+            font-weight: 600;
         }
         .table-bordered, .table-bordered td, .table-bordered th {
             border: 1px solid #2d2d2d;
@@ -27,65 +30,104 @@
         .table thead th {
             border-bottom: 2px solid #2d2d2d;
         }
+        #table-sales td {
+            padding-top: 8px ;
+            padding-bottom: 3px ;
+        }
         #table-customer {
-            font-size: 18px;
-            font-weight: 600;
-            color: black;
+            font-size: 14px;
+            font-weight: 500;
+            color: #495057;
         }
         #table-customer tbody td {
-            height: 50px;
-        }        
-        #table-sale tbody>tr>td {
-            padding: .4rem;
+            height: 25px;
         }
-        .footer-link {
-            position: absolute;
-            right:20px;
-            bottom: 10px;
+        .table-payment td,
+        .table-payment th {
+            padding: 5px;
+            border: none;
+            font-size: 12px;
+        }
+        .main-color {
+            color: #495057;
         }
     </style>
 </head>
 <body>
-    <h1 class="title">{{__('page.customer')}} {{__('page.report')}}</h1>
+    <h5 class="float-right main-color">{{__('page.date')}} : {{date('d/m/Y')}}</h5>
+    <h1 class="header-title main-color">{{__('page.customer_report')}}</h1>
 
     @php
         $sales_array = $customer->sales()->pluck('id');
         $total_sales = $customer->sales()->count();
-        $total_to_pay = $customer->sales()->sum('total_to_pay');
+        $total_amount = $customer->sales()->sum('total_to_pay');
         $paid = \App\Models\Payment::whereIn('sale_id', $sales_array)->sum('amount');
     @endphp
 
-    <table class="w-100 mt-5" id="table-customer">
+    <table class="w-100 mt-3 main-color" id="table-customer">
         <tbody>
             <tr>
-                <td class="w-50">{{__('page.name')}} : <span class="value">{{$customer->name}}</span></td>
-                <td class="w-50">{{__('page.company')}} : <span class="value">{{$customer->company}}</span></td>
-            </tr>
-            <tr>
-                <td class="w-50">{{__('page.email')}} : <span class="value">{{$customer->email}}</span></td>
-                <td class="w-50">{{__('page.phone_number')}} : <span class="value">{{$customer->phone_number}}</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="w-50">{{__('page.address')}} : <span class="value">{{$customer->address}}</td>
-            </tr>
-            <tr>
-                <td class="w-50">{{__('page.city')}} : <span class="value">{{$customer->city}}</span></td>
-                <td class="w-50">{{__('page.total_amount')}} : <span class="value">{{number_format($total_to_pay, 2)}}</span></td>
-            </tr>
-            <tr>
-                <td class="w-50">{{__('page.paid')}} : <span class="value">{{number_format($paid, 2)}}</span></td>
-                <td class="w-50">{{__('page.balance')}} : <span class="value">{{number_format($total_to_pay - $paid, 2)}}</span></td>
+                <td>
+                    <table class="w-100">
+                        <tbody>
+                            <tr>
+                                <td>{{__('page.name')}} : </td>
+                                <td class="value">{{$customer->name}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{__('page.company')}} : </td>
+                                <td class="value">{{$customer->company}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{__('page.email')}} : </td>
+                                <td class="value">{{$customer->email}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{__('page.phone_number')}} : </td>
+                                <td class="value">{{$customer->phone_number}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{__('page.city')}} : </td>
+                                <td class="value">{{$customer->city}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{__('page.address')}} : </td>
+                                <td class="value">{{$customer->address}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td valign="bottom">
+                    <table class="w-100">
+                        <tbody>
+                            <tr>
+                                <td>{{__('page.total_amount')}} : </td>
+                                <td class="value" style="font-size:20px">{{number_format($total_amount)}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{__('page.paid')}} : </td>
+                                <td class="value" style="font-size:20px">{{number_format($paid)}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{__('page.balance')}} : </td>
+                                <td class="value" style="font-size:20px">{{number_format($total_amount - $paid)}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
             </tr>
         </tbody>
     </table>
-    <h3 class="mt-5" style="font-size: 24px; font-weight: 500;">{{__('page.sales')}}</h3>
-    <table class="table" id="table-sale">
-        <thead class="table-primary">
+    <h3 class="mt-4" style="font-size: 18px; font-weight: 500;">{{__('page.sale')}}</h3>
+    <table class="table" id="table-sales">
+        <thead>
             <tr class="bg-blue">
-                <th style="width:25px;">#</th>
-                <th>{{__('page.sale')}}</th>
+                <th>
+                    {{__('page.date')}}
+                </th>
+                <th>{{__('page.reference_no')}}</th>
                 <th>{{__('page.total_to_pay')}}</th>
-                <th>{{__('page.paid')}}</th>
+                <th>{{__('page.payment')}}</th>
                 <th>{{__('page.balance')}}</th>
             </tr>
         </thead>
@@ -102,20 +144,47 @@
                     $footer_paid += $paid;
                 @endphp
                 <tr>
-                    <td>{{ $loop->index + 1 }}</td>
+                    <td class="timestamp">{{date('d/m/Y', strtotime($item->timestamp))}}</td>
                     <td class="reference_no">{{$item->reference_no}}</td>
-                    <td class="total_to_pay"> {{number_format($total_to_pay, 2)}} </td>
-                    <td class="paid"> {{ number_format($paid, 2) }} </td>
-                    <td class="balance" data-value="{{$total_to_pay - $paid, 2}}"> {{number_format($total_to_pay - $paid, 2)}} </td>
+                    <td class="total_to_pay"> {{number_format($total_to_pay)}} </td>
+                    <td class="payment">                        
+                        @php
+                            $payments = $item->payments;
+                        @endphp
+                        <table class="table-payment w-100">
+                            <tbody>
+                                @forelse ($payments as $payment)
+                                    <tr>
+                                        <td>{{date('d/m/Y', strtotime($payment->timestamp))}}</td>
+                                        <td>{{$payment->reference_no}}</td>
+                                        <td width="80">{{number_format($payment->amount)}}</td>
+                                    </tr>
+                                @empty
+                                     <tr>
+                                        <td>{{__('page.no_payment')}}</td>
+                                     </tr>                    
+                                @endforelse
+                            </tbody>
+                            @if($payments->isNotEmpty())
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="2" class="text-right">{{__('page.total')}}</th>
+                                        <th>{{ number_format($paid) }} </th>
+                                    </tr>
+                                </tfoot>
+                            @endif
+                        </table>
+                    </td>
+                    <td class="balance"> {{number_format($total_to_pay - $paid)}} </td>
                 </tr>
             @endforeach
         </tbody>
         <tfoot>
             <tr>
-                <th colspan="2">{{__('page.total')}}</th>
-                <th>{{number_format($footer_total_to_pay, 2)}}</th>
-                <th>{{number_format($footer_paid, 2)}}</th>
-                <th>{{number_format($footer_total_to_pay - $footer_paid, 2)}}</th>  
+                <th colspan="2" class="text-right">{{__('page.total')}}</th>
+                <th>{{number_format($footer_total_to_pay)}}</th>
+                <th>{{number_format($footer_paid)}}</th>
+                <th>{{number_format($footer_total_to_pay - $footer_paid)}}</th>  
             </tr>
         </tfoot>
     </table>

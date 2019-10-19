@@ -88,7 +88,7 @@ class SupplierController extends Controller {
     public function report($id)
     {
         $supplier = Supplier::find($id);
-        $pdf = PDF::loadView('supplier.report', compact('supplier'));
+        $pdf = PDF::loadView('supplier.report', compact('supplier'))->setPaper('a4', 'landscape');
   
         return $pdf->download('supplier_report_'.$supplier->name.'.pdf');
         // return view('supplier.report', compact('supplier'));

@@ -320,4 +320,6 @@ return [
     'total_incoming' => 'Ingreso Totales',
     'total_expense' => 'Gasto Totales',
     'total_balance' => 'Balance Totales',
+    'supplier_report' => 'Reporte de Proveedore',
+    'suppliers_report' => 'Reporte de Proveedores',
 ];

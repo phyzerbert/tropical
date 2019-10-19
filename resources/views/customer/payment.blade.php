@@ -154,6 +154,9 @@
                 });
                 $("#attachModal").modal();
             });
+            $("#pagesize").change(function(){
+                $("#searchForm").submit();
+            });
             // $(".ez_attach").EZView();
             $(".ez_attach1").EZView();
         })

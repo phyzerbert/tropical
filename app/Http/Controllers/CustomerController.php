@@ -139,12 +139,12 @@ class CustomerController extends Controller
         config(['site.page' => 'customer']);
         $customer = Customer::find($id);
         $mod = new Payment();
-        $invoices_array = $customer->sales()->pluck('id');
+        $sales_array = $customer->sales()->pluck('id');
         
         $reference_no = $period = '';
         $pagesize = 15;
 
-        $mod = $mod->whereIn('invoice_id', $invoices_array);
+        $mod = $mod->whereIn('sale_id', $sales_array);
 
         if ($request->get('reference_no') != ""){
             $reference_no = $request->get('reference_no');

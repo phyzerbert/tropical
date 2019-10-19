@@ -23,8 +23,8 @@
             <div class="block-header block-header-default">
                 <form action="" class="col-md-12 form-inline px-0" id="searchForm">
                     @csrf
-                    <label for="pagesize" class="control-label">{{__('page.show')}} :</label>
-                    <select class="form-control form-control-sm mx-md-2" name="pagesize" id="pagesize">
+                    <label for="pagesize" class="control-label mt-2">{{__('page.show')}} :</label>
+                    <select class="form-control form-control-sm mx-md-2 mt-2" name="pagesize" id="pagesize">
                         <option value="15" @if($pagesize == '15') selected @endif>15</option>
                         <option value="50" @if($pagesize == '50') selected @endif>50</option>
                         <option value="100" @if($pagesize == '100') selected @endif>100</option>
@@ -32,12 +32,12 @@
                         <option value="500" @if($pagesize == '500') selected @endif>500</option>
                         <option value="" @if($pagesize == '100000') selected @endif>All</option>
                     </select>
-                    <input type="text" class="form-control form-control-sm col-md-2 mt-2 mt-md-0" name="keyword" id="search_keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
-                    <input type="text" class="form-control form-control-sm col-md-1 mt-2 mt-md-0 ml-md-2" name="week_c" id="search_week_c" value="{{$week_c}}" placeholder="{{__('page.week_c')}}">
-                    <input type="text" class="form-control form-control-sm col-md-1 mt-2 mt-md-0 ml-md-2" name="week_d" id="search_week_d" value="{{$week_d}}" placeholder="{{__('page.week_d')}}">
-                    <button type="submit" class="btn btn-sm btn-primary ml-md-2 mt-2 mt-md-0"><i class="fa fa-search"></i> {{__('page.search')}}</button>
-                    <button type="button" class="btn btn-danger btn-sm mt-2 mt-md-0 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</button>
-                    <a href="{{route('invoice.create')}}" class="btn btn-success btn-sm mt-2 mt-md-0 ml-auto" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
+                    <input type="text" class="form-control form-control-sm col-md-2 mt-2" name="keyword" id="search_keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
+                    <input type="text" class="form-control form-control-sm col-md-1 mt-2 ml-md-2" name="week_c" id="search_week_c" value="{{$week_c}}" placeholder="{{__('page.week_c')}}">
+                    <input type="text" class="form-control form-control-sm col-md-1 mt-2 ml-md-2" name="week_d" id="search_week_d" value="{{$week_d}}" placeholder="{{__('page.week_d')}}">
+                    <button type="submit" class="btn btn-sm btn-primary ml-md-2 mt-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
+                    <button type="button" class="btn btn-danger btn-sm mt-2 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</button>
+                    <a href="{{route('invoice.create')}}" class="btn btn-success btn-sm mt-2 ml-auto" id="btn-add"><i class="fa fa-plus"></i> {{__('page.add_new')}}</a>
                 </form>                
             </div>
             <div class="block-content block-content-full">

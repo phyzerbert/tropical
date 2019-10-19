@@ -110,8 +110,11 @@ class HomeController extends Controller
                         ->orWhere('vgm', 'LIKE', "%$keyword%");
             });
         }
-        $pagesize = session('pagesize');
+        $pagesize = 15;
+        if($request->pagesize != ''){
+            $pagesize = $request->pagesize;
+        }
         $data = $mod->orderBy('created_at', 'desc')->paginate($pagesize);
-        return view('search.index', compact('data', 'week_c', 'week_d', 'keyword', 'search_params'));
+        return view('search.index', compact('data', 'week_c', 'week_d', 'keyword', 'search_params', 'pagesize'));
     }
 }

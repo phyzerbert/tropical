@@ -28,9 +28,16 @@
     <div class="content">
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
-                @include('elements.pagesize')
-                <form action="" class="form-inline float-left">
-                    @csrf
+                <form action="" class="form-inline col-md-12">
+                    <label for="pagesize" class="control-label mt-2">{{__('page.show')}} :</label>
+                    <select class="form-control form-control-sm mx-md-2 mt-2" name="pagesize" id="pagesize">
+                        <option value="15" @if($pagesize == '15') selected @endif>15</option>
+                        <option value="50" @if($pagesize == '50') selected @endif>50</option>
+                        <option value="100" @if($pagesize == '100') selected @endif>100</option>
+                        <option value="200" @if($pagesize == '200') selected @endif>200</option>
+                        <option value="100" @if($pagesize == '500') selected @endif>500</option>
+                        <option value="" @if($pagesize == '100000') selected @endif>All</option>
+                    </select>
                     <input type="text" class="form-control form-control-sm col-md-5 mt-2" id="search_bl" name="bl" value="{{$bl}}" placeholder="BL">
                     <button type="submit" class="btn btn-sm btn-primary ml-2 mt-2"><i class="fa fa-search"></i> {{__('page.search')}}</button>
                     <a href="javascript:;" class="btn btn-danger btn-sm mt-2 ml-2" id="btn-reset"><i class="fa fa-eraser"></i> {{__('page.reset')}}</a>

@@ -192,10 +192,13 @@ class ContainerController extends Controller
             $bl = $request->get('bl');
             $mod = $mod->where('bl', 'like', "%$bl%");
         }
-        $pagesize = session('pagesize');
+        $pagesize = 15;
+        if($request->pagesize){
+            $pagesize = $request->pagesize;
+        }
         $data = $mod->orderBy('created_at', 'desc')->paginate($pagesize);
 
-        return view('container.bl', compact('data', 'bl'));
+        return view('container.bl', compact('data', 'bl', 'pagesize'));
     }
 
     public function search_by_booking(Request $request){
@@ -208,9 +211,12 @@ class ContainerController extends Controller
             $mod = $mod->where('booking', 'like', "%$booking%");
         }
 
-        $pagesize = session('pagesize');
+        $pagesize = 15;
+        if($request->pagesize){
+            $pagesize = $request->pagesize;
+        }
         $data = $mod->orderBy('created_at', 'desc')->paginate($pagesize);
 
-        return view('container.booking', compact('data', 'booking'));
+        return view('container.booking', compact('data', 'booking', 'pagesize'));
     }
 }

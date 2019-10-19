@@ -21,9 +21,17 @@
             <div class="col-md-8 col-lg-7 col-xl-9">
                 <div class="block block-fx-pop">
                     <div class="block-header block-header-default">
-                        <div class="col-md-12">
-                            @include('elements.pagesize')
-                            <input type="text" class="col-lg-2 col-md-4 form-control form-control-sm ml-auto" id="top-keyword" value="{{$keyword}}" placeholder="{{__('page.keyword')}}" />
+                        <div class="col-md-12 form-inline">
+                            <label for="pagesize" class="control-label mt-2">{{__('page.show')}} :</label>
+                            <select class="form-control form-control-sm mx-md-2 mt-2" name="pagesize" id="pagesize">
+                                <option value="15" @if($pagesize == '15') selected @endif>15</option>
+                                <option value="50" @if($pagesize == '50') selected @endif>50</option>
+                                <option value="100" @if($pagesize == '100') selected @endif>100</option>
+                                <option value="200" @if($pagesize == '200') selected @endif>200</option>
+                                <option value="500" @if($pagesize == '500') selected @endif>500</option>
+                                <option value="100000" @if($pagesize == '100000') selected @endif>All</option>
+                            </select>
+                            <input type="text" class="col-lg-2 col-md-4 form-control form-control-sm ml-auto mt-2" id="top-keyword" value="{{$keyword}}" placeholder="{{__('page.keyword')}}" />
                         </div>
                     </div>
                     <div class="block-content">
@@ -176,7 +184,8 @@
     <script>
         $(document).ready(function(){            
             $("#pagesize").change(function(){
-                $("#pagesize_form").submit();
+                $("#filter-pagesize").val($(this).val());
+                $("#filter_form").submit();
             });
 
             $("#top-keyword").keyup(function(e){

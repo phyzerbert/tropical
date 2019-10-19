@@ -10,6 +10,7 @@
                 <form action="" method="post" id="filter_form">
                     @csrf
                     <input type="hidden" name="keyword" id="filter-keyword" value="{{$keyword}}" />
+                    <input type="hidden" name="pagesize" id="filter-pagesize" value="{{$pagesize}}" />
                     <div class="form-group row mt-3">
                         <label class="col-lg-4 col-form-label" for="search_week_c">{{__('page.week_c')}}</label>
                         <div class="col-lg-8">

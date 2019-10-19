@@ -100,7 +100,7 @@
                                 @endphp
                                 <tr>
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
-                                    <td class="timestamp">{{date('Y-m-d H:i', strtotime($item->timestamp))}}</td>
+                                    <td class="timestamp">{{date('Y-m-d', strtotime($item->timestamp))}}</td>
                                     <td class="category" data-id="{{$item->category_id}}">{{$item->category->name ?? ''}}</td>
                                     <td class="supplier_customer">{{$supplier_customer}}</td>
                                     <td class="amount" data-value="{{$item->amount}}">

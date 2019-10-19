@@ -149,7 +149,7 @@
                                         @forelse ($invoice->payments as $item)
                                             <tr>
                                                 <td>{{ $loop->index + 1 }}</td>
-                                                <td class="date">{{date('Y-m-d H:i', strtotime($item->timestamp))}}</td>
+                                                <td class="date">{{date('Y-m-d', strtotime($item->timestamp))}}</td>
                                                 <td class="reference_no">{{$item->reference_no}}</td>
                                                 <td class="amount" data-value="{{$item->amount}}">{{number_format($item->amount)}}</td>
                                                 <td class="" data-path="{{$item->attachment}}">

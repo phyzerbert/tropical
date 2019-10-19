@@ -3,6 +3,7 @@
     <link href="{{asset('master/js/plugins/jquery-ui/jquery-ui.css')}}" rel="stylesheet">
     <link href="{{asset('master/js/plugins/jquery-ui/timepicker/jquery-ui-timepicker-addon.min.css')}}" rel="stylesheet">
     <link href="{{asset('master/js/plugins/daterangepicker/daterangepicker.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('master/js/plugins/select2/css/select2.min.css')}}">
 @endsection
 @section('content')
     <div class="bg-body-light">
@@ -21,7 +22,7 @@
     <div class="content">  
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
-                <form action="" class="col-md-12 form-inline" method="POST" id="searchForm">
+                <form action="" class="col-md-12 form-inline top-search-form" method="POST" id="searchForm">
                     @csrf
                     <label for="pagesize" class="control-label mt-2">{{__('page.show')}} :</label>
                     <select class="form-control form-control-sm mx-md-2 mt-2" name="pagesize" id="pagesize">
@@ -37,7 +38,7 @@
                         <option value="1" @if($type == 1) selected @endif>{{__('page.expense')}}</option>
                         <option value="2" @if($type == 2) selected @endif>{{__('page.incoming')}}</option>
                     </select>                    
-                    <select class="form-control form-control-sm mr-md-2 mt-2" name="category" id="search_category">
+                    <select class="form-control form-control-sm mr-md-2" name="category" id="search_category">
                         <option value="" hidden>{{__('page.select_category')}}</option>
                         @foreach ($categories as $item)
                             <option value="{{$item->id}}" @if($category == $item->id) selected @endif>{{$item->name}}</option>
@@ -224,11 +225,27 @@
     <script src="{{asset('master/js/plugins/jquery-ui/jquery-ui.js')}}"></script>
     <script src="{{asset('master/js/plugins/jquery-ui/timepicker/jquery-ui-timepicker-addon.min.js')}}"></script>
     <script src="{{asset('master/js/plugins/daterangepicker/jquery.daterangepicker.min.js')}}"></script>
+    <script src="{{asset('master/js/plugins/select2/js/select2.full.min.js')}}"></script>
     <script src="{{asset('master/js/plugins/ezview/EZView.js')}}"></script>
     <script>
         $(document).ready(function(){
             $("input.datetimepicker").datetimepicker({
                 dateFormat: 'yy-mm-dd',
+            });
+
+            $('#search_category').each(function() {
+                $(this).wrap('<div class="position-relative mt-2 mx-md-2" style="width: 230px;"></div>')
+                    .select2({
+                        width: '100%',
+                        placeholder: "{!! __('page.category') !!}"
+                    });                    
+            });
+
+            $('#edit_form .category').each(function() {
+                $(this).select2({
+                        width: '100%',
+                        placeholder: "{!! __('page.category') !!}"
+                    });                    
             });
 
             $("#search_period").dateRangePicker();

@@ -42,6 +42,7 @@
                                 <th>{{__('page.week_c')}}</th>
                                 <th>{{__('page.status')}}</th>
                                 <th>{{__('page.total_amount')}}</th>
+                                <th>{{__('page.paid')}}</th>
                                 <th>{{__('page.balance_of_proforma')}}</th>
                                 <th style="width:120px;">{{__('page.action')}}</th>
                             </tr>
@@ -53,6 +54,12 @@
                             @foreach ($data as $item)
                                 @php
                                     $footer_total_to_pay += $item->total_to_pay;
+                                    $proforma_paid = $proforma_balance = 0;
+                                    if($item->sale_proforma){
+                                        $proforma_total_to_pay = $item->sale_proforma->total_to_pay;
+                                        $proforma_paid = $item->sale_proforma->payments()->sum('amount');
+                                        $proforma_balance = $proforma_total_to_pay - $proforma_paid;
+                                    }
                                 @endphp
                                 <tr>
                                     <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
@@ -67,6 +74,7 @@
                                         @endif
                                     </td>
                                     <td class="total_to_pay">{{number_format($item->total_to_pay, 2)}}</td>
+                                    <td class="paid">{{number_format($proforma_paid, 2)}}</td>
                                     <td class="balance_of_proforma">
                                         @if($item->proforma)
                                             @php

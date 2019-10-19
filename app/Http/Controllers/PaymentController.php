@@ -44,6 +44,7 @@ class PaymentController extends Controller
         ]);        
         $transaction_type = 1;
         $category_id = 1;
+        $supplier_customer = '';
         $item = new Payment();
         $item->timestamp = $request->get('date').":00";
         $item->reference_no = $request->get('reference_no');
@@ -55,6 +56,7 @@ class PaymentController extends Controller
                 $item->proforma_id = $invoice->proforma_id;
             }
             $transaction_type = 1;
+            $supplier_customer = $invoice->supplier->company;
         }else if($request->type == 'proforma'){
             $item->proforma_id = $request->proforma_id;
             $proforma = Proforma::find($request->proforma_id);
@@ -62,6 +64,7 @@ class PaymentController extends Controller
                 $item->invoice_id = $proforma->invoice->id;
             }
             $transaction_type = 1;
+            $supplier_customer = $proforma->supplier->company;
         }else if($request->type == 'sale'){
             $item->sale_id = $request->sale_id;
             $sale = Sale::find($request->sale_id);
@@ -69,6 +72,7 @@ class PaymentController extends Controller
                 $item->sale_proforma_id = $sale->sale_proforma_id;
             }
             $transaction_type = 2;
+            $supplier_customer = $sale->customer->company;
         }else if($request->type == 'sale_proforma'){
             $item->sale_proforma_id = $request->sale_proforma_id;
             $proforma = SaleProforma::find($request->sale_proforma_id);
@@ -76,6 +80,7 @@ class PaymentController extends Controller
                 $item->sale_id = $proforma->sale->id;
             }
             $transaction_type = 2;
+            $supplier_customer = $proforma->customer->company;
         }
         $item->note = $request->get('note');
         if($request->has("attachment")){
@@ -91,6 +96,7 @@ class PaymentController extends Controller
             'amount' => $item->amount,
             'category_id' => $transaction_type,
             'payment_id' => $item->id,
+            'supplier_customer' => $supplier_customer,
             'type' => $transaction_type,
             'note' => $item->note,
             'attachment' => $item->attachment,

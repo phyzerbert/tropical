@@ -150,7 +150,7 @@
                     $footer_paid += $paid;
                 @endphp
                 <tr>
-                    <td class="timestamp">{{date('d/m/Y', strtotime($item->timestamp))}}</td>
+                    <td class="timestamp">{{date('d/m/Y', strtotime($item->issue_date))}}</td>
                     <td class="reference_no">{{$item->reference_no}}</td>
                     <td class="total_to_pay"> {{number_format($total_to_pay)}} </td>
                     <td class="payment">                        

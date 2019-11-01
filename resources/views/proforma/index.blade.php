@@ -156,7 +156,7 @@
                         </div>                                                
                         <div class="form-group">
                             <label class="control-label">{{__('page.amount')}}</label>
-                            <input class="form-control amount" type="text" name="amount" required placeholder="{{__('page.amount')}}">
+                            <input class="form-control amount" type="number" name="amount" required placeholder="{{__('page.amount')}}">
                         </div>                                               
                         <div class="form-group">
                             <label class="control-label">{{__('page.attachment')}}</label>

@@ -43,7 +43,7 @@
                             </tr>
                         </thead>
                         <tbody>                                
-                            @foreach ($data as $item)
+                            @forelse ($data as $item)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td class="date">{{date('Y-m-d', strtotime($item->timestamp))}}</td>
@@ -79,7 +79,11 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="10" align="center">No Data</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                     <div class="text-right">
@@ -122,7 +126,7 @@
                             </div>                                                
                             <div class="form-group">
                                 <label class="control-label">{{__('page.amount')}}</label>
-                                <input class="form-control amount" type="text" name="amount" placeholder="{{__('page.amount')}}">
+                                <input class="form-control amount" type="number" name="amount" placeholder="{{__('page.amount')}}">
                             </div>                                               
                             <div class="form-group">
                                 <label class="control-label">{{__('page.attachment')}}</label>

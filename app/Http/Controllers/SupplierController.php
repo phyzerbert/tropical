@@ -15,6 +15,7 @@ class SupplierController extends Controller {
     public function __construct()
     {
         $this->middleware('auth');
+        ini_set('max_execution_time', 3000000);
     }
 
     public function index(Request $request)

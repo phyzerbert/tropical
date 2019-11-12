@@ -24,7 +24,7 @@
                         <option value="50" @if($pagesize == '50') selected @endif>50</option>
                         <option value="100" @if($pagesize == '100') selected @endif>100</option>
                         <option value="200" @if($pagesize == '200') selected @endif>200</option>
-                        <option value="100" @if($pagesize == '500') selected @endif>500</option>
+                        <option value="500" @if($pagesize == '500') selected @endif>500</option>
                         <option value="" @if($pagesize == '100000') selected @endif>All</option>
                     </select>
                     <input type="text" class="form-control form-control-sm mt-2 mt-md-0" style="width: 200px;" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">

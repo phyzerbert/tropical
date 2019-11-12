@@ -334,5 +334,6 @@ return [
     'supplier_report' => 'Supplier Report',
     'suppliers_report' => 'Suppliers Report',
     'customer_report' => 'Customer Report',    
-    'customers_report' => 'Customers Report',    
+    'customers_report' => 'Customers Report',
+    'edit_shipment' => 'Edit Shipment',
 ];

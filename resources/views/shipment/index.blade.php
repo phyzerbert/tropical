@@ -88,6 +88,7 @@
                                                 @if (!$item->is_received)                                                    
                                                     <a class="dropdown-item" href="{{route('shipment.receive', $item->id)}}" data-id="{{$item->id}}">{{__('page.receive')}}</a>
                                                 @endif
+                                                <a class="dropdown-item" href="{{route('shipment.edit', $item->id)}}">{{__('page.edit')}}</a>
                                                 <a class="dropdown-item" href="{{route('shipment.delete', $item->id)}}" onclick="return window.confirm('{{__('page.are_you_sure')}}')">{{__('page.delete')}}</a>
                                             </div>
                                         </div>

@@ -56,6 +56,8 @@ Route::any('/proforma/container/{id}', 'ProformaController@container')->name('pr
 Route::any('/shipment/index', 'ShipmentController@index')->name('shipment.index');
 Route::get('/shipment/delete/{id}', 'ShipmentController@delete')->name('shipment.delete');
 Route::get('/shipment/receive/{id}', 'ShipmentController@receive')->name('shipment.receive');
+Route::get('/shipment/edit/{id}', 'ShipmentController@edit')->name('shipment.edit');
+Route::post('/shipment/update', 'ShipmentController@update')->name('shipment.update');
 Route::get('/shipment/detail/{id}', 'ShipmentController@detail')->name('shipment.detail');
 Route::post('/shipment/save_receive', 'ShipmentController@save_receive')->name('shipment.save_receive');
 

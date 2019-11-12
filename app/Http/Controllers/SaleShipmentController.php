@@ -48,8 +48,8 @@ class SaleShipmentController extends Controller
 
     public function detail(Request $request, $id){
         config(['site.page' => 'sale_shipment']);
-        $sale_shipment = SaleShipment::find($id);
-        return view('sale_shipment.detail', compact('sale_shipment'));
+        $shipment = SaleShipment::find($id);
+        return view('sale_shipment.detail', compact('shipment'));
     }
 
     public function edit($id) {

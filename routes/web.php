@@ -64,6 +64,8 @@ Route::post('/shipment/save_receive', 'ShipmentController@save_receive')->name('
 Route::any('/sale_shipment/index', 'SaleShipmentController@index')->name('sale_shipment.index');
 Route::get('/sale_shipment/delete/{id}', 'SaleShipmentController@delete')->name('sale_shipment.delete');
 Route::get('/sale_shipment/receive/{id}', 'SaleShipmentController@receive')->name('sale_shipment.receive');
+Route::get('/sale_shipment/edit/{id}', 'SaleShipmentController@edit')->name('sale_shipment.edit');
+Route::post('/sale_shipment/update', 'SaleShipmentController@update')->name('sale_shipment.update');
 Route::get('/sale_shipment/detail/{id}', 'SaleShipmentController@detail')->name('sale_shipment.detail');
 Route::post('/sale_shipment/save_receive', 'SaleShipmentController@save_receive')->name('sale_shipment.save_receive');
 

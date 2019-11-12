@@ -52,6 +52,61 @@ class SaleShipmentController extends Controller
         return view('sale_shipment.detail', compact('sale_shipment'));
     }
 
+    public function edit($id) {
+        config(['site.page' => 'sale_shipment']);
+        $shipment = SaleShipment::find($id);
+        return view('shipment.edit', compact('shipment'));
+    }
+
+    public function update(Request $request) {
+        $request->validate([
+            'invoice' => 'required',
+            'week_c' => 'required',
+            'product_name' => 'required',
+        ]);
+        $data = $request->all();
+        $shipment = SaleShipment::find($request->id);
+        $shipment->reference_no = $data['invoice'];
+        $shipment->week_c = $data['week_c'];
+        $shipment->total_to_pay = $data['total_to_pay'];
+        $shipment->save();
+
+        $shipment_items = $shipment->items->pluck('id')->toArray();
+        $diff_items = array_diff($shipment_items, $data['item_id']);
+        foreach ($diff_items as $key => $value) {
+            Item::find($value)->delete();
+        }
+
+        if(isset($data['item_id']) && count($data['item_id']) > 0){
+            for ($i=0; $i < count($data['product_id']); $i++) { 
+                if(!$data['item_id'][$i]){
+                    Item::create([
+                        'product_id' => $data['product_id'][$i],
+                        'price' => $data['price'][$i],
+                        'quantity' => $data['quantity'][$i],
+                        'amount' => $data['total_amount'][$i],
+                        'total_amount' => $data['total_amount'][$i],
+                        'itemable_id' => $shipment->id,
+                        'itemable_type' => SaleShipment::class,
+                    ]);
+                }else{
+                    $order = Item::find($data['item_id'][$i]);
+                    $order->update([
+                        'product_id' => $data['product_id'][$i],
+                        'price' => $data['price'][$i],
+                        'quantity' => $data['quantity'][$i],
+                        'amount' => $data['total_amount'][$i],
+                        'total_amount' => $data['total_amount'][$i],
+                        'itemable_id' => $shipment->id,
+                        'itemable_type' => SaleShipment::class,
+                    ]);
+                }
+            }
+        }
+         
+        return back()->with('success', __('page.updated_successfully'));        
+    }
+
     public function delete($id){
         $item = SaleShipment::find($id);
         if($item->sale_proforma){

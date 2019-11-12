@@ -52,8 +52,8 @@ class ShipmentController extends Controller
         return view('shipment.detail', compact('shipment'));
     }
 
-
     public function edit($id) {
+        config(['site.page' => 'shipment']);
         $shipment = Shipment::find($id);
         return view('shipment.edit', compact('shipment'));
     }
@@ -106,6 +106,7 @@ class ShipmentController extends Controller
          
         return back()->with('success', __('page.updated_successfully'));        
     }
+
     public function delete($id){
         $item = Shipment::find($id);
         if($item->proforma){

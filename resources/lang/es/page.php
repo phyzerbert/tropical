@@ -324,4 +324,8 @@ return [
     'suppliers_report' => 'Reporte de Proveedores',
     'customer_report' => 'Reporte de Cliente',
     'customers_report' => 'Reporte de Clientes',
+    'edit_shipment' => 'Editar Envio',
+    'category' => 'Categoria',
+    'total_to_pay' => 'Pagos Total',
+    'daily_transaction' => 'Transacciones Diarias',
 ];

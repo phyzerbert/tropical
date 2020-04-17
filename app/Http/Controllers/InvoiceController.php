@@ -71,7 +71,7 @@ class InvoiceController extends Controller
         if($request->get('pagesize') != ''){
             $pagesize = $request->get('pagesize');
         }
-        $data = $mod->orderBy('created_at', $sort_by_date)->paginate($pagesize);
+        $data = $mod->orderBy('issue_date', $sort_by_date)->paginate($pagesize);
         return view('invoice.index', compact('data', 'suppliers', 'supplier_id', 'week_c', 'week_d', 'period', 'keyword', 'sort_by_date', 'pagesize'));
     }
 

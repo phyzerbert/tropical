@@ -42,7 +42,7 @@ class ShipmentController extends Controller
             $pagesize = $request->get('pagesize');
         }
         $pagesize = session('pagesize');
-        $data = $mod->orderBy('created_at', $sort_by_date)->paginate($pagesize);
+        $data = $mod->orderBy('created_at', $sort_by_date)->get();
         return view('shipment.index', compact('data', 'keyword', 'sort_by_date', 'pagesize'));
     }
 

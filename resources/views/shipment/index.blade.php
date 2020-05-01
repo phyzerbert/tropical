@@ -1,13 +1,16 @@
 @extends('layouts.master')
+@section('style')
+    <link rel="stylesheet" id="css-main" href="{{asset('master/js/plugins/datatables/dataTables.bootstrap4.css')}}">
+@endsection
 @section('content')
     <div class="bg-body-light">
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2"><i class="far fa-file-alt"></i> Shipment</h1>
+                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2"><i class="far fa-file-alt"></i> {{__('page.shipment')}}</h1>
                 <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><i class="nav-main-link-icon si si-home"></i></li>
-                        <li class="breadcrumb-item active" aria-current="page">Shipment</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{__('page.shipment')}}</li>
                     </ol>
                 </nav>
             </div>
@@ -15,7 +18,7 @@
     </div>
     <div class="content">  
         <div class="block block-rounded block-bordered">
-            <div class="block-header block-header-default">
+            {{-- <div class="block-header block-header-default">
                 <form action="" class="form-inline mr-auto" id="searchForm">
                     @csrf
                     <label for="pagesize" class="control-label">{{__('page.show')}} :</label>
@@ -30,10 +33,10 @@
                     <input type="text" class="form-control form-control-sm mt-2 mt-md-0" style="width: 200px;" name="keyword" value="{{$keyword}}" placeholder="{{__('page.search')}}...">
                     <button type="submit" class="btn btn-sm btn-primary ml-2 mt-2 mt-md-0"><i class="fa fa-search"></i> {{__('page.search')}}</button>
                 </form>
-            </div>
+            </div> --}}
             <div class="block-content block-content-full">
                 <div class="table-responsive pb-7">                    
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover" id="shipmentTable">
                         <thead class="thead-colored thead-primary">
                             <tr class="bg-blue">
                                 <th style="width:50px;">#</th>
@@ -106,7 +109,7 @@
                             </tr>
                         </tfoot>
                     </table>                
-                    <div class="clearfix mt-2">
+                    {{-- <div class="clearfix mt-2">
                         <div class="float-left" style="margin: 0;">
                             <p>{{__('page.total')}} <strong style="color: red">{{ $data->total() }}</strong> {{__('page.items')}}</p>
                         </div>
@@ -116,7 +119,7 @@
                                 'pagesize' => $pagesize,
                             ])->links() !!}
                         </div>
-                    </div>
+                    </div> --}}
                 </div>                
             </div>
         </div>
@@ -126,8 +129,11 @@
 @endsection
 
 @section('script')
+    <script src="{{asset('master/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('master/js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <script>
-        $(document).ready(function(){            
+        $(document).ready(function(){  
+            $("#shipmentTable").dataTable();
             // $(".btn-add-payment").click(function(){
             //     let id = $(this).data('id');
             //     let balance = $(this).parents('tr').find('.balance').data('value');

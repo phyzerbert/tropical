@@ -70,7 +70,7 @@
                                     {{-- <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td> --}}
                                     <td>{{ $loop->iteration }}</td>
                                     <td class="reference_no">{{$item->reference_no}}</td>
-                                    <td class="date">@if($item->proforma){{ date('d/m/Y', strtotime($item->proforma->date)) }}@endif</td>
+                                    <td class="date">@if($item->proforma){{ date('Y/m/d', strtotime($item->proforma->date)) }}@endif</td>
                                     <td class="week_c">{{ $item->week_c }}</td>
                                     <td class="status">
                                         @if($item->is_received == 1)

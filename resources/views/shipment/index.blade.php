@@ -67,7 +67,8 @@
                                     $footer_balance += $proforma_balance;
                                 @endphp
                                 <tr>
-                                    <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td>
+                                    {{-- <td>{{ (($data->currentPage() - 1 ) * $data->perPage() ) + $loop->iteration }}</td> --}}
+                                    <td>{{ $loop->iteration }}</td>
                                     <td class="reference_no">{{$item->reference_no}}</td>
                                     <td class="date">@if($item->proforma){{ date('d/m/Y', strtotime($item->proforma->date)) }}@endif</td>
                                     <td class="week_c">{{ $item->week_c }}</td>
